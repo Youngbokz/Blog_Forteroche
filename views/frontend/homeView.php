@@ -15,9 +15,9 @@
     </header>
     <section> <!--Last post-->
         <div>
-            <h2>Dernières publications</h2>
+            <h2>Dernier Épisode</h2>
             <?php
-            while ($data = $posts->fetch())
+            while ($data = $lastPost->fetch())
             {
             ?>
                     <div class="news">
@@ -31,7 +31,7 @@
                     </div> 
             <?php          
             }
-            $posts->closeCursor();
+            $lastPost->closeCursor();
             ?>
         </div>
     </section>

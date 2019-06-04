@@ -3,10 +3,10 @@
 require('model/CommentManager.php');
 require('model/PostManager.php');
 
-function lastPosts()
+function lastPost()
 {
     $postManager = new PostManager(); // Create object
-    $posts = $postManager->getPosts(); // We call this function wich allowed us to show the posts 
+    $lastPost = $postManager->getLastPost(); // We call this function wich allowed us to show the last post by id
 
     require('views/frontend/homeView.php');
 }

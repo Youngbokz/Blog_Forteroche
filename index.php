@@ -6,7 +6,7 @@ try //
     { // We check if there's action in URL. Both case we send to home page
         if($_GET['action'] == "home")
         {
-            lastPosts();
+            lastPost();
         }
         elseif($_GET['action'] == "listPosts")
         {
@@ -15,7 +15,7 @@ try //
     }
     else // Even in this case display home page 
     {
-        lastPosts();
+        lastPost();
     }  
 }
 catch(Exception $e)

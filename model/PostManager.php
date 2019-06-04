@@ -35,6 +35,14 @@
             return $post;
         }
 
+        public function getLastPost()
+        {
+            $db = $this->dbConnect();
+            $req = $db->query('SELECT id, title, content, post_author, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin%ss\') AS post_date_fr FROM posts ORDER BY post_date DESC LIMIT 0, 1');
+        
+            return $req;
+        }
+
         public function addPost($title, $content, $post_author) // Permet d'ajouter un épisode en indiquant le titre et le contenu. la date sera celle de la création 
         {
             $db = $this->dbConnect();
