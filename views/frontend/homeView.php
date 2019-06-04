@@ -1,6 +1,3 @@
-<?php
-    echo'SUCCED';
-?>
 <!--homeView-->
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,23 +12,23 @@
 </head>
 <body>
     <header>
-        <div>
-            <a href="#">ACCUEIL</a>
-            <a href="views/frontend/listPostsView.php">ROMAN</a>
-            <a href="views/frontend/aboutme.html">À PROPOS</a>
+        <div> <!--Menu-->
+            <a href="homeView.php">ACCUEIL</a>
+            <a href="listPostsView.php">ROMAN</a>
+            <a href="aboutme.html">À PROPOS</a>
         </div>
         <h1>FORTEROCHE Jean Blog</h1>
         <div>
-            <a href="views/frontend/loginView.php">CONNEXION</a>
-            <a href="views/frontend/subscribeView.php">INSCRIPTION</a>
+            <a href="loginView.php">CONNEXION</a>
+            <a href="subscribeView.php">INSCRIPTION</a>
         </div>
     </header>
-    <section>
+    <section> <!--Last post-->
         <div>
             (Recent post) Dernier exetrait de roman ici
         </div>
     </section>
-    <aside>
+    <aside> <!--About me-->
         (about me) À PROPOS DE MOI
     </aside>
     <footer>

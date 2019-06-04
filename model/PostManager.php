@@ -45,13 +45,14 @@ namespace Blog_Forteroche\Model;
             ));
         }
 
-        public function editPost($title, $content) // Permet d'éditer un post déjà existant en changeant de titre et de contenu
+        public function editPost($title, $content, $postId) // Permet d'éditer un post déjà existant en changeant de titre et de contenu
         {
             $db = $this->dbConnect();
-            $req = $db->prepare('UPDATE posts SET content = :content WHERE title = :title');
+            $req = $db->prepare('UPDATE posts SET title = :title, content = :content WHERE id = :id');
             $req->execute(array(
-                'content' => $content, //= $_POST['content'],
-                'title' => $title //= $_POST['title']
+                'title' => $title, //= $_POST['title']
+                'content' => $content, //= $_POST['content'], 
+                'id' => $postId
             ));
         }
 
