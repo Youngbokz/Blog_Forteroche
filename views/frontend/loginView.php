@@ -11,18 +11,21 @@ echo'LA PAGE DE CONNEXION Login';
     <title>CONNEXION</title>
 </head>
 <body>
-    <header>
+    <header id="main_menu">
         <div> <!--Menu-->
-            <a href="homeView.php">ACCUEIL</a>
-            <a href="listPostsView.php">ROMAN</a>
+            <a href="index.php?action=home">ACCUEIL</a>
+            <a href="index.php?action=listPosts">ROMAN</a>
             <a href="aboutme.html">À PROPOS</a>
         </div>
         <h1>FORTEROCHE Jean Blog</h1>
         <div>
-            <a href="loginView.php">CONNEXION</a>
-            <a href="subscribeView.php">INSCRIPTION</a>
+            <a href="index.php?action=login">CONNEXION</a>
+            <a href="index.php?action=subscribe">INSCRIPTION</a>
         </div>
     </header>
+    <div>
+        <h2>CONNEXION</h2>
+    </div>
     <div>
         <section>
             <form action="" method="post">
