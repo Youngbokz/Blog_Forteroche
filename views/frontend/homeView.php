@@ -1,16 +1,6 @@
 <!--homeView-->
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--CSS-->
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <!--Bootstrap CDN-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>FORTEROCHE Jean Blog</title>
-</head>
-<body>
+    <?php $title = 'FORTEROCHE Jean Blog'; ?>
+    <?php ob_start(); ?>
     <header>
         <div> <!--Menu-->
             <a href="homeView.php">ACCUEIL</a>
@@ -51,6 +41,6 @@
     <footer>
         Mentions légales et autres
     </footer>
-    
-</body>
-</html>
+    <?php $content = ob_get_clean(); ?>
+
+    <?php require('template.php'); ?> 
