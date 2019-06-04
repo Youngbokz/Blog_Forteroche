@@ -11,7 +11,7 @@ echo'LA PAGE D\'INSCRIPTION subscribe';
     <title>INSCRIPTION</title>
 </head>
 <body>
-    <header>
+    <header id="main_menu">
         <div> <!--Menu-->
             <a href="index.php?action=home">ACCUEIL</a>
             <a href="index.php?action=listPosts">ROMAN</a>

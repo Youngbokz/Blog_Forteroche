@@ -6,7 +6,7 @@ echo'LA PAGE ROMAN avec la liste des épisodes';
 <!--listPostsView-->
 <?php $title = 'ROMAN'; ?>
     <?php ob_start(); ?>
-    <header>
+    <header id="main_menu">
         <div> <!--Menu-->
             <a href="index.php?action=home">ACCUEIL</a>
             <a href="index.php?action=listPosts">ROMAN</a>

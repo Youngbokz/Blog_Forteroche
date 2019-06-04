@@ -1,7 +1,7 @@
 <!--homeView-->
     <?php $title = 'FORTEROCHE Jean Blog'; ?>
     <?php ob_start(); ?>
-    <header>
+    <header id="main_menu">
         <div> <!--Menu-->
             <a href="index.php?action=home">ACCUEIL</a>
             <a href="index.php?action=listPosts">ROMAN</a>
