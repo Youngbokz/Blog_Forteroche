@@ -1,0 +1,64 @@
+
+
+<----VIEWS / FRONTEND---->
+1) homeView.php = ACCUEIL
+2) listPostsView.php = ROMAN (liste les différents épisodes)
+3) loginView.php = CONNEXION 
+4) subscribeView.php = INSCRIPTION 
+5) adminView.php = page de l'administrateur (WYSIWYG basée sur TinyMCE)
+6) postView.php = Un épisode avec ses commentaires + formulaire pour ajout de commentaire seulement en étant connecté 
+7) commentView.php = modification du message posté par utilisateur connecté seulement
+8) aboutme.html = À PROPOS
+
+<----LES MODELES---->
+Manager.php: connection à la base de données
+
+PostManager: 
+ ->methodes:
+   getPosts() = selectionner les différents posts SELECT -> page 2
+   getPost() = selectionner un seul post SELECT -> page 5 & 6
+   addPost() = ajouté un post INSERT INTO -> page 5
+   editPost() = éditer un post UPDATE -> page 5
+   deletePost() = effacer un post DELETE -> page 5 
+
+  -> public function __construct(){connexion à la DB}
+
+CommentManager:
+  ->methodes:
+    getComments() = selectionner tout les commentaires SELECT -> page 2 & 5
+    getComment() = selectionner un seul commentaires SELECT -> page 5 & 7 
+    addComment() = ajouter un commentaire après modération de l'administrateur pour l'affichage -> page 5 & 7
+    editComment() = éditer un commentaire -> page 7
+    deleteComment() = effacer un commentaire -> page 5 & 7 
+  -> public function construct(){connexion à la DB}
+
+
+<----CONTROLLER---->
+frontend.php = contient les contrôlleur dans des fonctions. Il met en mémoire les coordonnées des models 
+donc: require('model/PostManager.php) & require('model/CommentManager.php)
+  
+  ->methodes:
+    listPosts() = créer un objet PostManager par lequel on appel la fonction getPosts() 
+    que l'on dispose sur require('views/frontend/listPostsView.php').
+
+    showPost() = au clic sur un post de la home page ou de la listPostsView.php afficher le poste avec ses commentaires
+    en créant un objet PostManager et CommentManager qu'on affiche respectivement avec les méthodes 
+    getPost() & getComments 
+
+    addNewPost() = 
+
+    addNewComment() = permet l'ajout d'un nouveau commentaire par l'utilisateur connecté 
+    avec un objet CommentManager dans lequel on utilise la méthode 
+    addComment()
+
+    comment() = permet l'affichage d'un commentaire a travers l'objet CommentManager en passant la méthode 
+    getComment()
+
+    updateComment() = permet l'édition d'un commentaire pareil en utilisant la classe CommentManager avec la méthode
+    editComment()
+
+    cancelComment() = permet la suppression de commentaire new CommentManager-> deleteComment()
+<---- ROUTEUR---->
+index.php = les requêtes passe par ce premier contrôleur qui est donc le routeur.
+
+mets en mémoires les coordonnées du controller donc: require('controller/frontend.php')
