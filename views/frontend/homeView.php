@@ -25,7 +25,24 @@
     </header>
     <section> <!--Last post-->
         <div>
-            (Recent post) Dernier exetrait de roman ici
+            <h2>Dernières publications</h2>
+            <?php
+            while ($data = $posts->fetch())
+            {
+            ?>
+                    <div class="news">
+                        <h3><?= htmlspecialchars($data['title']); ?></h3>
+                        <p><?= nl2br(htmlspecialchars($data['content'])); ?>  
+                        <br/>
+                        <p>
+                            <?= htmlspecialchars($data['post_author']); ?> le 
+                            <?= ($data['post_date_fr']); ?>
+                        </p>
+                    </div> 
+            <?php          
+            }
+            $posts->closeCursor();
+            ?>
         </div>
     </section>
     <aside> <!--About me-->

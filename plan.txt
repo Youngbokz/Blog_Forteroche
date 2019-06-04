@@ -45,7 +45,11 @@ donc: require('model/PostManager.php) & require('model/CommentManager.php)
     en créant un objet PostManager et CommentManager qu'on affiche respectivement avec les méthodes 
     getPost() & getComments 
 
-    addNewPost() = 
+    addNewPost() = permet à l'administrateur d'ajouter un épisode new PostManager -> addPost()
+
+    erasePost() = permet à l'administrateur de supprimer un épisode new PostManager-> deletePost()
+
+    updatePost() = permet à l'administrateur d'éditer l'épisode new PostManager-> editPost()
 
     addNewComment() = permet l'ajout d'un nouveau commentaire par l'utilisateur connecté 
     avec un objet CommentManager dans lequel on utilise la méthode 
@@ -62,3 +66,6 @@ donc: require('model/PostManager.php) & require('model/CommentManager.php)
 index.php = les requêtes passe par ce premier contrôleur qui est donc le routeur.
 
 mets en mémoires les coordonnées du controller donc: require('controller/frontend.php')
+
+liste de vérifications et/ou de conditions
+

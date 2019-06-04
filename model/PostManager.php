@@ -1,5 +1,5 @@
 <?php
-namespace Blog_Forteroche\Model;
+//namespace Blog_Forteroche\Model;
     require_once("model/Manager.php");
 
 
@@ -20,7 +20,7 @@ namespace Blog_Forteroche\Model;
         public function getPosts() // Permets d'afficher les différents épisodes sur une page
         {
             $db = $this->dbConnect();
-            $req = $db->query('SELECT id, title, content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin%ss\') AS post_date_fr FROM posts ORDER BY post_date DESC LIMIT 0, 3');
+            $req = $db->query('SELECT id, title, content, post_author, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin%ss\') AS post_date_fr FROM posts ORDER BY post_date DESC LIMIT 0, 3');
         
             return $req;
         }
@@ -28,30 +28,32 @@ namespace Blog_Forteroche\Model;
         public function getPost($postId) // Permet d'afficher un seul épisode selon son id 
         {
             $db = $this->dbConnect();
-            $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin%ss\') AS post_date_fr FROM posts WHERE id = ?');
+            $req = $db->prepare('SELECT id, title, content, post_author, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin%ss\') AS post_date_fr FROM posts WHERE id = ?');
             $req->execute(array($postId));
             $post = $req->fetch();
         
             return $post;
         }
 
-        public function addPost($title, $content) // Permet d'ajouter un épisode en indiquant le titre et le contenu. la date sera celle de la création 
+        public function addPost($title, $content, $post_author) // Permet d'ajouter un épisode en indiquant le titre et le contenu. la date sera celle de la création 
         {
             $db = $this->dbConnect();
-            $req = $db->prepare('INSERT INTO posts (title, content, post_date) VALUES (:title, :content, now())');
+            $req = $db->prepare('INSERT INTO posts (title, content, post_author, post_date) VALUES (:title, :content, :post_author, now())');
             $req->execute(array(
                 'title ' => $title,//= $_POST['title'],
-                'content' => $content //= $_POST['content']
+                'content' => $content, //= $_POST['content']
+                'post_author' => $post_author
             ));
         }
 
-        public function editPost($title, $content, $postId) // Permet d'éditer un post déjà existant en changeant de titre et de contenu
+        public function editPost($title, $content,$post_author, $postId) // Permet d'éditer un post déjà existant en changeant de titre et de contenu
         {
             $db = $this->dbConnect();
-            $req = $db->prepare('UPDATE posts SET title = :title, content = :content WHERE id = :id');
+            $req = $db->prepare('UPDATE posts SET title = :title, content = :content, post_author = :post_author WHERE id = :id');
             $req->execute(array(
                 'title' => $title, //= $_POST['title']
                 'content' => $content, //= $_POST['content'], 
+                'post_author'=> $post_author,
                 'id' => $postId
             ));
         }

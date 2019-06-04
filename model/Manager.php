@@ -1,5 +1,5 @@
 <?php
-   
+    //namespace Blog_Forteroche\Model;
     class Manager
     {
         protected function dbConnect() // Déclaration de la base de données qui est réutilisé à chaque fois
