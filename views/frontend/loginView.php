@@ -4,7 +4,7 @@ echo'LA PAGE DE CONNEXION Login';
 
 ?>
 <!--loginView-->
-<?php $title = 'CONNEXION'; ?>
+<?php $title = 'CONNEXION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
 <body>
     <header id="main_menu">

@@ -4,7 +4,7 @@ echo'LA PAGE ROMAN avec la liste des épisodes';
 ?>
 
 <!--listPostsView-->
-<?php $title = 'ROMAN'; ?>
+<?php $title = 'ROMAN | Jean FORTEROCHE'; ?>
     <?php ob_start(); ?>
     <header id="main_menu">
         <div> <!--Menu-->

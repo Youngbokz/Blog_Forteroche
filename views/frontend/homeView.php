@@ -1,5 +1,5 @@
 <!--homeView-->
-    <?php $title = 'FORTEROCHE Jean Blog'; ?>
+    <?php $title = 'ACCUEIL | Jean FORTEROCHE'; ?>
     <?php ob_start(); ?>
     <header id="main_menu">
         <div> <!--Menu-->

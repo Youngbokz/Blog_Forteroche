@@ -4,7 +4,7 @@ echo'LA PAGE D\'INSCRIPTION subscribe';
 
 ?>
 <!--subscribeView-->
-<?php $title = 'INSCRIPTION'; ?>
+<?php $title = 'INSCRIPTION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
 <body>
     <header id="main_menu">
