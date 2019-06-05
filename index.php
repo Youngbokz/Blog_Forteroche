@@ -20,6 +20,17 @@ try //
         {
             require('views/frontend/subscribeView.php');
         }
+        elseif($_GET['action'] == 'post')
+        {
+            if(isset($_GET['id']) && $_GET['id'] >0)
+            {
+                post();
+            }
+            else 
+            {
+                throw new Exception('Erreur : aucun identifiant de post envoyé'); // Error message
+            }
+        }
     }
     else // Even in this case display home page 
     {
@@ -29,5 +40,5 @@ try //
 catch(Exception $e)
 {
     $errorMessage = $e->getMessage();
-    require('view/errorView.php');
+    require('views/errorView.php');
 }

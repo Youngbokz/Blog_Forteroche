@@ -5,17 +5,28 @@ require('model/PostManager.php');
 
 function lastPost()
 {
-    $postManager = new PostManager(); // Create object
-    $lastPost = $postManager->getLastPost(); // We call this function wich allowed us to show the last post by id
+    $lastPostManager = new PostManager(); // Create object
+    $lastPost = $lastPostManager->getLastPost(); // We call this function wich allowed us to show the last post by id
 
     require('views/frontend/homeView.php');
 }
 
 function listPosts()
 {
-    $postManager = new PostManager(); // Create object
-    $posts = $postManager->getPosts(); // We call this function wich allowed us to show the posts 
+    $postsManager = new PostManager(); // Create object
+    $posts = $postsManager->getPosts(); // We call this function wich allowed us to show the posts 
 
     require('views/frontend/listPostsView.php');
+}
+
+function post()
+{
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
+
+    $post = $postManager->getPost($_GET['id']);
+    $comments = $commentManager->getComments($_GET['id']);
+
+    require('views/frontend/postView.php');
 }
 ?>

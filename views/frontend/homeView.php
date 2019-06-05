@@ -20,6 +20,7 @@
             while ($data = $lastPost->fetch())
             {
             ?>
+                <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">
                     <div class="news">
                         <h3><?= htmlspecialchars($data['title']); ?></h3>
                         <p><?= nl2br(htmlspecialchars($data['content'])); ?>  
@@ -29,6 +30,7 @@
                             <?= ($data['post_date_fr']); ?>
                         </p>
                     </div> 
+                </a>
             <?php          
             }
             $lastPost->closeCursor();
