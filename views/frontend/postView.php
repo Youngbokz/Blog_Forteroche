@@ -35,7 +35,7 @@
         {
     ?>
             <p><?= nl2br(htmlspecialchars($comment['comment'])); ?></p>
-            <p><?= htmlspecialchars($comment['author']); ?>le <?= $comment['comment_date_fr']; ?></p>
+            <p><?= htmlspecialchars($comment['author']); ?> le <?= $comment['comment_date_fr']; ?></p>
             
     <?php
         }

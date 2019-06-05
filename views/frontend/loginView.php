@@ -33,6 +33,10 @@ echo'LA PAGE DE CONNEXION Login';
 
                 <input type="submit" value="se connecter" />
             </form>
+            <div>
+                <p><a href=#>Mot de passe oublié ?</a></p>
+                <p><a href="index.php?action=subscribe">S'incrire</a></p> 
+            </div>
         </section>
     </div> 
 </body>
