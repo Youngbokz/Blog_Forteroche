@@ -8,9 +8,17 @@ try //
         {
             lastPost();
         }
-        elseif($_GET['action'] == "listPosts")
+        elseif($_GET['action'] == "listPosts") // This action send us to listPostsView = Roman
         {
             listPosts();
+        }
+        elseif($_GET['action'] == "login") // This action send us to loginView 
+        {
+            require('views/frontend/loginView.php');
+        }
+        elseif($_GET['action'] == "subscribe") // This action send us to loginView 
+        {
+            require('views/frontend/subscribeView.php');
         }
     }
     else // Even in this case display home page 
