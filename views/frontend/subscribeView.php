@@ -3,13 +3,9 @@
 echo'LA PAGE D\'INSCRIPTION subscribe';
 
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSCRIPTION</title>
-</head>
+<!--subscribeView-->
+<?php $title = 'INSCRIPTION'; ?>
+<?php ob_start(); ?>
 <body>
     <header id="main_menu">
         <div> <!--Menu-->
@@ -43,4 +39,11 @@ echo'LA PAGE D\'INSCRIPTION subscribe';
         </section>
     </div> 
 </body>
-</html>
+
+<footer>
+    Mentions légales et autres
+</footer>
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require('template.php'); ?> 

@@ -3,13 +3,9 @@
 echo'LA PAGE DE CONNEXION Login';
 
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONNEXION</title>
-</head>
+<!--loginView-->
+<?php $title = 'CONNEXION'; ?>
+<?php ob_start(); ?>
 <body>
     <header id="main_menu">
         <div> <!--Menu-->
@@ -40,4 +36,11 @@ echo'LA PAGE DE CONNEXION Login';
         </section>
     </div> 
 </body>
-</html>
+
+<footer>
+    Mentions légales et autres
+</footer>
+
+<?php $content = ob_get_clean(); ?>
+
+<?php require('template.php'); ?> 
