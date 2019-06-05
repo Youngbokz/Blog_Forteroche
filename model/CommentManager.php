@@ -32,6 +32,14 @@ class CommentManager extends Manager
         return $comment;
     }
 
+    public function allLastComments()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT id, author, comment, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments ORDER BY comment_date DESC LIMIT 0, 3');
+        
+        return $req;
+    }
+
     public function addComment($postId, $author, $comment) // permet l'ajout d'un commentaire
     {
         $db = $this->dbConnect();

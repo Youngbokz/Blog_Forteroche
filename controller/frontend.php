@@ -6,7 +6,9 @@ require('model/PostManager.php');
 function lastPost()
 {
     $lastPostManager = new PostManager(); // Create object
-    $lastPost = $lastPostManager->getLastPost(); // We call this function wich allowed us to show the last post by id
+    $lastPost = $lastPostManager->getLastPost(); // We call this function wich allowed us to show the last post by date
+    $lastCommentsManager = new CommentManager(); // Create object
+    $lastComments = $lastCommentsManager->allLastComments(); // We call this function wich allowed us to show all last comments by date
 
     require('views/frontend/homeView.php');
 }

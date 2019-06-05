@@ -23,7 +23,7 @@
                 <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">
                     <div class="news">
                         <h3><?= htmlspecialchars($data['title']); ?></h3>
-                        <p><?= nl2br(htmlspecialchars($data['content'])); ?>  
+                        <p><?= nl2br(htmlspecialchars($data['content'])); ?></p>  
                         <br/>
                         <p>
                             <?= htmlspecialchars($data['post_author']); ?> le 
@@ -37,6 +37,27 @@
             ?>
         </div>
     </section>
+    <aside>
+        <div>
+            <h2>Derniers Commentaires</h2>
+            <?php
+            while ($data = $lastComments->fetch())
+            {
+            ?>
+                <div>
+                    <p><?= nl2br(htmlspecialchars($data['comment'])); ?></p> 
+                    <br/>
+                    <p>
+                        <?= htmlspecialchars($data['author']); ?> le 
+                        <?= ($data['comment_date_fr']); ?>
+                    </p>
+                </div> 
+            <?php          
+            }
+            $lastComments->closeCursor();
+            ?>
+        </div>
+    </aside>
     <aside> <!--About me-->
         (about me) À PROPOS DE MOI
     </aside>
