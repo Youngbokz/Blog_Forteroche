@@ -25,6 +25,7 @@ echo'LA PAGE ROMAN avec la liste des épisodes';
             while ($data = $posts->fetch())
             {
             ?>
+                <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">
                     <div class="news">
                         <h3><?= htmlspecialchars($data['title']); ?></h3>
                         <p><?= nl2br(htmlspecialchars($data['content'])); ?>  
@@ -34,6 +35,7 @@ echo'LA PAGE ROMAN avec la liste des épisodes';
                             <?= ($data['post_date_fr']); ?>
                         </p>
                     </div> 
+                </a>
             <?php          
             }
             $posts->closeCursor();

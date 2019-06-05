@@ -33,12 +33,13 @@
     <?php
         while ($comment = $comments->fetch())
         {
-        ?>
+    ?>
             <p><?= nl2br(htmlspecialchars($comment['comment'])); ?></p>
             <p><?= htmlspecialchars($comment['author']); ?>le <?= $comment['comment_date_fr']; ?></p>
             
     <?php
         }
+        $comments->closeCursor();
     ?>
     </section>
     <footer>
