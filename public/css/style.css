@@ -43,11 +43,7 @@ Light gray (h2) :		#747474
 /*---------------------------------------- */
 
 /*     main menu      */
-#main_menu
-{
-    display: flex;
-    justify-content: space-around;
-}
+
 
 
 /*     sous partie      */
