@@ -49,7 +49,8 @@
         <footer>
             Mentions légales et autres
         </footer>
-        <script src="public/js/jQuery.js"></script>
+        <script src="public/js/jQuery.min.js"></script>
+        <script src="public/js/popper.min.js"></script>
         <script src="public/js/bootstrap.min.js"></script>
     </body>
 </html>
