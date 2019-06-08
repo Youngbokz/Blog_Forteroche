@@ -84,6 +84,11 @@ a
     height: 300px;
     white-space: nowrap;
 }
+#previewChapter 
+{
+    background: #e9ecef;
+    display: flex; 
+}
 #previewChapter section div h2
 {
     text-align: center;
