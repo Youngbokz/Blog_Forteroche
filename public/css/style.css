@@ -81,8 +81,10 @@ Light gray (h2) :		#747474
     height: 300px;
     white-space: nowrap;
 }
-
-
+#previewChapter section div h2
+{
+    text-align: center;
+}
 
 /*     sous partie      */
 #home_words
