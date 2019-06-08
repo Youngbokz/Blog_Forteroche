@@ -29,8 +29,8 @@
                             CONNEXION
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="index.php?action=login">CONNEXION</a>
-                            <a class="dropdown-item" href="index.php?action=subscribe">INSCRIPTION</a>
+                            <a class="dropdown-item" href="index.php?action=login">Se Connecter</a>
+                            <a class="dropdown-item" href="index.php?action=subscribe">Inscription</a>
                         </div>
                     </div>
                 </div>
