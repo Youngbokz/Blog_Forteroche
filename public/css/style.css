@@ -25,7 +25,10 @@ Light gray (h2) :		#747474
 /*---------------------------------------- */
 
 /*     sous partie      */
-
+a
+{
+    color: white;
+}
 /*     sous partie      */
 
 /*     sous partie      */
@@ -45,7 +48,7 @@ Light gray (h2) :		#747474
     align-items: center;
     justify-content: center;
     position: relative;
-    background: url(../images/train.jpg) no-repeat center center;
+    background: url(../images/train1.jpg) no-repeat center center;
     height: 800px;
     width: 100%;
 }
