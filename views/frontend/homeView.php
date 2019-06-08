@@ -21,10 +21,10 @@
                         <div class="jumbotron">
                             <aside><?= htmlspecialchars($data['chapter']); ?></aside>
                             <h2><?= htmlspecialchars($data['title']); ?></h2>
+                            <p class="lead">Le <?= ($data['post_date_fr']); ?></p>
                             <p class="chapter_slim"><?= nl2br(htmlspecialchars($data['content'])); ?></p>                       
                             <a class="btn btn-lg btn-primary" href="index.php?action=post&amp;id=<?= $data['id'] ?>" role="button">En voir plus</a>
-                            <p class="lead"><?= htmlspecialchars($data['post_author']); ?> le 
-                                <?= ($data['post_date_fr']); ?></p>
+                            
                         </div>        
                     </main>
                 <?php          
