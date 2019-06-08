@@ -1,6 +1,10 @@
 <!--homeView-->
     <?php $title = 'ACCUEIL | Jean FORTEROCHE'; ?>
     <?php ob_start(); ?>
+    <header id="banner">
+        <h1>"Billet simple pour l'Alaska"</h1>
+        <p>Venez découvrir le roman en temps réel !</p>
+    </header>
     <div id="previewChapter">
         <section id=""> <!--Last post-->
             <div>
@@ -12,7 +16,7 @@
                     <main role="main" class="container">
                         <div class="jumbotron">
                             <aside><?= htmlspecialchars($data['chapter']); ?></aside>
-                            <h1><?= htmlspecialchars($data['title']); ?></h1>
+                            <h2><?= htmlspecialchars($data['title']); ?></h2>
                             <p class="chapter_slim"><?= nl2br(htmlspecialchars($data['content'])); ?></p>                       
                             <a class="btn btn-lg btn-primary" href="index.php?action=post&amp;id=<?= $data['id'] ?>" role="button">En voir plus</a>
                             <p class="lead"><?= htmlspecialchars($data['post_author']); ?> le 
