@@ -10,6 +10,7 @@
             ?>
                 <main role="main" class="container">
                     <div class="jumbotron">
+                        <aside><?= htmlspecialchars($data['chapter']); ?></aside>
                         <h1><?= htmlspecialchars($data['title']); ?></h1>
                         <p class="lead"><?= nl2br(htmlspecialchars($data['content'])); ?></p>
                         <a class="btn btn-lg btn-primary" href="index.php?action=post&amp;id=<?= $data['id'] ?>" role="button">En voir plus</a>
