@@ -39,18 +39,12 @@ Light gray (h2) :		#747474
 {
     background: rgba(0, 0, 0, 0.3);
 }
-.btn-primary 
-{
-    background-color: none;
-    border-color: none;
-}
 #banner
 {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    top: -120px;
     background: url(../images/train.jpg) no-repeat center center;
     height: 800px;
     width: 100%;
@@ -78,7 +72,6 @@ Light gray (h2) :		#747474
 /*---------------------------------------- */
 
 /*     main menu      */
-
 .chapter_slim
 {
     font-size: 1.25rem;
@@ -92,7 +85,22 @@ Light gray (h2) :		#747474
 
 
 /*     sous partie      */
-
+#home_words
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 100%;
+    background: url(../images/aurore2.jpg)no-repeat center center;
+    background-attachment: fixed;
+}
+#home_words div
+{
+    background: none;
+    text-align: center;
+    color: white;
+}
 /*     sous partie      */
 
 /* ---------------------------------------- */

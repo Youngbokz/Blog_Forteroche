@@ -13,7 +13,7 @@
     </head>
         
     <body>
-        <div id="container" style="margin-bottom: 120px;"><!--Menu-->
+        <div id="container"><!--Menu-->
             <nav class="main-navbar navbar fixed-top">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">

@@ -55,8 +55,11 @@
             </div>
         </aside>
     </div>
-    <section> <!--About me-->
-        (about me) À PROPOS DE MOI
+    <section id="home_words"> <!--About me-->
+        <div>
+            <h2>"L'Homme reste en haleine par l'attente de l'émotion..."</h2>
+            <p>[Jean FORTEROCHE]</p>
+        </div>
     </section>
     <?php $content = ob_get_clean(); ?>
 
