@@ -14,7 +14,7 @@
         
     <body>
         <div id="container" style="margin-bottom: 120px;"><!--Menu-->
-            <nav class="navbar navbar-dark bg-dark fixed-top">
+            <nav class="main-navbar navbar fixed-top">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
                         <li class="active"> <a href="index.php?action=home">ACCUEIL</a> </li>

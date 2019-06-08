@@ -35,13 +35,17 @@ Light gray (h2) :		#747474
 /*---------------------------------------- */
 
 /*     Navigation      */
+.main-navbar .navbar
+{
+    background: rgba(0, 0, 0, 0.3);
+}
 #banner
 {
     position: relative;
+    top: -120px;
     background: url(../images/train.jpg) no-repeat center center;
-    height: 300px;
+    height: 800px;
     width: 100%;
-
 }
 /*     Slider      */
 
