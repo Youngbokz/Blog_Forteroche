@@ -49,6 +49,16 @@ Light gray (h2) :		#747474
 
 /*     main menu      */
 
+.chapter_slim
+{
+    font-size: 1.25rem;
+    font-weight: 300;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 300px;
+    white-space: nowrap;
+}
+
 
 
 /*     sous partie      */
