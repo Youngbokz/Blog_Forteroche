@@ -111,6 +111,11 @@ a
     text-align: center;
     color: white;
 }
+/*subscribeView.php*/
+div .subscribeContainer
+{
+    margin-top: 100px;
+}
 /*     sous partie      */
 
 /* ---------------------------------------- */
@@ -128,8 +133,3 @@ a
 /*     sous partie      */
 
 /*     sous partie      */
-/*subscribeView.php*/
-.subscribeContainer
-{
-    margin-top: 100px;
-}

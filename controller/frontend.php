@@ -40,12 +40,17 @@ function subscribe($log, $password)
 
     require('views/frontend/subscribeView.php');
 }
-function verify()
+function verify($log)
 {
     $memberManager = new MemberManager();
 
     $member = $memberManager->verifyMember($log);
 
-    require('views/frontend/subscribeView.php');
+    if ($member == 1) {
+        throw new Exception('Pseudo deja pris!');
+    }
+    else {
+        header('Location: index.php?action=subscribe');
+    }   
 }
-?>
+
