@@ -43,6 +43,7 @@ class MemberManager extends Manager
 
     public function addMember($log, $password) // permet l'ajout d'un membre
     {
+        $pass_hache = password_hash($password, PASSWORD_DEFAULT);
         $db = $this->dbConnect();
         $member = $db->prepare('INSERT INTO members(log, password, comment_id, registration_date) VALUES(?, ?, NOW())');
         $newMember = $member->execute(array($log, $password));
