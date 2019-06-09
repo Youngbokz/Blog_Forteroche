@@ -31,11 +31,7 @@ try //
                 throw new Exception('Erreur : aucun identifiant de post envoyé'); // Error message
             }
         }
-        elseif()
-        {
-            
-        }
-
+    
     }
     else // Even in this case display home page 
     {
