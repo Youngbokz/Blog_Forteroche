@@ -10,7 +10,7 @@
         
     </header>
     <div id="previewChapter">
-        <section id=""> <!--Last post-->
+        <section> <!--Last post-->
             <div>
                 <h2>Dernier Épisode</h2>
                 <?php
@@ -20,9 +20,9 @@
                     <main role="main" class="container">
                         <div class="jumbotron">
                             <aside><?= htmlspecialchars($data['chapter']); ?></aside>
-                            <h2><?= htmlspecialchars($data['title']); ?></h2>
                             <p class="lead">Le <?= ($data['post_date_fr']); ?></p>
-                            <p class="chapter_slim"><?= nl2br(htmlspecialchars($data['content'])); ?></p>                       
+                            <h2><?= htmlspecialchars($data['title']); ?></h2>
+                            <p class="chapter_slim col-md-8"><?= nl2br(htmlspecialchars($data['content'])); ?></p>                       
                             <a class="btn btn-lg btn-primary" href="index.php?action=post&amp;id=<?= $data['id'] ?>" role="button">En voir plus</a>
                             
                         </div>        

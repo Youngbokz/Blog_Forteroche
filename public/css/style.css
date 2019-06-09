@@ -82,12 +82,12 @@ a
     text-overflow: ellipsis;
     overflow: hidden;
     height: 300px;
-    white-space: nowrap;
 }
 #previewChapter 
 {
     background: #e9ecef;
     display: flex; 
+    align-items: center;
 }
 #previewChapter section div h2
 {
