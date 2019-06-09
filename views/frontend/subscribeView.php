@@ -10,7 +10,7 @@ echo'LA PAGE D\'INSCRIPTION subscribe';
         <h2>INSCRIPTION</h2>
     </div>
     <div>
-        <section>
+        <section class="subscribeContainer">
             <form action="index.php?action=subscribeNewMember" method="post">
                 <label for="username">Choisir un pseudo</label>
                 <input type="text" name="username" id="username" placeholder="Nom d'utilisateur" required />
