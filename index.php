@@ -16,7 +16,11 @@ try //
         {
             require('views/frontend/loginView.php');
         }
-        elseif($_GET['action'] == "subscribe") // This action send us to loginView 
+        elseif($_GET['action'] == "subscribe")
+        {
+            require('views/frontend/subscribeView.php');
+        }
+        elseif($_GET['action'] == "subscribeNewMember") // This action send us to loginView 
         {
             //Check if submit 
             if(isset($_POST['submit'])) 
