@@ -32,7 +32,7 @@ function post()
 
     require('views/frontend/postView.php');
 }
-function subscribe()
+function subscribe($log, $password)
 {
     $memberManager = new MemberManager();
 
