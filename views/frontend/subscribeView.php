@@ -9,8 +9,8 @@ echo'LA PAGE D\'INSCRIPTION subscribe';
     <div>
         <h2>INSCRIPTION</h2>
     </div>
-    <div>
-        <section class="subscribeContainer">
+    <div class="subscribeContainer">
+        <section>
             <form action="index.php?action=subscribeNewMember" method="post">
                 <label for="username">Choisir un pseudo</label>
                 <input type="text" name="username" id="username" placeholder="Nom d'utilisateur" required />
