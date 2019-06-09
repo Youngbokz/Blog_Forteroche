@@ -18,7 +18,7 @@ try //
         }
         elseif($_GET['action'] == "subscribe") // This action send us to loginView 
         {
-            require('views/frontend/subscribeView.php');
+            
         }
         elseif($_GET['action'] == 'post')
         {

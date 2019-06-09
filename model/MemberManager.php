@@ -45,8 +45,8 @@ class MemberManager extends Manager
     {
         $pass_hache = password_hash($password, PASSWORD_DEFAULT);
         $db = $this->dbConnect();
-        $member = $db->prepare('INSERT INTO members(log, password, comment_id, registration_date) VALUES(?, ?, NOW())');
-        $newMember = $member->execute(array($log, $password));
+        $member = $db->prepare('INSERT INTO members(log, password, registration_date) VALUES(?, ?, NOW())');
+        $newMember = $member->execute(array($log, $pass_hache));
 
         return $newMember;
     }
