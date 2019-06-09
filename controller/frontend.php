@@ -40,4 +40,12 @@ function subscribe()
 
     require('views/frontend/subscribeView.php');
 }
+function verify()
+{
+    $memberManager = new MemberManager();
+
+    $member = $memberManager->verifyMember($log);
+
+    require('views/frontend/subscribeView.php');
+}
 ?>
