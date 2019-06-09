@@ -6,10 +6,10 @@ echo'LA PAGE D\'INSCRIPTION subscribe';
 <!--subscribeView-->
 <?php $title = 'INSCRIPTION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
-    <div>
+    <div class="subscribeContainer">
         <h2>INSCRIPTION</h2>
     </div>
-    <div class="subscribeContainer">
+    <div>
         <section>
             <form action="index.php?action=subscribeNewMember" method="post">
                 <label for="username">Choisir un pseudo</label>
