@@ -2,6 +2,7 @@
 // We charge classes 
 require('model/CommentManager.php');
 require('model/PostManager.php');
+require('model/MemberManager.php');
 
 function lastPost()
 {
@@ -30,5 +31,13 @@ function post()
     $comments = $commentManager->getComments($_GET['id']);
 
     require('views/frontend/postView.php');
+}
+function subscribe()
+{
+    $memberManager = new MemberManager();
+
+    $member = $memberManager->addMember($log, $password);
+
+    require('views/frontend/subscribeView.php');
 }
 ?>
