@@ -34,7 +34,8 @@ try //
                 {
                     if(preg_match('#^[a-zA-Z0-9_]{2,16}$#i', ($username)))
                     {
-
+                        $verifyUsername = verify($username);
+                        echo $verifyUsername;
                     }
                     else
                     {

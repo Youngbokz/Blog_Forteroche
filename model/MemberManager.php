@@ -19,9 +19,8 @@ class MemberManager extends Manager
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT log FROM members WHERE log = ?');
         $req->execute(array($log));
-        $logExist = $req->rowCount();
-
-        return $logExist;
+        $verifyLog = $req->rowCount();
+        return $verifyLog;
     }
     public function getMembers($log) // Permet de selectionner tout les membres selon leur pseudo
     {

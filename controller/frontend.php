@@ -43,15 +43,7 @@ function subscribe($log, $password)
 function verify($log)
 {
     $memberManager = new MemberManager();
-
     $member = $memberManager->verifyMember($log);
-
-    if ($member == 1) {
-        throw new Exception('Pseudo deja pris!');
-    }
-    else {
-
-        header('Location: index.php?action=subscribe');
-    }  
+    return $member;
 }
 
