@@ -35,7 +35,22 @@ try //
                     if(preg_match('#^[a-zA-Z0-9_]{2,16}$#i', ($username)))
                     {
                         $verifyUsername = verify($username);
-                        echo $verifyUsername;
+
+                        if($verifyUsername == 0)
+                        {
+                            if(preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$#', ($pass)))
+                            {
+                                echo'it s ok';
+                            }
+                            else
+                            {
+                                echo'<p>Mot de passe 8 caractères minimum avec au moins 1 minuscule, 1 majuscule et 1 chiffre</p>';
+                            }
+                        }
+                        else
+                        {
+                            echo'<p>Le pseudo choisi existe déja (' . $verifyUsername .') en choisir un autre</p>';
+                        }
                     }
                     else
                     {
