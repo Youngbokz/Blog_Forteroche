@@ -112,9 +112,9 @@ a
     color: white;
 }
 /*subscribeView.php*/
-div .subscribeContainer
+div #subscribeContainer
 {
-    margin-top: 100px;
+    margin-top: 100px !important;
 }
 /*     sous partie      */
 

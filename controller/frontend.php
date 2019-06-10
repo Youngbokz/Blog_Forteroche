@@ -50,7 +50,8 @@ function verify($log)
         throw new Exception('Pseudo deja pris!');
     }
     else {
+
         header('Location: index.php?action=subscribe');
-    }   
+    }  
 }
 

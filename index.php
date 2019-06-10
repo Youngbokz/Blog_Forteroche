@@ -20,7 +20,13 @@ try //
         {
             require('views/frontend/subscribeView.php');
         }
-        
+        elseif($_GET['action'] == "register")
+        {
+            if(isset ($_POST['submit']))
+            {
+                subscribe($_POST['username'], $_POST['pass']);
+            }
+        }
         elseif($_GET['action'] == 'post')
         {
             if(isset($_GET['id']) && $_GET['id'] >0)
@@ -32,6 +38,7 @@ try //
                 throw new Exception('Erreur : aucun identifiant de post envoyé'); // Error message
             }
         }
+        
     
     }
     else // Even in this case display home page 

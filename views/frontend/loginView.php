@@ -26,6 +26,7 @@ echo'LA PAGE DE CONNEXION Login';
             </div>
         </section>
     </div> 
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?> 
