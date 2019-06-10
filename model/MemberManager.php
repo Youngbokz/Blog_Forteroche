@@ -17,7 +17,7 @@ class MemberManager extends Manager
     public function verifyMember($log) // Permet de vérifier qu'un membre existe déjà par son log
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT log, pass FROM members WHERE log = ?');
+        $req = $db->prepare('SELECT log FROM members WHERE log = ?');
         $req->execute(array($log));
         $verifyLog = $req->rowCount();
         return $verifyLog;

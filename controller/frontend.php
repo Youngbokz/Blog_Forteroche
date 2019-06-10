@@ -46,6 +46,12 @@ function verify($log)
     $member = $memberManager->verifyMember($log);
     return $member;
 }
-
+function selectMember($log)
+{
+    $memberManager = new MemberManager();
+    $member = $memberManager->getMember($log);
+    $member->fetch();
+    return $member;
+}
 
 
