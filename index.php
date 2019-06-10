@@ -42,7 +42,8 @@ try //
                             {
                                 if($pass === $re_pass)
                                 {
-                                    echo'tset ok';
+                                    subscribe($username, $pass);
+                                    echo '<font color="green">Vous êtes enregistré(e)</font>';
                                 }
                                 else
                                 {
