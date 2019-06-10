@@ -17,7 +17,7 @@ class MemberManager extends Manager
     public function verifyMember($log) // Permet de vérifier qu'un membre existe déjà par son log
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT log FROM members WHERE log = ?');
+        $req = $db->prepare('SELECT log, pass FROM members WHERE log = ?');
         $req->execute(array($log));
         $verifyLog = $req->rowCount();
         return $verifyLog;
@@ -31,7 +31,7 @@ class MemberManager extends Manager
         return $req;
     }
 
-    public function getMember($log) //permet d'afficher un seul membre 
+    public function getMember($log) //permet de selectionner un seul membre 
     {
         $db = $this->dbConnect();
         $member = $db->prepare('SELECT id, log, password, DATE_FORMAT(registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr FROM members WHERE log = ?');

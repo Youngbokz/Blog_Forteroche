@@ -11,14 +11,14 @@ echo'LA PAGE DE CONNEXION Login';
     </div>
     <div>
         <section>
-            <form action="" method="post">
+            <form action="index.php?action=connect" method="post">
                 <label for="login">Entrer votre nom d'utilisateur</label>
-                <input type="text" name="login" id="login" placeholder="Nom d'utilisateur" required />
+                <input type="text" name="login" id="login" placeholder="Nom d'utilisateur" />
 
                 <label for="pass">Entrer votre mot de passe</label>
-                <input type="password" name="pass" id="pass" placeholder="Mot de passe" required />
+                <input type="password" name="pass" id="pass" placeholder="Mot de passe" />
 
-                <input type="submit" value="se connecter" />
+                <input type="submit" name="submit" value="se connecter" />
             </form>
             <div>
                 <p><a href=#>Mot de passe oublié ?</a></p>
