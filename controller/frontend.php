@@ -46,12 +46,20 @@ function verify($log)
     $member = $memberManager->verifyMember($log);
     return $member;
 }
-function selectMember($log)
+function verifyConnection($log, $password)
 {
     $memberManager = new MemberManager();
     $member = $memberManager->getMember($log);
-    $member->fetch();
-    return $member;
+    $isPasswordCorrect = password_verify($password, $member['password']);
+    $right = true;
+    if(($member['log'] == $log) AND ($isPasswordCorrect === $right))
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 

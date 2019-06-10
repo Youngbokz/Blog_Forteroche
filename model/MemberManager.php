@@ -36,8 +36,9 @@ class MemberManager extends Manager
         $db = $this->dbConnect();
         $member = $db->prepare('SELECT id, log, password, DATE_FORMAT(registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr FROM members WHERE log = ?');
         $member->execute(array($log));
+        $result = $member->fetch();
 
-        return $member;
+        return $result;
     }
 
     public function addMember($log, $password) // permet l'ajout d'un membre

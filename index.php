@@ -103,7 +103,17 @@ try //
 
                 if(!empty($loginConnex) AND !empty($passConnex))
                 {
-                    
+                    $verifyLogin = verifyConnection($loginConnex, $passConnex);
+
+                     // Check if password in match with the one in database
+                    if($verifyLogin == 1)
+                    {
+                        echo'its ok for the login only yet';
+                    }
+                    else
+                    {
+                        echo'Mauvais mot de passe ou pseudo inconnue';
+                    }
                 }
                 else
                 {
