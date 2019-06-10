@@ -24,7 +24,24 @@ try //
         {
             if(isset ($_POST['submit']))
             {
-                subscribe($_POST['username'], $_POST['pass']);
+                // Add var 
+                $username =  $_POST['username'];
+                $pass =  $_POST['pass'];
+                $re_pass =  $_POST['re_pass'];
+                if(!empty($username) AND 
+                !empty($pass) AND
+                !empty($re_pass))
+                {
+                    
+                }
+                else
+                {
+                    echo'test';
+                }
+            }
+            else
+            {
+                $errorMessage = '<p>Formulaire n\'a pas été envoyé</p>';
             }
         }
         elseif($_GET['action'] == 'post')
