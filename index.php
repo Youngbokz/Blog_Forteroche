@@ -32,15 +32,22 @@ try //
                 !empty($pass) AND
                 !empty($re_pass))
                 {
-                    if(preg_match('#^[a-zA-Z0-9_]{2,16}$#i', ($username)))
+                    if(preg_match('#^[a-zA-Z0-9_]{2,16}$#i', ($username))) // Usrname conditions minimum 2 letters
                     {
-                        $verifyUsername = verify($username);
+                        $verifyUsername = verify($username); // Verify if username exist or not
 
-                        if($verifyUsername == 0)
+                        if($verifyUsername == 0) // if log doesnt exist in database
                         {
-                            if(preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$#', ($pass)))
+                            if(preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$#', ($pass))) //Password must have 1 lower and upper case and a number
                             {
-                                echo'it s ok';
+                                if($pass === $re_pass)
+                                {
+                                    echo'tset ok';
+                                }
+                                else
+                                {
+                                    echo'<p>Mot de passe différents</p>';
+                                }
                             }
                             else
                             {
