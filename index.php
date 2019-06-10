@@ -32,7 +32,14 @@ try //
                 !empty($pass) AND
                 !empty($re_pass))
                 {
-                    
+                    if(preg_match('#^[a-zA-Z0-9_]{2,16}$#i', ($username)))
+                    {
+
+                    }
+                    else
+                    {
+                        echo'<p>Votre pseudo doit comporter au moins 2 lettres</p>';
+                    }
                 }
                 else
                 {
