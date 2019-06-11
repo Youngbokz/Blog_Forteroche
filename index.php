@@ -4,27 +4,37 @@ try //
 {
     if(isset($_GET['action']))
     { // We check if there's action in URL. Both case we send to home page
-        
+        //--------------------------------------------------------------------------------------->
+        //ACCUEIL (HOME) PAGE DISPLAY
+
         if($_GET['action'] == "home")
         {
             lastPost();
         }
         //--------------------------------------------------------------------------------------->
+        //ROMAN PAGE DISPLAY
+
         elseif($_GET['action'] == "listPosts") // This action send us to listPostsView = Roman
         {
             listPosts();
         }
         //--------------------------------------------------------------------------------------->
+        //SE CONNECTER (LOGIN) PAGE DISPLAY
+
         elseif($_GET['action'] == "login") // This action send us to loginView 
         {
             require('views/frontend/loginView.php');
         }
         //--------------------------------------------------------------------------------------->
+        //S'INSCRIRE (SUBSCRIBE) PAGE DISPLAY
+
         elseif($_GET['action'] == "subscribe") // This action send us to loginView 
         {
             require('views/frontend/subscribeView.php');
         }
         //--------------------------------------------------------------------------------------->
+        //SUBMIT IN SUBSCRIBE PAGE 
+
         elseif($_GET['action'] == "register")
         {
             if(isset ($_POST['submit']))
@@ -81,6 +91,8 @@ try //
             }
         }
         //--------------------------------------------------------------------------------------->
+        //A POST DISPLAY
+
         elseif($_GET['action'] == 'post')
         {
             if(isset($_GET['id']) && $_GET['id'] >0)
@@ -93,6 +105,8 @@ try //
             }
         }
         //--------------------------------------------------------------------------------------->
+        //SUBMIT IN LOGIN PAGE 
+
         elseif($_GET['action'] == 'connect')
         {
             if(isset($_POST['submit']))
