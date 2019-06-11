@@ -34,10 +34,13 @@ session_start()
                         if(isset($_SESSION['login']))
                         {
                     ?>
-                            <div>
-                                <a href="index.php?action=disconnect">SE DÉCONNECTER</a>
-                                
-                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <?= $_SESSION['login']; ?>
+                                </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="index.php?action=disconnect">Se Déconnecter</a>
+                            </div> 
                     <?php        
                         }
                         else
