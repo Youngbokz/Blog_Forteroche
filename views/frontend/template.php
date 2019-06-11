@@ -35,8 +35,8 @@ session_start()
                         {
                     ?>
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    SE DÉCONNECTER
+                                <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a href="index.php?action=disconnect">SE DÉCONNECTER</a>
                                 </button>
                             </div>
                     <?php        
