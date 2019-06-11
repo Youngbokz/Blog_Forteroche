@@ -13,7 +13,7 @@ try //
         }
         //--------------------------------------------------------------------------------------->
         //ROMAN PAGE DISPLAY
-
+    
         elseif($_GET['action'] == "listPosts") // This action send us to listPostsView = Roman
         {
             listPosts();
@@ -146,6 +146,13 @@ try //
             {
                 echo'<p>Formulaire n\'a pas été envoyé</p>';
             }
+        }
+        //--------------------------------------------------------------------------------------->
+        //DISCONNECT PAGE DISPLAY
+
+        elseif($_GET['action'] == "disconnect")
+        {
+            require('views/frontend/disconnectView.php');
         }
     }
     else // Even in this case display home page 
