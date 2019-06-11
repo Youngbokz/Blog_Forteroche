@@ -48,7 +48,7 @@ try //
                                 if($pass === $re_pass)
                                 {
                                     subscribe($username, $pass);
-                                    echo '<font color="green">Vous êtes enregistré(e)</font>';
+                                    echo '<font color="green">Vous êtes enregistré(e), vous pouvez vous connecter!</font>';
                                 }
                                 else
                                 {
