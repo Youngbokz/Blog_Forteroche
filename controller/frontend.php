@@ -56,7 +56,7 @@ function verifyConnection($log, $password)
     {
         // If login and password match we create a $_SESSION
         $_SESSION['id'] = $member['id'];
-        $_SESSION['login'] = $log; 
+        $_SESSION['login'] = $member['log']; 
         return 1;
     }
     else

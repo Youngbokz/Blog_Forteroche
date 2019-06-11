@@ -37,7 +37,7 @@ session_start()
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="index.php?action=login">Se Connecter</a>
                             <a class="dropdown-item" href="index.php?action=subscribe">Inscription</a>
-                        </div>
+                        </div>  
                     </div>
                 </div>
             </nav>
