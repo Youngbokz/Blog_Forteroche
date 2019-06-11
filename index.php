@@ -108,7 +108,8 @@ try //
                      // Check if password in match with the one in database
                     if($verifyLogin == 1)
                     {
-                        echo'its ok for the login only yet';
+                        echo'<font color="green">Vous êtes bien connecté !</font>';
+                        header('location: index.php');
                     }
                     else
                     {

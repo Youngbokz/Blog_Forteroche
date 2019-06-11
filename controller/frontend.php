@@ -38,7 +38,7 @@ function subscribe($log, $password)
 
     $member = $memberManager->addMember($log, $password);
 
-    require('views/frontend/subscribeView.php');
+    require('views/frontend/loginView.php');
 }
 function verify($log)
 {
@@ -54,6 +54,9 @@ function verifyConnection($log, $password)
     $right = true;
     if(($member['log'] == $log) AND ($isPasswordCorrect === $right))
     {
+        // If login and password match we create a $_SESSION
+        $_SESSION['id'] = $member['id'];
+        $_SESSION['login'] = $log; 
         return 1;
     }
     else
