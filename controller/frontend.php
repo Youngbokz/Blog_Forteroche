@@ -50,19 +50,26 @@ function verifyConnection($log, $password)
 {
     $memberManager = new MemberManager();
     $member = $memberManager->getMember($log);
+   
     $isPasswordCorrect = password_verify($password, $member['password']);
     $right = true;
     if(($member['log'] == $log) AND ($isPasswordCorrect === $right))
     {
         // If login and password match we create a $_SESSION
-        $_SESSION['id'] = $member['id'];
-        $_SESSION['login'] = $member['log']; 
+        
         return 1;
     }
     else
     {
         return 0;
     }
+}
+
+function member($log)
+{
+    $memberManager = new MemberManager();
+    $member = $memberManager->getMember($log);
+    return $member;
 }
 
 

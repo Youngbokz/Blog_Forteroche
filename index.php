@@ -122,6 +122,13 @@ try //
                      // Check if password in match with the one in database
                     if($verifyLogin == 1)
                     {
+                        session_start();
+                        $result = member($loginConnex);
+                        $_SESSION['login'] = $result['log'];
+                        $_SESSION['id'] = $result['id'];
+                        $_SESSION['registration_date'] = $result['registration_date_fr'];
+
+                        echo 'Coucou ' . $result['log'] . '! ';
                         echo'<font color="green">Vous êtes bien connecté !</font>';
                         header('location: index.php');
                     }

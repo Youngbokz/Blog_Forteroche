@@ -29,6 +29,7 @@ session_start()
                     </ul>
                     <div class="navbar-header">
                         <a class="navbar-brand" href="index.php?action=home">FORTEROCHE Jean Blog</a>
+                        <?= $_SESSION['login']; ?>
                     </div>
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
