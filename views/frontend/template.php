@@ -29,16 +29,32 @@ session_start()
                     </ul>
                     <div class="navbar-header">
                         <a class="navbar-brand" href="index.php?action=home">FORTEROCHE Jean Blog</a>
-                        <?= $_SESSION['login']; ?>
                     </div>
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            CONNEXION
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="index.php?action=login">Se Connecter</a>
-                            <a class="dropdown-item" href="index.php?action=subscribe">Inscription</a>
-                        </div>  
+                    <?php
+                        if(isset($_SESSION['login']))
+                        {
+                    ?>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    SE DÉCONNECTER
+                                </button>
+                            </div>
+                    <?php        
+                        }
+                        else
+                        {
+                    ?>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    CONNEXION
+                                </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="index.php?action=login">Se Connecter</a>
+                                <a class="dropdown-item" href="index.php?action=subscribe">Inscription</a>
+                            </div> 
+                    <?php
+                        }
+                    ?> 
                     </div>
                 </div>
             </nav>
