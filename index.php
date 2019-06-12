@@ -159,7 +159,16 @@ try //
 
         elseif($_GET['action'] == "sendComment")
         {
-            
+            if(isset($_POST['submit']))
+            {
+                // add var
+                $login = $_POST['login'];
+                $message = $_POST['message'];
+            }
+            else
+            {
+                echo'<p>Formulaire n\'a pas été envoyé</p>';
+            }
         }
     }
     else // Even in this case display home page 
