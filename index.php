@@ -163,15 +163,23 @@ try //
             {
                 // add var
                 $login = htmlspecialchars($_POST['login']);
-                $message = htmlspecialchars($_POST['message']);
-
-                if(!empty($login) AND !empty(message))
+                $newMessage = htmlspecialchars($_POST['story']);
+                
+                $post_Id = $_GET['id'];
+                if(isset($post_Id) AND $post_Id > 0)
                 {
-                    
+                    if(!empty($login) AND !empty($newMessage))
+                    {
+                        newComment($post_Id, $login, $newMessage);
+                    }
+                    else
+                    {
+                        echo'<p>Veuillez renseigner votre identifiant et un message à envoyer</p>';
+                    }
                 }
                 else
                 {
-                    echo'<p>Veuillez renseigner votre identifiant et un message à envoyer</p>';
+                    echo'<p>Aucun identifiant de chapitre envoyé</p>';
                 }
             }
             else

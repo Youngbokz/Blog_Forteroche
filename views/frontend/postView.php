@@ -21,11 +21,11 @@
                 </div>
                 <div class="col-md-8 form-group">
                     <label for="login">Identifiant</label>
-                    <input type="text" class="form-control" id="login" placeholder="Votre identifiant">
+                    <input type="text" class="form-control" id="login" name="login" placeholder="Votre identifiant">
                 </div>
                 <div class="col-md-8 form-group">
-                    <label for="message">Message</label>
-                    <textarea class="form-control" id="message" rows="3" placeholder="Votre message"></textarea>
+                    <label for="story">Message</label>
+                    <textarea class="form-control" id="story" name="story" rows="3" placeholder="Votre message"></textarea>
                 </div>
                 <div class="col-md-8 form-group">
                     <button type="submit" name="submit" class="btn btn-outline-secondary">ENVOYER</button>
