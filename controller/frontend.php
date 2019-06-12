@@ -3,7 +3,7 @@
 require('model/CommentManager.php');
 require('model/PostManager.php');
 require('model/MemberManager.php');
-
+//-------------------------------------------->POST
 function lastPost()
 {
     $lastPostManager = new PostManager(); // Create object
@@ -13,7 +13,7 @@ function lastPost()
 
     require('views/frontend/homeView.php');
 }
-
+//-------------------------------------------->POST
 function listPosts()
 {
     $postsManager = new PostManager(); // Create object
@@ -21,7 +21,7 @@ function listPosts()
 
     require('views/frontend/listPostsView.php');
 }
-
+//-------------------------------------------->POST with COMMENTS
 function post()
 {
     $postManager = new PostManager();
@@ -32,6 +32,7 @@ function post()
 
     require('views/frontend/postView.php');
 }
+//-------------------------------------------->MEMBER
 function subscribe($log, $password)
 {
     $memberManager = new MemberManager();
@@ -40,12 +41,14 @@ function subscribe($log, $password)
 
     require('views/frontend/loginView.php');
 }
+//-------------------------------------------->MEMBER
 function verify($log)
 {
     $memberManager = new MemberManager();
     $member = $memberManager->verifyMember($log);
     return $member;
 }
+//-------------------------------------------->MEMBER
 function verifyConnection($log, $password)
 {
     $memberManager = new MemberManager();
@@ -64,7 +67,7 @@ function verifyConnection($log, $password)
         return 0;
     }
 }
-
+//-------------------------------------------->MEMBER
 function member($log)
 {
     $memberManager = new MemberManager();
