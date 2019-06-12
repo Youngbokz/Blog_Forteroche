@@ -74,5 +74,11 @@ function member($log)
     $member = $memberManager->getMember($log);
     return $member;
 }
+//-------------------------------------------->COMMENT
+function newComment($postId, $author, $comment)
+{
+    $commentManager = new CommentManager();
+    $comment = $commentManager->addComment($postId, $author, $comment);
 
-
+    require('views/frontend/postView.php');
+}
