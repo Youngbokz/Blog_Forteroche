@@ -3,17 +3,13 @@
 
 <?php ob_start(); ?>
     <section> <!--Selected post-->
-        <div>
+        <div class="container">
             <h2>ÉPISODE <?= $post['id']; ?></h2>
-
-            <div class="news">
-                <h3><?= htmlspecialchars($post['title']); ?></h3>
-                <p><?= nl2br(htmlspecialchars($post['content'])); ?>  
-                <br/>
-                <p>
-                    <?= htmlspecialchars($post['post_author']); ?> le 
-                    <?= ($post['post_date_fr']); ?>
-                </p>
+            <div class="jumbotron">            
+                <p class="lead">Le <?= ($post['post_date_fr']); ?></p>
+                <h2><?= htmlspecialchars($post['title']); ?></h2>
+                <p class="chapter_slim col-md-8"><?= nl2br(htmlspecialchars($post['content'])); ?></p>                       
+                <a class="btn btn-lg btn-primary" href="index.php?action=post&amp;id=<?= $post['id'] ?>" role="button">En voir plus</a>
             </div> 
         </div>
     </section>
