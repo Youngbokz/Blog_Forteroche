@@ -154,6 +154,13 @@ try //
         {
             require('views/frontend/disconnectView.php');
         }
+        //--------------------------------------------------------------------------------------->
+        //A POST PAGE SEND A COMMENT
+
+        elseif($_GET['action'] == "sendComment")
+        {
+            
+        }
     }
     else // Even in this case display home page 
     {

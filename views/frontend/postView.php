@@ -14,7 +14,7 @@
         </div>
     </section>
     <div class="container-fluid">
-        <form class="container jumbotron col-md-8 form-group">
+        <form method="post" action="index.php?action=sendComment" class="container jumbotron col-md-8 form-group">
             <div class="row">
                 <div class="col-md-8 form-group">
                     <h2>Ajouter un commentaire:</h2>
