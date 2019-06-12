@@ -13,6 +13,21 @@
             </div> 
         </div>
     </section>
+    <div class="container-fluid">
+        <form class="container jumbotron">
+            <div class="row">
+                <div class="col-md-8 form-group">
+                    <label for="login">Identifiant</label>
+                    <input type="text" class="form-control" id="login" placeholder="Votre identifiant">
+                </div>
+                <div class="col-md-8 form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" rows="3" placeholder="Votre message"></textarea>
+                </div>
+                <button type="submit" name="submit" class="btn btn-outline-secondary">ENVOYER</button>
+            </div>
+        </form>
+    </div>
     <section>
     <?php
         while ($comment = $comments->fetch())
