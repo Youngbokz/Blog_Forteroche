@@ -162,8 +162,17 @@ try //
             if(isset($_POST['submit']))
             {
                 // add var
-                $login = $_POST['login'];
-                $message = $_POST['message'];
+                $login = htmlspecialchars($_POST['login']);
+                $message = htmlspecialchars($_POST['message']);
+
+                if()
+                {
+
+                }
+                else
+                {
+
+                }
             }
             else
             {
