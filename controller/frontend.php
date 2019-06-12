@@ -79,6 +79,10 @@ function newComment($postId, $author, $comment)
 {
     $commentManager = new CommentManager();
     $comment = $commentManager->addComment($postId, $author, $comment);
-
-    require('views/frontend/postView.php');
+    if ($comment === false) {
+        echo'Impossible d\'ajouter le commentaire !';
+    }
+    else {
+        header('Location: index.php?action=post&id=' . $postId); //send back to post page with the id of the post. 
+    }
 }

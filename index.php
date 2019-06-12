@@ -164,12 +164,14 @@ try //
                 // add var
                 $login = htmlspecialchars($_POST['login']);
                 $newMessage = htmlspecialchars($_POST['story']);
-                
                 $post_Id = $_GET['id'];
+                
+
                 if(isset($post_Id) AND $post_Id > 0)
                 {
                     if(!empty($login) AND !empty($newMessage))
                     {
+
                         newComment($post_Id, $login, $newMessage);
                     }
                     else
