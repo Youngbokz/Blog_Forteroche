@@ -165,13 +165,13 @@ try //
                 $login = htmlspecialchars($_POST['login']);
                 $message = htmlspecialchars($_POST['message']);
 
-                if()
+                if(!empty($login) AND !empty(message))
                 {
-
+                    
                 }
                 else
                 {
-
+                    echo'<p>Veuillez renseigner votre identifiant et un message à envoyer</p>';
                 }
             }
             else
