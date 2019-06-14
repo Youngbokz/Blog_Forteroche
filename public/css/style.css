@@ -142,7 +142,7 @@ a
 /* ---------------------------------------- */
 /* ==            LOGIN                */
 /*---------------------------------------- */
-.loginContainer form
+.loginContainer form, .subscribeContainer form
 {
     max-width: 330px;
     margin: 0 auto;
