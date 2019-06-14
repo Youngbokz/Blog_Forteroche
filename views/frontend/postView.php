@@ -52,9 +52,35 @@
         while ($comment = $comments->fetch())
         {
     ?>
-            <p><?= nl2br(htmlspecialchars($comment['comment'])); ?></p>
-            <p><?= htmlspecialchars($comment['author']); ?> le <?= $comment['comment_date_fr']; ?></p>
             
+            <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                <h2 class="page-header">Comments</h2>
+                    <section class="comment-list">
+                    <!-- First Comment -->
+                    <article class="row">
+                        <div class="col-md-10 col-sm-10">
+                        <div class="panel panel-default arrow left">
+                            <div class="panel-body">
+                            <header class="text-left">
+                                <div class="comment-user"><i class="fa fa-user"></i><?= htmlspecialchars($comment['author']); ?></div>
+                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?= $comment['comment_date_fr']; ?></time>
+                            </header>
+                            <div class="comment-post">
+                                <p>
+                                <?= nl2br(htmlspecialchars($comment['comment'])); ?>
+                            </p>
+                            </div>
+                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> Signaler</a></p>
+                            </div>
+                        </div>
+                        </div>
+                    </article>
+                    </section>
+                </div>
+            </div>
+            </div>
     <?php
         }
         $comments->closeCursor();
