@@ -18,7 +18,7 @@ session_start()
         <title><?= $title ?></title>
     </head>
         
-    <body>
+    <body class="text-center">
         <div id="container"><!--Menu-->
             <nav class="fixMainBarr main-navbar navbar fixed-top">
                 <div class="container-fluid">
