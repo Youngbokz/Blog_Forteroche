@@ -2,7 +2,7 @@
 <!--subscribeView-->
 <?php $title = 'INSCRIPTION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
-    <div>
+    <div class="mainSection">
         <div>
             <h2>INSCRIPTION</h2>
         </div>
@@ -23,12 +23,6 @@
             </section>
         </div> 
     <div>
-    <?php
-            if(isset($errorMessage))
-            {
-                echo $errorMessage;
-            }
-        ?>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?> 

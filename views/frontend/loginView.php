@@ -2,7 +2,7 @@
 <!--loginView-->
 <?php $title = 'CONNEXION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
-    <div>
+    <div class="mainSection">
         <div>
             <h2>CONNEXION</h2>
         </div>

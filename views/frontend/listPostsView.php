@@ -2,7 +2,7 @@
 <!--listPostsView-->
 <?php $title = 'ROMAN | Jean FORTEROCHE'; ?>
     <?php ob_start(); ?>
-    <section> <!--Last post-->
+    <section class="mainSection"> <!--Last post-->
         <div>
             <h2>ROMAN, tout les derniers épisodes</h2>
             <?php
