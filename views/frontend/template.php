@@ -14,13 +14,13 @@ session_start()
         <!--<link rel="stylesheet" href="public/css/bootstrap.min.css" >-->
         <!--CSS-->
         <link rel="stylesheet" type="text/css" href="public/css/style.css">
-        <script src="https://kit.fontawesome.com/0b86a7eaab.js"></script>
+        <script src="https://kit.fontawesome.com/0b86a7eaab.js"></script> 
         <title><?= $title ?></title>
     </head>
         
     <body>
         <div id="container"><!--Menu-->
-            <nav class="main-navbar navbar fixed-top">
+            <nav class="fixMainBarr main-navbar navbar fixed-top">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
                         <li class="active"> <a href="index.php?action=home">ACCUEIL</a> </li>

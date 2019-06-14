@@ -29,6 +29,7 @@ a
 {
     color: white;
 }
+
 /*     sous partie      */
 
 /*     sous partie      */
@@ -38,9 +39,9 @@ a
 /*---------------------------------------- */
 
 /*     Navigation      */
-.main-navbar .navbar
+.fixMainBarr
 {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0,0,0,0.3);
 }
 #banner
 {
@@ -111,11 +112,7 @@ a
     text-align: center;
     color: white;
 }
-/*subscribeView.php*/
-div #subscribeContainer
-{
-    margin-top: 100px !important;
-}
+
 /*     sous partie      */
 
 /* ---------------------------------------- */

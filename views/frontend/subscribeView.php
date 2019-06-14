@@ -1,12 +1,8 @@
-<?php
 
-echo'LA PAGE D\'INSCRIPTION subscribe';
-
-?>
 <!--subscribeView-->
 <?php $title = 'INSCRIPTION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
-    <div id="subscribeContainer">
+    <div>
         <div>
             <h2>INSCRIPTION</h2>
         </div>
