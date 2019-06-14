@@ -9,51 +9,51 @@
             </div>
         
     </header>
-    <div id="previewChapter">
-        <section> <!--Last post-->
-            <div>
-                <h2>Dernier Épisode</h2>
-                <?php
-                while ($data = $lastPost->fetch())
-                {
-                ?>
-                    <main role="main" class="container">
-                        <div class="jumbotron">
-                            <aside><?= htmlspecialchars($data['chapter']); ?></aside>
-                            <p class="lead">Le <?= ($data['post_date_fr']); ?></p>
-                            <h2><?= htmlspecialchars($data['title']); ?></h2>
-                            <p class="chapter_slim col-md-8"><?= nl2br(htmlspecialchars($data['content'])); ?></p>                       
-                            <a class="btn btn-lg btn-primary" href="index.php?action=post&amp;id=<?= $data['id'] ?>" role="button">En voir plus</a>
-                            
-                        </div>        
-                    </main>
-                <?php          
-                }
-                $lastPost->closeCursor();
-                ?>
-            </div>
-        </section>
-        <aside>
-            <div>
-                <h2>Derniers Commentaires</h2>
-                <?php
-                while ($data = $lastComments->fetch())
-                {
-                ?>
-                    <div>
-                        <p><?= nl2br(htmlspecialchars($data['comment'])); ?></p> 
-                        <br/>
-                        <p>
-                            <?= htmlspecialchars($data['author']); ?> le 
-                            <?= ($data['comment_date_fr']); ?>
-                        </p>
-                    </div> 
-                <?php          
-                }
-                $lastComments->closeCursor();
-                ?>
-            </div>
-        </aside>
+    <div id="previewChapter container">
+        <div class="row";>
+            <section class="col-8"> <!--Last post-->
+                    <h2>Dernier Épisode</h2>
+                    <?php
+                    while ($data = $lastPost->fetch())
+                    {
+                    ?>
+                        <main role="main" class="container">
+                            <div class="jumbotron">
+                                <aside><?= htmlspecialchars($data['chapter']); ?></aside>
+                                <p class="lead">Le <?= ($data['post_date_fr']); ?></p>
+                                <h2><?= htmlspecialchars($data['title']); ?></h2>
+                                <p class="chapter_slim col-md-8"><?= nl2br(htmlspecialchars($data['content'])); ?></p>                       
+                                <a class="btn btn-lg btn-primary" href="index.php?action=post&amp;id=<?= $data['id'] ?>" role="button">En voir plus</a>
+                                
+                            </div>        
+                        </main>
+                    <?php          
+                    }
+                    $lastPost->closeCursor();
+                    ?>
+            </section>
+            <aside class="4">
+                <div>
+                    <h2>Derniers Commentaires</h2>
+                    <?php
+                    while ($data = $lastComments->fetch())
+                    {
+                    ?>
+                        <div>
+                            <p><?= nl2br(htmlspecialchars($data['comment'])); ?></p> 
+                            <br/>
+                            <p>
+                                <?= htmlspecialchars($data['author']); ?> le 
+                                <?= ($data['comment_date_fr']); ?>
+                            </p>
+                        </div> 
+                    <?php          
+                    }
+                    $lastComments->closeCursor();
+                    ?>
+                </div>
+            </aside>
+        </div>
     </div>
     <section id="home_words"> <!--About me-->
         <div>
