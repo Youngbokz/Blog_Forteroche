@@ -18,7 +18,7 @@ session_start()
         </div>
     </section>
     <?php
-        if(isset($_SESSION))
+        if(isset($_SESSION['login']))
         {
     ?>
             <div class="container-fluid">
