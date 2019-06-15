@@ -1,3 +1,6 @@
+<?php
+session_start()
+?>
 <!--homeView-->
     <?php $title = 'ACCUEIL | Jean FORTEROCHE'; ?>
     <?php ob_start(); ?>

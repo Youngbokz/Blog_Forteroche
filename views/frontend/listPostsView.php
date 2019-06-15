@@ -1,4 +1,6 @@
-
+<?php
+session_start()
+?>
 <!--listPostsView-->
 <?php $title = 'ROMAN | Jean FORTEROCHE'; ?>
     <?php ob_start(); ?>

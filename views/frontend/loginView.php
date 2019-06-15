@@ -1,4 +1,6 @@
-
+<?php
+session_start()
+?>
 <!--loginView-->
 <?php $title = 'CONNEXION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>

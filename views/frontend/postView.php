@@ -1,4 +1,7 @@
 
+<?php
+session_start()
+?>
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
@@ -14,7 +17,10 @@
             </div> 
         </div>
     </section>
-    
+    <?php
+        if(isset($_SESSION))
+        {
+    ?>
             <div class="container-fluid">
                 <form method="post" action="index.php?action=sendComment&amp;id=<?= $post['id']; ?>" class="container jumbotron col-md-8 form-group">
                     <div class="row">
@@ -35,10 +41,11 @@
                     </div>
                 </form>
             </div>
-    
+    <?php
+        }
+    ?>
+            
     <section>
-    
-    
     <?php
         while ($comment = $comments->fetch())
         {

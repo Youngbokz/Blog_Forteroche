@@ -1,4 +1,6 @@
-
+<?php
+session_start()
+?>
 <!--subscribeView-->
 <?php $title = 'INSCRIPTION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
