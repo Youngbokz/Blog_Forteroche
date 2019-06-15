@@ -172,6 +172,16 @@ div.addComContainer.container-fluid .row
    justify-content:center;
 }
 
+section.post_commentSection div.post_commentsContainer div.row
+{
+    justify-content: center;
+}
+
+div.post_commentsContainer.container article.row
+{
+    border-top: 1px solid lightgray;
+}
+
 /* ---------------------------------------- */
 /* ==            ABOUT                 */
 /*---------------------------------------- */
