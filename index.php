@@ -130,7 +130,7 @@ try //
 
                         echo 'Coucou ' . $result['log'] . '! ';
                         echo'<font color="green">Vous êtes bien connecté !</font>';
-                        header('location: index.php');
+                        header('location: index.php?action=home');
                     }
                     else
                     {

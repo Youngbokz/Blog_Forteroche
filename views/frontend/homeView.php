@@ -9,7 +9,7 @@
             </div>
         
     </header>
-    <div id="previewChapter container">
+    <div id="previewChapter" class="container-fluid">
         <div class="row";>
             <section class="col-8"> <!--Last post-->
                     <h2>Dernier Épisode</h2>
@@ -32,7 +32,7 @@
                     $lastPost->closeCursor();
                     ?>
             </section>
-            <aside class="4">
+            <aside class="col-4">
                 <div>
                     <h2>Derniers Commentaires</h2>
                     <?php

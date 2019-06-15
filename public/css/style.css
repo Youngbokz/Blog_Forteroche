@@ -90,10 +90,10 @@ a
 }
 #previewChapter 
 {
-    background: #e9ecef;
-    display: flex; 
-    align-items: center;
+    border: 1px solide lightgray;
+    margin: 30px 0px;
 }
+
 #previewChapter section div h2
 {
     text-align: center;

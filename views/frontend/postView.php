@@ -14,37 +14,28 @@
             </div> 
         </div>
     </section>
-    <?php
-        if(isset($_SESSION))
-        {
-    ?>
+    
             <div class="container-fluid">
                 <form method="post" action="index.php?action=sendComment&amp;id=<?= $post['id']; ?>" class="container jumbotron col-md-8 form-group">
                     <div class="row">
-                        <div class="col-md-8 form-group">
+                        <div class="addComInput col-md-8 form-group">
                             <h2>Ajouter un commentaire:</h2>
                         </div>
-                        <div class="col-md-8 form-group">
+                        <div class="addComInput col-md-8 form-group">
                             <label for="login">Identifiant</label>
                             <input type="text" class="form-control" id="login" name="login" placeholder="Votre identifiant">
                         </div>
-                        <div class="col-md-8 form-group">
+                        <div class="addComInput col-md-8 form-group">
                             <label for="story">Message</label>
                             <textarea class="form-control" id="story" name="story" rows="3" placeholder="Votre message"></textarea>
                         </div>
-                        <div class="col-md-8 form-group">
+                        <div class="addComInput col-md-8 form-group">
                             <button type="submit" name="submit" class="btn btn-outline-secondary">ENVOYER</button>
                         </div>
                     </div>
                 </form>
             </div>
-    <?php
-        }
-        else
-        {
-            echo 'oupss';
-        }
-    ?>
+    
     <section>
     
     
@@ -52,7 +43,6 @@
         while ($comment = $comments->fetch())
         {
     ?>
-            
             <div class="container">
             <div class="row">
                 <div class="col-md-8">
@@ -80,7 +70,7 @@
                     </section>
                 </div>
             </div>
-            </div>
+        </div>
     <?php
         }
         $comments->closeCursor();
