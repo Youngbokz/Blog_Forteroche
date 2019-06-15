@@ -182,6 +182,19 @@ div.post_commentsContainer.container article.row
     border-top: 1px solid lightgray;
 }
 
+div.post_commentsContainer.container a.btn.btn-default.btn-sm
+{
+    color:red;
+}
+div.post_commentsContainer.container div.col-md-10.col-sm-10
+{
+    margin: 0 auto;
+}
+div.post_commentsContainer.container header.text-center
+{
+    border: 1px solid black;
+}
+
 /* ---------------------------------------- */
 /* ==            ABOUT                 */
 /*---------------------------------------- */

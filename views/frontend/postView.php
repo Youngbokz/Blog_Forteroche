@@ -33,7 +33,7 @@ session_start()
                                 <div class="col-md-10 col-sm-10">
                                     <div class="panel panel-default arrow left">
                                         <div class="panel-body">
-                                            <header class="text-left">
+                                            <header class="text-center">
                                                 <div class="comment-user"><i class="fa fa-user"></i><?= htmlspecialchars($comment['author']); ?></div>
                                                 <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?= $comment['comment_date_fr']; ?></time>
                                             </header>
