@@ -17,35 +17,7 @@ session_start()
             </div> 
         </div>
     </section>
-    <?php
-        if(isset($_SESSION['login']))
-        {
-    ?>
-            <div class="addComContainer container-fluid">
-                <form method="post" action="index.php?action=sendComment&amp;id=<?= $post['id']; ?>" class="container jumbotron col-md-8 form-group">
-                    <div class="row">
-                        <div class="addComInput col-md-8 form-group">
-                            <h2>Ajouter un commentaire:</h2>
-                        </div>
-                        <div class="addComInput col-md-8 form-group">
-                            <label for="login">Identifiant</label>
-                            <input type="text" class="form-control" id="login" name="login" placeholder="Votre identifiant">
-                        </div>
-                        <div class="addComInput col-md-8 form-group">
-                            <label for="story">Message</label>
-                            <textarea class="form-control" id="story" name="story" rows="3" placeholder="Votre message"></textarea>
-                        </div>
-                        <div class="addComInput col-md-8 form-group">
-                            <button type="submit" name="submit" class="btn btn-outline-secondary">ENVOYER</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-    <?php
-        }
-    ?>
-            
-    <section>
+    <section class="container-fluid">
     <?php
         while ($comment = $comments->fetch())
         {
@@ -82,6 +54,36 @@ session_start()
         }
         $comments->closeCursor();
     ?>
+    <?php
+        if(isset($_SESSION['login']))
+        {
+    ?>
+            <div class="addComContainer container-fluid">
+                <form method="post" action="index.php?action=sendComment&amp;id=<?= $post['id']; ?>" class="container jumbotron col-md-8 form-group">
+                    <div class="row">
+                        <div class="addComInput col-md-8 form-group">
+                            <h2>Ajouter un commentaire:</h2>
+                        </div>
+                        <div class="addComInput col-md-8 form-group">
+                            <label for="login">Identifiant</label>
+                            <input type="text" class="form-control" id="login" name="login" placeholder="Votre identifiant">
+                        </div>
+                        <div class="addComInput col-md-8 form-group">
+                            <label for="story">Message</label>
+                            <textarea class="form-control" id="story" name="story" rows="3" placeholder="Votre message"></textarea>
+                        </div>
+                        <div class="addComInput col-md-8 form-group">
+                            <button type="submit" name="submit" class="btn btn-outline-secondary">ENVOYER</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    <?php
+        }
+    ?>
+            
+    
+    
     </section>
 </div>
 <?php $content = ob_get_clean(); ?>
