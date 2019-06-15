@@ -21,7 +21,7 @@ session_start()
         if(isset($_SESSION['login']))
         {
     ?>
-            <div class="container-fluid">
+            <div class="addComContainer container-fluid">
                 <form method="post" action="index.php?action=sendComment&amp;id=<?= $post['id']; ?>" class="container jumbotron col-md-8 form-group">
                     <div class="row">
                         <div class="addComInput col-md-8 form-group">
