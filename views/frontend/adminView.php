@@ -79,6 +79,26 @@ if(isset($_SESSION['login']))
                     ?>
             </div>
     </div>
+    <!---------------------------------------------------------------------------------->
+    <div class="container">
+        <div class="list-group">
+        <?php
+            while ($data = $comments->fetch())
+            {
+        ?>
+                <a href="#" class="list-group-item list-group-item-action active">
+                    <span><?= htmlspecialchars($data['comment']); ?></span>
+                    <br/>
+                    <span><?= htmlspecialchars($data['author']); ?></span>
+                    <br/>
+                    <span><?= htmlspecialchars($data['comment_date_fr']); ?></span>
+                </a>
+        <?php          
+            }
+            $comments->closeCursor();
+        ?>
+        </div>
+    </div>
     
 </div>
         

@@ -103,5 +103,8 @@ function listMembers()
     $postsManager = new PostManager(); // Create object
     $posts = $postsManager->getPosts(); // We call this function wich allowed us to show the posts 
 
+    $commentsManager = new CommentManager();
+    $comments = $commentsManager->allLastComments();
+
     require('views/frontend/adminView.php');
 }
