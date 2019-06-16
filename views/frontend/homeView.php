@@ -25,8 +25,8 @@ session_start()
                                 <aside><?= htmlspecialchars($data['chapter']); ?></aside>
                                 <p class="lead">Le <?= ($data['post_date_fr']); ?></p>
                                 <h2><?= htmlspecialchars($data['title']); ?></h2>
-                                <p class="chapter_slim col-md-8"><?= nl2br(htmlspecialchars($data['content'])); ?></p>                       
-                                <a class="btn btn-lg btn-primary" href="index.php?action=post&amp;id=<?= $data['id'] ?>" role="button">En voir plus</a>
+                                <p class="chapter_slim"><?= nl2br(htmlspecialchars($data['content'])); ?></p>                       
+                                <a class="btn btn-lg btn-dark" href="index.php?action=post&amp;id=<?= $data['id'] ?>" role="button">Lire</a>
                                 
                             </div>        
                         </main>
