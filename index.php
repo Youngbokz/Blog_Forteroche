@@ -5,6 +5,13 @@ try //
     if(isset($_GET['action']))
     { // We check if there's action in URL. Both case we send to home page
         //--------------------------------------------------------------------------------------->
+        //ADMINISTRATEUR (ADMIN) PAGE DISPLAY
+        if($_GET['action'] == "admin")
+        {
+            require('views/frontend/adminView.php');
+        }
+
+        //--------------------------------------------------------------------------------------->
         //ACCUEIL (HOME) PAGE DISPLAY
 
         if($_GET['action'] == "home")

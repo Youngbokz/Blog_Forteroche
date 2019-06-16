@@ -221,3 +221,18 @@ div#top_mainSection_PostView.mainSection p.chapter_slim
 /* ==            ABOUT                 */
 /*---------------------------------------- */
 
+/* ---------------------------------------- */
+/* ==            ADMIN                 */
+/*---------------------------------------- */
+nav.sideAdminNav.navbar.navbar-default
+{
+    margin-top: 88px;
+    height: 100%;
+    background: #23254c;
+    max-width: 300px;
+}
+nav.sideAdminNav.navbar.navbar-default div.container-fluid
+{
+    display: flex;
+    flex-direction: column;
+}
