@@ -22,8 +22,8 @@ session_start()
                     ?>
                         <main role="main" class="container">
                             <div class="jumbotron">
-                                <aside><?= htmlspecialchars($data['chapter']); ?></aside>
-                                <p class="lead">Le <?= ($data['post_date_fr']); ?></p>
+                                <h4><?= htmlspecialchars($data['chapter']); ?></h4>
+                                <p class="lead">POSTÉ LE <?= ($data['post_date_fr']); ?></p>
                                 <h2><?= htmlspecialchars($data['title']); ?></h2>
                                 <p class="chapter_slim"><?= nl2br(htmlspecialchars($data['content'])); ?></p>                       
                                 <a class="btn btn-lg btn-dark" href="index.php?action=post&amp;id=<?= $data['id'] ?>" role="button">Lire</a>
