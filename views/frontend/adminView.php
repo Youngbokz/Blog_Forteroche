@@ -42,6 +42,9 @@ if(isset($_SESSION['login']))
                 <label for="sign">Signature</label>
                 <input type="text" class="form-control" id="sign" name="sign" placeholder="Jean FORTEROCHE">
             </div>
+            <div class="form-group">
+                <input class="btn btn-dark" type="submit" value="Submit" name="submit">
+            </div>   
         </form>
     </div>
 </div>
