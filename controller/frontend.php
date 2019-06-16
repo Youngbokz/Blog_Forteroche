@@ -86,3 +86,11 @@ function newComment($postId, $author, $comment)
         header('Location: index.php?action=post&id=' . $postId); //send back to post page with the id of the post. 
     }
 }
+//-------------------------------------------->ADMIN
+function newPost($title, $chapter, $content)
+{
+    $postManager = new PostManager();
+    $post = $postManager->addPost($title, $chapter, $content);
+
+    header('Location: index.php?action=');
+}
