@@ -16,7 +16,7 @@ session_start()
                     <label for="re_pass" >Confirmer mot de passe</label>
                     <input type="password" id="re_pass" name="re_pass" class="form-control" placeholder="Mot de passe" required="">
                     
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="S'inscrire">
+                    <input class="btn btn-lg btn-dark btn-block" type="submit" name="submit" value="S'inscrire">
                     <p class="mt-5 mb-3 text-muted">© 2018-2019</p>
                 </form>
             </section>

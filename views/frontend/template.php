@@ -22,7 +22,7 @@
                         <li class="active"> <a href="index.php?action=home">ACCUEIL</a> </li>
                         <li> <a href="index.php?action=listPosts">ROMAN</a> </li>
                         <li> <a href="aboutme.html">À PROPOS</a> </li>
-                    </ul>
+                    </ul>                 
                     <div class="navbar-header">
                         <a class="navbar-brand" href="index.php?action=home">FORTEROCHE Jean Blog</a>
                     </div>
@@ -30,6 +30,9 @@
                         if(isset($_SESSION['login']))
                         {
                     ?>
+                            <div>
+                                <p>BIENVENUE, <?= $_SESSION['login']; ?></p>
+                            </div>
                             <div class="dropdown">
                                 <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?= $_SESSION['login']; ?>

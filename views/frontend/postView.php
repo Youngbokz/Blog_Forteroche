@@ -13,7 +13,7 @@ session_start()
                 <p class="lead">Le <?= ($post['post_date_fr']); ?></p>
                 <h2><?= htmlspecialchars($post['title']); ?></h2>
                 <p class="chapter_slim"><?= nl2br(htmlspecialchars($post['content'])); ?></p>                       
-                <a class="btn btn-lg btn-primary" href="#top_mainSection_PostView"><i class="fas fa-cloud-upload-alt"></i></a>
+                <a class="btn btn-lg btn-dark" href="#top_mainSection_PostView"><i class="fas fa-cloud-upload-alt"></i></a>
             </div> 
         </div>
     </section>
@@ -42,7 +42,7 @@ session_start()
                                                     <?= nl2br(htmlspecialchars($comment['comment'])); ?>
                                                 </p>
                                             </div>
-                                             <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> Signaler</a></p>
+                                             <p class="text-right"><a href="#" class="btn btn-default btn-outline-secondary btn-sm"><i class="fa fa-reply"></i> Signaler</a></p>
                                         </div>
                                     </div>
                                 </div>

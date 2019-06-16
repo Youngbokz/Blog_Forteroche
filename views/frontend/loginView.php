@@ -18,7 +18,7 @@ session_start()
                             <input type="checkbox" value="remember-me"> se souvenir de moi
                         </label>
                     </div>
-                    <input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="Se connecter">
+                    <input class="btn btn-lg btn-dark btn-block" type="submit" name="submit" value="Se connecter">
                     <p class="mt-5 mb-3 text-muted">© 2018-2019</p>
                 </form>
             </section>
