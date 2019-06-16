@@ -22,7 +22,7 @@ if(isset($_SESSION['login']))
         </ul>
     </div>
     </nav>
-    <div class="container">
+    <div id="newPost_Admin" class="container">
         <form method="post" action="index.php?action=addpost">
             <h4>CRÉEZ</h4>
             <div class="form-group">
@@ -44,7 +44,7 @@ if(isset($_SESSION['login']))
         </form>
     </div>
     <!---------------------------------------------------------------------------------->
-    <div class="container">
+    <div id="listUser_Admin" class="container">
         <div class="list-group">
         <?php
             while ($data = $members->fetch())
@@ -58,7 +58,7 @@ if(isset($_SESSION['login']))
         </div>
     </div>
     <!---------------------------------------------------------------------------------->
-    <div class="container">
+    <div id="listPost_Admin" class="container">
             <div class="row">
                     <?php
                     while ($data = $posts->fetch())
@@ -80,7 +80,7 @@ if(isset($_SESSION['login']))
             </div>
     </div>
     <!---------------------------------------------------------------------------------->
-    <div class="container">
+    <div id="listCom_Admin" class="container">
         <div class="list-group">
         <?php
             while ($data = $comments->fetch())
