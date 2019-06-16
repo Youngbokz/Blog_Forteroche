@@ -39,11 +39,7 @@ if(isset($_SESSION['login']))
                 <textarea class="form-control" id="content" rows="3" name="content"></textarea>
             </div>
             <div class="form-group">
-                <label for="sign">Signature</label>
-                <input type="text" class="form-control" id="sign" name="sign" placeholder="Jean FORTEROCHE">
-            </div>
-            <div class="form-group">
-                <input class="btn btn-dark" type="submit" value="Submit" name="submit">
+                <input class="btn btn-dark" type="submit" value="Poster" name="submit">
             </div>   
         </form>
     </div>
