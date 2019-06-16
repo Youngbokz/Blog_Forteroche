@@ -4,6 +4,12 @@ session_start()
 <!--AdminView-->
 <?php $title = 'ADMINISTRATEUR | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
+<?php
+if(isset($_SESSION['login']))
+{
+?>
+
+
 <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar" class="mCustomScrollbar _mCS_1 mCS-autoHide" style="overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: -141px; left: 0px;" dir="ltr">
@@ -115,6 +121,10 @@ session_start()
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
     </div>
+
+<?php
+}
+?>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?> 

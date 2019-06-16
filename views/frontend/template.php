@@ -31,7 +31,7 @@
                         {
                     ?>
                             <div>
-                                <p>BIENVENUE, <?= $_SESSION['login']; ?></p>
+                                <a href="index.php?action=admin"><p>BIENVENUE, <?= $_SESSION['login']; ?></p></a>
                             </div>
                             <div class="dropdown">
                                 <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
