@@ -212,7 +212,7 @@ try //
                     echo'<div class="alert alert-success" role="alert">
                     Épisode poster avec succes !
                   </div>';
-                    require('views/frontend/adminView.php');
+                    header('Location: index.php?action=listPosts');
                 }
                 else
                 {

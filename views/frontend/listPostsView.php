@@ -17,13 +17,12 @@ session_start()
                         <div class="col-md-6">
                             <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">
                                 <div class="news">
+                                    <p>
+                                         Publié le <?= ($data['post_date_fr']); ?>
+                                    </p>
                                     <h3><?= htmlspecialchars($data['title']); ?></h3>
                                     <p><?= nl2br(htmlspecialchars($data['content'])); ?>  
                                     <br/>
-                                    <p>
-                                        <?= htmlspecialchars($data['post_author']); ?> le 
-                                        <?= ($data['post_date_fr']); ?>
-                                    </p>
                                 </div> 
                             </a>
                         </div>
