@@ -26,7 +26,7 @@ if(isset($_SESSION['login']))
         <form method="post" action="index.php?action=addpost">
             <h4>CRÉEZ</h4>
             <div class="form-group">
-                <label for="chapter">Chapitre</label>
+                <label for="chapter">ÉPISODE 1</label>
                 <input type="text" class="form-control" id="chapter" name="chapter" placeholder="Chapitre 1">
             </div>
             <div class="form-group">
@@ -36,7 +36,7 @@ if(isset($_SESSION['login']))
             
             <div class="form-group">
                 <label for="content">Écrire</label>
-                <textarea class="form-control" id="content" rows="3" name="content"></textarea>
+                <textarea class="form-control" id="content" rows="3" name="content" placeholder="Il était une fois ..."></textarea>
             </div>
             <div class="form-group">
                 <input class="btn btn-dark" type="submit" value="Poster" name="submit">

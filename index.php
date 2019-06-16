@@ -198,9 +198,31 @@ try //
         }
         //--------------------------------------------------------------------------------------->
         //ADMIN ADD A POST
-        if(isset($_GET['addpost']))
+        if($_GET['action'] == 'addpost')
         {
-
+            if(isset($_POST['submit']))
+            {
+                // Add var
+                $newTitle = htmlspecialchars($_POST['title']);
+                $newChapter = htmlspecialchars($_POST['chapter']);
+                $newContent = htmlspecialchars($_POST['content']);
+                if(!empty($newTitle) && !empty($newChapter) && !empty($newContent))
+                {
+                    newPost($newTitle, $newChapter, $newContent);
+                    echo'<div class="alert alert-success" role="alert">
+                    Épisode poster avec succes !
+                  </div>';
+                    require('views/frontend/adminView.php');
+                }
+                else
+                {
+                    echo'<p>Formulaire n\'a pas été envoyé</p>';
+                }
+            }
+            else
+            {
+                echo'<p>Formulaire n\'a pas été envoyé</p>';
+            }
         }
     }
     else // Even in this case display home page 
