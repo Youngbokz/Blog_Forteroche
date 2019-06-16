@@ -196,6 +196,12 @@ try //
                 echo'<p>Formulaire n\'a pas été envoyé</p>';
             }
         }
+        //--------------------------------------------------------------------------------------->
+        //ADMIN ADD A POST
+        if(isset($_GET['addpost']))
+        {
+
+        }
     }
     else // Even in this case display home page 
     {

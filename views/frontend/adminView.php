@@ -23,7 +23,7 @@ if(isset($_SESSION['login']))
     </div>
     </nav>
     <div class="container">
-        <form method="" action="">
+        <form method="post" action="index.php?action=addpost">
             <h4>CRÉEZ</h4>
             <div class="form-group">
                 <label for="chapter">Chapitre</label>
