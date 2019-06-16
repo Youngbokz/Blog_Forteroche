@@ -23,7 +23,26 @@ if(isset($_SESSION['login']))
     </div>
     </nav>
     <div class="container">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam ipsa ratione debitis sint in itaque ea recusandae voluptates at, totam quod consequatur quibusdam neque hic id dignissimos vitae, voluptatum mollitia.
+        <form method="" action="">
+            <h4>CRÉEZ</h4>
+            <div class="form-group">
+                <label for="chapter">Chapitre</label>
+                <input type="text" class="form-control" id="chapter" name="chapter" placeholder="Chapitre 1">
+            </div>
+            <div class="form-group">
+                <label for="title">Titre</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Titre" >
+            </div>
+            
+            <div class="form-group">
+                <label for="content">Écrire</label>
+                <textarea class="form-control" id="content" rows="3" name="content"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="sign">Signature</label>
+                <input type="text" class="form-control" id="sign" name="sign" placeholder="Jean FORTEROCHE">
+            </div>
+        </form>
     </div>
 </div>
         
