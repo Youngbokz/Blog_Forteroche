@@ -15,10 +15,10 @@ if(isset($_SESSION['login']))
         <a class="navbar-brand" href="#">Tableau de Bord</a>
         </div>
         <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Utilisateur(s)</a></li>
-        <li><a href="#">Article(s) posté(s)</a></li>
-        <li><a href="#">Créer</a></li>
-        <li><a href="#">Commentaire(s)</a></li>
+        <li class="active"><a href="#"><i class="fas fa-user"></i> Utilisateur(s)</a></li>
+        <li><a href="#"><i class="fas fa-scroll"></i> Article(s) posté(s)</a></li>
+        <li><a href="#"><i class="fas fa-feather-alt"></i> Créer</a></li>
+        <li><a href="#"><i class="fas fa-comments"></i> Commentaire(s)</a></li>
         </ul>
     </div>
     </nav>
