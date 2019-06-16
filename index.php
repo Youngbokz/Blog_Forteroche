@@ -4,19 +4,19 @@ try //
 {
     if(isset($_GET['action']))
     { // We check if there's action in URL. Both case we send to home page
-        //--------------------------------------------------------------------------------------->
-        //ADMINISTRATEUR (ADMIN) PAGE DISPLAY
-        if($_GET['action'] == "admin")
-        {
-            listMembers();
-        }
-
+        
         //--------------------------------------------------------------------------------------->
         //ACCUEIL (HOME) PAGE DISPLAY
 
         if($_GET['action'] == "home")
         {
             lastPost();
+        }
+        //--------------------------------------------------------------------------------------->
+        //ADMINISTRATEUR (ADMIN) PAGE DISPLAY
+        elseif($_GET['action'] == "admin")
+        {
+            listMembers();
         }
         //--------------------------------------------------------------------------------------->
         //ROMAN PAGE DISPLAY

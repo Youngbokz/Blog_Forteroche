@@ -100,5 +100,8 @@ function listMembers()
     $membersManager = new MemberManager(); // Create object
     $members = $membersManager->getMembers(); // We call this function wich allowed us to show the members 
 
+    $postsManager = new PostManager(); // Create object
+    $posts = $postsManager->getPosts(); // We call this function wich allowed us to show the posts 
+
     require('views/frontend/adminView.php');
 }

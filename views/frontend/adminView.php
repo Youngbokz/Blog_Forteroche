@@ -57,6 +57,28 @@ if(isset($_SESSION['login']))
         ?>
         </div>
     </div>
+    <!---------------------------------------------------------------------------------->
+    <div class="container">
+            <div class="row">
+                    <?php
+                    while ($data = $posts->fetch())
+                    {
+                    ?>
+                            <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">
+                                <div class="news">
+                                    <p>
+                                         Publié le <?= ($data['post_date_fr']); ?>
+                                    </p>
+                                    <h3><?= htmlspecialchars($data['title']); ?></h3>
+                                    
+                                </div> 
+                            </a>
+                    <?php          
+                    }
+                    $posts->closeCursor();
+                    ?>
+            </div>
+    </div>
     
 </div>
         

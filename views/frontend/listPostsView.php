@@ -21,8 +21,7 @@ session_start()
                                          Publié le <?= ($data['post_date_fr']); ?>
                                     </p>
                                     <h3><?= htmlspecialchars($data['title']); ?></h3>
-                                    <p><?= nl2br(htmlspecialchars($data['content'])); ?>  
-                                    <br/>
+                                    <p><?= nl2br(htmlspecialchars($data['content'])); ?></p>
                                 </div> 
                             </a>
                         </div>
