@@ -94,3 +94,11 @@ function newPost($title, $chapter, $content)
 
     header('Location: index.php?action=');
 }
+//-------------------------------------------->ADMIN / MEMBER
+function listMembers()
+{
+    $membersManager = new MemberManager(); // Create object
+    $members = $membersManager->getMembers(); // We call this function wich allowed us to show the members 
+
+    require('views/frontend/adminView.php');
+}

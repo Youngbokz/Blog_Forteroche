@@ -22,11 +22,10 @@ class MemberManager extends Manager
         $verifyLog = $req->rowCount();
         return $verifyLog;
     }
-    public function getMembers($log) // Permet de selectionner tout les membres selon leur pseudo
+    public function getMembers() // Permet de selectionner tout les membres selon leur pseudo
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, log, password, comment_id, DATE_FORMAT (registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr FROM members WHERE log = ? ORDER BY log, registration_date DESC LIMIT 10');
-        $req->execute(array($log));
+        $req = $db->query('SELECT id, log, password, DATE_FORMAT (registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr FROM members ORDER BY log, registration_date DESC LIMIT 0, 10');
 
         return $req;
     }

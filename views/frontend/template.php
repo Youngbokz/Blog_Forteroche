@@ -10,6 +10,7 @@
         <!--<link rel="stylesheet" href="public/css/bootstrap.min.css" >-->
         <!--CSS-->
         <link rel="stylesheet" type="text/css" href="public/css/style.css">
+        <script src="public/js/custom.js"></script>
         <script src="https://kit.fontawesome.com/0b86a7eaab.js"></script> 
         <title><?= $title ?></title>
     </head>

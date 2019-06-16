@@ -43,6 +43,21 @@ if(isset($_SESSION['login']))
             </div>   
         </form>
     </div>
+    <!---------------------------------------------------------------------------------->
+    <div class="container">
+        <div class="list-group">
+        <?php
+            while ($data = $members->fetch())
+            {
+        ?>
+                <a href="#" class="list-group-item list-group-item-action active"><?= htmlspecialchars($data['log']); ?></a>
+        <?php          
+            }
+            $members->closeCursor();
+        ?>
+        </div>
+    </div>
+    
 </div>
         
 <?php

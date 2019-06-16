@@ -1,6 +1,1 @@
-$(function () {
-    $(document).scroll(function () {
-        var $nav = $(".fixed-top");
-        $nav.toggleClass('scrolled', $(this).scrollTop() > 200);
-      });
-  });
+console.log('hello bordeaux');

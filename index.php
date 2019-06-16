@@ -8,7 +8,7 @@ try //
         //ADMINISTRATEUR (ADMIN) PAGE DISPLAY
         if($_GET['action'] == "admin")
         {
-            require('views/frontend/adminView.php');
+            listMembers();
         }
 
         //--------------------------------------------------------------------------------------->
