@@ -43,14 +43,14 @@
             return $req;
         }
 
-        public function addPost($title, $content, $post_author) // Permet d'ajouter un épisode en indiquant le titre et le contenu. la date sera celle de la création 
+        public function addPost($title, $chapter, $content) // Permet d'ajouter un épisode en indiquant le titre et le contenu. la date sera celle de la création 
         {
             $db = $this->dbConnect();
-            $req = $db->prepare('INSERT INTO posts (title, chapter, content, post_author, post_date) VALUES (:title, :content, :post_author, now())');
+            $req = $db->prepare('INSERT INTO posts (title, chapter, content, post_author, post_date) VALUES (:title, :chapter, :content, Jean FORTEROCHE, now())');
             $req->execute(array(
                 'title ' => $title,//= $_POST['title'],
+                'chapter'=> $chapter, //= $_POST['chapter'],
                 'content' => $content, //= $_POST['content']
-                'post_author' => $post_author
             ));
         }
 
