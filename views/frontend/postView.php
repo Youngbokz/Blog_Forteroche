@@ -5,15 +5,15 @@ session_start()
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
-<div class="mainSection">
+<div class="mainSection" id="top_mainSection_PostView">
     <section> <!--Selected post-->
         <div class="container">
-            <h2>ÉPISODE <?= $post['id']; ?></h2>
-            <div class="jumbotron">            
+            <h3>ÉPISODE <?= $post['id']; ?></h3>
+            <div>            
                 <p class="lead">Le <?= ($post['post_date_fr']); ?></p>
                 <h2><?= htmlspecialchars($post['title']); ?></h2>
-                <p class="chapter_slim col-md-8"><?= nl2br(htmlspecialchars($post['content'])); ?></p>                       
-                <a class="btn btn-lg btn-primary" href="index.php?action=post&amp;id=<?= $post['id'] ?>" role="button">En voir plus</a>
+                <p class="chapter_slim"><?= nl2br(htmlspecialchars($post['content'])); ?></p>                       
+                <a class="btn btn-lg btn-primary" href="#top_mainSection_PostView"><i class="fas fa-cloud-upload-alt"></i></a>
             </div> 
         </div>
     </section>
