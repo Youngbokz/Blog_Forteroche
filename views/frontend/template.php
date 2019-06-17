@@ -19,22 +19,22 @@
         <div id="container"><!--Menu-->
             <nav class="fixMainBarr main-navbar navbar fixed-top">
                 <div class="container-fluid">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav col-4">
                         <li class="active"> <a href="index.php?action=home">ACCUEIL</a> </li>
                         <li> <a href="index.php?action=listPosts">ROMAN</a> </li>
                         <li> <a href="aboutme.html">À PROPOS</a> </li>
                     </ul>                 
-                    <div class="navbar-header">
+                    <div class="navbar-header col-4">
                         <a class="navbar-brand" href="index.php?action=home">FORTEROCHE Jean Blog</a>
                     </div>
                     <?php
                         if(isset($_SESSION['login']))
                         {
                     ?>
-                            <div>
+                            <div class="col-2">
                                 <a href="index.php?action=admin"><p>BIENVENUE, <?= $_SESSION['login']; ?></p></a>
                             </div>
-                            <div class="dropdown">
+                            <div class="dropdown col-2">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?= $_SESSION['login']; ?>
                                 </button>
@@ -46,7 +46,7 @@
                         else
                         {
                     ?>
-                            <div class="dropdown">
+                            <div class="dropdown col-4">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     CONNEXION
                                 </button>

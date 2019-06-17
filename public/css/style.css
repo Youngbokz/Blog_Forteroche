@@ -47,7 +47,7 @@ a
 {
     background: rgba(35, 37, 76, 0.9);
 }
-.fixMainBarr ul
+nav.fixMainBarr.main-navbar.navbar.fixed-top ul.nav.navbar-nav
 {
     width: 390px;
     flex-direction: row;
