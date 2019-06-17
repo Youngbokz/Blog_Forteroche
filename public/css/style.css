@@ -58,6 +58,10 @@ nav.fixMainBarr.main-navbar.navbar.fixed-top ul.nav.navbar-nav
     flex-direction: row;
     justify-content: space-around;
 }
+nav.fixMainBarr.main-navbar.navbar.fixed-top a p 
+{
+    margin: auto 0;
+}
 #banner
 {
     display: flex;
