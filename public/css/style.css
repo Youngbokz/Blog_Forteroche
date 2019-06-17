@@ -29,9 +29,13 @@ a
 {
     color: white;
 }
+h2
+{
+    color: cornflowerblue;
+}
 a:hover
 {
-    color: lightgreen;
+    color: cornflowerblue;
     text-decoration: none;
 }
 .mainSection
