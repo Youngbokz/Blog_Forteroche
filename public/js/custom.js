@@ -1,3 +1,4 @@
+// adminView page
 document.addEventListener("DOMContentLoaded", function() {
     if(document.getElementById('usersList').addEventListener){
     document.getElementById('usersList').addEventListener('click', function(){
