@@ -62,6 +62,10 @@ nav.fixMainBarr.main-navbar.navbar.fixed-top a p
 {
     margin: auto 0;
 }
+nav.fixMainBarr.main-navbar.navbar.fixed-top div.dropdown-menu.show
+{
+    left: 150px; 
+}
 #banner
 {
     display: flex;

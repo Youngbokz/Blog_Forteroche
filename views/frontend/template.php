@@ -26,15 +26,20 @@
                     </ul>                 
                     <div class="navbar-header col-4">
                         <a class="navbar-brand" href="index.php?action=home">FORTEROCHE Jean Blog</a>
+                        <?php
+                        if(isset($_SESSION['login']))
+                        {
+                        ?>
+                            <a href="index.php?action=admin"><p>BIENVENUE, <?= $_SESSION['login']; ?></p></a>
+                        <?php
+                        }
+                        ?>
                     </div>
                     <?php
                         if(isset($_SESSION['login']))
                         {
                     ?>
-                            <div class="col-2">
-                                <a href="index.php?action=admin"><p>BIENVENUE, <?= $_SESSION['login']; ?></p></a>
-                            </div>
-                            <div class="dropdown col-2">
+                            <div class="dropdown col-4">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <?= $_SESSION['login']; ?>
                                 </button>
