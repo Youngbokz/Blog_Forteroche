@@ -29,6 +29,11 @@ a
 {
     color: white;
 }
+a:hover
+{
+    color: lightgreen;
+    text-decoration: none;
+}
 .mainSection
 {
     margin-top: 130px;
