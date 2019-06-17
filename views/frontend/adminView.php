@@ -104,6 +104,12 @@ if(isset($_SESSION['login']))
         
 <?php
 }
+else
+{
+    echo'<div class="alert alert-danger" role="alert" style="margin-top: 150px;">
+    Vous n\'êtes pas l\'administrateur du site !
+  </div>';
+}
 ?>
 <?php $content = ob_get_clean(); ?>
 
