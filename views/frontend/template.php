@@ -20,9 +20,9 @@
             <nav class="fixMainBarr main-navbar navbar fixed-top">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav col-4">
-                        <li class="active"> <a href="index.php?action=home">ACCUEIL</a> </li>
-                        <li> <a href="index.php?action=listPosts">ROMAN</a> </li>
-                        <li> <a href="aboutme.html">À PROPOS</a> </li>
+                        <li class="active"> <a href="index.php?action=home"><i class="fas fa-igloo"></i>  ACCUEIL</a> </li>
+                        <li> <a href="index.php?action=listPosts"><i class="fas fa-book"></i>  ROMAN</a> </li>
+                        <li> <a href="aboutme.html"><i class="fas fa-user-edit"></i>  À PROPOS</a> </li>
                     </ul>                 
                     <div class="navbar-header col-4">
                         <a class="navbar-brand" href="index.php?action=home">FORTEROCHE Jean Blog</a>
