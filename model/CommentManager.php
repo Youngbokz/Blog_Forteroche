@@ -49,11 +49,11 @@ class CommentManager extends Manager
         return $affectedLines;
     }
 
-    public function editComment($comment, $commentId) // permet la modification d'un commentaire existant
+    public function editComment($comment, $commentId, $postId) // permet la modification d'un commentaire existant
     {
         $db = $this->dbConnect();
-        $newComment = $db->prepare('UPDATE comments SET comment = ? WHERE id = ?');
-        $affectedComment = $newComment->execute(array($comment, $commentId));
+        $newComment = $db->prepare('UPDATE comments SET comment = ? WHERE id = ?, post_id = ?');
+        $affectedComment = $newComment->execute(array($comment, $commentId, $postId));
             
         return $affectedComment;
     }
