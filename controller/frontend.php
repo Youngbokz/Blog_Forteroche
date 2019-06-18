@@ -109,12 +109,3 @@ function listMembers()
     require('views/frontend/adminView.php');
 }
 
-//-------------------------------------------->COMMENT
-function updateComment($comment, $commentId, $postId)
-{
-    $commentManager = new CommentManager();
-    $comment = $commentManager->editComment($comment, $commentId, $postId);
-
-    require('views/frontend/commentView.php');
-    header('Location: index.php?action=post&id=' . $postId);
-}

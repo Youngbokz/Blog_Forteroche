@@ -224,38 +224,7 @@ try //
                 echo'<p>Formulaire n\'a pas été envoyé</p>';
             }
         }
-        //--------------------------------------------------------------------------------------->
-        //COMMENT (EDIT) PAGE
-
-        elseif($_GET['action'] == "editComment") // This action send us to commentView 
-        {
-            require('index.php?action=post&id=' . $_GET['postId']);
-        }
-
-        //--------------------------------------------------------------------------------------->
-        //UPDATE COMMENT 
-
-        elseif($_GET['action'] == "updateComment") // This action send us to loginView 
-        {
-            if(isset($_POST['submitEdit']))
-            {
-                if(isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['postId']) && $_GET['postId'] > 0)
-                {
-                    if (!empty($_POST['newComment'])) 
-                    {
-                        updateComment($_POST['newComment'], $_GET['id'], $_GET['postId']);
-                    }
-                    else 
-                    {
-                        echo 'le champs commentaire doit être remplis !';
-                    }
-                }
-                else
-                {
-                    echo 'Erreur : aucun identifiant envoyé';
-                }
-            } 
-        }
+        
     }
     else // Even in this case display home page 
     {
