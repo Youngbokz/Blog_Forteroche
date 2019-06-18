@@ -44,9 +44,8 @@ session_start()
                     ?>
                         <div>
                             <p><?= nl2br(htmlspecialchars($data['comment'])); ?></p> 
-                            <br/>
                             <p>
-                                <?= htmlspecialchars($data['author']); ?> le 
+                                <?= htmlspecialchars($data['author']); ?> posté le 
                                 <?= ($data['comment_date_fr']); ?>
                             </p>
                         </div> 

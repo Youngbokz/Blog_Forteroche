@@ -68,7 +68,7 @@ session_start()
                         </div>
                         <div class="addComInput col-md-8 form-group">
                             <label for="login">Identifiant</label>
-                            <input type="text" class="form-control" id="login" name="login" placeholder="Votre identifiant">
+                            <input type="text" class="form-control" id="login" name="login" value="<?= $_SESSION['login']; ?>" READONLY>
                         </div>
                         <div class="addComInput col-md-8 form-group">
                             <label for="story">Message</label>
