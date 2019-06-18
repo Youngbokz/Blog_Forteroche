@@ -180,7 +180,14 @@ div#previewChapter.container-fluid
 /* ---------------------------------------- */
 /* ==            SUBSCRIBE                */
 /*---------------------------------------- */
-
+div.subscribeContainer.container div a 
+{
+    color: lightslategray;
+}
+div.subscribeContainer.container a:hover
+{
+    color: cornflowerblue;
+}
 /* ---------------------------------------- */
 /* ==            LOGIN                */
 /*---------------------------------------- */

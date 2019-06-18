@@ -17,6 +17,9 @@ session_start()
                     <input type="password" id="re_pass" name="re_pass" class="form-control" placeholder="Mot de passe" required="">
                     
                     <input class="btn btn-lg btn-dark btn-block" type="submit" name="submit" value="S'inscrire">
+                    <div>
+                        <a href="index.php?action=login"><p>Déja enregistré ?</p></a>
+                    </div>
                     <p class="mt-5 mb-3 text-muted">© 2018-2019</p>
                 </form>
             </section>
