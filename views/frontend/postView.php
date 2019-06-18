@@ -44,6 +44,9 @@ session_start()
                                             </div>
                                              <p class="text-right"><a href="#" class="btn btn-default btn-outline-secondary btn-sm"><i class="fa fa-reply"></i> Signaler</a></p>
                                         </div>
+                                        <div>
+                                            <a href="index.php?action=editComment"><button type="button" class="btn btn-info">Modifier</button></a>
+                                        </div>
                                     </div>
                                 </div>
                             </article>
