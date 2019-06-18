@@ -5,7 +5,7 @@ session_start()
 <?php $title = 'ADMINISTRATEUR | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
 <?php
-if(isset($_SESSION['login']))
+if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
 {
 ?>
 <div class="mainAdminContainer container-fluid">
