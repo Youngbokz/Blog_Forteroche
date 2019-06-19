@@ -42,7 +42,7 @@ session_start()
                                                     <?= nl2br(htmlspecialchars($comment['comment'])); ?>
                                                 </p>
                                             </div>
-                                             <p class="text-right"><a href="#" class="btn btn-default btn-outline-secondary btn-sm"><i class="fa fa-reply"></i> Signaler</a></p>
+                                             <p class="text-right"><a href="index.php?action=reportComment&amp;id=<?= $comment['id']; ?>&amp;postId=<?= $post['id']; ?>" class="btn btn-default btn-outline-secondary btn-sm"><i class="fa fa-reply"></i> Signaler</a></p>
                                         </div>
                                     </div>
                                 </div>
