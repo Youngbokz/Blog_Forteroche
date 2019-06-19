@@ -48,6 +48,15 @@ class CommentManager extends Manager
         return $req;
     }
 
+    public function updateReportedCommentValue($reported, $commentId, $postId)
+    {
+        $db = $this->dbConnect();
+        $newComment = $db->prepare('UPDATE comments SET reported = ? WHERE id = ?, post_id = ?');
+        $affectedComment = $newComment->execute(array($reported, $commentId, $postId));
+
+        return $affectedComment;
+    }
+
     public function addComment($postId, $author, $comment) // permet l'ajout d'un commentaire
     {
         $db = $this->dbConnect();
