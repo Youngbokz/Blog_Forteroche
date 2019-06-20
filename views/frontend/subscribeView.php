@@ -18,7 +18,7 @@ session_start()
                     
                     <input class="btn btn-lg btn-dark btn-block" type="submit" name="submit" value="S'inscrire">
                     <div>
-                        <a href="index.php?action=login"><p>Déja enregistré ?</p></a>
+                        <a href="index.php?action=login"><p>Déjà enregistré ?</p></a>
                     </div>
                     <p class="mt-5 mb-3 text-muted">© 2018-2019</p>
                 </form>
