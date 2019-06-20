@@ -224,6 +224,10 @@ try //
                 echo'<p>Formulaire n\'a pas été envoyé</p>';
             }
         }
+        elseif($_GET=['action'] == 'reportComment')
+        {
+            
+        }
         
     }
     else // Even in this case display home page 
