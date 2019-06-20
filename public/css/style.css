@@ -257,12 +257,16 @@ div#top_mainSection_PostView.mainSection p.chapter_slim
 /*---------------------------------------- */
 .mainAdminContainer.container-fluid
 {
-    margin-top: 88px;
+    
+    margin-top: 80px; 
     display: flex;
     flex-direction: row;
     padding: 0;
 }
-
+header#header.navAdmin.fixed-top
+{
+    top: auto;
+}
 nav.sideAdminNav.navbar.navbar-default
 {
     height: 100%;
@@ -274,3 +278,19 @@ nav.sideAdminNav.navbar.navbar-default div.container-fluid
     display: flex;
     flex-direction: column;
 }
+div.mainAdminContainer.container-fluid p
+{
+    font-size: 1.25rem;
+    font-weight: 300;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 200px;
+}
+div#listPost_Admin.container, div#listCom_Admin.container
+{
+    margin-top: 50px;
+}
+
+/* ---------------------------------------- */
+/* ==            ADMIN                 */
+/*---------------------------------------- */

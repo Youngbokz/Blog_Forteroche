@@ -8,6 +8,30 @@ session_start()
 if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
 {
 ?>
+<header id="header" class="navAdmin fixed-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <h1><i class="fas fa-user-cog"></i>  Tableau de Bord   <small>Gérer votre site ici</small></h1>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="mainAdminContainer container-fluid">
     <nav class="sideAdminNav navbar navbar-default">
         <div class="container-fluid">
@@ -22,71 +46,52 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
             </ul>
         </div>
     </nav>
-    <div id="newPost_Admin" class="container">
-        <form method="post" action="index.php?action=addpost">
-            <h4>CRÉEZ</h4>
-            <div class="form-group">
-                <label for="chapter">ÉPISODE 1</label>
-                <input type="text" class="form-control" id="chapter" name="chapter" placeholder="Chapitre 1">
-            </div>
-            <div class="form-group">
-                <label for="title">Titre</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Titre" >
-            </div>
-            
-            <div class="form-group">
-                <label for="content">Écrire</label>
-                <textarea class="form-control" id="content" rows="3" name="content" placeholder="Il était une fois ..."></textarea>
-            </div>
-            <div class="form-group">
-                <input class="btn btn-dark" type="submit" value="Poster" name="submit">
-            </div>   
-        </form>
-    </div>
     
-    <!---------------------------------------------------------------------------------->
-    <div id="listPost_Admin" class="container">
-            <div class="row">
-                    <?php
-                    while ($data = $posts->fetch())
-                    {
-                    ?>
-                            <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">
-                                <div class="news">
-                                    <p>
-                                         Publié le <?= ($data['post_date_fr']); ?>
-                                    </p>
-                                    <h3><?= htmlspecialchars($data['title']); ?></h3>
-                                    
-                                </div> 
-                            </a>
-                    <?php          
-                    }
-                    $posts->closeCursor();
-                    ?>
+    <div class="adminContent container">
+        <!---------------------------------------------------------------------------------->
+        <div id="listPost_Admin" class="container">
+                <div class="row">
+                        <?php
+                        while ($data = $posts->fetch())
+                        {
+                        ?>
+                            <div class="card" style="width: 18rem;">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= htmlspecialchars($data['title']); ?></h5>
+                                    <p class="card-text"><?= htmlspecialchars($data['content']); ?></p>
+                                    <a href="index.php?action=adminArticle" class="btn btn-dark">Modifier</a>
+                                </div>
+                            </div>
+                        <?php          
+                        }
+                        $posts->closeCursor();
+                        ?>
+                </div>
+        </div>
+        
+        <!---------------------------------------------------------------------------------->
+        <div id="listCom_Admin" class="container">
+            <div class="list-group">
+                <h3>Derniers Commentaires Signalés</h3>
+            <?php
+                while ($data = $comments->fetch())
+                {
+            ?>
+                    <a href="#" class="list-group-item list-group-item-action active">
+                        <span><?= htmlspecialchars($data['comment']); ?></span>
+                        <br/>
+                        <span><?= htmlspecialchars($data['author']); ?></span>
+                        <br/>
+                        <span><?= htmlspecialchars($data['comment_date_fr']); ?></span>
+                    </a>
+            <?php          
+                }
+                $comments->closeCursor();
+            ?>
             </div>
-    </div>
-    <!---------------------------------------------------------------------------------->
-    <div id="listCom_Admin" class="container">
-        <div class="list-group">
-        <?php
-            while ($data = $comments->fetch())
-            {
-        ?>
-                <a href="#" class="list-group-item list-group-item-action active">
-                    <span><?= htmlspecialchars($data['comment']); ?></span>
-                    <br/>
-                    <span><?= htmlspecialchars($data['author']); ?></span>
-                    <br/>
-                    <span><?= htmlspecialchars($data['comment_date_fr']); ?></span>
-                </a>
-        <?php          
-            }
-            $comments->closeCursor();
-        ?>
         </div>
     </div>
-    
 </div>
         
 <?php
