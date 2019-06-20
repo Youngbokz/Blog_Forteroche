@@ -12,13 +12,13 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
     <nav class="sideAdminNav navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-            <a class="navbar-brand" href="#">Tableau de Bord</a>
+            <a class="navbar-brand" href="index.php?action=admin">Tableau de Bord</a>
             </div>
             <ul class="nav navbar-nav">
-            <li id="creatNewPost"><a href="#"><span><i class="fas fa-feather-alt"></i></span><span> Créer</span></a></li>
-            <li id="postsList"><a href="#"><span><i class="fas fa-scroll"></i></span><span> Article(s)</span></a></li>
-            <li id="usersList" class="active"><a href="#"><span><i class="fas fa-user"></i></span><span> Utilisateur(s)</span></a></li>
-            <li id="commentsList"><a href="#"><span><i class="fas fa-comments"></i></span><span> Commentaire(s)</span></a></li>
+            <li id="creatNewPost"><a href="index.php?action=adminCreate"><span><i class="fas fa-feather-alt"></i></span><span> Créer</span></a></li>
+            <li id="postsList"><a href="index.php?action=adminArticle"><span><i class="fas fa-scroll"></i></span><span> Article(s)</span></a></li>
+            <li id="usersList" class="active"><a href="index.php?action=adminUsers"><span><i class="fas fa-user"></i></span><span> Utilisateur(s)</span></a></li>
+            <li id="commentsList"><a href="index.php?action=adminCom"><span><i class="fas fa-comments"></i></span><span> Commentaire(s)</span></a></li>
             </ul>
         </div>
     </nav>
@@ -43,20 +43,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
             </div>   
         </form>
     </div>
-    <!---------------------------------------------------------------------------------->
-    <div id="listUser_Admin" class="container">
-        <div class="list-group">
-        <?php
-            while ($data = $members->fetch())
-            {
-        ?>
-                <a href="#" class="list-group-item list-group-item-action active"><?= htmlspecialchars($data['log']); ?></a>
-        <?php          
-            }
-            $members->closeCursor();
-        ?>
-        </div>
-    </div>
+    
     <!---------------------------------------------------------------------------------->
     <div id="listPost_Admin" class="container">
             <div class="row">

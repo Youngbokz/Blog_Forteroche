@@ -12,13 +12,13 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
     <nav class="sideAdminNav navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-            <a class="navbar-brand" href="#">Tableau de Bord</a>
+            <a class="navbar-brand" href="index.php?action=admin">Tableau de Bord</a>
             </div>
             <ul class="nav navbar-nav">
-            <li id="creatNewPost"><a href="#"><span><i class="fas fa-feather-alt"></i></span><span> Créer</span></a></li>
-            <li id="postsList"><a href="#"><span><i class="fas fa-scroll"></i></span><span> Article(s)</span></a></li>
-            <li id="usersList" class="active"><a href="#"><span><i class="fas fa-user"></i></span><span> Utilisateur(s)</span></a></li>
-            <li id="commentsList"><a href="#"><span><i class="fas fa-comments"></i></span><span> Commentaire(s)</span></a></li>
+            
+            <li id="postsList"><a href="index.php?action=adminArticle"><span><i class="fas fa-scroll"></i></span><span> Article(s)</span></a></li>
+            <li id="usersList" class="active"><a href="index.php?action=adminUsers"><span><i class="fas fa-user"></i></span><span> Utilisateur(s)</span></a></li>
+            <li id="commentsList"><a href="index.php?action=adminCom"><span><i class="fas fa-comments"></i></span><span> Commentaire(s)</span></a></li>
             </ul>
         </div>
     </nav>
@@ -42,64 +42,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                 <input class="btn btn-dark" type="submit" value="Poster" name="submit">
             </div>   
         </form>
-    </div>
-    <!---------------------------------------------------------------------------------->
-    <div id="listUser_Admin" class="container">
-        <div class="list-group">
-        <?php
-            while ($data = $members->fetch())
-            {
-        ?>
-                <a href="#" class="list-group-item list-group-item-action active"><?= htmlspecialchars($data['log']); ?></a>
-        <?php          
-            }
-            $members->closeCursor();
-        ?>
-        </div>
-    </div>
-    <!---------------------------------------------------------------------------------->
-    <div id="listPost_Admin" class="container">
-            <div class="row">
-                    <?php
-                    while ($data = $posts->fetch())
-                    {
-                    ?>
-                            <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">
-                                <div class="news">
-                                    <p>
-                                         Publié le <?= ($data['post_date_fr']); ?>
-                                    </p>
-                                    <h3><?= htmlspecialchars($data['title']); ?></h3>
-                                    
-                                </div> 
-                            </a>
-                    <?php          
-                    }
-                    $posts->closeCursor();
-                    ?>
-            </div>
-    </div>
-    <!---------------------------------------------------------------------------------->
-    <div id="listCom_Admin" class="container">
-        <div class="list-group">
-        <?php
-            while ($data = $comments->fetch())
-            {
-        ?>
-                <a href="#" class="list-group-item list-group-item-action active">
-                    <span><?= htmlspecialchars($data['comment']); ?></span>
-                    <br/>
-                    <span><?= htmlspecialchars($data['author']); ?></span>
-                    <br/>
-                    <span><?= htmlspecialchars($data['comment_date_fr']); ?></span>
-                </a>
-        <?php          
-            }
-            $comments->closeCursor();
-        ?>
-        </div>
-    </div>
-    
+    </div>  
 </div>
         
 <?php

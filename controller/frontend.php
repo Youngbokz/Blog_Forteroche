@@ -95,10 +95,11 @@ function newPost($title, $chapter, $content)
     header('Location: index.php?action=');
 }
 //-------------------------------------------->ADMIN / MEMBER
-function listMembers()
+function listMembers($requirePage)
 {
     $membersManager = new MemberManager(); // Create object
     $members = $membersManager->getMembers(); // We call this function wich allowed us to show the members 
+    
 
     $postsManager = new PostManager(); // Create object
     $posts = $postsManager->getPosts(); // We call this function wich allowed us to show the posts 
@@ -106,6 +107,7 @@ function listMembers()
     $commentsManager = new CommentManager();
     $comments = $commentsManager->allLastComments();
 
-    require('views/frontend/adminView.php');
+    require($requirePage);
+    
 }
 

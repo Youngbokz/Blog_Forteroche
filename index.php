@@ -16,7 +16,37 @@ try //
         //ADMINISTRATEUR (ADMIN) PAGE DISPLAY
         elseif($_GET['action'] == "admin")
         {
-            listMembers();
+            $requirePage = 'views/frontend/adminView.php';
+            listMembers($requirePage);
+        }
+        //--------------------------------------------------------------------------------------->
+        //ADMIN ADD A POST
+        elseif($_GET['action'] == "adminUsers")
+        {
+            $requirePage = 'views/frontend/adminUsersView.php';
+            listMembers($requirePage);
+        }
+        //--------------------------------------------------------------------------------------->
+        //ADMIN ADD A POST
+        elseif($_GET['action'] == "adminCreate")
+        {
+            $requirePage = 'views/frontend/adminCreateView.php';
+            listMembers($requirePage);
+        }
+        
+        //--------------------------------------------------------------------------------------->
+        //ADMIN ADD A POST
+        elseif($_GET['action'] == "adminArticle")
+        {
+            $requirePage = 'views/frontend/adminEditView.php';
+            listMembers($requirePage);
+        }
+        //--------------------------------------------------------------------------------------->
+        //ADMIN ADD A POST
+        elseif($_GET['action'] == "adminCom")
+        {
+            $requirePage = 'views/frontend/adminComView.php';
+            listMembers($requirePage);
         }
         //--------------------------------------------------------------------------------------->
         //ROMAN PAGE DISPLAY
@@ -229,6 +259,7 @@ try //
             
         }
         
+
     }
     else // Even in this case display home page 
     {
