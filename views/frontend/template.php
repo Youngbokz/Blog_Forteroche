@@ -10,8 +10,17 @@
         <!--<link rel="stylesheet" href="public/css/bootstrap.min.css" >-->
         <!--CSS-->
         <link rel="stylesheet" type="text/css" href="public/css/style.css">
+        <!--main js-->
         <script src="public/js/custom.js"></script>
+        <!--fontawesome-->
         <script src="https://kit.fontawesome.com/0b86a7eaab.js"></script> 
+        <!--tinyMCE-->
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+            tinymce.init({
+                selector: '#mytextarea'
+            });
+        </script>
         <title><?= $title ?></title>
     </head>
         

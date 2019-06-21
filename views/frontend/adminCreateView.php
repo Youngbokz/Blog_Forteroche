@@ -29,31 +29,59 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
         </div>
     </div>
 </header>
+<section id="mainAdminSection">
+    <div class="container">
+        <div class="row">
+            <!--------------------Side Nav Bar-------------------->
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="index.php?action=admin" class="head mainColorBg list-group-item active">
+                    <i class="fas fa-user-cog"></i> Tableau de Bord
+                    </a>
+                    
+                    <a href="index.php?action=adminArticle" class="list-group-item"><i class="fas fa-book"></i> Articles <span class="badge badge-light"><?= $postNumber; ?></span></a>
+                    
+                    <a href="index.php?action=adminUsers" class="list-group-item"><i class="fas fa-user"></i> Utilisateurs <span class="badge badge-light"><?= $memberNumber; ?></span></a>
+                    <a href="index.php?action=adminCom" class="list-group-item"><i class="fas fa-comment-dots"></i> Commentaires Signalés <span class="badge badge-light"><?= $reportedComNumber; ?></span></a>
+                </div>
+            </div>
+            <!--------------------Pannel: Create Chapter-------------------->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="mainColorBg card-header">
+                        <h4>CRÉEZ</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="index.php?action=addpost" class="col-md-12">
+                            <div class="form-group">
+                                <label for="chapter">ÉPISODE 1</label>
+                                <input type="text" class="form-control" id="chapter" name="chapter" placeholder="Chapitre 1">
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Titre</label>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="Titre" >
+                            </div>                        
+                            <div class="form-group">
+                                <label for="content">Écrire</label>
+                                <textarea class="form-control" id="mytextarea" rows="3" name="content" placeholder="Il était une fois ..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input class="btn btn-dark" type="submit" value="Poster" name="submit">
+                            </div>   
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <div class="mainAdminContainer container-fluid">
-    
-    <div id="newPost_Admin" class="container">
-        <form method="post" action="index.php?action=addpost">
-            <h4>CRÉEZ</h4>
-            <div class="form-group">
-                <label for="chapter">ÉPISODE 1</label>
-                <input type="text" class="form-control" id="chapter" name="chapter" placeholder="Chapitre 1">
-            </div>
-            <div class="form-group">
-                <label for="title">Titre</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Titre" >
-            </div>
-            
-            <div class="form-group">
-                <label for="content">Écrire</label>
-                <textarea class="form-control" id="content" rows="3" name="content" placeholder="Il était une fois ..."></textarea>
-            </div>
-            <div class="form-group">
-                <input class="btn btn-dark" type="submit" value="Poster" name="submit">
-            </div>   
-        </form>
-    </div>  
-</div>
-        
+                        <div id="newPost_Admin" class="container">
+                            
+                        </div>  
+                    </div>
+                </div> 
 <?php
 }
 else
