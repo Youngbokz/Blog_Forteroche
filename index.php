@@ -35,14 +35,14 @@ try //
         }
         
         //--------------------------------------------------------------------------------------->
-        //ADMIN ADD A POST
+        //ADMIN GET LIST POSTS 
         elseif($_GET['action'] == "adminArticle")
         {
-            $requirePage = 'views/frontend/adminEditView.php';
+            $requirePage = 'views/frontend/adminArticlesView.php';
             listMembers($requirePage);
         }
         //--------------------------------------------------------------------------------------->
-        //ADMIN ADD A POST
+        //ADMIN EDIT A POST
         elseif($_GET['action'] == "editPost")
         {
             if(isset($_POST['edit']))
