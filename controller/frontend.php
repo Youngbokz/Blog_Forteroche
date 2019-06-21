@@ -109,9 +109,13 @@ function listMembers($requirePage)
     $comments = $commentsManager->allLastComments();
     $reportedComNumber = $commentsManager->countReportedComment();
     
-
-    
-
     require($requirePage);
+}
+//-------------------------------------------->ADMIN / POST 
+function updatePost($chapter, $title, $content, $postId)
+{
+    $postManager = new PostManager(); // Create object
+    $post = $postManager->editPost($chapter, $title, $content, $postId); // We call this function wich allowed us to show the posts 
     
+    require('views/frontend/adminEditView.php');  
 }

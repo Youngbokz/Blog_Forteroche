@@ -43,6 +43,29 @@ try //
         }
         //--------------------------------------------------------------------------------------->
         //ADMIN ADD A POST
+        elseif($_GET['action'] == "editPost")
+        {
+            if(isset($_POST['edit']))
+            {
+                $chapter = htmlspecialchars($_POST['newChapter']);
+                $title = htmlspecialchars($_POST['newTitle']);
+                $content = htmlspecialchars($_POST['newContent']);
+                if(!empty($chapter) AND !empty($title) AND !empty($content))
+                {
+                    updatePost($chapter, $title, $content);
+                }
+            }
+            elseif($_POST['delete'])
+            {
+
+            }
+            else
+            {
+                echo'Aucun élément n\'a été traité';
+            }
+        }
+        //--------------------------------------------------------------------------------------->
+        //ADMIN ADD A POST
         elseif($_GET['action'] == "adminCom")
         {
             $requirePage = 'views/frontend/adminComView.php';

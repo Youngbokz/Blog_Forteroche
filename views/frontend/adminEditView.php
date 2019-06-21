@@ -29,34 +29,58 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
         </div>
     </div>
 </header>
-<div class="mainAdminContainer container-fluid">
-   
-    
-    <!---------------------------------------------------------------------------------->
-    <div id="listPost_Admin" class="container">
-            <div class="row">
-                    <?php
-                    while ($data = $posts->fetch())
-                    {
-                    ?>
-                            <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">
-                                <div class="news">
-                                    <p>
-                                         Publié le <?= ($data['post_date_fr']); ?>
-                                    </p>
-                                    <h3><?= htmlspecialchars($data['title']); ?></h3>
-                                    
-                                </div> 
-                            </a>
-                    <?php          
-                    }
-                    $posts->closeCursor();
-                    ?>
+
+<!--------------------MAIN CONTENT-------------------->
+<section id="mainAdminSection">
+    <div class="container">
+        <div class="row">
+            <!--------------------Side Nav Bar-------------------->
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="index.php?action=admin" class="head mainColorBg list-group-item active">
+                    <i class="fas fa-user-cog"></i> Tableau de Bord
+                    </a>
+                    
+                    <a href="index.php?action=adminArticle" class="list-group-item"><i class="fas fa-book"></i> Articles <span class="badge badge-light"><?= $postNumber; ?></span></a>
+                    
+                    <a href="index.php?action=adminUsers" class="list-group-item"><i class="fas fa-user"></i> Utilisateurs <span class="badge badge-light"><?= $memberNumber; ?></span></a>
+                    <a href="index.php?action=adminCom" class="list-group-item"><i class="fas fa-comment-dots"></i> Commentaires Signalés <span class="badge badge-light"><?= $reportedComNumber; ?></span></a>
+                </div>
             </div>
+            
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="mainColorBg card-header">
+                        <h4>ÉDITER OU SUPPRIMER</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="index.php?action=editPost" class="col-md-12">
+                            <div class="form-group">
+                                <label for="newChapter">CHAPITRE</label>
+                                <input type="text" class="form-control" id="chapter" name="newChapter" >
+                            </div>
+                            <div class="form-group">
+                                <label for="title">TITRE</label>
+                                <input type="text" class="form-control" id="title" name="title" >
+                            </div>                        
+                            <div class="form-group">
+                                <label for="content">ÉCRIRE</label>
+                                <textarea class="form-control" id="mytextarea" rows="3" name="content"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input class="btn btn-dark" type="submit" value="Éditer" name="edit">
+                            </div>   
+                            <div class="form-group">
+                                <input class="btn btn-dark" type="submit" value="Supprimer" name="delete">
+                            </div> 
+                        </form>
+                    </div>
+                </div>
+            </div>       
+        </div>
     </div>
+</section>
     
-    
-</div>
         
 <?php
 }
