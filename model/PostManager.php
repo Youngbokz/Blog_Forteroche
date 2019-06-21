@@ -71,4 +71,12 @@
                 'postId' => $postId //= $_GET['id']
             ));
         }
+
+        public function countPost()
+        {
+            $db = $this->dbConnect();
+            $req = $db->query('SELECT COUNT * FROM posts WHERE id');
+        
+            return $req;
+        }
     }
