@@ -8,6 +8,7 @@ session_start()
 if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
 {
 ?>
+<!--------------------Admin Top Nav Bar-------------------->
 <header id="header" class="navAdmin fixed-top">
     <div class="container">
         <div class="row">
@@ -29,22 +30,24 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
         </div>
     </div>
 </header>
-
+<!--------------------MAIN CONTENT-------------------->
 <section id="mainAdminSection">
     <div class="container">
         <div class="row">
+            <!--------------------Side Nav Bar-------------------->
             <div class="col-md-3">
                 <div class="list-group">
                     <a href="index.php?action=admin" class="head mainColorBg list-group-item active">
                     <i class="fas fa-user-cog"></i> Tableau de Bord
                     </a>
                     
-                    <a href="index.php?action=adminArticle" class="list-group-item"><i class="fas fa-book"></i> Articles <span class="badge"><?= $postNumber; ?></span></a>
+                    <a href="index.php?action=adminArticle" class="list-group-item"><i class="fas fa-book"></i> Articles <span class="badge badge-light"><?= $postNumber; ?></span></a>
                     
-                    <a href="index.php?action=adminUsers" class="list-group-item"><i class="fas fa-user"></i> Utilisateurs <span class="badge"><?= $memberNumber; ?></span></a>
-                    <a href="index.php?action=adminCom" class="list-group-item"><i class="fas fa-comment-dots"></i> Commentaires Signalés <span class="badge"><?= $reportedComNumber; ?></span></a>
+                    <a href="index.php?action=adminUsers" class="list-group-item"><i class="fas fa-user"></i> Utilisateurs <span class="badge badge-light"><?= $memberNumber; ?></span></a>
+                    <a href="index.php?action=adminCom" class="list-group-item"><i class="fas fa-comment-dots"></i> Commentaires Signalés <span class="badge badge-light"><?= $reportedComNumber; ?></span></a>
                 </div>
             </div>
+            <!--------------------Pannel: Website Overview-------------------->
             <div class="col-md-9">
                 <div class="card">
                     <div class="mainColorBg card-header">
@@ -53,22 +56,48 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                     <div class="card-body">
                         <div class="col-md-4">
                             <div class="card">
-                                <h2><a href="index.php?action=adminUsers" class="list-group-item"><i class="fas fa-user"></i><span class="badge"><?= $memberNumber; ?></span></a></h2>
-                                <h4>Utilisateurs</h4>
+                                <h3><a href="index.php?action=adminUsers" class="list-group-item"><i class="fas fa-user"></i><span class="badge "><?= $memberNumber; ?></span></a></h3>
+                                <h5>Utilisateurs</h5>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card">
-                                <h2><a href="index.php?action=adminArticle" class="list-group-item"><i class="fas fa-book"></i><span class="badge"><?= $postNumber; ?></span></a> </h2>
-                                <h4>Articles</h4>
+                                <h3><a href="index.php?action=adminArticle" class="list-group-item"><i class="fas fa-book"></i><span class="badge "><?= $postNumber; ?></span></a> </h3>
+                                <h5>Articles</h5>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card">
-                                <h2><a href="index.php?action=adminCom" class="list-group-item"><i class="fas fa-comment-dots"></i><span class="badge"><?= $reportedComNumber; ?></span></a></h2>
-                                <h4>Commentaires</h4>
+                                <h3><a href="index.php?action=adminCom" class="list-group-item"><i class="fas fa-comment-dots"></i><span class="badge "><?= $reportedComNumber; ?></span></a></h3>
+                                <h5>Commentaires</h5>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <!--------------------Last Users List-------------------->
+                <div class="card">
+                    <div class="mainColorBg card-header">
+                        <h3>Derniers Abonnés</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped table-hover">
+                            <tr>
+                                <th>NOM</th>
+                                <th>DATE D'INSCRIPTION</th>
+                            </tr>
+                            <?php
+                            while ($data = $members->fetch())
+                            {
+                            ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($data['log']); ?></td>
+                                    <td><?= $data['registration_date_fr']; ?></td>
+                                </tr>
+                            <?php          
+                            }
+                            $members->closeCursor();
+                            ?>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -77,68 +106,6 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
 </section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="mainAdminContainer container-fluid">
-    
-    
-    <div class="adminContent container">
-        <!---------------------------------------------------------------------------------->
-        <div id="listPost_Admin" class="container">
-                <div class="row">
-                        <?php
-                        while ($data = $posts->fetch())
-                        {
-                        ?>
-                            <div class="card" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?= htmlspecialchars($data['title']); ?></h5>
-                                    <p class="card-text"><?= htmlspecialchars($data['content']); ?></p>
-                                    <a href="index.php?action=adminArticle" class="btn btn-dark">Modifier</a>
-                                </div>
-                            </div>
-                        <?php          
-                        }
-                        $posts->closeCursor();
-                        ?>
-                </div>
-        </div>
-        
-        <!---------------------------------------------------------------------------------->
-        <div id="listCom_Admin" class="container">
-            <div class="list-group">
-                <h3>Derniers Commentaires Signalés</h3>
-            <?php
-                while ($data = $comments->fetch())
-                {
-            ?>
-                    <a href="#" class="list-group-item list-group-item-action active">
-                        <span><?= htmlspecialchars($data['comment']); ?></span>
-                        <br/>
-                        <span><?= htmlspecialchars($data['author']); ?></span>
-                        <br/>
-                        <span><?= htmlspecialchars($data['comment_date_fr']); ?></span>
-                    </a>
-            <?php          
-                }
-                $comments->closeCursor();
-            ?>
-            </div>
-        </div>
-    </div>
-</div>
-        
 <?php
 }
 else
