@@ -25,7 +25,7 @@ class MemberManager extends Manager
     public function getMembers() // Permet de selectionner tout les membres selon leur pseudo
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, log, password, DATE_FORMAT (registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr FROM members ORDER BY log, registration_date DESC LIMIT 0, 10');
+        $req = $db->query('SELECT id, log, password, DATE_FORMAT (registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr FROM members ORDER BY log, registration_date DESC LIMIT 0, 3');
 
         return $req;
     }

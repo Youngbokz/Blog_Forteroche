@@ -29,7 +29,7 @@ a
 {
     color: white;
 }
-h2, h3, h4
+h2
 {
     color: cornflowerblue;
 }
@@ -307,6 +307,7 @@ header#header.navAdmin.fixed-top li
 section#mainAdminSection
 {
     margin-top: 220px;
+    margin-bottom: 50px;
 }
 section#mainAdminSection a.list-group-item, header#header.navAdmin.fixed-top a
 {
