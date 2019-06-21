@@ -287,7 +287,7 @@ header#header.navAdmin.fixed-top div.dropdown
 }
 header#header.navAdmin.fixed-top div.dropdown button
 {
-    background: cornflowerblue;
+    background: lightgray;
 }
 section#mainAdminSection
 {
@@ -303,9 +303,7 @@ header#header.navAdmin.fixed-top li
 }
 section#mainAdminSection a.list-group-item:hover, header#header.navAdmin.fixed-top li:hover
 {
-    background: black;
-    color: white;
-
+    background: rgba(0,0,0,0.1);   
 }
 section#mainAdminSection .head
 {
@@ -316,7 +314,10 @@ section#mainAdminSection a.head.list-group-item:hover
 {
     background: cornflowerblue;
 }
-
+section#mainAdminSection div.list-group
+{
+    text-align: left;
+}
 nav.sideAdminNav.navbar.navbar-default
 {
     height: 100%;

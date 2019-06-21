@@ -36,11 +36,11 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
             <div class="col-md-3">
                 <div class="list-group">
                     <a href="index.php?action=admin" class="head list-group-item active">
-                        Tableau de Bord
+                    <i class="fas fa-user-cog"></i> Tableau de Bord
                     </a>
-                    <a href="index.php?action=adminArticle" class="list-group-item">Article(s)</a>
-                    <a href="index.php?action=adminUsers" class="list-group-item">Utilisateur(s)</a>
-                    <a href="index.php?action=adminCom" class="list-group-item">Commentaire(s) Signalé(s)</a>
+                    <a href="index.php?action=adminArticle" class="list-group-item"><i class="fas fa-book"></i> Article(s)</a>
+                    <a href="index.php?action=adminUsers" class="list-group-item"><i class="fas fa-user"></i> Utilisateur(s)</a>
+                    <a href="index.php?action=adminCom" class="list-group-item"><i class="fas fa-comment-dots"></i> Commentaire(s) Signalé(s)</a>
                 </div>
             </div>
             <div class="col-md-9">
