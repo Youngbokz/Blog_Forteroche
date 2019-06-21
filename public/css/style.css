@@ -42,6 +42,12 @@ a:hover
 {
     margin-top: 130px;
 }
+.mainColorBg
+{
+    background: #656582 !important;
+    border: #656582 !important; 
+    color: white !important;
+}
 
 /*     sous partie      */
 
@@ -255,6 +261,8 @@ div#top_mainSection_PostView.mainSection p.chapter_slim
 /* ---------------------------------------- */
 /* ==            ADMIN                 */
 /*---------------------------------------- */
+
+/*Admin*/
 .mainAdminContainer.container-fluid
 {
     
@@ -263,6 +271,7 @@ div#top_mainSection_PostView.mainSection p.chapter_slim
     flex-direction: row;
     padding: 0;
 }
+/*Admin Nav Top*/
 header#header.navAdmin.fixed-top
 {
     top: 80px;
@@ -289,6 +298,12 @@ header#header.navAdmin.fixed-top div.dropdown button
 {
     background: lightgray;
 }
+header#header.navAdmin.fixed-top li
+{
+    padding: 5px;
+}
+
+/*Admin Main Section*/
 section#mainAdminSection
 {
     margin-top: 220px;
@@ -297,19 +312,11 @@ section#mainAdminSection a.list-group-item, header#header.navAdmin.fixed-top a
 {
     color: black;
 }
-header#header.navAdmin.fixed-top li
-{
-    padding: 5px;
-}
 section#mainAdminSection a.list-group-item:hover, header#header.navAdmin.fixed-top li:hover
 {
     background: rgba(0,0,0,0.1);   
 }
-section#mainAdminSection .head
-{
-    background: #656582;
-    border: #656582;
-}
+/*Admin Side Nav*/
 section#mainAdminSection a.head.list-group-item:hover
 {
     background: cornflowerblue;
@@ -318,6 +325,21 @@ section#mainAdminSection div.list-group
 {
     text-align: left;
 }
+
+/*Admin Pannel Section*/
+section#mainAdminSection div.container div.row div.col-md-9 div.card div.card-body
+{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+
+
+
+
 nav.sideAdminNav.navbar.navbar-default
 {
     height: 100%;

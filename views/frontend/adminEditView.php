@@ -8,19 +8,29 @@ session_start()
 if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
 {
 ?>
-<div class="mainAdminContainer container-fluid">
-    <nav class="sideAdminNav navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-            <a class="navbar-brand" href="index.php?action=admin">Tableau de Bord</a>
+<header id="header" class="navAdmin fixed-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <h1><a class="navbar-brand" href="index.php?action=admin"><i class="fas fa-user-cog"></i></a>  Tableau de Bord   <small>Gérer votre site ici</small></h1>
             </div>
-            <ul class="nav navbar-nav">
-            <li id="creatNewPost"><a href="index.php?action=adminCreate"><span><i class="fas fa-feather-alt"></i></span><span> Créer</span></a></li>
-            <li id="usersList" class="active"><a href="index.php?action=adminUsers"><span><i class="fas fa-user"></i></span><span> Utilisateur(s)</span></a></li>
-            <li id="commentsList"><a href="index.php?action=adminCom"><span><i class="fas fa-comments"></i></span><span> Commentaire(s)</span></a></li>
-            </ul>
+            <div class="col-md-2">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Gérer 
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="index.php?action=adminCreate">Créer un chapitre</a></li>
+                        <li><a href="#">Modifier un chapitre</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </nav>
+    </div>
+</header>
+<div class="mainAdminContainer container-fluid">
+   
     
     <!---------------------------------------------------------------------------------->
     <div id="listPost_Admin" class="container">

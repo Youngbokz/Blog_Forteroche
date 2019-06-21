@@ -35,18 +35,42 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
         <div class="row">
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="index.php?action=admin" class="head list-group-item active">
+                    <a href="index.php?action=admin" class="head mainColorBg list-group-item active">
                     <i class="fas fa-user-cog"></i> Tableau de Bord
                     </a>
                     
-                    <a href="index.php?action=adminArticle" class="list-group-item"><i class="fas fa-book"></i> Article <span class="badge"><?= $postNumber; ?></span></a>
+                    <a href="index.php?action=adminArticle" class="list-group-item"><i class="fas fa-book"></i> Articles <span class="badge"><?= $postNumber; ?></span></a>
                     
-                    <a href="index.php?action=adminUsers" class="list-group-item"><i class="fas fa-user"></i> Utilisateur <span class="badge"><?= $memberNumber; ?></span></a>
-                    <a href="index.php?action=adminCom" class="list-group-item"><i class="fas fa-comment-dots"></i> Commentaire Signalé <span class="badge"><?= $reportedComNumber; ?></span></a>
+                    <a href="index.php?action=adminUsers" class="list-group-item"><i class="fas fa-user"></i> Utilisateurs <span class="badge"><?= $memberNumber; ?></span></a>
+                    <a href="index.php?action=adminCom" class="list-group-item"><i class="fas fa-comment-dots"></i> Commentaires Signalés <span class="badge"><?= $reportedComNumber; ?></span></a>
                 </div>
             </div>
             <div class="col-md-9">
-                
+                <div class="card">
+                    <div class="mainColorBg card-header">
+                        <h3>Vue Globale</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <h2><a href="index.php?action=adminUsers" class="list-group-item"><i class="fas fa-user"></i><span class="badge"><?= $memberNumber; ?></span></a></h2>
+                                <h4>Utilisateurs</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <h2><a href="index.php?action=adminArticle" class="list-group-item"><i class="fas fa-book"></i><span class="badge"><?= $postNumber; ?></span></a> </h2>
+                                <h4>Articles</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <h2><a href="index.php?action=adminCom" class="list-group-item"><i class="fas fa-comment-dots"></i><span class="badge"><?= $reportedComNumber; ?></span></a></h2>
+                                <h4>Commentaires</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -66,19 +90,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
 
 
 <div class="mainAdminContainer container-fluid">
-    <nav class="sideAdminNav navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-            <a class="navbar-brand" href="index.php?action=admin">Tableau de Bord</a>
-            </div>
-            <ul class="nav navbar-nav">
-            <li id="creatNewPost"><a href="index.php?action=adminCreate"><span><i class="fas fa-feather-alt"></i></span><span> Créer</span></a></li>
-            <li id="postsList"><a href="index.php?action=adminArticle"><span><i class="fas fa-scroll"></i></span><span> Article(s)</span></a></li>
-            <li id="usersList" class="active"><a href="index.php?action=adminUsers"><span><i class="fas fa-user"></i></span><span> Utilisateur(s)</span></a></li>
-            <li id="commentsList"><a href="index.php?action=adminCom"><span><i class="fas fa-comments"></i></span><span> Commentaire(s)</span></a></li>
-            </ul>
-        </div>
-    </nav>
+    
     
     <div class="adminContent container">
         <!---------------------------------------------------------------------------------->
