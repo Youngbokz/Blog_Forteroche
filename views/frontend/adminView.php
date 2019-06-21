@@ -12,9 +12,20 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <h1><i class="fas fa-user-cog"></i>  Tableau de Bord   <small>Gérer votre site ici</small></h1>
+                <h1><a class="navbar-brand" href="index.php?action=admin"><i class="fas fa-user-cog"></i></a>  Tableau de Bord   <small>Gérer votre site ici</small></h1>
             </div>
             <div class="col-md-2">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Gérer 
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Créer un chapitre</a></li>
+                        <li><a href="#">Modifier un chapitre</a></li>
+                        <li><a href="#">Messages signalés</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

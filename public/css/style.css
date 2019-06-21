@@ -266,6 +266,28 @@ div#top_mainSection_PostView.mainSection p.chapter_slim
 header#header.navAdmin.fixed-top
 {
     top: auto;
+    background: black;
+    color: white;
+    padding: 25px 0;
+    margin-bottom: 15px;
+    z-index: 1;
+}
+header#header.navAdmin.fixed-top i.fas.fa-user-cog
+{
+    color: white;
+    font-size: 1.5em;
+}
+header#header.navAdmin.fixed-top small
+{
+    color: rgba(255,255,255,0.3);
+}
+header#header.navAdmin.fixed-top div.dropdown
+{
+    padding-top: 10px;
+}
+header#header.navAdmin.fixed-top div.dropdown button
+{
+    background: cornflowerblue;
 }
 nav.sideAdminNav.navbar.navbar-default
 {
