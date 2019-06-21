@@ -110,4 +110,11 @@ function listMembers($requirePage)
     require($requirePage);
     
 }
+//-------------------------------------------->POST
+function postNumber()
+{
+    $postManager = new PostManager();
+    $post = $postManager->countPost();
 
+    require('views/frontend/adminView.php');
+}
