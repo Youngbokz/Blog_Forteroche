@@ -21,15 +21,34 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Créer un chapitre</a></li>
+                        <li><a href="index.php?action=adminCreate">Créer un chapitre</a></li>
                         <li><a href="#">Modifier un chapitre</a></li>
-                        <li><a href="#">Messages signalés</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </header>
+
+<section id="mainAdminSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="index.php?action=admin" class="head list-group-item active">
+                        Tableau de Bord
+                    </a>
+                    <a href="index.php?action=adminArticle" class="list-group-item">Article(s)</a>
+                    <a href="index.php?action=adminUsers" class="list-group-item">Utilisateur(s)</a>
+                    <a href="index.php?action=adminCom" class="list-group-item">Commentaire(s) Signalé(s)</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+            </div>
+        </div>
+    </div>
+</section>
+
 
 
 

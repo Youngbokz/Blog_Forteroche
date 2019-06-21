@@ -265,12 +265,12 @@ div#top_mainSection_PostView.mainSection p.chapter_slim
 }
 header#header.navAdmin.fixed-top
 {
-    top: auto;
+    top: 80px;
     background: black;
     color: white;
     padding: 25px 0;
     margin-bottom: 15px;
-    z-index: 1;
+    z-index: 10;
 }
 header#header.navAdmin.fixed-top i.fas.fa-user-cog
 {
@@ -289,6 +289,34 @@ header#header.navAdmin.fixed-top div.dropdown button
 {
     background: cornflowerblue;
 }
+section#mainAdminSection
+{
+    margin-top: 220px;
+}
+section#mainAdminSection a.list-group-item, header#header.navAdmin.fixed-top a
+{
+    color: black;
+}
+header#header.navAdmin.fixed-top li
+{
+    padding: 5px;
+}
+section#mainAdminSection a.list-group-item:hover, header#header.navAdmin.fixed-top li:hover
+{
+    background: black;
+    color: white;
+
+}
+section#mainAdminSection .head
+{
+    background: #656582;
+    border: #656582;
+}
+section#mainAdminSection a.head.list-group-item:hover
+{
+    background: cornflowerblue;
+}
+
 nav.sideAdminNav.navbar.navbar-default
 {
     height: 100%;
