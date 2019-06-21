@@ -81,4 +81,14 @@ class CommentManager extends Manager
         $eraseComment = $db->prepare('DELETE comments WHERE id = ?');
         $req->execute(array($postId));
     }       
+
+    public function countReportedComment()
+    {
+        $db = $this->dbConnect();
+            $req = $db->query('SELECT COUNT(*) FROM comments WHERE reported = 1');
+            $req->execute();
+            $countingReported = $req->fetchColumn();
+            
+            return $countingReported;
+    }
 }

@@ -64,5 +64,15 @@ class MemberManager extends Manager
         $db = $this->dbConnect();
         $eraseMember = $db->prepare('DELETE members WHERE id = ?');
         $req->execute(array($memberId));
-    }       
+    }
+    
+    public function countMembers()
+    {
+        $db = $this->dbConnect();
+            $req = $db->query('SELECT COUNT(*) FROM members');
+            $req->execute();
+            $countingMember = $req->fetchColumn();
+            
+            return $countingMember;
+    }
 }

@@ -39,13 +39,14 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                     <i class="fas fa-user-cog"></i> Tableau de Bord
                     </a>
                     
-                    <a href="index.php?action=adminArticle" class="list-group-item"><i class="fas fa-book"></i> Article(s) <span class="badge"><?= $postNumber; ?></span></a>
+                    <a href="index.php?action=adminArticle" class="list-group-item"><i class="fas fa-book"></i> Article <span class="badge"><?= $postNumber; ?></span></a>
                     
-                    <a href="index.php?action=adminUsers" class="list-group-item"><i class="fas fa-user"></i> Utilisateur(s)</a>
-                    <a href="index.php?action=adminCom" class="list-group-item"><i class="fas fa-comment-dots"></i> Commentaire(s) Signalé(s)</a>
+                    <a href="index.php?action=adminUsers" class="list-group-item"><i class="fas fa-user"></i> Utilisateur <span class="badge"><?= $memberNumber; ?></span></a>
+                    <a href="index.php?action=adminCom" class="list-group-item"><i class="fas fa-comment-dots"></i> Commentaire Signalé <span class="badge"><?= $reportedComNumber; ?></span></a>
                 </div>
             </div>
             <div class="col-md-9">
+                
             </div>
         </div>
     </div>

@@ -99,16 +99,18 @@ function listMembers($requirePage)
 {
     $membersManager = new MemberManager(); // Create object
     $members = $membersManager->getMembers(); // We call this function wich allowed us to show the members 
-    
+    $memberNumber = $membersManager->countMembers();
 
     $postsManager = new PostManager(); // Create object
     $posts = $postsManager->getPosts(); // We call this function wich allowed us to show the posts 
+    $postNumber = $postsManager->countPost();
 
     $commentsManager = new CommentManager();
     $comments = $commentsManager->allLastComments();
+    $reportedComNumber = $commentsManager->countReportedComment();
+    
 
-    $postManager = new PostManager();
-    $postNumber = $postManager->countPost();
+    
 
     require($requirePage);
     
