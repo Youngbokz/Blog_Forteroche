@@ -107,14 +107,9 @@ function listMembers($requirePage)
     $commentsManager = new CommentManager();
     $comments = $commentsManager->allLastComments();
 
+    $postManager = new PostManager();
+    $postNumber = $postManager->countPost();
+
     require($requirePage);
     
-}
-//-------------------------------------------->POST
-function postNumber()
-{
-    $postManager = new PostManager();
-    $post = $postManager->countPost();
-
-    require('views/frontend/adminView.php');
 }

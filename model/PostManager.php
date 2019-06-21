@@ -75,8 +75,10 @@
         public function countPost()
         {
             $db = $this->dbConnect();
-            $req = $db->query('SELECT COUNT * FROM posts WHERE id');
-        
-            return $req;
+            $req = $db->query('SELECT COUNT(*) FROM posts');
+            $req->execute();
+            $countingPost = $req->fetchColumn();
+            
+            return $countingPost;
         }
     }
