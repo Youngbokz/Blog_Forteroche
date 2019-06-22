@@ -1,7 +1,7 @@
 <?php
 session_start()
 ?>
-<!--AdminView-->
+<!--adminComView-->
 <?php $title = 'ADMINISTRATEUR | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
 <?php
@@ -30,6 +30,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
         </div>
     </div>
 </header>
+ <!---------------------------------------------------------------------------------->
 <section id="mainAdminSection">
     <div class="container">
         <div class="row">
@@ -46,12 +47,12 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                     <a href="index.php?action=adminCom" class="list-group-item"><i class="fas fa-comment-dots"></i> Commentaires Signalés <span class="badge badge-light"><?= $reportedComNumber; ?></span></a>
                 </div>
             </div>
-            <!--------------------Pannel: Create Chapter-------------------->
+            <!--------------------Pannel: Website Overview-------------------->
             <div class="adminArticles col-md-9">
             <?php
-                while ($data = $posts->fetch())
-                {
-            ?>      
+            while ($data = $posts->fetch())
+            {
+            ?>
                 <div class="card text-center col-md-6">
                     <div class="card-header">
                         <h2><?= htmlspecialchars($data['title']); ?></h2>
@@ -59,24 +60,28 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                     <div class="adminArticles card-body">
                         <h5 class="card-title"><?= htmlspecialchars($data['chapter']); ?></h5>
                         <p class="card-text"><?= nl2br(htmlspecialchars($data['content'])); ?></p>
-                        
                     </div>
                     <div class="card-footer text-muted">
-                        <p>Publié le <?= ($data['post_date_fr']); ?></p>
+                        <p>Publié le <?= $data['post_date_fr']; ?></p>
                         <div class="container">
-                            <div class="col-md-6"><a class="btn btn-secondary" role="button" href="index.php?action=post&amp;id=<?= $data['id'] ?>">Voir</a></div>
-                            <div class="col-md-6"><a class="btn btn-outline-secondary" role="button" href="index.php?action=post&amp;id=<?= $data['id'] ?>">Modifier</a></div>
+                            <div class="col-md-6">
+                                <a class="btn btn-secondary" role="button" href="index.php?action=post&amp;id=<?= $data['id']; ?>">Voir</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a class="btn btn-outline-secondary" role="button" href="index.php?action=post&amp;id=<?= $data['id']; ?>">Modifier</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             <?php          
-                }
+            }
             $posts->closeCursor();
             ?>
             </div>
+
         </div>
     </div>
-</section>
+</section>           
 <?php
 }
 else
