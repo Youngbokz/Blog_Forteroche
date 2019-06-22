@@ -17,30 +17,46 @@ try //
         elseif($_GET['action'] == "admin")
         {
             $requirePage = 'views/frontend/adminView.php';
-            listMembers($requirePage);
+            countAll($requirePage);
         }
         //--------------------------------------------------------------------------------------->
-        //ADMIN ADD A POST
+        //ADMIN SEES USERS PAGE
         elseif($_GET['action'] == "adminUsers")
         {
             $requirePage = 'views/frontend/adminUsersView.php';
-            listMembers($requirePage);
+            countAll($requirePage);
         }
         //--------------------------------------------------------------------------------------->
-        //ADMIN ADD A POST
+        //ADMIN SEES CREATING CHAPTER PAGE
         elseif($_GET['action'] == "adminCreate")
         {
             $requirePage = 'views/frontend/adminCreateView.php';
-            listMembers($requirePage);
+            countAll($requirePage);
         }
         
         //--------------------------------------------------------------------------------------->
-        //ADMIN GET LIST POSTS 
+        //ADMIN SEES LIST POSTS 
         elseif($_GET['action'] == "adminArticle")
         {
             $requirePage = 'views/frontend/adminArticlesView.php';
-            listMembers($requirePage);
+            countAll($requirePage);
             listPosts($requirePage);
+        }
+        //--------------------------------------------------------------------------------------->
+        //ADMIN SEES EDIT PAGE
+        elseif($_GET['action'] == 'goEditArticle')
+        {
+            countAll('views/frontend/adminEditView.php');
+            if(isset($_GET['id']) && $_GET['id'] >0)
+            {
+                $postId = $_GET['id'];
+                $requirePage = 'views/frontend/adminEditView.php';
+                post($requirePage, $postId);
+            }
+            else 
+            {
+                throw new Exception('Erreur : aucun identifiant de post envoyé'); // Error message
+            }
         }
         //--------------------------------------------------------------------------------------->
         //ADMIN EDIT A POST
@@ -66,11 +82,11 @@ try //
             }
         }
         //--------------------------------------------------------------------------------------->
-        //ADMIN ADD A POST
+        //ADMIN SEES REPORTED COMENTS PAGE
         elseif($_GET['action'] == "adminCom")
         {
             $requirePage = 'views/frontend/adminComView.php';
-            listMembers($requirePage);
+            countAll($requirePage);
         }
         //--------------------------------------------------------------------------------------->
         //ROMAN PAGE DISPLAY
@@ -159,7 +175,9 @@ try //
         {
             if(isset($_GET['id']) && $_GET['id'] >0)
             {
-                post();
+                $postId = $_GET['id'];
+                $requirePage = 'views/frontend/postView.php';
+                post($requirePage, $postId);
             }
             else 
             {

@@ -1,5 +1,5 @@
 <?php
-session_start()
+session_start();
 ?>
 <!--AdminView-->
 <?php $title = 'ADMINISTRATEUR | Jean FORTEROCHE'; ?>
@@ -58,15 +58,15 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                         <form method="post" action="index.php?action=editPost" class="col-md-12">
                             <div class="form-group">
                                 <label for="newChapter">CHAPITRE</label>
-                                <input type="text" class="form-control" id="chapter" name="newChapter" >
+                                <input type="text" class="form-control" id="chapter" name="newChapter" value="<?= htmlspecialchars($post['chapter']) ?>" >
                             </div>
                             <div class="form-group">
                                 <label for="title">TITRE</label>
-                                <input type="text" class="form-control" id="title" name="title" >
+                                <input type="text" class="form-control" id="title" name="title" value="<?= htmlspecialchars($post['title']); ?>" >
                             </div>                        
                             <div class="form-group">
                                 <label for="content">ÉCRIRE</label>
-                                <textarea class="form-control" id="mytextarea" rows="3" name="content"></textarea>
+                                <textarea class="form-control" id="mytextarea" rows="3" name="content"><?= nl2br(htmlspecialchars($post['content'])); ?></textarea>
                             </div>
                             <div class="form-group">
                                 <input class="btn btn-dark" type="submit" value="Éditer" name="edit">

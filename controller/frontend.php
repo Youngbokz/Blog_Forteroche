@@ -22,15 +22,15 @@ function listPosts($requirePage)
     require($requirePage);
 }
 //-------------------------------------------->POST with COMMENTS
-function post()
+function post($requirePage, $postId)
 {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
 
-    $post = $postManager->getPost($_GET['id']);
-    $comments = $commentManager->getComments($_GET['id']);
+    $post = $postManager->getPost($postId);
+    $comments = $commentManager->getComments($postId);
 
-    require('views/frontend/postView.php');
+    require($requirePage);
 }
 //-------------------------------------------->MEMBER
 function subscribe($log, $password)
@@ -95,7 +95,7 @@ function newPost($title, $chapter, $content)
     header('Location: index.php?action=');
 }
 //-------------------------------------------->ADMIN / MEMBER
-function listMembers($requirePage)
+function countAll($requirePage)
 {
     $membersManager = new MemberManager(); // Create object
     $members = $membersManager->getMembers(); // We call this function wich allowed us to show the members 

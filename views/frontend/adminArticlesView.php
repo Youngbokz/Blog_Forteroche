@@ -68,7 +68,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                                 <a class="btn btn-secondary" role="button" href="index.php?action=post&amp;id=<?= $data['id']; ?>">Voir</a>
                             </div>
                             <div class="col-md-6">
-                                <a class="btn btn-outline-secondary" role="button" href="index.php?action=post&amp;id=<?= $data['id']; ?>">Modifier</a>
+                                <a class="btn btn-outline-secondary" role="button" href="index.php?action=goEditArticle&amp;id=<?= $data['id']; ?>">Modifier</a>
                             </div>
                         </div>
                     </div>
