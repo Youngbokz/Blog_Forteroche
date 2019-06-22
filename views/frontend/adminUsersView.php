@@ -30,28 +30,54 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
         </div>
     </div>
 </header>
-<div class="mainAdminContainer container-fluid">
-    
-    
     <!---------------------------------------------------------------------------------->
-    <div id="listUser_Admin" class="container">
-        <div class="list-group">
-        <?php
-            while ($data = $members->fetch())
-            {
-        ?>
-                <a href="#" class="list-group-item list-group-item-action active"><?= htmlspecialchars($data['log']); ?></a>
-        <?php          
-            }
-            $members->closeCursor();
-        ?>
+<section id="mainAdminSection">
+    <div class="container">
+        <div class="row">
+            <!--------------------Side Nav Bar-------------------->
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="index.php?action=admin" class="head mainColorBg list-group-item active">
+                    <i class="fas fa-user-cog"></i> Tableau de Bord
+                    </a>
+                    
+                    <a href="index.php?action=adminArticle" class="list-group-item"><i class="fas fa-book"></i> Articles <span class="badge badge-light"><?= $postNumber; ?></span></a>
+                    
+                    <a href="index.php?action=adminUsers" class="list-group-item"><i class="fas fa-user"></i> Utilisateurs <span class="badge badge-light"><?= $memberNumber; ?></span></a>
+                    <a href="index.php?action=adminCom" class="list-group-item"><i class="fas fa-comment-dots"></i> Commentaires Signalés <span class="badge badge-light"><?= $reportedComNumber; ?></span></a>
+                </div>
+            </div>
+            <!--------------------Pannel: Website Overview-------------------->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="mainColorBg card-header">
+                        <h3>Derniers Abonnés</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped table-hover">
+                            <tr>
+                                <th>NOM</th>
+                                <th>DATE D'INSCRIPTION</th>
+                            </tr>
+                            <?php
+                            while ($data = $members->fetch())
+                            {
+                            ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($data['log']); ?></td>
+                                    <td><?= $data['registration_date_fr']; ?></td>
+                                </tr>
+                            <?php          
+                            }
+                            $members->closeCursor();
+                            ?>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    
-    
-    
-</div>
-        
+</section>        
 <?php
 }
 else

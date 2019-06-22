@@ -336,7 +336,39 @@ section#mainAdminSection div.container div.row div.col-md-9 div.card div.card-bo
 
 
 
+/*Admin Articles Page*/
 
+section#mainAdminSection div.container div.row div.col-md-9 div.card div.adminArticles.card-body
+{
+    display: flex;
+    flex-direction: column;
+    max-height: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+section#mainAdminSection div.container div.row div.adminArticles.col-md-9 
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+section#mainAdminSection div.container div.row div.adminArticles.col-md-9 div.card-footer.text-muted div
+{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+section#mainAdminSection div.card-footer.text-muted div.container div.col-md-6 a.btn.btn-secondary:hover
+{
+    background: white;
+    color: #6c757d;
+    border: #6c757d;
+}
+section#mainAdminSection div.card-footer.text-muted div.container div.col-md-6 a.btn.btn-outline-secondary:hover
+{
+    background: #6c757d;;
+    color: white;
+}
 
 
 

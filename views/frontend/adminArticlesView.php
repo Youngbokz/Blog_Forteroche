@@ -47,7 +47,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                 </div>
             </div>
             <!--------------------Pannel: Create Chapter-------------------->
-            <div class="col-md-9">
+            <div class="adminArticles col-md-9">
             <?php
                 while ($data = $posts->fetch())
                 {
@@ -56,14 +56,17 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                     <div class="card-header">
                         <h2><?= htmlspecialchars($data['title']); ?></h2>
                     </div>
-                    <div class="card-body">
+                    <div class="adminArticles card-body">
                         <h5 class="card-title"><?= htmlspecialchars($data['chapter']); ?></h5>
                         <p class="card-text"><?= nl2br(htmlspecialchars($data['content'])); ?></p>
-                        <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Voir</a>
-                        <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Modifier</a>
+                        
                     </div>
                     <div class="card-footer text-muted">
                         <p>Publié le <?= ($data['post_date_fr']); ?></p>
+                        <div class="container">
+                            <div class="col-md-6"><a class="btn btn-secondary" role="button" href="index.php?action=post&amp;id=<?= $data['id'] ?>">Voir</a></div>
+                            <div class="col-md-6"><a class="btn btn-outline-secondary" role="button" href="index.php?action=post&amp;id=<?= $data['id'] ?>">Modifier</a></div>
+                        </div>
                     </div>
                 </div>
             <?php          
