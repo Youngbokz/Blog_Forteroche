@@ -22,13 +22,13 @@ function listPosts($requirePage)
     require($requirePage);
 }
 //-------------------------------------------->POST with COMMENTS
-function post($requirePage, $postId)
+function post($requirePage)
 {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
 
-    $post = $postManager->getPost($postId);
-    $comments = $commentManager->getComments($postId);
+    $post = $postManager->getPost($_GET['id']);
+    $comments = $commentManager->getComments($_GET['id']);
 
     require($requirePage);
 }

@@ -46,18 +46,18 @@ try //
         //ADMIN SEES EDIT PAGE
         elseif($_GET['action'] == 'goEditArticle')
         {
-            countAll('views/frontend/adminEditView.php');
             if(isset($_GET['id']) && $_GET['id'] >0)
             {
-                $postId = $_GET['id'];
                 $requirePage = 'views/frontend/adminEditView.php';
-                post($requirePage, $postId);
+                countAll($requirePage);
+                post($requirePage);
             }
             else 
             {
                 throw new Exception('Erreur : aucun identifiant de post envoyé'); // Error message
             }
         }
+        
         //--------------------------------------------------------------------------------------->
         //ADMIN EDIT A POST
         elseif($_GET['action'] == "editPost")
@@ -175,9 +175,8 @@ try //
         {
             if(isset($_GET['id']) && $_GET['id'] >0)
             {
-                $postId = $_GET['id'];
                 $requirePage = 'views/frontend/postView.php';
-                post($requirePage, $postId);
+                post($requirePage);
             }
             else 
             {
