@@ -130,7 +130,7 @@ footer
     font-weight: 300;
     text-overflow: ellipsis;
     overflow: hidden;
-    height: 300px;
+    max-height: 300px;
 }
 div#previewChapter.container-fluid 
 {

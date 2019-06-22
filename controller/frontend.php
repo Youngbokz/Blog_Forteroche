@@ -14,12 +14,12 @@ function lastPost()
     require('views/frontend/homeView.php');
 }
 //-------------------------------------------->POST
-function listPosts()
+function listPosts($requirePage)
 {
     $postsManager = new PostManager(); // Create object
     $posts = $postsManager->getPosts(); // We call this function wich allowed us to show the posts 
 
-    require('views/frontend/listPostsView.php');
+    require($requirePage);
 }
 //-------------------------------------------->POST with COMMENTS
 function post()

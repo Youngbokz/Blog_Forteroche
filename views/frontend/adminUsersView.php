@@ -8,6 +8,7 @@ session_start()
 if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
 {
 ?>
+<!--------------------Admin Top Nav Bar-------------------->
 <header id="header" class="navAdmin fixed-top">
     <div class="container">
         <div class="row">
@@ -22,7 +23,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <li><a href="index.php?action=adminCreate">Créer un chapitre</a></li>
-                        <li><a href="#">Modifier un chapitre</a></li>
+                        <li><a href="index.php?action=adminArticle">Modifier un chapitre</a></li>
                     </ul>
                 </div>
             </div>

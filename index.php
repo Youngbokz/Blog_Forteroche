@@ -40,6 +40,7 @@ try //
         {
             $requirePage = 'views/frontend/adminArticlesView.php';
             listMembers($requirePage);
+            listPosts($requirePage);
         }
         //--------------------------------------------------------------------------------------->
         //ADMIN EDIT A POST
@@ -76,7 +77,8 @@ try //
     
         elseif($_GET['action'] == "listPosts") // This action send us to listPostsView = Roman
         {
-            listPosts();
+            $requirePage = 'views/frontend/listPostsView.php';
+            listPosts($requirePage);
         }
         //--------------------------------------------------------------------------------------->
         //SE CONNECTER (LOGIN) PAGE DISPLAY

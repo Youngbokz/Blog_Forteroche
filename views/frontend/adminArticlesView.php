@@ -8,6 +8,7 @@ session_start()
 if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
 {
 ?>
+<!--------------------Admin Top Nav Bar-------------------->
 <header id="header" class="navAdmin fixed-top">
     <div class="container">
         <div class="row">
@@ -22,7 +23,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <li><a href="index.php?action=adminCreate">Créer un chapitre</a></li>
-                        <li><a href="#">Modifier un chapitre</a></li>
+                        <li><a href="index.php?action=adminArticle">Modifier un chapitre</a></li>
                     </ul>
                 </div>
             </div>
@@ -47,7 +48,28 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
             </div>
             <!--------------------Pannel: Create Chapter-------------------->
             <div class="col-md-9">
-                
+            <?php
+                while ($data = $posts->fetch())
+                {
+            ?>      
+                <div class="card text-center col-md-6">
+                    <div class="card-header">
+                        <h2><?= htmlspecialchars($data['title']); ?></h2>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><?= htmlspecialchars($data['chapter']); ?></h5>
+                        <p class="card-text"><?= nl2br(htmlspecialchars($data['content'])); ?></p>
+                        <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Voir</a>
+                        <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Modifier</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <p>Publié le <?= ($data['post_date_fr']); ?></p>
+                    </div>
+                </div>
+            <?php          
+                }
+            $posts->closeCursor();
+            ?>
             </div>
         </div>
     </div>
