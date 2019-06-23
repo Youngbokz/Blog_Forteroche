@@ -207,13 +207,17 @@ try //
                         $_SESSION['id'] = $result['id'];
                         $_SESSION['registration_date'] = $result['registration_date_fr'];
 
-                        echo 'Coucou ' . $result['log'] . '! ';
-                        echo'<font color="green">Vous êtes bien connecté !</font>';
                         header('location: index.php?action=home');
                     }
                     else
                     {
-                        echo'Mauvais mot de passe ou pseudo inconnue';
+                        
+                        $errorMessage = '<div class="alert alert-warning" role="alert">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            Mauvais mot de passe ou pseudo inconnue
+                                        </div>';
+                        //echo'Mauvais mot de passe ou pseudo inconnue';
+                        require('views/frontend/loginView.php');
                     }
                 }
                 else
