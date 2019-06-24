@@ -5,6 +5,7 @@ session_start();
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
+
 <div class="mainSection" id="top_mainSection_PostView">
     <section> <!--Selected post-->
         <div class="container">
@@ -16,6 +17,7 @@ session_start();
                 <a class="btn btn-lg btn-dark" href="#top_mainSection_PostView"><i class="fas fa-cloud-upload-alt"></i></a>
             </div> 
         </div>
+        
     </section>
     <section class="post_commentSection container-fluid">
     

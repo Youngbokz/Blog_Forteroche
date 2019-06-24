@@ -1,5 +1,5 @@
 <?php
-require('controller/frontend.php');
+require_once('controller/frontend.php');
 try //
 {
     if(isset($_GET['action']))
@@ -180,7 +180,11 @@ try //
             }
             else 
             {
-                throw new Exception('Erreur : aucun identifiant de post envoyé'); // Error message
+                $errorMessage = '<div class="alert alert-danger" role="alert">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    Ce chapitre n\'existe pas
+                                </div>';
+                require('views/frontend/postView.php'); // Error message
             }
         }
         //--------------------------------------------------------------------------------------->
@@ -216,13 +220,18 @@ try //
                                             <i class="fas fa-exclamation-triangle"></i>
                                             Mauvais mot de passe ou pseudo inconnue
                                         </div>';
-                        //echo'Mauvais mot de passe ou pseudo inconnue';
+                        
                         require('views/frontend/loginView.php');
                     }
                 }
                 else
                 {
-                    echo'Veuillez renseignez tout les champs';
+                    $errorMessage = '<div class="alert alert-warning" role="alert">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            Veuillez renseignez tout les champs
+                                        </div>';
+                        
+                        require('views/frontend/loginView.php');
                 }
             }
             else

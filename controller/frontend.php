@@ -29,8 +29,8 @@ function post($requirePage)
 
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
-
-    require($requirePage);
+    
+    require_once($requirePage);
 }
 //-------------------------------------------->MEMBER
 function subscribe($log, $password)
@@ -109,7 +109,7 @@ function countAll($requirePage)
     $comments = $commentsManager->allLastComments();
     $reportedComNumber = $commentsManager->countReportedComment();
     
-    require($requirePage);
+    require_once($requirePage);
 }
 //-------------------------------------------->ADMIN / POST 
 function updatePost($chapter, $title, $content, $postId)
