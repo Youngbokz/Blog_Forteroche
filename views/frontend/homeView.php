@@ -15,7 +15,7 @@ session_start()
     <div id="previewChapter" class="container-fluid">
         <div class="row";>
             <section class="col-8"> <!--Last post-->
-                    <h2>Dernier Épisode</h2>
+                    <h3>ÉPISODE À LA UNE</h3>
                     <?php
                     while ($data = $lastPost->fetch())
                     {
@@ -37,18 +37,18 @@ session_start()
             </section>
             <aside class="col-4">
                 <div>
-                    <h2>Derniers Commentaires</h2>
+                    <h3>COMMENTAIRES RÉCENTS</h3>
                     <?php
                     while ($data = $lastComments->fetch())
                     {
                     ?>
-                        <div>
-                            <p><?= nl2br(htmlspecialchars($data['comment'])); ?></p> 
-                            <p>
-                                <?= htmlspecialchars($data['author']); ?> posté le 
-                                <?= ($data['comment_date_fr']); ?>
+                        <div class="post-comments">
+                            <p class="meta">
+                                Le <?= ($data['comment_date_fr']); ?> 
+                                <span class="homeAuthorComment"><?= htmlspecialchars($data['author']); ?></span> a dit : 
                             </p>
-                        </div> 
+                            <p class="homeLastComment"><?= nl2br(htmlspecialchars($data['comment'])); ?></p>
+                        </div>
                     <?php          
                     }
                     $lastComments->closeCursor();

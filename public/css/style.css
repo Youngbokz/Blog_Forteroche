@@ -147,6 +147,26 @@ div#previewChapter.container-fluid
 {
     background: rgba(35, 37, 76, 0.7);
 }
+#previewChapter.container-fluid div.post-comments
+{
+    border-bottom: 1px solid lightgray;
+}
+#previewChapter.container-fluid div.post-comments p.meta
+{
+    font-style: italic;
+}
+#previewChapter.container-fluid div.post-comments p.homeLastComment
+{
+    font-weight: bold;
+}
+#previewChapter.container-fluid div.post-comments span.homeAuthorComment
+{
+    color: cornflowerblue;
+}
+#previewChapter.container-fluid h3
+{
+    margin: 40px 0;
+}
 /*     sous partie      */
 #home_words
 {
@@ -164,7 +184,10 @@ div#previewChapter.container-fluid
     text-align: center;
     color: white;
 }
-
+#home_words div h2
+{
+    color: white;
+}
 /*     sous partie      */
 
 /* ---------------------------------------- */
