@@ -7,23 +7,25 @@ session_start()
     <section class="mainSection"> <!--Last post-->
         <div class="romanContainer container">
             <div class="romanMainTitle">
-                <h2>ROMAN, tout les derniers épisodes</h2>
+                <h2>ROMAN, découvrir tout les épisodes</h2>
             </div>
             <div class="row">
                     <?php
                     while ($data = $posts->fetch())
                     {
                     ?>
-                        <div class="col-md-6">
-                            <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">
-                                <div class="news">
-                                    <p>
-                                         Publié le <?= ($data['post_date_fr']); ?>
-                                    </p>
-                                    <h3><?= htmlspecialchars($data['title']); ?></h3>
-                                    <p><?= nl2br(htmlspecialchars($data['content'])); ?></p>
-                                </div> 
-                            </a>
+                        <div class="card text-center col-12">
+                            <div class="card-header">
+                                <p><?= htmlspecialchars($data['chapter']); ?></p>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title"><?= htmlspecialchars($data['title']); ?></h5>
+                                <p class="card-text"><?= nl2br(htmlspecialchars(substr($data['content'], 0, 600))); ?> [...]</p>
+                                <a href="index.php?action=post&amp;id=<?= $data['id'] ?>" class="btn btn-dark">Découvrir</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <p>Publié le <?= ($data['post_date_fr']); ?></p>
+                            </div>
                         </div>
                     <?php          
                     }
