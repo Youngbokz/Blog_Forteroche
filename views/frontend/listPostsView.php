@@ -4,10 +4,12 @@ session_start()
 <!--listPostsView-->
 <?php $title = 'ROMAN | Jean FORTEROCHE'; ?>
     <?php ob_start(); ?>
-    <section class="mainSection"> <!--Last post-->
+    <section class="mainRomanSection"> <!--Last post-->
         <div class="romanContainer container">
             <div class="romanMainTitle">
-                <h2>ROMAN, découvrir tout les épisodes</h2>
+                <h4>ROMAN</h4>
+                <span>[Découvrir tout les épisodes]</span>
+                <h1>BILLET SIMPLE POUR L'ALASKA</h1>
             </div>
             <div class="row">
                     <?php
@@ -16,10 +18,10 @@ session_start()
                     ?>
                         <div class="card text-center col-12">
                             <div class="card-header">
-                                <p><?= htmlspecialchars($data['chapter']); ?></p>
+                                <h3><?= htmlspecialchars($data['chapter']); ?></h3>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title"><?= htmlspecialchars($data['title']); ?></h5>
+                                <h2 class="card-title"><?= htmlspecialchars($data['title']); ?></h2>
                                 <p class="card-text"><?= nl2br(htmlspecialchars(substr($data['content'], 0, 600))); ?> [...]</p>
                                 <a href="index.php?action=post&amp;id=<?= $data['id'] ?>" class="btn btn-dark">Découvrir</a>
                             </div>

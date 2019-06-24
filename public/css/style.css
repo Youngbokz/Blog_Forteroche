@@ -205,9 +205,11 @@ div.subscribeContainer.container a:hover
 /* ---------------------------------------- */
 /* ==            ROMAN                */
 /*---------------------------------------- */
-.romanContainer a
+
+.romanContainer
 {
-    color: black;
+    margin-bottom: 100px;
+    margin-top: 100px;
 }
 .romanContainer .row 
 {
@@ -218,6 +220,16 @@ div.subscribeContainer.container a:hover
 {
     margin-bottom:100px;
     text-align: center;
+    background: url(../images/volcano.jpg)no-repeat center center;
+}
+.romanMainTitle h1
+{
+    color: white;
+    text-decoration: overline;
+}
+.romanMainTitle h2
+{
+    color: white;
 }
 /* ---------------------------------------- */
 /* ==            ONE POST                */
