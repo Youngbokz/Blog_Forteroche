@@ -60,7 +60,7 @@ class CommentManager extends Manager
     public function addComment($postId, $author, $comment) // permet l'ajout d'un commentaire
     {
         $db = $this->dbConnect();
-        $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
+        $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date, reported) VALUES(?, ?, ?, NOW(), "0")');
         $affectedLines = $comments->execute(array($postId, $author, $comment));
 
         return $affectedLines;
@@ -90,5 +90,14 @@ class CommentManager extends Manager
             $countingReported = $req->fetchColumn();
             
             return $countingReported;
+    }
+
+    public function updateComStatus($reported, $commentId)
+    {
+        $db = $this->dbConnect();
+        $commentStatus = $db->prepare('UPDATE comments SET reported = ? WHERE id = ?');
+        $affectedComment = $commentStatus->execute(array($reported, $commentId));
+        
+        return $affectedComment;
     }
 }

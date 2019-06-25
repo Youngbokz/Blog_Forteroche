@@ -36,10 +36,16 @@
                     <div class="navbar-header col-4">
                         <a class="navbar-brand" href="index.php?action=home">FORTEROCHE Jean Blog</a>
                         <?php
-                        if(isset($_SESSION['login']))
+                        if(isset($_SESSION['login']) && ($_SESSION['login'] != 'admin'))
                         {
                         ?>
-                            <a href="index.php?action=admin"><p>BIENVENUE, <?= $_SESSION['login']; ?></p></a>
+                            <p class="welcomHome">BIENVENUE, <span class="welcomLogin"><?= mb_strtoupper($_SESSION['login']); ?></span></p>
+                        <?php
+                        }
+                        elseif(isset($_SESSION['login']) && $_SESSION['login'] == 'admin')
+                        {
+                        ?>
+                            <a href="index.php?action=admin"><p class="welcomHome">BIENVENUE, <span class="welcomLogin">Jean FORTEROCHE</span> gérer votre site ici</p></a>
                         <?php
                         }
                         ?>
@@ -50,7 +56,7 @@
                     ?>
                             <div class="dropdown col-4">
                                 <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <?= $_SESSION['login']; ?>
+                                    <?= mb_strtoupper($_SESSION['login']); ?>
                                 </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="index.php?action=disconnect">Se Déconnecter</a>
@@ -76,8 +82,9 @@
             </nav>
         </div>
         <?= $content ?>
-        <footer>
-            Mentions légales et autres
+        <footer class="container-fluid">
+            <p>© 2018-2019 Jean FORTEROCHE Company, Inc. · <a href="#">Privé</a> · <a href="#">Conditions</a></p>
+            <p><a href="#container"><i class="fas fa-angle-double-up"></i>  Haut de page </a></p>
         </footer>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
        

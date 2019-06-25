@@ -72,10 +72,34 @@ nav.fixMainBarr.main-navbar.navbar.fixed-top a p
 {
     margin: auto 0;
 }
+nav.fixMainBarr.main-navbar.navbar.fixed-top a.navbar-brand
+{
+    margin-right: 0;
+}
 nav.fixMainBarr.main-navbar.navbar.fixed-top div.dropdown-menu.show
 {
     left: 150px; 
 }
+nav.fixMainBarr.main-navbar.navbar.fixed-top p.welcomHome
+{
+    color: white;
+    font-style: italic;
+}
+nav.fixMainBarr.main-navbar.navbar.fixed-top p.welcomHome span.welcomLogin
+{
+    color: green;
+}
+nav.fixMainBarr.main-navbar.navbar.fixed-top p.welcomHome:hover
+{
+    color:cornflowerblue;
+    font-style: normal;
+}
+
+
+
+
+
+
 #banner
 {
     display: flex;
@@ -89,8 +113,15 @@ nav.fixMainBarr.main-navbar.navbar.fixed-top div.dropdown-menu.show
 
 footer
 {
-    height: 250px;
+    height: 100px;
     background: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+footer.container-fluid p
+{
+    color:lightgray;
 }
 
 

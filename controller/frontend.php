@@ -119,3 +119,18 @@ function updatePost($chapter, $title, $content, $postId)
     
     require('views/frontend/adminEditView.php');  
 }
+//-------------------------------------------->COMMENT
+function commentStatus($reported, $commentId, $postId) 
+{
+    $commentManager = new CommentManager();
+    $updateReported = $commentManager->updateComStatus($reported, $commentId);
+
+    if($updateReported == false)
+    {
+        echo'Impossible de signalé les messages';
+    }
+    else
+    {
+        header('Location: index.php?action=post&id='. $postId);
+    }
+}

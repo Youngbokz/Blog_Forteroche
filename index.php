@@ -185,8 +185,9 @@ try //
                                     Ce chapitre n\'existe pas
                                 </div>';
                 require('views/frontend/postView.php'); // Error message
-            }
+            }   
         }
+        
         //--------------------------------------------------------------------------------------->
         //SUBMIT IN LOGIN PAGE 
 
@@ -309,12 +310,7 @@ try //
                 echo'<p>Formulaire n\'a pas été envoyé</p>';
             }
         }
-        elseif($_GET=['action'] == 'reportComment')
-        {
-            
-        }
         
-
     }
     else // Even in this case display home page 
     {
