@@ -31,10 +31,10 @@
                     <ul class="nav navbar-nav col-4">
                         <li class="active"> <a href="index.php?action=home"><i class="fas fa-igloo"></i>  ACCUEIL</a> </li>
                         <li> <a href="index.php?action=listPosts"><i class="fas fa-book"></i>  ROMAN</a> </li>
-                        <li> <a href="aboutme.html"><i class="fas fa-user-edit"></i>  À PROPOS</a> </li>
+                        <li> <a href="index.php?action=aboutme"><i class="fas fa-user-edit"></i>  À PROPOS</a> </li>
                     </ul>                 
                     <div class="navbar-header col-4">
-                        <a class="navbar-brand" href="index.php?action=home">FORTEROCHE Jean Blog</a>
+                        <a class="navbar-brand" href="index.php?action=home">BLOG | Jean FORTEROCHE</a>
                         <?php
                         if(isset($_SESSION['login']) && ($_SESSION['login'] != 'admin'))
                         {
@@ -45,7 +45,7 @@
                         elseif(isset($_SESSION['login']) && $_SESSION['login'] == 'admin')
                         {
                         ?>
-                            <a href="index.php?action=admin"><p class="welcomHome">BIENVENUE, <span class="welcomLogin">Jean FORTEROCHE</span> gérer votre site ici</p></a>
+                            <a href="index.php?action=admin"><p class="welcomHome">BIENVENUE, <span class="welcomLogin">Jean FORTEROCHE</span>  <i class="fas fa-feather"></i>  Tableau de bord</p></a>
                         <?php
                         }
                         ?>

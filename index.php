@@ -33,6 +33,12 @@ try //
             $requirePage = 'views/frontend/adminCreateView.php';
             countAll($requirePage);
         }
+        //--------------------------------------------------------------------------------------->
+        //ABOUT ME PAGE
+        elseif($_GET['action'] == 'aboutme')
+        {
+            require('views/frontend/aboutme.php');
+        }
         
         //--------------------------------------------------------------------------------------->
         //ADMIN SEES LIST POSTS 
@@ -110,6 +116,21 @@ try //
         {
             require('views/frontend/subscribeView.php');
         }
+        //--------------------------------------------------------------------------------------->
+        //REPORTED
+
+        elseif($_GET['action'] == "reportComment")
+        {
+            if(isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['postId']) && $_GET['postId'] > 0)
+            {
+                $reported = 1;
+                $commentId = $_GET['id'];
+                $postId = $_GET['postId'];
+                commentStatus($reported, $commentId, $postId);
+                header('Location: index.php?action=post&id=' . $postId);
+            }
+        }
+
         //--------------------------------------------------------------------------------------->
         //SUBMIT IN SUBSCRIBE PAGE 
 
