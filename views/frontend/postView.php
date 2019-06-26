@@ -30,30 +30,34 @@ session_start();
                         <?php
                             while ($comment = $comments->fetch())
                             {
+                                if($comment['reported'] == '0')
+                                {
                         ?>
-                            <article class="row">
-                                <div class="col-md-10 col-sm-10">
-                                    <div class="panel panel-default arrow left">
-                                        <div class="panel-body">
-                                            <header class="text-center">
-                                                <div class="comment-user"><i class="fa fa-user"></i><?= htmlspecialchars($comment['author']); ?></div>
-                                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?= $comment['comment_date_fr']; ?></time>
-                                            </header>
-                                            <div class="comment-post">
-                                                <p>
-                                                    <?= nl2br(htmlspecialchars($comment['comment'])); ?>
-                                                </p>
+                                    <article class="row">
+                                        <div class="col-md-10 col-sm-10">
+                                            <div class="panel panel-default arrow left">
+                                                <div class="panel-body">
+                                                    <header class="text-center">
+                                                        <div class="comment-user"><i class="fa fa-user"></i><?= htmlspecialchars($comment['author']); ?></div>
+                                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> <?= $comment['comment_date_fr']; ?></time>
+                                                    </header>
+                                                    <div class="comment-post">
+                                                        <p>
+                                                            <?= nl2br(htmlspecialchars($comment['comment'])); ?>
+                                                        </p>
+                                                    </div>
+                                                    <p class="text-right">
+                                                        <a href="index.php?action=reportComment&amp;id=<?= $comment['id']; ?>&amp;postId=<?= $post['id']; ?>" class="btn btn-default btn-outline-secondary btn-sm">
+                                                            <i class="fa fa-reply"></i> Signaler
+                                                        </a>
+                                                    </p>
+                                                </div>
                                             </div>
-                                             <p class="text-right">
-                                                 <a href="index.php?action=reportComment&amp;id=<?= $comment['id']; ?>&amp;postId=<?= $post['id']; ?>" class="btn btn-default btn-outline-secondary btn-sm">
-                                                    <i class="fa fa-reply"></i> Signaler
-                                                </a>
-                                            </p>
                                         </div>
-                                    </div>
-                                </div>
-                            </article>
+                                    </article>
+                            
                         <?php
+                                }
                             }
                             $comments->closeCursor();
                         ?>
