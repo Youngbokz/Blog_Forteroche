@@ -106,7 +106,7 @@ function countAll($requirePage)
     $postNumber = $postsManager->countPost();
 
     $commentsManager = new CommentManager();
-    $comments = $commentsManager->allLastComments();
+    $comments = $commentsManager->reportedListComments();
     $reportedComNumber = $commentsManager->countReportedComment();
     
     require_once($requirePage);

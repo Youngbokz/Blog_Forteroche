@@ -26,7 +26,7 @@ class CommentManager extends Manager
     public function getComment($commentId) //permet d'afficher un seul commentaire 
     {
         $db = $this->dbConnect();
-        $comment = $db->prepare('SELECT id, author, comment, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE id = ?');
+        $comment = $db->prepare('SELECT id, author, comment, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr, reported FROM comments WHERE id = ?');
         $comment->execute(array($commentId));
 
         return $comment;
@@ -35,7 +35,7 @@ class CommentManager extends Manager
     public function allLastComments()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, author, comment, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments ORDER BY comment_date DESC LIMIT 0, 3');
+        $req = $db->query('SELECT id, author, comment, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\'), reported AS comment_date_fr FROM comments ORDER BY comment_date DESC LIMIT 0, 3');
         
         return $req;
     }

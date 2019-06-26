@@ -117,7 +117,7 @@ try //
             require('views/frontend/subscribeView.php');
         }
         //--------------------------------------------------------------------------------------->
-        //REPORTED
+        //REPORT A COMMENT POSTVIEW PAGE
 
         elseif($_GET['action'] == "reportComment")
         {

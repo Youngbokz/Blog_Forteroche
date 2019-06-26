@@ -63,13 +63,16 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                             <?php
                             while ($data = $comments->fetch())
                             {
+                                //if($data['reported'] == "1")
+                                //{
                             ?>
                                 <tr>
                                     <td><?= htmlspecialchars($data['author']); ?></td>
                                     <td><?= htmlspecialchars($data['comment_date_fr']); ?></td>
                                     <td><?= htmlspecialchars($data['comment']); ?></td>
                                 </tr>
-                            <?php          
+                            <?php 
+                                //}         
                             }
                             $comments->closeCursor();
                             ?>
