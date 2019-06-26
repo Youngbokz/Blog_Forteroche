@@ -56,9 +56,11 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                     <div class="card-body">
                         <table class="table table-striped table-hover">
                             <tr>
+                                <th>N°</th>
                                 <th>NOM</th>
                                 <th>DATE</th>
-                                <th>COMMENTAIRE</th>
+                                <th>RESTAURER</th>
+                                <th>SUPPRIMER</th>
                             </tr>
                             <?php
                             while ($data = $comments->fetch())
@@ -66,10 +68,19 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                                 //if($data['reported'] == "1")
                                 //{
                             ?>
+                            
                                 <tr>
+                                    <td><span class="badge badge-light"><?= htmlspecialchars($data['id']); ?></span></td>
                                     <td><?= htmlspecialchars($data['author']); ?></td>
                                     <td><?= htmlspecialchars($data['comment_date_fr']); ?></td>
-                                    <td><?= htmlspecialchars($data['comment']); ?></td>
+                                    <td><button type="button" class="btn btn-secondary btn-sm">Restaurer  <i class="far fa-hand-point-down"></i></button></td>
+                                    <td><button type="button" class="btn btn-danger btn-sm">Supprimer  <i class="far fa-hand-point-down"></i></span></button></td>
+                                </tr>
+                                <tr>
+                                    <td colspan=5> 
+                                        
+                                        <?= substr( htmlspecialchars($data['comment']), 0, 200); ?>
+                                    </td>
                                 </tr>
                             <?php 
                                 //}         
