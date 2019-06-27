@@ -17,14 +17,14 @@ Light gray (h2) :		#747474
 */
 
 /* ---------------------------------------- */
-/* == DÉFINITIONS DES POLICES*/
+/* == FONT */
 /*---------------------------------------- */
 
 /* ---------------------------------------- */
-/* == ÉLÉMENTS PRINCIPAUX */
+/* == MAIN ELEMENTS */
 /*---------------------------------------- */
 
-/*     sous partie      */
+/*     GENERAL      */
 a
 {
     color: white;
@@ -49,15 +49,8 @@ a:hover
     color: white !important;
 }
 
-/*     sous partie      */
+/*     HEADER / NAVBAR TOP      */
 
-/*     sous partie      */
-
-/* ---------------------------------------- */
-/* ==            HEADER                */
-/*---------------------------------------- */
-
-/*     Navigation      */
 .fixMainBarr
 {
     background: rgba(35, 37, 76, 0.9);
@@ -94,23 +87,7 @@ nav.fixMainBarr.main-navbar.navbar.fixed-top p.welcomHome:hover
     color:cornflowerblue;
     font-style: normal;
 }
-
-
-
-
-
-
-#banner
-{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    background: url(../images/train1.jpg) no-repeat center center;
-    height: 800px;
-    width: 100%;
-}
-
+/*     FOOTER      */
 footer
 {
     height: 100px;
@@ -123,38 +100,22 @@ footer.container-fluid p
 {
     color:lightgray;
 }
-
-
-
-
-
-
-
-
-
-.home_Main_Title h1
-{
-    text-align: center;
-    font-size: 2.5em;
-    color: white;
-    border: solid 1px white;
-    text-shadow: 1px 1px 10px #000;
-}
-.home_Main_Title p
-{
-    text-align: center;
-    font-size: 1.9em;
-    color: white;
-    text-shadow: 1px 1px 10px #000;
-}
-
-/*     Slider      */
-
 /* ---------------------------------------- */
 /* ==            HOME PAGE                */
 /*---------------------------------------- */
 
-/*     main menu      */
+/*     BANNER      */
+#banner
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: url(../images/train1.jpg) no-repeat center center;
+    height: 800px;
+    width: 100%;
+}
+/*     CHAPTER SECTION      */
 .chapter_slim
 {
     font-size: 1.25rem;
@@ -198,7 +159,7 @@ div#previewChapter.container-fluid
 {
     margin: 40px 0;
 }
-/*     sous partie      */
+/*     WRITER WORD SECTION     */
 #home_words
 {
     display: flex;
@@ -219,26 +180,9 @@ div#previewChapter.container-fluid
 {
     color: white;
 }
-/*     sous partie      */
 
 /* ---------------------------------------- */
-/* ==            FOOTER                 */
-/*---------------------------------------- */
-
-/*     sous partie      */
-
-/*     sous partie      */
-
-/* ---------------------------------------- */
-/* ==       MEDIAS QUERIS        */
-/*---------------------------------------- */
-
-/*     sous partie      */
-
-/*     sous partie      */
-
-/* ---------------------------------------- */
-/* ==            SUBSCRIBE                */
+/* ==            SUBSCRIBE PAGE                */
 /*---------------------------------------- */
 div.subscribeContainer.container div a 
 {
@@ -249,7 +193,7 @@ div.subscribeContainer.container a:hover
     color: cornflowerblue;
 }
 /* ---------------------------------------- */
-/* ==            LOGIN                */
+/* ==            LOGIN PAGE                */
 /*---------------------------------------- */
 .loginContainer form, .subscribeContainer form
 {
@@ -257,7 +201,7 @@ div.subscribeContainer.container a:hover
     margin: 0 auto;
 }
 /* ---------------------------------------- */
-/* ==            ROMAN                */
+/* ==            ROMAN PAGE               */
 /*---------------------------------------- */
 
 .romanContainer
@@ -286,7 +230,7 @@ div.subscribeContainer.container a:hover
     color: white;
 }
 /* ---------------------------------------- */
-/* ==            ONE POST                */
+/* ==            POST PAGE                */
 /*---------------------------------------- */
 div.addComContainer.container-fluid .row
 {
@@ -321,7 +265,7 @@ div#top_mainSection_PostView.mainSection p.chapter_slim
     text-align: left;
 }
 /* ---------------------------------------- */
-/* ==            ABOUT                 */
+/* ==            ABOUT ME PAGE                */
 /*---------------------------------------- */
 .aboutme
 {
@@ -329,13 +273,12 @@ div#top_mainSection_PostView.mainSection p.chapter_slim
     margin-bottom: 120px;
 }
 /* ---------------------------------------- */
-/* ==            ADMIN                 */
+/* ==            ADMIN PART                 */
 /*---------------------------------------- */
 
-/*Admin*/
+/* GENERAL*/
 .mainAdminContainer.container-fluid
 {
-    
     margin-top: 80px; 
     display: flex;
     flex-direction: row;
@@ -372,8 +315,16 @@ header#header.navAdmin.fixed-top li
 {
     padding: 5px;
 }
-
-/*Admin Main Section*/
+/*Admin Side Nav*/
+section#mainAdminSection a.head.list-group-item:hover
+{
+    background: cornflowerblue;
+}
+section#mainAdminSection div.list-group
+{
+    text-align: left;
+}
+/*Admin DASHBORD Main Section*/
 section#mainAdminSection
 {
     margin-top: 220px;
@@ -387,15 +338,6 @@ section#mainAdminSection a.list-group-item:hover, header#header.navAdmin.fixed-t
 {
     background: rgba(0,0,0,0.1);   
 }
-/*Admin Side Nav*/
-section#mainAdminSection a.head.list-group-item:hover
-{
-    background: cornflowerblue;
-}
-section#mainAdminSection div.list-group
-{
-    text-align: left;
-}
 
 /*Admin Pannel Section*/
 section#mainAdminSection div.container div.row div.col-md-9 div.card div.card-body
@@ -406,7 +348,7 @@ section#mainAdminSection div.container div.row div.col-md-9 div.card div.card-bo
 
 
 
-/*Admin Articles Page*/
+/* ADMIN ARTICLE PAGE */
 
 section#mainAdminSection div.container div.row div.col-md-9 div.card div.adminArticles.card-body
 {
@@ -443,30 +385,4 @@ section#mainAdminSection div.card-footer.text-muted div.container div.col-md-6 a
 
 
 
-nav.sideAdminNav.navbar.navbar-default
-{
-    height: 100%;
-    background: #23254c;
-    max-width: 300px;
-}
-nav.sideAdminNav.navbar.navbar-default div.container-fluid
-{
-    display: flex;
-    flex-direction: column;
-}
-div.mainAdminContainer.container-fluid p
-{
-    font-size: 1.25rem;
-    font-weight: 300;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    height: 200px;
-}
-div#listPost_Admin.container, div#listCom_Admin.container
-{
-    margin-top: 50px;
-}
 
-/* ---------------------------------------- */
-/* ==            ADMIN                 */
-/*---------------------------------------- */
