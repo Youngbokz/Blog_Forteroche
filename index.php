@@ -52,9 +52,10 @@ try //
         //ADMIN SEES EDIT PAGE
         elseif($_GET['action'] == 'goEditArticle')
         {
-            if(isset($_GET['id']) && $_GET['id'] >0)
+            if(isset($_GET['id']) && $_GET['id'] > 0)
             {
                 $requirePage = 'views/frontend/adminEditView.php';
+                
                 countAll($requirePage);
                 post($requirePage);
             }
@@ -225,7 +226,7 @@ try //
                     $verifyLogin = verifyConnection($loginConnex, $passConnex);
 
                      // Check if password in match with the one in database
-                    if($verifyLogin == 1)
+                    if($verifyLogin)
                     {
                         session_start();
                         $result = member($loginConnex);

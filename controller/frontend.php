@@ -30,7 +30,7 @@ function post($requirePage)
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
     
-    require_once($requirePage);
+    require($requirePage);
 }
 //-------------------------------------------->MEMBER
 function subscribe($log, $password)
@@ -91,6 +91,7 @@ function newPost($title, $chapter, $content)
 {
     $postManager = new PostManager();
     $post = $postManager->addPost($title, $chapter, $content);
+    
 
     header('Location: index.php?action=');
 }
@@ -115,9 +116,10 @@ function countAll($requirePage)
 function updatePost($chapter, $title, $content, $postId)
 {
     $postManager = new PostManager(); // Create object
-    $post = $postManager->editPost($chapter, $title, $content, $postId); // We call this function wich allowed us to show the posts 
+    $postUpdate = $postManager->editPost($chapter, $title, $content, $postId); // We call this function wich allowed us to show the posts 
     
-    require('views/frontend/adminEditView.php');  
+
+    //require('views/frontend/adminEditView.php');  
 }
 //-------------------------------------------->COMMENT
 function commentStatus($reported, $commentId, $postId) 
