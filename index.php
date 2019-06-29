@@ -16,22 +16,33 @@ try //
         //ADMINISTRATEUR (ADMIN) PAGE DISPLAY
         elseif($_GET['action'] == "admin")
         {
-            $requirePage = 'views/frontend/adminView.php';
-            countAll($requirePage);
+            $memberNumber = countAll();
+            $postNumber = countAll();
+            $reportedComNumber = countAll();
+            
+            $members = lastMembersAdmin();
+            require('views/frontend/adminView.php');
+
         }
         //--------------------------------------------------------------------------------------->
         //ADMIN SEES USERS PAGE
         elseif($_GET['action'] == "adminUsers")
         {
-            $requirePage = 'views/frontend/adminUsersView.php';
-            countAll($requirePage);
+            $memberNumber = countAll();
+            $postNumber = countAll();
+            $reportedComNumber = countAll();
+
+            $members = getMembersAdmin();
+            require('views/frontend/adminUsersView.php');
         }
         //--------------------------------------------------------------------------------------->
         //ADMIN SEES CREATING CHAPTER PAGE
         elseif($_GET['action'] == "adminCreate")
         {
-            $requirePage = 'views/frontend/adminCreateView.php';
-            countAll($requirePage);
+            $memberNumber = countAll();
+            $postNumber = countAll();
+            $reportedComNumber = countAll();
+            require('views/frontend/adminCreateView.php');
         }
         //--------------------------------------------------------------------------------------->
         //ABOUT ME PAGE
@@ -44,9 +55,12 @@ try //
         //ADMIN SEES LIST POSTS 
         elseif($_GET['action'] == "adminArticle")
         {
-            $requirePage = 'views/frontend/adminArticlesView.php';
-            countAll($requirePage);
-            listPosts($requirePage);
+            $memberNumber = countAll();
+            $postNumber = countAll();
+            $reportedComNumber = countAll();
+            $posts = listPostsAdmin();
+
+            require('views/frontend/adminArticlesView.php');
         }
         //--------------------------------------------------------------------------------------->
         //ADMIN SEES EDIT PAGE
@@ -54,14 +68,17 @@ try //
         {
             if(isset($_GET['id']) && $_GET['id'] > 0)
             {
-                $requirePage = 'views/frontend/adminEditView.php';
-                
-                countAll($requirePage);
-                post($requirePage);
+                $memberNumber = countAll();
+                $postNumber = countAll();
+                $reportedComNumber = countAll();
+
+                $post = postAdmin($_GET['id']);
+
+                require('views/frontend/adminEditView.php');
             }
             else 
             {
-                throw new Exception('Erreur : aucun identifiant de post envoyé'); // Error message
+                echo 'Erreur : aucun identifiant de post envoyé'; // Error message
             }
         }
         
@@ -92,16 +109,20 @@ try //
         //ADMIN SEES REPORTED COMENTS PAGE
         elseif($_GET['action'] == "adminCom")
         {
-            $requirePage = 'views/frontend/adminComView.php';
-            countAll($requirePage);
+            $memberNumber = countAll();
+            $postNumber = countAll();
+            $reportedComNumber = countAll();
+
+            $comments = reportedCommentAdminList();
+            require('views/frontend/adminComView.php');
         }
         //--------------------------------------------------------------------------------------->
         //ROMAN PAGE DISPLAY
     
         elseif($_GET['action'] == "listPosts") // This action send us to listPostsView = Roman
         {
-            $requirePage = 'views/frontend/listPostsView.php';
-            listPosts($requirePage);
+            listPosts();
+            
         }
         //--------------------------------------------------------------------------------------->
         //SE CONNECTER (LOGIN) PAGE DISPLAY
@@ -197,8 +218,8 @@ try //
         {
             if(isset($_GET['id']) && $_GET['id'] >0)
             {
-                $requirePage = 'views/frontend/postView.php';
-                post($requirePage);
+                post();
+                require('views/frontend/postView.php');
             }
             else 
             {

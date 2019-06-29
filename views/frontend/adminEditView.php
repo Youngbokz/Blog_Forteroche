@@ -1,5 +1,5 @@
 <?php
-session_start();
+if(!isset($_SESSION)) session_start();
 ?>
 <!--AdminView-->
 <?php $title = 'ADMINISTRATEUR | Jean FORTEROCHE'; ?>

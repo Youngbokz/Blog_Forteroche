@@ -22,14 +22,20 @@ class MemberManager extends Manager
         $verifyLog = $req->rowCount();
         return $verifyLog;
     }
-    public function getMembers() // Permet de selectionner tout les membres selon leur pseudo
+    public function getLastMembers() // Permet de selectionner tout les membres selon leur pseudo et par ordre d'inscription
     {
         $db = $this->dbConnect();
         $req = $db->query('SELECT id, log, password, DATE_FORMAT (registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr FROM members ORDER BY log, registration_date DESC LIMIT 0, 3');
 
         return $req;
     }
+    public function getMembers() // Permet de selectionner tout les membres selon leur pseudo dans l'ordre alphabétique
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT id, log, password, DATE_FORMAT (registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr FROM members ORDER BY log ASC LIMIT 0, 5');
 
+        return $req;
+    }
     public function getMember($log) //permet de selectionner un seul membre 
     {
         $db = $this->dbConnect();

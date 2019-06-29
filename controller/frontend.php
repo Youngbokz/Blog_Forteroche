@@ -14,15 +14,22 @@ function lastPost()
     require('views/frontend/homeView.php');
 }
 //-------------------------------------------->POST
-function listPosts($requirePage)
+function listPosts()
 {
     $postsManager = new PostManager(); // Create object
     $posts = $postsManager->getPosts(); // We call this function wich allowed us to show the posts 
 
-    require($requirePage);
+    require_once('views/frontend/listPostsView.php');
+}
+//-------------------------------------------->POST / ADMIN
+function listPostsAdmin()
+{
+    $postsManager = new PostManager(); // Create object
+    $posts = $postsManager->getPosts(); // We call this function wich allowed us to show the posts 
+    return $posts;
 }
 //-------------------------------------------->POST with COMMENTS
-function post($requirePage)
+function post()
 {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
@@ -30,8 +37,15 @@ function post($requirePage)
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
     
-    require($requirePage);
 }
+//-------------------------------------------->POST / ADMIN
+function postAdmin($postId)
+{
+    $postManager = new PostManager();
+    $post = $postManager->getPost($postId);
+    return $post;
+} 
+
 //-------------------------------------------->MEMBER
 function subscribe($log, $password)
 {
@@ -56,16 +70,7 @@ function verifyConnection($log, $password)
    
     $isPasswordCorrect = password_verify($password, $member['password']);
     $right = true;
-    if(($member['log'] == $log) AND ($isPasswordCorrect === $right))
-    {
-        // If login and password match we create a $_SESSION
-        
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
+    return ($member['log'] == $log AND $isPasswordCorrect === $right);
 }
 //-------------------------------------------->MEMBER
 function member($log)
@@ -96,21 +101,40 @@ function newPost($title, $chapter, $content)
     header('Location: index.php?action=');
 }
 //-------------------------------------------->ADMIN / MEMBER
-function countAll($requirePage)
+function countAll()
 {
     $membersManager = new MemberManager(); // Create object
-    $members = $membersManager->getMembers(); // We call this function wich allowed us to show the members 
     $memberNumber = $membersManager->countMembers();
 
     $postsManager = new PostManager(); // Create object
-    $posts = $postsManager->getPosts(); // We call this function wich allowed us to show the posts 
     $postNumber = $postsManager->countPost();
 
     $commentsManager = new CommentManager();
-    $comments = $commentsManager->reportedListComments();
     $reportedComNumber = $commentsManager->countReportedComment();
-    
-    require_once($requirePage);
+
+    return $memberNumber; $postNumber; $reportedComNumber; $posts; $comments;
+}
+//-------------------------------------------->ADMIN / MEMBER
+function lastMembersAdmin()
+{
+    $membersManager = new MemberManager(); // Create object
+    $members = $membersManager->getLastMembers(); // We call this function wich allowed us to show the members 
+    return $members;
+}
+//-------------------------------------------->ADMIN / MEMBER
+function getMembersAdmin()
+{
+    $membersManager = new MemberManager(); // Create object
+    $members = $membersManager->getMembers(); // We call this function wich allowed us to show the members 
+    return $members;
+}
+//-------------------------------------------->ADMIN / COMMENTS
+function reportedCommentAdminList()
+{
+    $commentsManager = new CommentManager();
+    $comments = $commentsManager->reportedListComments();
+
+    return $comments;
 }
 //-------------------------------------------->ADMIN / POST 
 function updatePost($chapter, $title, $content, $postId)
