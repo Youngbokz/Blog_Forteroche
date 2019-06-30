@@ -50,33 +50,43 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
             </div>
             
             <div class="col-md-9">
-                <div class="card">
-                    <div class="mainColorBg card-header">
-                        <h4>ÉDITER OU SUPPRIMER</h4>
+                <?php if($post != NULL)
+                {
+                ?>
+                    <div class="card">
+                        <div class="mainColorBg card-header">
+                            <h4>ÉDITER OU SUPPRIMER</h4>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" action="index.php?action=editPost&amp;id=<?= $post['id']; ?>" class="col-md-12">
+                                <div class="form-group">
+                                    <label for="newChapter">CHAPITRE</label>
+                                    <input type="text" class="form-control" id="chapter" name="newChapter" value="<?= htmlspecialchars($post['chapter']) ?>" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">TITRE</label>
+                                    <input type="text" class="form-control" id="title" name="newTitle" value="<?= htmlspecialchars($post['title']); ?>" >
+                                </div>                        
+                                <div class="form-group">
+                                    <label for="content">ÉCRIRE</label>
+                                    <textarea class="form-control" id="mytextarea" rows="3" name="newContent"><?= nl2br(htmlspecialchars($post['content'])); ?></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input class="btn btn-dark" type="submit" value="Éditer" name="edit">
+                                </div>   
+                                <div class="form-group">
+                                    <input class="btn btn-dark" type="submit" value="Supprimer" name="delete">
+                                </div> 
+                            </form>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <form method="post" action="index.php?action=editPost&amp;id=<?= $post['id']; ?>" class="col-md-12">
-                            <div class="form-group">
-                                <label for="newChapter">CHAPITRE</label>
-                                <input type="text" class="form-control" id="chapter" name="newChapter" value="<?= htmlspecialchars($post['chapter']) ?>" >
-                            </div>
-                            <div class="form-group">
-                                <label for="title">TITRE</label>
-                                <input type="text" class="form-control" id="title" name="newTitle" value="<?= htmlspecialchars($post['title']); ?>" >
-                            </div>                        
-                            <div class="form-group">
-                                <label for="content">ÉCRIRE</label>
-                                <textarea class="form-control" id="mytextarea" rows="3" name="newContent"><?= nl2br(htmlspecialchars($post['content'])); ?></textarea>
-                            </div>
-                            <div class="form-group">
-                                <input class="btn btn-dark" type="submit" value="Éditer" name="edit">
-                            </div>   
-                            <div class="form-group">
-                                <input class="btn btn-dark" type="submit" value="Supprimer" name="delete">
-                            </div> 
-                        </form>
-                    </div>
-                </div>
+                <?php 
+                }
+                else
+                {
+                    echo'Article supprimé ou inexistant';
+                }
+                ?>
             </div>       
         </div>
     </div>

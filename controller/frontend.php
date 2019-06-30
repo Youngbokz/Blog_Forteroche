@@ -47,7 +47,9 @@ function postAdmin($postId)
 {
     $postManager = new PostManager();
     $post = $postManager->getPost($postId);
+    
     return $post;
+    
 } 
 
 //-------------------------------------------->MEMBER
@@ -156,4 +158,12 @@ function commentStatus($reported, $commentId, $postId)
     $updateReported = $commentManager->updateComStatus($reported, $commentId);
 
     
+}
+//-------------------------------------------->POST / ADMIN
+function erasePost($postId) 
+{
+    $postManager = new PostManager(); // Create object
+    $deletedPost = $postManager->deletePost($postId);
+
+    header('Location: index.php?action=goEditArticle&id=' . $postId);
 }

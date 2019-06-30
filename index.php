@@ -11,6 +11,7 @@ try //
         if($_GET['action'] == "home")
         {
             $homeLast = lastPost();
+
             $lastPost = $homeLast['lastPost'];
             $lastComments = $homeLast['lastComments'];
         
@@ -21,6 +22,7 @@ try //
         elseif($_GET['action'] == "admin")
         {
             $count = countAll();
+
             $memberNumber = $count['memberNumber'];
             $postNumber = $count['postNumber'];
             $reportedComNumber = $count['reportedComNumber'];
@@ -34,6 +36,7 @@ try //
         elseif($_GET['action'] == "adminUsers")
         {
             $count = countAll();
+
             $memberNumber = $count['memberNumber'];
             $postNumber = $count['postNumber'];
             $reportedComNumber = $count['reportedComNumber'];
@@ -46,9 +49,11 @@ try //
         elseif($_GET['action'] == "adminCreate")
         {
             $count = countAll();
+
             $memberNumber = $count['memberNumber'];
             $postNumber = $count['postNumber'];
             $reportedComNumber = $count['reportedComNumber'];
+
             require('views/frontend/adminCreateView.php');
         }
         //--------------------------------------------------------------------------------------->
@@ -63,6 +68,7 @@ try //
         elseif($_GET['action'] == "adminArticle")
         {
             $count = countAll();
+
             $memberNumber = $count['memberNumber'];
             $postNumber = $count['postNumber'];
             $reportedComNumber = $count['reportedComNumber'];
@@ -77,6 +83,7 @@ try //
             if(isset($_GET['id']) && $_GET['id'] > 0)
             {
                 $count = countAll();
+
                 $memberNumber = $count['memberNumber'];
                 $postNumber = $count['postNumber'];
                 $reportedComNumber = $count['reportedComNumber'];
@@ -108,6 +115,14 @@ try //
                     {
                         updatePost($chapter, $title, $content, $postId);
                     }
+                    else
+                    {
+                        echo'Erreur d\'envoie veuillez réessayer';
+                    }
+                }
+                elseif(isset($_POST['delete']))
+                {
+                    erasePost($postId);
                 }
             }
             
@@ -118,11 +133,13 @@ try //
         elseif($_GET['action'] == "adminCom")
         {
             $count = countAll();
+
             $memberNumber = $count['memberNumber'];
             $postNumber = $count['postNumber'];
             $reportedComNumber = $count['reportedComNumber'];
 
             $comments = reportedCommentAdminList();
+
             require('views/frontend/adminComView.php');
         }
         //--------------------------------------------------------------------------------------->
@@ -231,8 +248,10 @@ try //
             if(isset($postId) && $postId >0)
             {
                 $thePost = post($postId);
+
                 $post = $thePost['post'];
                 $comments = $thePost['comments'];
+
                 require('views/frontend/postView.php');
             }
             else 
@@ -372,8 +391,10 @@ try //
     else // Even in this case display home page 
     {
         
-        $lastPost = lastPost();
-        $lastComments = lastPost();
+        $homeLast = lastPost();
+
+        $lastPost = $homeLast['lastPost'];
+        $lastComments = $homeLast['lastComments'];
         
         require('views/frontend/homeView.php');
         

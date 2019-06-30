@@ -66,7 +66,7 @@
         public function deletePost($postId) // Permet la suppression d'un post avec ses commentaires liés en cascade
         {
             $db = $this->dbConnect();
-            $req = $db->prepare('DELETE posts WHERE id = :postId');
+            $req = $db->prepare('DELETE FROM posts WHERE id = :postId');
             $req->execute(array(
                 'postId' => $postId //= $_GET['id']
             ));
