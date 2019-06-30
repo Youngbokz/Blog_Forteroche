@@ -55,18 +55,18 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                         <h4>ÉDITER OU SUPPRIMER</h4>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="index.php?action=editPost" class="col-md-12">
+                        <form method="post" action="index.php?action=editPost&amp;id=<?= $post['id']; ?>" class="col-md-12">
                             <div class="form-group">
                                 <label for="newChapter">CHAPITRE</label>
                                 <input type="text" class="form-control" id="chapter" name="newChapter" value="<?= htmlspecialchars($post['chapter']) ?>" >
                             </div>
                             <div class="form-group">
                                 <label for="title">TITRE</label>
-                                <input type="text" class="form-control" id="title" name="title" value="<?= htmlspecialchars($post['title']); ?>" >
+                                <input type="text" class="form-control" id="title" name="newTitle" value="<?= htmlspecialchars($post['title']); ?>" >
                             </div>                        
                             <div class="form-group">
                                 <label for="content">ÉCRIRE</label>
-                                <textarea class="form-control" id="mytextarea" rows="3" name="content"><?= nl2br(htmlspecialchars($post['content'])); ?></textarea>
+                                <textarea class="form-control" id="mytextarea" rows="3" name="newContent"><?= nl2br(htmlspecialchars($post['content'])); ?></textarea>
                             </div>
                             <div class="form-group">
                                 <input class="btn btn-dark" type="submit" value="Éditer" name="edit">

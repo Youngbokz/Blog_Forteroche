@@ -8,18 +8,21 @@ function lastPost()
 {
     $lastPostManager = new PostManager(); // Create object
     $lastPost = $lastPostManager->getLastPost(); // We call this function wich allowed us to show the last post by date
+    
     $lastCommentsManager = new CommentManager(); // Create object
     $lastComments = $lastCommentsManager->allLastComments(); // We call this function wich allowed us to show all last comments by date
-
-    require('views/frontend/homeView.php');
+    
+    return compact('lastPost', 'lastComments');
+    
 }
+
 //-------------------------------------------->POST
 function listPosts()
 {
     $postsManager = new PostManager(); // Create object
     $posts = $postsManager->getPosts(); // We call this function wich allowed us to show the posts 
 
-    require_once('views/frontend/listPostsView.php');
+    return $posts;
 }
 //-------------------------------------------->POST / ADMIN
 function listPostsAdmin()
@@ -29,14 +32,15 @@ function listPostsAdmin()
     return $posts;
 }
 //-------------------------------------------->POST with COMMENTS
-function post()
+function post($postId)
 {
     $postManager = new PostManager();
     $commentManager = new CommentManager();
 
-    $post = $postManager->getPost($_GET['id']);
-    $comments = $commentManager->getComments($_GET['id']);
+    $post = $postManager->getPost($postId);
+    $comments = $commentManager->getComments($postId);
     
+    return compact('post', 'comments');
 }
 //-------------------------------------------->POST / ADMIN
 function postAdmin($postId)
@@ -112,7 +116,7 @@ function countAll()
     $commentsManager = new CommentManager();
     $reportedComNumber = $commentsManager->countReportedComment();
 
-    return $memberNumber; $postNumber; $reportedComNumber; $posts; $comments;
+    return compact('memberNumber', 'postNumber', 'reportedComNumber');
 }
 //-------------------------------------------->ADMIN / MEMBER
 function lastMembersAdmin()
@@ -142,7 +146,7 @@ function updatePost($chapter, $title, $content, $postId)
     $postManager = new PostManager(); // Create object
     $postUpdate = $postManager->editPost($chapter, $title, $content, $postId); // We call this function wich allowed us to show the posts 
     
-
+    header('Location: index.php?action=goEditArticle&id=' . $postId);
     //require('views/frontend/adminEditView.php');  
 }
 //-------------------------------------------->COMMENT

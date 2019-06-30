@@ -10,15 +10,20 @@ try //
 
         if($_GET['action'] == "home")
         {
-            lastPost();
+            $homeLast = lastPost();
+            $lastPost = $homeLast['lastPost'];
+            $lastComments = $homeLast['lastComments'];
+        
+            require('views/frontend/homeView.php');
         }
         //--------------------------------------------------------------------------------------->
         //ADMINISTRATEUR (ADMIN) PAGE DISPLAY
         elseif($_GET['action'] == "admin")
         {
-            $memberNumber = countAll();
-            $postNumber = countAll();
-            $reportedComNumber = countAll();
+            $count = countAll();
+            $memberNumber = $count['memberNumber'];
+            $postNumber = $count['postNumber'];
+            $reportedComNumber = $count['reportedComNumber'];
             
             $members = lastMembersAdmin();
             require('views/frontend/adminView.php');
@@ -28,9 +33,10 @@ try //
         //ADMIN SEES USERS PAGE
         elseif($_GET['action'] == "adminUsers")
         {
-            $memberNumber = countAll();
-            $postNumber = countAll();
-            $reportedComNumber = countAll();
+            $count = countAll();
+            $memberNumber = $count['memberNumber'];
+            $postNumber = $count['postNumber'];
+            $reportedComNumber = $count['reportedComNumber'];
 
             $members = getMembersAdmin();
             require('views/frontend/adminUsersView.php');
@@ -39,9 +45,10 @@ try //
         //ADMIN SEES CREATING CHAPTER PAGE
         elseif($_GET['action'] == "adminCreate")
         {
-            $memberNumber = countAll();
-            $postNumber = countAll();
-            $reportedComNumber = countAll();
+            $count = countAll();
+            $memberNumber = $count['memberNumber'];
+            $postNumber = $count['postNumber'];
+            $reportedComNumber = $count['reportedComNumber'];
             require('views/frontend/adminCreateView.php');
         }
         //--------------------------------------------------------------------------------------->
@@ -55,9 +62,10 @@ try //
         //ADMIN SEES LIST POSTS 
         elseif($_GET['action'] == "adminArticle")
         {
-            $memberNumber = countAll();
-            $postNumber = countAll();
-            $reportedComNumber = countAll();
+            $count = countAll();
+            $memberNumber = $count['memberNumber'];
+            $postNumber = $count['postNumber'];
+            $reportedComNumber = $count['reportedComNumber'];
             $posts = listPostsAdmin();
 
             require('views/frontend/adminArticlesView.php');
@@ -68,9 +76,10 @@ try //
         {
             if(isset($_GET['id']) && $_GET['id'] > 0)
             {
-                $memberNumber = countAll();
-                $postNumber = countAll();
-                $reportedComNumber = countAll();
+                $count = countAll();
+                $memberNumber = $count['memberNumber'];
+                $postNumber = $count['postNumber'];
+                $reportedComNumber = $count['reportedComNumber'];
 
                 $post = postAdmin($_GET['id']);
 
@@ -86,32 +95,32 @@ try //
         //ADMIN EDIT A POST
         elseif($_GET['action'] == "editPost")
         {
-            if(isset($_POST['edit']))
+            $chapter = htmlspecialchars($_POST['newChapter']);
+            $title = htmlspecialchars($_POST['newTitle']);
+            $content = htmlspecialchars($_POST['newContent']);
+            $postId = $_GET['id'];
+            
+            if(isset($postId) AND $postId >0)
             {
-                $chapter = htmlspecialchars($_POST['newChapter']);
-                $title = htmlspecialchars($_POST['newTitle']);
-                $content = htmlspecialchars($_POST['newContent']);
-                if(!empty($chapter) AND !empty($title) AND !empty($content))
-                {
-                    updatePost($chapter, $title, $content);
+                if(isset($_POST['edit']))
+                {   
+                    if(!empty($chapter) AND !empty($title) AND !empty($content))
+                    {
+                        updatePost($chapter, $title, $content, $postId);
+                    }
                 }
             }
-            elseif($_POST['delete'])
-            {
-
-            }
-            else
-            {
-                echo'Aucun élément n\'a été traité';
-            }
+            
+            
         }
         //--------------------------------------------------------------------------------------->
         //ADMIN SEES REPORTED COMENTS PAGE
         elseif($_GET['action'] == "adminCom")
         {
-            $memberNumber = countAll();
-            $postNumber = countAll();
-            $reportedComNumber = countAll();
+            $count = countAll();
+            $memberNumber = $count['memberNumber'];
+            $postNumber = $count['postNumber'];
+            $reportedComNumber = $count['reportedComNumber'];
 
             $comments = reportedCommentAdminList();
             require('views/frontend/adminComView.php');
@@ -121,7 +130,9 @@ try //
     
         elseif($_GET['action'] == "listPosts") // This action send us to listPostsView = Roman
         {
-            listPosts();
+            $posts = listPosts();
+
+            require_once('views/frontend/listPostsView.php');
             
         }
         //--------------------------------------------------------------------------------------->
@@ -216,9 +227,12 @@ try //
 
         elseif($_GET['action'] == 'post')
         {
-            if(isset($_GET['id']) && $_GET['id'] >0)
+            $postId = $_GET['id'];
+            if(isset($postId) && $postId >0)
             {
-                post();
+                $thePost = post($postId);
+                $post = $thePost['post'];
+                $comments = $thePost['comments'];
                 require('views/frontend/postView.php');
             }
             else 
@@ -357,7 +371,12 @@ try //
     }
     else // Even in this case display home page 
     {
-        lastPost();
+        
+        $lastPost = lastPost();
+        $lastComments = lastPost();
+        
+        require('views/frontend/homeView.php');
+        
     }  
 }
 catch(Exception $e)

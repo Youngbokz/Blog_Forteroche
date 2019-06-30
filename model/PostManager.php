@@ -39,7 +39,7 @@
         {
             $db = $this->dbConnect();
             $req = $db->query('SELECT id, chapter, title, content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin%ss\') AS post_date_fr FROM posts ORDER BY post_date DESC LIMIT 0, 1');
-        
+            
             return $req;
         }
 

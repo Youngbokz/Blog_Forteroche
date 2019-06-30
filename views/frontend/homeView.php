@@ -39,15 +39,16 @@ session_start()
                 <div>
                     <h3>COMMENTAIRES RÉCENTS</h3>
                     <?php
-                    while ($data = $lastComments->fetch())
+                    while ($dataComment = $lastComments->fetch())
                     {
                     ?>
                         <div class="post-comments">
                             <p class="meta">
-                                Le <?= ($data['comment_date_fr']); ?> 
-                                <span class="homeAuthorComment"><?= htmlspecialchars($data['author']); ?></span> a dit : 
+                                Le <?= ($dataComment['comment_date_fr']); ?> 
+                                
+                                <span class="homeAuthorComment"><?= htmlspecialchars($dataComment['author']); ?></span> a dit : 
                             </p>
-                            <p class="homeLastComment"><?= nl2br(htmlspecialchars($data['comment'])); ?></p>
+                            <p class="homeLastComment"><?= nl2br(htmlspecialchars($dataComment['comment'])); ?></p>
                         </div>
                     <?php          
                     }
