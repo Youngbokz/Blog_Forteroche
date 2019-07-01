@@ -1,7 +1,7 @@
 <?php
+/****************************************VIEWS/FRONTEND/SUBSCRIBEVIEW.PHP****************************************/
 session_start()
 ?>
-<!--subscribeView-->
 <?php $title = 'INSCRIPTION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
     <div class="mainSection">

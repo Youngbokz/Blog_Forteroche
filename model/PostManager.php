@@ -1,4 +1,5 @@
 <?php
+/****************************************MODEL/POSTMANAGER.PHP****************************************/
 //namespace Blog_Forteroche\Model;
     require_once("model/Manager.php");
 

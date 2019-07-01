@@ -1,4 +1,5 @@
 <?php
+/****************************************VIEWS/FRONTEND/ADMINCOMVIEW.PHP****************************************/
 session_start()
 ?>
 <!--adminComView-->

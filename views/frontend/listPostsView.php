@@ -1,7 +1,7 @@
 <?php
+/****************************************VIEWS/FRONTEND/LISTPOSTVIEW.PHP****************************************/
 session_start()
 ?>
-<!--listPostsView-->
 <?php $title = 'ROMAN | Jean FORTEROCHE'; ?>
     <?php ob_start(); ?>
     <section class="mainRomanSection"> <!--Last post-->

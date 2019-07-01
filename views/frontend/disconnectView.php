@@ -1,4 +1,5 @@
 <?php
+/****************************************VIEWS/FRONTEND/DISCONNECTVIEW.PHP****************************************/
     session_start();
 
     // Canceled current session

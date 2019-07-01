@@ -1,5 +1,8 @@
 <?php
+/****************************************INDEX.PHP****************************************/
 require_once('controller/frontend.php');
+require_once('controller/backend.php');
+
 try //
 {
     if(isset($_GET['action']))

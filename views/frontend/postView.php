@@ -1,5 +1,6 @@
 
 <?php
+/****************************************VIEWS/FRONTEND/POSTVIEW.PHP****************************************/
 session_start();
 ?>
 <?php $title = htmlspecialchars($post['title']); ?>

@@ -1,4 +1,5 @@
 <?php
+/****************************************MODEL/MEMBERMANAGER.PHP****************************************/
 
 //namespace Blog_Forteroche\Model;
 

@@ -1,7 +1,7 @@
 <?php
+/****************************************VIEWS/FRONTEND/HOMEVIEW.PHP****************************************/
 session_start()
 ?>
-<!--homeView-->
     <?php $title = 'ACCUEIL | Jean FORTEROCHE'; ?>
     <?php ob_start(); ?>
     <header id="banner">

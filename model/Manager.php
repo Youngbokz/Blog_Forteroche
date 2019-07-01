@@ -1,4 +1,5 @@
 <?php
+/****************************************MODEL/MANAGER.PHP****************************************/
     //namespace Blog_Forteroche\Model;
     class Manager
     {

@@ -1,7 +1,7 @@
 <?php
+/****************************************VIEWS/FRONTEND/LOGINVIEW.PHP****************************************/
 session_start()
 ?>
-<!--loginView-->
 <?php $title = 'CONNEXION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
     <div class="mainSection">
