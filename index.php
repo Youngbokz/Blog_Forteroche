@@ -394,13 +394,10 @@ try //
                 // Add var
                 $newTitle = htmlspecialchars($_POST['title']);
                 $newChapter = htmlspecialchars($_POST['chapter']);
-                $newContent = htmlspecialchars($_POST['content']);
+                $newContent = nl2br(htmlspecialchars($_POST['content']));
                 if(!empty($newTitle) && !empty($newChapter) && !empty($newContent))
                 {
                     newPost($newTitle, $newChapter, $newContent);
-                    echo'<div class="alert alert-success" role="alert">
-                    Épisode poster avec succes !
-                  </div>';
                     header('Location: index.php?action=listPosts');
                 }
                 else
@@ -412,6 +409,14 @@ try //
             {
                 echo'<p>Formulaire n\'a pas été envoyé</p>';
             }
+        }
+        else
+        {
+            echo'<div class="alert alert-danger" role="alert">
+            <i class="fas fa-exclamation-triangle"></i>PAGE INEXISTANTE<i class="fas fa-exclamation-triangle"></i><br/>
+            
+          </div><a class="btn btn-primary" href="index.php?action=home" role="button">REVENIR SUR JEAN FORTEROCHE | BLOG </a>
+          ';
         }
         
     }

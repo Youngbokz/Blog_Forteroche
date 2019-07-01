@@ -44,8 +44,8 @@ session_start()
                     ?>
                         <div class="post-comments">
                             <p class="meta">
-                                Le <?= ($dataComment['comment_date_fr']); ?> 
-                                
+                                Le <?= $dataComment['comment_date_fr']; ?> 
+                                <br />
                                 <span class="homeAuthorComment"><?= htmlspecialchars($dataComment['author']); ?></span> a dit : 
                             </p>
                             <p class="homeLastComment"><?= nl2br(htmlspecialchars($dataComment['comment'])); ?></p>

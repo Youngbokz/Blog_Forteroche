@@ -391,7 +391,11 @@ section#mainAdminSection div.card-footer.text-muted div.container div.col-md-6 a
     color: white;
 }
 
+/* ADMIN REPORTED COMMENTS PAGE */
 
-
-
-
+section#mainAdminSection div.container div.row div.col-md-9 div.emptyReportedCom.alert
+{
+    background: white;
+    border: 1px solid #656582;
+    color: #ea7e7e;
+}

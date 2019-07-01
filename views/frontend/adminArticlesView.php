@@ -87,8 +87,8 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
 else
 {
     echo'<div class="alert alert-danger" role="alert" style="margin-top: 150px;">
-    Vous n\'êtes pas l\'administrateur du site !
-  </div>';
+    ZONE RÉSERVÉE À L\'ADMINISTRATEUR <i class="fas fa-exclamation"></i>
+    </div>';
 }
 ?>
 <?php $content = ob_get_clean(); ?>

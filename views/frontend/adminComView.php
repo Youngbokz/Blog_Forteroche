@@ -99,7 +99,9 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                 }
                 else
                 {
-                    echo'Aucun message n\'est signalé';
+                    echo'<div class="emptyReportedCom alert" role="alert">
+                    AUCUN COMMENTAIRE SIGNALÉ <i class="fas fa-exclamation"></i>
+                    </div>';                
                 }
                 ?>
             </div>
