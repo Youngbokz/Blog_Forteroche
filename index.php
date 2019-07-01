@@ -160,6 +160,20 @@ try //
             require('views/frontend/loginView.php');
         }
         //--------------------------------------------------------------------------------------->
+        //DELETE REPORTED COMMENT ADMIN
+
+        elseif($_GET['action'] == "deleteReportedCom") // This action send us to loginView 
+        {
+            if(isset($_GET['id']) AND $_GET['id'] > 0)
+            {
+                
+                    $commentId = $_GET['id'];
+
+                    $deleteReported = eraseRepotedCom($commentId); 
+                
+            }
+        }
+        //--------------------------------------------------------------------------------------->
         //S'INSCRIRE (SUBSCRIBE) PAGE DISPLAY
 
         elseif($_GET['action'] == "subscribe") // This action send us to loginView 

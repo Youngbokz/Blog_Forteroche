@@ -75,11 +75,11 @@ class CommentManager extends Manager
         return $affectedComment;
     }
 
-    public function deleteComment($commentId) // Permet la suppression d'un message selon son id
+    public function deleteReportedComment($commentId) // Permet la suppression d'un message selon son id
     {
         $db = $this->dbConnect();
-        $eraseComment = $db->prepare('DELETE comments WHERE id = ?');
-        $req->execute(array($postId));
+        $eraseComment = $db->prepare('DELETE FROM comments WHERE id = ?');
+        $eraseComment->execute(array($commentId));
     }       
 
     public function countReportedComment()

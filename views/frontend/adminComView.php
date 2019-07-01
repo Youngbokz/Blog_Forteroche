@@ -73,8 +73,8 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                                     <td><span class="badge badge-light"><?= htmlspecialchars($data['id']); ?></span></td>
                                     <td><?= htmlspecialchars($data['author']); ?></td>
                                     <td><?= htmlspecialchars($data['comment_date_fr']); ?></td>
-                                    <td><button type="button" class="btn btn-secondary btn-sm">Restaurer  <i class="far fa-hand-point-down"></i></button></td>
-                                    <td><button type="button" class="btn btn-danger btn-sm">Supprimer  <i class="far fa-hand-point-down"></i></span></button></td>
+                                    <td><a type="submit" href="index.php?action=restoreReportedCom&amp;id=<?= $data['id'] ;?>" class="btn btn-secondary btn-sm">Restaurer  <i class="far fa-hand-point-down"></i></a></td>
+                                    <td><a type="submit" name="deleteReported" href="index.php?action=deleteReportedCom&amp;id=<?= $data['id'] ;?>" class="btn btn-danger btn-sm">Supprimer  <i class="far fa-hand-point-down"></i></span></a></td>
                                 </tr>
                                 <tr>
                                     <td colspan=5> 

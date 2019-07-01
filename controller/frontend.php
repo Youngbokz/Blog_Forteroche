@@ -167,3 +167,11 @@ function erasePost($postId)
 
     header('Location: index.php?action=goEditArticle&id=' . $postId);
 }
+//-------------------------------------------->COMMENT / ADMIN
+function eraseRepotedCom($commentId) 
+{
+    $commentManager = new CommentManager();
+    $deletedReported = $commentManager->deleteReportedComment($commentId);
+
+    header('Location: index.php?action=adminCom');
+}
