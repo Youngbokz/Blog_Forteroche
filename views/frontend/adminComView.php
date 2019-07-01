@@ -49,47 +49,59 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
             </div>
             <!--------------------Pannel: Website Overview-------------------->
             <div class="col-md-9">
-                <div class="card">
-                    <div class="mainColorBg card-header">
-                        <h3>Commentaires Signalés</h3>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-striped table-hover">
-                            <tr>
-                                <th>N°</th>
-                                <th>NOM</th>
-                                <th>DATE</th>
-                                <th>RESTAURER</th>
-                                <th>SUPPRIMER</th>
-                            </tr>
-                            <?php
-                            while ($data = $comments->fetch())
-                            {
-                                //if($data['reported'] == "1")
-                                //{
-                            ?>
-                            
+                <?php 
+                $data = $comments->fetch();
+                if($data != NULL)
+                {
+                ?>
+                    <div class="card">
+                        <div class="mainColorBg card-header">
+                            <h3>Commentaires Signalés</h3>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped table-hover">
                                 <tr>
-                                    <td><span class="badge badge-light"><?= htmlspecialchars($data['id']); ?></span></td>
-                                    <td><?= htmlspecialchars($data['author']); ?></td>
-                                    <td><?= htmlspecialchars($data['comment_date_fr']); ?></td>
-                                    <td><a type="submit" href="index.php?action=restoreReportedCom&amp;id=<?= $data['id'] ;?>" class="btn btn-secondary btn-sm">Restaurer  <i class="far fa-hand-point-down"></i></a></td>
-                                    <td><a type="submit" name="deleteReported" href="index.php?action=deleteReportedCom&amp;id=<?= $data['id'] ;?>" class="btn btn-danger btn-sm">Supprimer  <i class="far fa-hand-point-down"></i></span></a></td>
+                                    <th>N°</th>
+                                    <th>NOM</th>
+                                    <th>DATE</th>
+                                    <th>RESTAURER</th>
+                                    <th>SUPPRIMER</th>
                                 </tr>
-                                <tr>
-                                    <td colspan=5> 
-                                        
-                                        <?= substr( htmlspecialchars($data['comment']), 0, 200); ?>
-                                    </td>
-                                </tr>
-                            <?php 
-                                //}         
-                            }
-                            $comments->closeCursor();
-                            ?>
-                        </table>
+                                <?php
+                                while ($data = $comments->fetch())
+                                {
+                                    //if($data['reported'] == "1")
+                                    //{
+                                ?>
+                                
+                                    <tr>
+                                        <td><span class="badge badge-light"><?= htmlspecialchars($data['id']); ?></span></td>
+                                        <td><?= htmlspecialchars($data['author']); ?></td>
+                                        <td><?= htmlspecialchars($data['comment_date_fr']); ?></td>
+                                        <td><a type="submit" href="index.php?action=restoreReportedCom&amp;id=<?= $data['id'] ;?>" class="btn btn-secondary btn-sm">Restaurer  <i class="far fa-hand-point-down"></i></a></td>
+                                        <td><a type="submit" name="deleteReported" href="index.php?action=deleteReportedCom&amp;id=<?= $data['id'] ;?>" class="btn btn-danger btn-sm">Supprimer  <i class="far fa-hand-point-down"></i></span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan=5> 
+                                            
+                                            <?= substr( htmlspecialchars($data['comment']), 0, 200); ?>
+                                        </td>
+                                    </tr>
+                                <?php 
+                                    //}         
+                                }
+                                $comments->closeCursor();
+                                ?>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                <?php
+                }
+                else
+                {
+                    echo'Aucun message n\'est signalé';
+                }
+                ?>
             </div>
         </div>
     </div>

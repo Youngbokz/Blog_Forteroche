@@ -190,11 +190,24 @@ try //
                 $reported = 1;
                 $commentId = $_GET['id'];
                 $postId = $_GET['postId'];
-                commentStatus($reported, $commentId, $postId);
+                $updateReported = commentStatus($reported, $commentId, $postId);
                 header('Location: index.php?action=post&id=' . $postId);
             }
         }
+        //--------------------------------------------------------------------------------------->
+        //RESTORE REPORTED COMMENT ADMIN
 
+        elseif($_GET['action'] == "restoreReportedCom")
+        {
+            if(isset($_GET['id']) && $_GET['id'] > 0)
+            {
+                $reported = 0;
+                $commentId = $_GET['id'];
+                
+                $updateReportedCom = commentStatusAdmin($reported, $commentId);
+                header('Location: index.php?action=adminCom');
+            }
+        }
         //--------------------------------------------------------------------------------------->
         //SUBMIT IN SUBSCRIBE PAGE 
 

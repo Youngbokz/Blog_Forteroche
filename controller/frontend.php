@@ -156,7 +156,13 @@ function commentStatus($reported, $commentId, $postId)
 {
     $commentManager = new CommentManager();
     $updateReported = $commentManager->updateComStatus($reported, $commentId);
-
+    
+}
+//-------------------------------------------->COMMENT ADMIN
+function commentStatusAdmin($reported, $commentId) 
+{
+    $commentManager = new CommentManager();
+    $updateReported = $commentManager->updateComStatus($reported, $commentId);
     
 }
 //-------------------------------------------->POST / ADMIN
