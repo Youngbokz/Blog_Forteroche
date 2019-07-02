@@ -1,10 +1,21 @@
 <?php
 /****************************************MODEL/MANAGER.PHP****************************************/
     namespace Youngbokz\Blog_Forteroche\Model;
-
+    /**
+     * Manager class
+     * 
+     * Generates a connection to a database
+     */
     class Manager
     {
-        protected function dbConnect() // Déclaration de la base de données qui est réutilisé à chaque fois
+        /**
+         * dbConnect
+         *
+         * Allows to connect to the database
+         * 
+         * @return $db
+         */
+        protected function dbConnect() 
         {
             try{
                 $db = new \PDO('mysql:host=localhost;dbname=forteroche_blog;charset=utf8', 'root', 'root', array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));

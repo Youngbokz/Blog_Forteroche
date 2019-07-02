@@ -5,14 +5,17 @@ require_once('model/CommentManager.php');
 require_once('model/PostManager.php');
 require_once('model/MemberManager.php');
 
+use \Youngbokz\Blog_Forteroche\Model\PostManager;
+use \Youngbokz\Blog_Forteroche\Model\CommentManager;
+use \Youngbokz\Blog_Forteroche\Model\MemberManager;
 
 //-------------------------------------------->POST
 function lastPost()
 {
-    $lastPostManager = new \Youngbokz\Blog_Forteroche\Model\PostManager(); // Create object
+    $lastPostManager = new PostManager(); // Create object
     $lastPost = $lastPostManager->getLastPost(); // We call this function wich allowed us to show the last post by date
     
-    $lastCommentsManager = new \Youngbokz\Blog_Forteroche\Model\CommentManager(); // Create object
+    $lastCommentsManager = new CommentManager(); // Create object
     $lastComments = $lastCommentsManager->allLastComments(); // We call this function wich allowed us to show all last comments by date
     
     return compact('lastPost', 'lastComments');
@@ -22,7 +25,7 @@ function lastPost()
 //-------------------------------------------->POST
 function listPosts()
 {
-    $postsManager = new \Youngbokz\Blog_Forteroche\Model\PostManager(); // Create object
+    $postsManager = new PostManager(); // Create object
     $posts = $postsManager->getPosts(); // We call this function wich allowed us to show the posts 
 
     return $posts;
@@ -31,8 +34,8 @@ function listPosts()
 //-------------------------------------------->POST with COMMENTS
 function post($postId)
 {
-    $postManager = new \Youngbokz\Blog_Forteroche\Model\PostManager();
-    $commentManager = new \Youngbokz\Blog_Forteroche\Model\CommentManager();
+    $postManager = new PostManager();
+    $commentManager = new CommentManager();
 
     $post = $postManager->getPost($postId);
     $comments = $commentManager->getComments($postId);
@@ -42,7 +45,7 @@ function post($postId)
 //-------------------------------------------->POST / ADMIN
 function postAdmin($postId)
 {
-    $postManager = new \Youngbokz\Blog_Forteroche\Model\PostManager();
+    $postManager = new PostManager();
     $post = $postManager->getPost($postId);
     
     return $post;
@@ -52,7 +55,7 @@ function postAdmin($postId)
 //-------------------------------------------->MEMBER
 function subscribe($log, $password)
 {
-    $memberManager = new \Youngbokz\Blog_Forteroche\Model\MemberManager();
+    $memberManager = new MemberManager();
 
     $member = $memberManager->addMember($log, $password);
 
@@ -61,14 +64,14 @@ function subscribe($log, $password)
 //-------------------------------------------->MEMBER
 function verify($log)
 {
-    $memberManager = new \Youngbokz\Blog_Forteroche\Model\MemberManager();
+    $memberManager = new MemberManager();
     $member = $memberManager->verifyMember($log);
     return $member;
 }
 //-------------------------------------------->MEMBER
 function verifyConnection($log, $password)
 {
-    $memberManager = new \Youngbokz\Blog_Forteroche\Model\MemberManager();
+    $memberManager = new MemberManager();
     $member = $memberManager->getMember($log);
    
     $isPasswordCorrect = password_verify($password, $member['password']);
@@ -78,14 +81,14 @@ function verifyConnection($log, $password)
 //-------------------------------------------->MEMBER
 function member($log)
 {
-    $memberManager = new \Youngbokz\Blog_Forteroche\Model\MemberManager();
+    $memberManager = new MemberManager();
     $member = $memberManager->getMember($log);
     return $member;
 }
 //-------------------------------------------->COMMENT
 function newComment($postId, $author, $comment)
 {
-    $commentManager = new \Youngbokz\Blog_Forteroche\Model\CommentManager();
+    $commentManager = new CommentManager();
     $comment = $commentManager->addComment($postId, $author, $comment);
     if ($comment === false) {
         echo'Impossible d\'ajouter le commentaire !';
@@ -97,7 +100,7 @@ function newComment($postId, $author, $comment)
 //-------------------------------------------->COMMENT
 function commentStatus($reported, $commentId, $postId) 
 {
-    $commentManager = new \Youngbokz\Blog_Forteroche\Model\CommentManager();
+    $commentManager = new CommentManager();
     $updateReported = $commentManager->updateComStatus($reported, $commentId);
     
 }

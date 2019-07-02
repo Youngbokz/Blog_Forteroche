@@ -4,18 +4,20 @@
 namespace Youngbokz\Blog_Forteroche\Model;
 
 require_once("model/Manager.php");
-
+/**
+ * MemberManager class
+ * Allowing to create, read, edit and delete members
+ */
 class MemberManager extends Manager
 {
-    public function __construct()
-    {
-
-    }
-
     /**
-     * METHOD
+     * verifyMember
+     *
+     * @param  string $log Allows to verify if member already exist by its log
+     *
+     * @return $verifyLog
      */
-    public function verifyMember($log) // Permet de vérifier qu'un membre existe déjà par son log
+    public function verifyMember($log) 
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT log FROM members WHERE log = ?');
@@ -23,21 +25,42 @@ class MemberManager extends Manager
         $verifyLog = $req->rowCount();
         return $verifyLog;
     }
-    public function getLastMembers() // Permet de selectionner tout les membres selon leur pseudo et par ordre d'inscription
+    /**
+     * getLastMembers
+     *
+     * Allows you to select all the members according to their log and in order of registration
+     * 
+     * @return $req
+     */
+    public function getLastMembers()  
     {
         $db = $this->dbConnect();
         $req = $db->query('SELECT id, log, password, DATE_FORMAT (registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr FROM members ORDER BY log, registration_date DESC LIMIT 0, 3');
 
         return $req;
     }
-    public function getMembers() // Permet de selectionner tout les membres selon leur pseudo dans l'ordre alphabétique
+    /**
+     * getMembers
+     *
+     * Allows you to select all members by their log in alphabetical order
+     * 
+     * @return $req
+     */
+    public function getMembers() 
     {
         $db = $this->dbConnect();
         $req = $db->query('SELECT id, log, password, DATE_FORMAT (registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr FROM members ORDER BY log ASC LIMIT 0, 5');
 
         return $req;
     }
-    public function getMember($log) //permet de selectionner un seul membre 
+    /**
+     * getMember
+     *
+     * @param  string $log Allows to select a single member
+     *
+     * @return $result
+     */
+    public function getMember($log) 
     {
         $db = $this->dbConnect();
         $member = $db->prepare('SELECT id, log, password, DATE_FORMAT(registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr FROM members WHERE log = ?');
@@ -46,8 +69,17 @@ class MemberManager extends Manager
 
         return $result;
     }
-
-    public function addMember($log, $password) // permet l'ajout d'un membre
+    /**
+     * addMember
+     *
+     * @param  string $log
+     * @param  string $password
+     *
+     * Allows to add a new member
+     * 
+     * @return $newMember
+     */
+    public function addMember($log, $password) 
     {
         $pass_hache = password_hash($password, PASSWORD_DEFAULT);
         $db = $this->dbConnect();
@@ -56,8 +88,18 @@ class MemberManager extends Manager
 
         return $newMember;
     }
-
-    public function editMember($log, $password, $memberId) // permet la modification d'un membre existant pseudo et pass
+    /**
+     * editMember
+     *
+     * @param  string $log
+     * @param  string $password
+     * @param  int $memberId
+     *
+     * Allows to edit member log and password
+     * 
+     * @return $changedMember
+     */
+    public function editMember($log, $password, $memberId) 
     {
         $db = $this->dbConnect();
         $member = $db->prepare('UPDATE members SET log = ?, password = ? WHERE id = ?');
@@ -65,14 +107,26 @@ class MemberManager extends Manager
             
         return $changedMember;
     }
-
-    public function deleteMember($memberId) // Permet la suppression d'un membre selon son id
+    /**
+     * deleteMember
+     *
+     * @param  int $memberId Allows to delete a member by his id
+     * 
+     * @return void
+     */
+    public function deleteMember($memberId) 
     {
         $db = $this->dbConnect();
-        $eraseMember = $db->prepare('DELETE members WHERE id = ?');
+        $eraseMember = $db->prepare('DELETE FROM members WHERE id = ?');
         $req->execute(array($memberId));
     }
-    
+    /**
+     * countMembers
+     *
+     * Allows to count members
+     * 
+     * @return $countingMember
+     */
     public function countMembers()
     {
         $db = $this->dbConnect();

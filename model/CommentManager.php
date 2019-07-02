@@ -5,26 +5,37 @@ namespace Youngbokz\Blog_Forteroche\Model;
 
 require_once("model/Manager.php");
 
+/**
+ * CommentManager class
+ * Allowing to create, read, edit and delete comments
+ */
+
 class CommentManager extends Manager
 {
-    public function __construct()
-    {
-
-    }
-
     /**
-     * METHOD
+     * getComments
+     *
+     * @param int $postId allows to view lastest affiliate comments to a post in this case here the last 3
+     *
+     * @return $req
      */
-    public function getComments($postId) // Permet de selectionner les différent commentaires selon leur post_id
+    public function getComments($postId) 
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, author, comment, DATE_FORMAT (comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr, reported FROM comments WHERE post_id = ? ORDER BY comment_date DESC LIMIT 3');
+        $req = $db->prepare('SELECT id, author, comment, DATE_FORMAT (comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr, reported FROM comments WHERE post_id = ? ORDER BY comment_date DESC LIMIT 0, 3');
         $req->execute(array($postId));
 
         return $req;
     }
 
-    public function getComment($commentId) //permet d'afficher un seul commentaire 
+    /**
+     * getComment
+     *
+     * @param  string $commentId allows to display a single comment
+     *
+     * @return $comment
+     */
+    public function getComment($commentId) 
     {
         $db = $this->dbConnect();
         $comment = $db->prepare('SELECT id, author, comment, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr, reported FROM comments WHERE id = ?');
@@ -33,6 +44,13 @@ class CommentManager extends Manager
         return $comment;
     }
 
+    /**
+     * allLastComments
+     *  
+     * Allows to see the latest posts in this case here the last 3
+     *
+     * @return $req
+     */
     public function allLastComments()
     {
         $db = $this->dbConnect();
@@ -41,6 +59,13 @@ class CommentManager extends Manager
         return $req;
     }
 
+    /**
+     * reportedListComments
+     * 
+     * Allows to see the last comments reported in this case last 3
+     *
+     * @return $req
+     */
     public function reportedListComments()
     {
         $db = $this->dbConnect();
@@ -48,17 +73,36 @@ class CommentManager extends Manager
         
         return $req;
     }
-
-    public function updateReportedCommentValue($reported, $commentId, $postId)
+    /**
+     * updateComStatus
+     *
+     * @param  int $reported
+     * @param  int $commentId
+     *
+     * Allows 
+     * 
+     * @return $affectedComment
+     */
+    public function updateComStatus($reported, $commentId)
     {
         $db = $this->dbConnect();
-        $newComment = $db->prepare('UPDATE comments SET reported = ? WHERE id = ?, post_id = ?');
-        $affectedComment = $newComment->execute(array($reported, $commentId, $postId));
-
+        $commentStatus = $db->prepare('UPDATE comments SET reported = ? WHERE id = ?');
+        $affectedComment = $commentStatus->execute(array($reported, $commentId));
+        
         return $affectedComment;
     }
-
-    public function addComment($postId, $author, $comment) // permet l'ajout d'un commentaire
+    /**
+     * addComment
+     *
+     * @param  int $postId
+     * @param  string $author
+     * @param  string $comment
+     *
+     * Allows to add a comment 
+     * 
+     * @return $affectedLines
+     */
+    public function addComment($postId, $author, $comment) 
     {
         $db = $this->dbConnect();
         $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date, reported) VALUES(?, ?, ?, NOW(), "0")');
@@ -67,6 +111,17 @@ class CommentManager extends Manager
         return $affectedLines;
     }
 
+    /**
+     * editComment
+     *
+     * @param  string $comment
+     * @param  int $commentId
+     * @param  int $postId
+     *
+     * Allows to edit a comment
+     * 
+     * @return $affectedComment
+     */
     public function editComment($comment, $commentId, $postId) // permet la modification d'un commentaire existant
     {
         $db = $this->dbConnect();
@@ -76,6 +131,13 @@ class CommentManager extends Manager
         return $affectedComment;
     }
 
+    /**
+     * deleteReportedComment
+     *
+     * @param  int $commentId Allows to delete a reported comment
+     *
+     * @return void
+     */
     public function deleteReportedComment($commentId) // Permet la suppression d'un message selon son id
     {
         $db = $this->dbConnect();
@@ -83,6 +145,13 @@ class CommentManager extends Manager
         $eraseComment->execute(array($commentId));
     }       
 
+    /**
+     * countReportedComment
+     *
+     * Allows to count reported comment
+     * 
+     * @return $countingReported 
+     */
     public function countReportedComment()
     {
         $db = $this->dbConnect();
@@ -93,12 +162,5 @@ class CommentManager extends Manager
             return $countingReported;
     }
 
-    public function updateComStatus($reported, $commentId)
-    {
-        $db = $this->dbConnect();
-        $commentStatus = $db->prepare('UPDATE comments SET reported = ? WHERE id = ?');
-        $affectedComment = $commentStatus->execute(array($reported, $commentId));
-        
-        return $affectedComment;
-    }
+    
 }

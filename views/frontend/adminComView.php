@@ -50,11 +50,6 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
             </div>
             <!--------------------Pannel: Website Overview-------------------->
             <div class="col-md-9">
-                <?php 
-                $data = $comments->fetch();
-                if($data != NULL)
-                {
-                ?>
                     <div class="card">
                         <div class="mainColorBg card-header">
                             <h3>Commentaires Signalés</h3>
@@ -71,10 +66,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                                 <?php
                                 while ($data = $comments->fetch())
                                 {
-                                    //if($data['reported'] == "1")
-                                    //{
                                 ?>
-                                
                                     <tr>
                                         <td><span class="badge badge-light"><?= htmlspecialchars($data['id']); ?></span></td>
                                         <td><?= htmlspecialchars($data['author']); ?></td>
@@ -83,28 +75,17 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                                         <td><a type="submit" name="deleteReported" href="index.php?action=deleteReportedCom&amp;id=<?= $data['id'] ;?>" class="btn btn-danger btn-sm">Supprimer  <i class="far fa-hand-point-down"></i></span></a></td>
                                     </tr>
                                     <tr>
-                                        <td colspan=5> 
-                                            
+                                        <td colspan=5>       
                                             <?= substr( htmlspecialchars($data['comment']), 0, 200); ?>
                                         </td>
                                     </tr>
-                                <?php 
-                                    //}         
+                                <?php          
                                 }
                                 $comments->closeCursor();
                                 ?>
                             </table>
                         </div>
                     </div>
-                <?php
-                }
-                else
-                {
-                    echo'<div class="emptyReportedCom alert" role="alert">
-                    AUCUN COMMENTAIRE SIGNALÉ <i class="fas fa-exclamation"></i>
-                    </div>';                
-                }
-                ?>
             </div>
         </div>
     </div>

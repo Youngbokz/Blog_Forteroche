@@ -5,28 +5,33 @@ namespace Youngbokz\Blog_Forteroche\Model;
 
 
     /**
-     * PostManger class
-     * 
+     * PostManager class
+     * Allowing to create, read, edit and delete posts
      */
     class PostManager extends Manager
     {
-        public function __construct()
-        {
-
-        }
         /**
-         * METHOD
+         * getPosts
+         *
+         * Allows to display all posts in this case by 5 
+         * 
+         * @return $req
          */
-
-        public function getPosts() // Permets d'afficher les différents épisodes sur une page
+        public function getPosts() 
         {
             $db = $this->dbConnect();
             $req = $db->query('SELECT id, chapter, title, content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin%ss\') AS post_date_fr FROM posts ORDER BY post_date DESC LIMIT 0, 5');
         
             return $req;
-        }
-        
-        public function getPost($postId) // Permet d'afficher un seul épisode selon son id 
+        } 
+        /**
+         * getPost
+         *
+         * @param  int $postId Allows to get a post by its id
+         *
+         * @return $post
+         */
+        public function getPost($postId) 
         {
             $db = $this->dbConnect();
             $req = $db->prepare('SELECT id, chapter, title, content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin%ss\') AS post_date_fr FROM posts WHERE id = ?');
@@ -35,23 +40,51 @@ namespace Youngbokz\Blog_Forteroche\Model;
         
             return $post;
         }
-
-        public function getLastPost() //Permet d'afficher le dernier post enregistré
+        /**
+         * getLastPost
+         *
+         * Allows to show the last post in this case by only by 1
+         * 
+         * @return $req
+         */
+        public function getLastPost() 
         {
             $db = $this->dbConnect();
             $req = $db->query('SELECT id, chapter, title, content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin%ss\') AS post_date_fr FROM posts ORDER BY post_date DESC LIMIT 0, 1');
             
             return $req;
         }
-
-        public function addPost($title, $chapter, $content) // Permet d'ajouter un épisode en indiquant le titre et le contenu. la date sera celle de la création 
+        /**
+         * addPost
+         *
+         * @param  string $title
+         * @param  string $chapter
+         * @param  string $content
+         *
+         * Allows to create a new chapter with title, chapter name and content
+         * 
+         * @return $addComment
+         */
+        public function addPost($title, $chapter, $content)  
         {
             $db = $this->dbConnect();
             $req = $db->prepare('INSERT INTO posts (title, chapter, content, post_date) VALUES (?, ?, ?, now())');
             $addComment = $req->execute(array($title, $chapter, $content));
+
             return $addComment; 
         }
-
+        /**
+         * editPost
+         *
+         * @param  string $chapter
+         * @param  string $title
+         * @param  string $content
+         * @param  int $postId
+         *
+         * Allows to edit a post. Can change its title, chapter name and content
+         * 
+         * @return void
+         */
         public function editPost($chapter, $title, $content, $postId) // Permet d'éditer un post déjà existant en changeant de titre et de contenu
         {
             $db = $this->dbConnect();
@@ -63,16 +96,30 @@ namespace Youngbokz\Blog_Forteroche\Model;
                 'id' => $postId
             ));
         }
-
-        public function deletePost($postId) // Permet la suppression d'un post avec ses commentaires liés en cascade
+        /**
+         * deletePost
+         *
+         * @param  int $postId
+         * 
+         * Allows to delete a post by its id 
+         *
+         * @return void
+         */
+        public function deletePost($postId) 
         {
             $db = $this->dbConnect();
             $req = $db->prepare('DELETE FROM posts WHERE id = :postId');
             $req->execute(array(
-                'postId' => $postId //= $_GET['id']
+                'postId' => $postId 
             ));
         }
-
+        /**
+         * countPost
+         *
+         * Allows to count post
+         * 
+         * @return $countingPost
+         */
         public function countPost()
         {
             $db = $this->dbConnect();
