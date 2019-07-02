@@ -5,17 +5,18 @@ require_once('model/CommentManager.php');
 require_once('model/PostManager.php');
 require_once('model/MemberManager.php');
 
+
 //-------------------------------------------->POST / ADMIN
 function listPostsAdmin()
 {
-    $postsManager = new PostManager(); // Create object
+    $postsManager = new \Youngbokz\Blog_Forteroche\Model\PostManager(); // Create object
     $posts = $postsManager->getPosts(); // We call this function wich allowed us to show the posts 
     return $posts;
 }
 //-------------------------------------------->ADMIN
 function newPost($title, $chapter, $content)
 {
-    $postManager = new PostManager();
+    $postManager = new \Youngbokz\Blog_Forteroche\Model\PostManager();
     $post = $postManager->addPost($title, $chapter, $content);
     
 
@@ -24,13 +25,13 @@ function newPost($title, $chapter, $content)
 //-------------------------------------------->ADMIN / MEMBER
 function countAll()
 {
-    $membersManager = new MemberManager(); // Create object
+    $membersManager = new \Youngbokz\Blog_Forteroche\Model\MemberManager(); // Create object
     $memberNumber = $membersManager->countMembers();
 
-    $postsManager = new PostManager(); // Create object
+    $postsManager = new \Youngbokz\Blog_Forteroche\Model\PostManager(); // Create object
     $postNumber = $postsManager->countPost();
 
-    $commentsManager = new CommentManager();
+    $commentsManager = new \Youngbokz\Blog_Forteroche\Model\CommentManager();
     $reportedComNumber = $commentsManager->countReportedComment();
 
     return compact('memberNumber', 'postNumber', 'reportedComNumber');
@@ -38,21 +39,21 @@ function countAll()
 //-------------------------------------------->ADMIN / MEMBER
 function lastMembersAdmin()
 {
-    $membersManager = new MemberManager(); // Create object
+    $membersManager = new \Youngbokz\Blog_Forteroche\Model\MemberManager(); // Create object
     $members = $membersManager->getLastMembers(); // We call this function wich allowed us to show the members 
     return $members;
 }
 //-------------------------------------------->ADMIN / MEMBER
 function getMembersAdmin()
 {
-    $membersManager = new MemberManager(); // Create object
+    $membersManager = new \Youngbokz\Blog_Forteroche\Model\MemberManager(); // Create object
     $members = $membersManager->getMembers(); // We call this function wich allowed us to show the members 
     return $members;
 }
 //-------------------------------------------->ADMIN / COMMENTS
 function reportedCommentAdminList()
 {
-    $commentsManager = new CommentManager();
+    $commentsManager = new \Youngbokz\Blog_Forteroche\Model\CommentManager();
     $comments = $commentsManager->reportedListComments();
 
     return $comments;
@@ -60,7 +61,7 @@ function reportedCommentAdminList()
 //-------------------------------------------->ADMIN / POST 
 function updatePost($chapter, $title, $content, $postId)
 {
-    $postManager = new PostManager(); // Create object
+    $postManager = new \Youngbokz\Blog_Forteroche\Model\PostManager(); // Create object
     $postUpdate = $postManager->editPost($chapter, $title, $content, $postId); // We call this function wich allowed us to show the posts 
     
     header('Location: index.php?action=goEditArticle&id=' . $postId);
@@ -69,14 +70,14 @@ function updatePost($chapter, $title, $content, $postId)
 //-------------------------------------------->COMMENT ADMIN
 function commentStatusAdmin($reported, $commentId) 
 {
-    $commentManager = new CommentManager();
+    $commentManager = new \Youngbokz\Blog_Forteroche\Model\CommentManager();
     $updateReported = $commentManager->updateComStatus($reported, $commentId);
     
 }
 //-------------------------------------------->POST / ADMIN
 function erasePost($postId) 
 {
-    $postManager = new PostManager(); // Create object
+    $postManager = new \Youngbokz\Blog_Forteroche\Model\PostManager(); // Create object
     $deletedPost = $postManager->deletePost($postId);
 
     header('Location: index.php?action=goEditArticle&id=' . $postId);
@@ -84,7 +85,7 @@ function erasePost($postId)
 //-------------------------------------------->COMMENT / ADMIN
 function eraseRepotedCom($commentId) 
 {
-    $commentManager = new CommentManager();
+    $commentManager = new \Youngbokz\Blog_Forteroche\Model\CommentManager();
     $deletedReported = $commentManager->deleteReportedComment($commentId);
 
     header('Location: index.php?action=adminCom');

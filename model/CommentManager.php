@@ -1,7 +1,7 @@
 <?php
 /****************************************MODEL/COMMENTMANAGER.PHP****************************************/
 
-//namespace Blog_Forteroche\Model;
+namespace Youngbokz\Blog_Forteroche\Model;
 
 require_once("model/Manager.php");
 
