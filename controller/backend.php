@@ -2,9 +2,11 @@
 /****************************************CONTROLLER/BACKEND.PHP****************************************/
 
     // We charge classes 
-    require_once('model/CommentManager.php');
-    require_once('model/PostManager.php');
-    require_once('model/MemberManager.php');
+    require('model/Autoloader.php');
+
+    use \Youngbokz\Blog_Forteroche\Model\Autoloader;
+    
+    Autoloader::register();
 
     use \Youngbokz\Blog_Forteroche\Model\PostManager;
     use \Youngbokz\Blog_Forteroche\Model\CommentManager;

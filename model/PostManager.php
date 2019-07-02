@@ -92,8 +92,8 @@
             $req = $db->prepare('UPDATE posts SET chapter = :chapter, title = :title, content = :content WHERE id = :id');
             $req->execute(array(
                 'chapter' => $chapter,
-                'title' => $title, //= $_POST['title']
-                'content' => $content, //= $_POST['content'], 
+                'title' => $title, 
+                'content' => $content, 
                 'id' => $postId
             ));
         }
