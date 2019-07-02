@@ -1,6 +1,8 @@
 <?php
 /****************************************MODEL/MANAGER.PHP****************************************/
+
     namespace Youngbokz\Blog_Forteroche\Model;
+    
     /**
      * Manager class
      * 

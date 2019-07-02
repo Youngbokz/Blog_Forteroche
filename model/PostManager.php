@@ -1,8 +1,9 @@
 <?php
 /****************************************MODEL/POSTMANAGER.PHP****************************************/
-namespace Youngbokz\Blog_Forteroche\Model;
-    require_once("model/Manager.php");
 
+    namespace Youngbokz\Blog_Forteroche\Model;
+
+    require_once("model/Manager.php");
 
     /**
      * PostManager class
