@@ -2,7 +2,7 @@
 /****************************************CONTROLLER/BACKEND.PHP****************************************/
 
     // We charge classes 
-    require('model/Autoloader.php');
+    require_once('model/Autoloader.php');
 
     use \Youngbokz\Blog_Forteroche\Model\Autoloader;
     
