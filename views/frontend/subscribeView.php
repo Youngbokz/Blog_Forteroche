@@ -10,13 +10,19 @@ session_start()
                 <form class="form-signin" action="index.php?action=register" method="post">
                     <h1 class="h3 mb-3 font-weight-normal">INSCRIPTION</h1>
                     <label for="username" >Choisir nom d'utilisateur</label>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="Nom d'utilisateur" required="" autofocus="">
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Nom d'utilisateur"  autofocus="">
                     <label for="pass" >Choisir mot de passe</label>
-                    <input type="password" id="pass" name="pass" class="form-control" placeholder="Mot de passe" required="">
+                    <input type="password" id="pass" name="pass" class="form-control" placeholder="Mot de passe" >
                     <label for="re_pass" >Confirmer mot de passe</label>
-                    <input type="password" id="re_pass" name="re_pass" class="form-control" placeholder="Mot de passe" required="">
+                    <input type="password" id="re_pass" name="re_pass" class="form-control" placeholder="Mot de passe" >
                     
                     <input class="btn btn-lg btn-dark btn-block" type="submit" name="submit" value="S'inscrire">
+                    <?php
+                    if($errorMessage)
+                    {
+                        echo $errorMessage;
+                    }
+                    ?>
                     <div>
                         <a href="index.php?action=login"><p>Déjà enregistré ?</p></a>
                     </div>

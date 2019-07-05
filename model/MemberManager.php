@@ -4,7 +4,7 @@
     namespace Youngbokz\Blog_Forteroche\Model;
 
     require_once("model/Manager.php");
-    
+
     /**
      * MemberManager class
      * Allowing to create, read, edit and delete members

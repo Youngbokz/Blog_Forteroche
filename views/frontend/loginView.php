@@ -5,14 +5,26 @@ session_start()
 <?php $title = 'CONNEXION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
     <div class="mainSection">
+        <?php
+        if($succesMessage)
+        {
+            echo $succesMessage;
+        }
+        ?>
         <div class="loginContainer container ">
             <section class="row">
                 <form class="form-signin" action="index.php?action=connect" method="post">
                     <h1 class="h3 mb-3 font-weight-normal">CONNEXION</h1>
                     <label for="login" class="sr-only">Entrer votre nom d'utilisateur</label>
-                    <input type="text" id="login" name="login" class="form-control" placeholder="Nom d'utilisateur" required="" autofocus="">
+                    <input type="text" id="login" name="login" class="form-control" placeholder="Nom d'utilisateur"  autofocus="">
                     <label for="pass" class="sr-only">Entrer votre mot de passe</label>
-                    <input type="password" id="pass" name="pass" class="form-control" placeholder="Mot de passe" required="">
+                    <input type="password" id="pass" name="pass" class="form-control" placeholder="Mot de passe" >
+                    <?php
+                    if($errorMessage != NULL)
+                    {
+                        echo $errorMessage;
+                    }
+                    ?>
                     <div class="checkbox mb-3">
                         <label>
                             <input type="checkbox" value="remember-me"> se souvenir de moi

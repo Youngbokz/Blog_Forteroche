@@ -3,6 +3,7 @@
 require_once('controller/frontend.php');
 require_once('controller/backend.php');
 
+
 try //
 {
     if(isset($_GET['action']))
@@ -160,6 +161,8 @@ try //
 
         elseif($_GET['action'] == "login") // This action send us to loginView 
         {
+            $errorMessage="";
+            $succesMessage="";
             require('views/frontend/loginView.php');
         }
         //--------------------------------------------------------------------------------------->
@@ -181,6 +184,8 @@ try //
 
         elseif($_GET['action'] == "subscribe") // This action send us to loginView 
         {
+            $errorMessage="";
+            
             require('views/frontend/subscribeView.php');
         }
         //--------------------------------------------------------------------------------------->
@@ -237,36 +242,64 @@ try //
                                 if($pass === $re_pass)
                                 {
                                     subscribe($username, $pass);
-                                    echo '<font color="green">Vous êtes enregistré(e), vous pouvez vous connecter!</font>';
+                                    $succesMessage = '<div class="alert alert-success" role="alert">
+                                    Vous êtes enregistré(e), vous pouvez vous connecter!
+                                    </div>';
+                                    $errorMessage="";
+                                    require('views/frontend/loginView.php');
                                 }
                                 else
                                 {
-                                    echo'<p>Mot de passe différents</p>';
+                                    $errorMessage = '<div class="alert alert-warning" role="alert">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    Mot de passe différents
+                                    </div>';
+                                    require('views/frontend/subscribeView.php');
                                 }
                             }
                             else
                             {
-                                echo'<p>Mot de passe 8 caractères minimum avec au moins 1 minuscule, 1 majuscule et 1 chiffre</p>';
+                                $errorMessage = '<div class="alert alert-warning" role="alert">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Mot de passe 8 caractères minimum avec au moins 1 minuscule, 1 majuscule et 1 chiffre
+                                </div>';
+                                require('views/frontend/subscribeView.php');
                             }
                         }
                         else
                         {
-                            echo'<p>Le pseudo choisi existe déja (' . $verifyUsername .') en choisir un autre</p>';
+                            $errorMessage = '<div class="alert alert-warning" role="alert">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Ce pseudo existe déjà, choisir un autre ou vous connectez
+                            </div>';
+                            require('views/frontend/subscribeView.php');
                         }
                     }
                     else
                     {
-                        echo'<p>Votre pseudo doit comporter au moins 2 lettres</p>';
+                        $errorMessage = '<div class="alert alert-warning" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Votre pseudo doit comporter au moins 2 lettres
+                        </div>';
+                        require('views/frontend/subscribeView.php');
                     }
                 }
                 else
                 {
-                    echo'test';
+                    $errorMessage = '<div class="alert alert-warning" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Veuillez renseigner tout les champs !
+                    </div>';
+                    require('views/frontend/subscribeView.php');
                 }
             }
             else
             {
-                echo'<p>Formulaire n\'a pas été envoyé</p>';
+                $errorMessage = '<div class="alert alert-warning" role="alert">
+                <i class="fas fa-exclamation-triangle"></i>
+                Formulaire n\'a pas été envoyé
+                </div>';
+                require('views/frontend/subscribeView.php');
             }
         }
         //--------------------------------------------------------------------------------------->
@@ -307,6 +340,7 @@ try //
 
                 if(!empty($loginConnex) AND !empty($passConnex))
                 {
+                    
                     $verifyLogin = verifyConnection($loginConnex, $passConnex);
 
                      // Check if password in match with the one in database
@@ -327,7 +361,8 @@ try //
                                             <i class="fas fa-exclamation-triangle"></i>
                                             Mauvais mot de passe ou pseudo inconnue
                                         </div>';
-                        
+                                        
+                        $succesMessage="";
                         require('views/frontend/loginView.php');
                     }
                 }
@@ -337,13 +372,16 @@ try //
                                             <i class="fas fa-exclamation-triangle"></i>
                                             Veuillez renseignez tout les champs
                                         </div>';
-                        
-                        require('views/frontend/loginView.php');
+                                       
+                    $succesMessage="";
+                    require('views/frontend/loginView.php');
                 }
             }
             else
             {
-                echo'<p>Formulaire n\'a pas été envoyé</p>';
+                $errorMessage = '<p>Formulaire n\'a pas été envoyé</p>';
+                $succesMessage="";
+                require('views/frontend/loginView.php');
             }
         }
         //--------------------------------------------------------------------------------------->
@@ -415,11 +453,11 @@ try //
         }
         else
         {
-            echo'<div class="alert alert-danger" role="alert">
+            throw new LoginException('<div class="alert alert-danger" role="alert">
             <i class="fas fa-exclamation-triangle"></i>PAGE INEXISTANTE<i class="fas fa-exclamation-triangle"></i><br/>
             
           </div><a class="btn btn-primary" href="index.php?action=home" role="button">REVENIR SUR JEAN FORTEROCHE | BLOG </a>
-          ';
+          ');
         }
         
     }
@@ -438,5 +476,6 @@ try //
 catch(Exception $e)
 {
     $errorMessage = $e->getMessage();
+    
     require('views/errorView.php');
 }

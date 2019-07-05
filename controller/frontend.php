@@ -39,8 +39,9 @@ function lastPost()
  */
 function listPosts()
 {
-    $postsManager = new PostManager(); // Create object
-    $posts = $postsManager->getPosts(); // 
+    $postsManager = new PostManager(); 
+    $posts = $postsManager->getPosts(); 
+
 
     return $posts;
 }
@@ -93,8 +94,7 @@ function subscribe($log, $password)
 {
     $memberManager = new MemberManager();
     $member = $memberManager->addMember($log, $password);
-
-    require('views/frontend/loginView.php');
+    
 }
 //-------------------------------------------->MEMBER
 /**
@@ -107,9 +107,16 @@ function subscribe($log, $password)
 function verify($log)
 {
     $memberManager = new MemberManager();
-    $member = $memberManager->verifyMember($log);
-
-    return $member;
+    $verifyMember = $memberManager->verifyMember($log);
+    if($verifyMember === false)
+    {
+        $errorMessage = 'Ce pseudo existe déjà, en choisir un autre ou connectez vous';
+    }
+    else
+    {
+        return $verifyMember;
+    }
+    
 }
 //-------------------------------------------->MEMBER
 /**
@@ -128,9 +135,9 @@ function verifyConnection($log, $password)
     $member = $memberManager->getMember($log);
    
     $isPasswordCorrect = password_verify($password, $member['password']);
-    $right = true;
+    $right = true;  
     
-    return ($member['log'] == $log AND $isPasswordCorrect === $right);
+    return ($member['log'] == $log AND $isPasswordCorrect === $right);  
 }
 //-------------------------------------------->MEMBER
 /**
