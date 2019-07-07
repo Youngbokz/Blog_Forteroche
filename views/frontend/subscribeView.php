@@ -1,6 +1,6 @@
 <?php
 /****************************************VIEWS/FRONTEND/SUBSCRIBEVIEW.PHP****************************************/
-session_start()
+session_start();
 ?>
 <?php $title = 'INSCRIPTION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
@@ -18,9 +18,9 @@ session_start()
                     
                     <input class="btn btn-lg btn-dark btn-block" type="submit" name="submit" value="S'inscrire">
                     <?php
-                    if($errorMessage)
+                    if(array_key_exists('errorMessage', $_SESSION))
                     {
-                        echo $errorMessage;
+                        echo $_SESSION['errorMessage'];
                     }
                     ?>
                     <div>

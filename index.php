@@ -199,6 +199,7 @@ try //
                 $commentId = $_GET['id'];
                 $postId = $_GET['postId'];
                 $updateReported = commentStatus($reported, $commentId, $postId);
+                
                 header('Location: index.php?action=post&id=' . $postId);
             }
         }
@@ -207,12 +208,14 @@ try //
 
         elseif($_GET['action'] == "restoreReportedCom")
         {
+            
             if(isset($_GET['id']) && $_GET['id'] > 0)
             {
                 $reported = 0;
                 $commentId = $_GET['id'];
                 
                 $updateReportedCom = commentStatusAdmin($reported, $commentId);
+                $succesMessage = 
                 header('Location: index.php?action=adminCom');
             }
         }
@@ -227,6 +230,8 @@ try //
                 $username =  $_POST['username'];
                 $pass =  $_POST['pass'];
                 $re_pass =  $_POST['re_pass'];
+                $errorMessage=[];
+
                 if(!empty($username) AND 
                 !empty($pass) AND
                 !empty($re_pass))
@@ -250,55 +255,62 @@ try //
                                 }
                                 else
                                 {
-                                    $errorMessage = '<div class="alert alert-warning" role="alert">
+                                    $errorMessage['differentPass'] = '<div class="alert alert-warning" role="alert">
                                     <i class="fas fa-exclamation-triangle"></i>
                                     Mot de passe différents
                                     </div>';
-                                    require('views/frontend/subscribeView.php');
+                                    
                                 }
                             }
                             else
                             {
-                                $errorMessage = '<div class="alert alert-warning" role="alert">
+                                $errorMessage['password'] = '<div class="alert alert-warning" role="alert">
                                 <i class="fas fa-exclamation-triangle"></i>
                                 Mot de passe 8 caractères minimum avec au moins 1 minuscule, 1 majuscule et 1 chiffre
                                 </div>';
-                                require('views/frontend/subscribeView.php');
+                                
                             }
                         }
                         else
                         {
-                            $errorMessage = '<div class="alert alert-warning" role="alert">
+                            $errorMessage['existingLog'] = '<div class="alert alert-warning" role="alert">
                             <i class="fas fa-exclamation-triangle"></i>
                             Ce pseudo existe déjà, choisir un autre ou vous connectez
                             </div>';
-                            require('views/frontend/subscribeView.php');
+                            
                         }
                     }
                     else
                     {
-                        $errorMessage = '<div class="alert alert-warning" role="alert">
+                        $errorMessage['log'] = '<div class="alert alert-warning" role="alert">
                         <i class="fas fa-exclamation-triangle"></i>
                         Votre pseudo doit comporter au moins 2 lettres
                         </div>';
-                        require('views/frontend/subscribeView.php');
+                        
                     }
                 }
                 else
                 {
-                    $errorMessage = '<div class="alert alert-warning" role="alert">
+                    $errorMessage['inputs'] = '<div class="alert alert-warning" role="alert">
                     <i class="fas fa-exclamation-triangle"></i>
                     Veuillez renseigner tout les champs !
                     </div>';
-                    require('views/frontend/subscribeView.php');
+                    
                 }
             }
             else
             {
-                $errorMessage = '<div class="alert alert-warning" role="alert">
+                $errorMessage['submit'] = '<div class="alert alert-warning" role="alert">
                 <i class="fas fa-exclamation-triangle"></i>
                 Formulaire n\'a pas été envoyé
                 </div>';
+                
+            }
+            
+            if(!empty($errorMessage))
+            {
+                $_SESSION['errorMessage'] = $errorMessage;
+                
                 require('views/frontend/subscribeView.php');
             }
         }
@@ -453,11 +465,7 @@ try //
         }
         else
         {
-            throw new LoginException('<div class="alert alert-danger" role="alert">
-            <i class="fas fa-exclamation-triangle"></i>PAGE INEXISTANTE<i class="fas fa-exclamation-triangle"></i><br/>
-            
-          </div><a class="btn btn-primary" href="index.php?action=home" role="button">REVENIR SUR JEAN FORTEROCHE | BLOG </a>
-          ');
+            throw new Exception('<i class="fas fa-exclamation-triangle"></i>    Page inexistante    <i class="fas fa-exclamation-triangle"></i>');
         }
         
     }
@@ -472,8 +480,9 @@ try //
         require('views/frontend/homeView.php');
         
     }  
+    
 }
-catch(Exception $e)
+catch (Exception $e)
 {
     $errorMessage = $e->getMessage();
     

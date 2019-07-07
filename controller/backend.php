@@ -148,7 +148,7 @@
     {
         $commentManager = new CommentManager();
         $updateReported = $commentManager->updateComStatus($reported, $commentId);
-        
+
     }
     //-------------------------------------------->POST / ADMIN
     /**
