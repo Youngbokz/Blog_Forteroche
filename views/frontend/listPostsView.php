@@ -22,7 +22,7 @@ session_start()
                             </div>
                             <div class="card-body">
                                 <h2 class="card-title"><?= htmlspecialchars($data['title']); ?></h2>
-                                <p class="card-text"><?= nl2br(htmlspecialchars(substr($data['content'], 0, 600))); ?> [...]</p>
+                                <p class="card-text"><?= nl2br(substr($data['content'], 0, 600)); ?> [...]</p>
                                 <a href="index.php?action=post&amp;id=<?= $data['id'] ?>" class="btn btn-dark">Découvrir</a>
                             </div>
                             <div class="card-footer text-muted">

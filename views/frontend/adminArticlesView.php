@@ -60,7 +60,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                     </div>
                     <div class="adminArticles card-body">
                         <h5 class="card-title"><?= htmlspecialchars($data['chapter']); ?></h5>
-                        <p class="card-text"><?= nl2br(htmlspecialchars(substr($data['content'], 0, 100))); ?> ...</p>
+                        <p class="card-text"><?= nl2br(substr($data['content'], 0, 100)); ?> ...</p>
                     </div>
                     <div class="card-footer text-muted">
                         <p>Publié le <?= $data['post_date_fr']; ?></p>

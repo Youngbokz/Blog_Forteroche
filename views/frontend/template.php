@@ -17,11 +17,22 @@
         <!--tinyMCE-->
         <script src="public/js/tinymce.min.js"></script>
         <script src="public/js/themes/silver/theme.min.js"></script>
-
+        <script src="public/js/tinyMCEfr.js"></script>
         <!--<script src="https://cdn.tiny.cloud/1/t4mau691i69tgynqd5am297aorlx4nrngxwqclqhcyx1g7xv/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>-->
-        <script>
-            tinymce.init({
-                selector: '#mytextarea'
+        
+        <script type="text/javascript">
+           tinymce.init({
+                selector: 'textarea#mytextarea',
+                height: 300,
+                language: 'fr_FR',
+                valid_elements : "em/i,strike,u,strong/b,div[align],br, #p[align],-ol[type|compact],-ul[type|compact],-li",
+                plugins: [
+                    'advlist autolink lists link image charmap print preview anchor textcolor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount'
+                ],
+                toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',     
+                
             });
         </script>
         <title><?= $title ?></title>

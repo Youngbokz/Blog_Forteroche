@@ -70,7 +70,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                                 </div>                        
                                 <div class="form-group">
                                     <label for="content">ÉCRIRE</label>
-                                    <textarea class="form-control" id="mytextarea" rows="3" name="newContent"><?= nl2br(htmlspecialchars($post['content'])); ?></textarea>
+                                    <textarea class="form-control" id="mytextarea" rows="3" name="newContent"><?= nl2br($post['content']); ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <input class="btn btn-dark" type="submit" value="Éditer" name="edit">

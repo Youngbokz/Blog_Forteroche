@@ -8,19 +8,13 @@ session_start();
 <?php ob_start(); ?>
 
 <div class="mainSection" id="top_mainSection_PostView">
-    <?php
-    if($succesMessage != NULL)
-    {
-        echo $succesMessage;
-    }
-    ?>
     <section> <!--Selected post-->
         <div class="container">
             <h3>ÉPISODE <?= $post['id']; ?></h3>
             <div>            
                 <p class="lead">Publié le <?= ($post['post_date_fr']); ?></p>
                 <h2><?= htmlspecialchars($post['title']); ?></h2>
-                <p class="chapter_slim"><?= nl2br(htmlspecialchars($post['content'])); ?></p>                       
+                <p class="chapter_slim"><?= nl2br($post['content']); ?></p>                       
                 <a class="btn btn-lg btn-dark" href="#top_mainSection_PostView"><i class="fas fa-cloud-upload-alt"></i></a>
             </div> 
         </div>

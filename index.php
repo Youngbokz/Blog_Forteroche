@@ -106,9 +106,9 @@ try //
         //ADMIN EDIT A POST
         elseif($_GET['action'] == "editPost")
         {
-            $chapter = htmlspecialchars($_POST['newChapter']);
+            $chapter = $_POST['newChapter'];
             $title = htmlspecialchars($_POST['newTitle']);
-            $content = htmlspecialchars($_POST['newContent']);
+            $content = $_POST['newContent'];
             $postId = $_GET['id'];
             
             if(isset($postId) AND $postId >0)
@@ -447,7 +447,7 @@ try //
                 // Add var
                 $newTitle = htmlspecialchars($_POST['title']);
                 $newChapter = htmlspecialchars($_POST['chapter']);
-                $newContent = nl2br(htmlspecialchars($_POST['content']));
+                $newContent = $_POST['content'];
                 if(!empty($newTitle) && !empty($newChapter) && !empty($newContent))
                 {
                     newPost($newTitle, $newChapter, $newContent);

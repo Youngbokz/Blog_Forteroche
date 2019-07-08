@@ -131,7 +131,7 @@
         $postUpdate = $postManager->editPost($chapter, $title, $content, $postId); 
         
         header('Location: index.php?action=goEditArticle&id=' . $postId);
-        //require('views/frontend/adminEditView.php');  
+         
     }
     //-------------------------------------------->COMMENT ADMIN
     /**
