@@ -88,10 +88,12 @@ session_start();
                         <div class="addComInput col-md-8 form-group">
                             <button type="submit" name="submit" class="btn btn-outline-secondary">ENVOYER</button>
                         </div>
+                        
                     </div>
                 </form>
             </div>
     <?php
+    
         }
     ?>
             

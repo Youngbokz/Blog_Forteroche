@@ -5,10 +5,11 @@
 require_once('model/CommentManager.php');
 require_once('model/PostManager.php');
 require_once('model/MemberManager.php');
-
+require_once('model/SessionManager.php');
 use \Youngbokz\Blog_Forteroche\Model\PostManager;
 use \Youngbokz\Blog_Forteroche\Model\CommentManager;
 use \Youngbokz\Blog_Forteroche\Model\MemberManager;
+use \Youngbokz\Blog_Forteroche\Model\SessionManager;
 
 //-------------------------------------------->POST
 /**
@@ -133,7 +134,7 @@ function verifyConnection($log, $password)
 {
     $memberManager = new MemberManager();
     $member = $memberManager->getMember($log);
-   
+    
     $isPasswordCorrect = password_verify($password, $member['password']);
     $right = true;  
     
@@ -170,13 +171,8 @@ function newComment($postId, $author, $comment)
 {
     $commentManager = new CommentManager();
     $comment = $commentManager->addComment($postId, $author, $comment);
-
-    if ($comment === false) {
-        echo'Impossible d\'ajouter le commentaire !';
-    }
-    else {
-        header('Location: index.php?action=post&id=' . $postId); //send back to post page with the id of the post. 
-    }
+   
+    return $comment;
 }
 //-------------------------------------------->COMMENT
 /**
@@ -195,3 +191,4 @@ function commentStatus($reported, $commentId, $postId)
     $commentManager = new CommentManager();
     $updateReported = $commentManager->updateComStatus($reported, $commentId); 
 }
+

@@ -11,6 +11,10 @@
     use \Youngbokz\Blog_Forteroche\Model\PostManager;
     use \Youngbokz\Blog_Forteroche\Model\CommentManager;
     use \Youngbokz\Blog_Forteroche\Model\MemberManager;
+    use \Youngbokz\Blog_Forteroche\Model\SessionManager;
+
+    
+
 
     //-------------------------------------------->POST / ADMIN
     /**
@@ -43,8 +47,12 @@
     {
         $postManager = new PostManager();
         $post = $postManager->addPost($title, $chapter, $content);
+        $sessionManager = new SessionManager();
+        $message = "Message posté avec succès";
+        $color = "success";
+        $sessionManager->setFlashMessage($message, $color);
+        $sessionManager->showFlash(); 
         
-        header('Location: index.php?action=');
     }
     //-------------------------------------------->ADMIN / MEMBER
     /**

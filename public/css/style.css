@@ -25,6 +25,16 @@ Light gray (h2) :		#747474
 /*---------------------------------------- */
 
 /*     GENERAL      */
+html
+{
+    height: 100%;
+}
+body
+{
+    display: flex;
+    flex-direction: column;
+}
+
 a
 {
     color: white;
@@ -38,9 +48,10 @@ a:hover
     color: cornflowerblue;
     text-decoration: none;
 }
-.mainSection
+div.mainSection
 {
     margin-top: 130px;
+    min-height: 500px;
 }
 .mainColorBg
 {

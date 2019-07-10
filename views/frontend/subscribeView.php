@@ -17,12 +17,7 @@ session_start();
                     <input type="password" id="re_pass" name="re_pass" class="form-control" placeholder="Mot de passe" >
                     
                     <input class="btn btn-lg btn-dark btn-block" type="submit" name="submit" value="S'inscrire">
-                    <?php
-                    if(array_key_exists('errorMessage', $_SESSION))
-                    {
-                        echo $_SESSION['errorMessage'];
-                    }
-                    ?>
+                    
                     <div>
                         <a href="index.php?action=login"><p>Déjà enregistré ?</p></a>
                     </div>

@@ -4,6 +4,7 @@ require_once('controller/frontend.php');
 require_once('controller/backend.php');
 
 
+
 try //
 {
     if(isset($_GET['action']))
@@ -326,6 +327,7 @@ try //
 
                 $post = $thePost['post'];
                 $comments = $thePost['comments'];
+                
 
                 require('views/frontend/postView.php');
             }
@@ -413,29 +415,37 @@ try //
                 // add var
                 $login = htmlspecialchars($_POST['login']);
                 $newMessage = htmlspecialchars($_POST['story']);
-                $post_Id = $_GET['id'];
+                $postId = $_GET['id'];
                 
 
-                if(isset($post_Id) AND $post_Id > 0)
+                if(isset($postId) AND $postId > 0)
                 {
                     if(!empty($login) AND !empty($newMessage))
                     {
 
-                        newComment($post_Id, $login, $newMessage);
+                        $comment = newComment($postId, $login, $newMessage);
+                        header('Location: index.php?action=post&id='.$postId);
                     }
                     else
                     {
-                        echo'<p>Veuillez renseigner votre identifiant et un message à envoyer</p>';
+                        throw new Exception($errorMessage = '<div class="alert alert-warning" role="alert">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            Votre message est vide !
+                                        </div>');
+                                       
+                        header('Location: index.php?action=post&id='.$postId);
                     }
                 }
                 else
                 {
-                    echo'<p>Aucun identifiant de chapitre envoyé</p>';
+                    throw new Exception('<p>Aucun identifiant de chapitre envoyé</p>');
+                    header('Location: index.php?action=post&id=' .$post_Id);
                 }
             }
             else
             {
-                echo'<p>Formulaire n\'a pas été envoyé</p>';
+                throw new Exception('<p>Formulaire n\'a pas été envoyé</p>');
+                header('Location: index.php?action=post&id=' .$post_Id);
             }
         }
         //--------------------------------------------------------------------------------------->
@@ -451,16 +461,16 @@ try //
                 if(!empty($newTitle) && !empty($newChapter) && !empty($newContent))
                 {
                     newPost($newTitle, $newChapter, $newContent);
-                    header('Location: index.php?action=listPosts');
+                    require('index.php?action=listPosts');
                 }
                 else
                 {
-                    echo'<p>Formulaire n\'a pas été envoyé</p>';
+                    throw new Exception('<p>Veuillez renseigner les différents champs</p>');
                 }
             }
             else
             {
-                echo'<p>Formulaire n\'a pas été envoyé</p>';
+                throw new Exception('Formulaire n\'a pas été envoyé');
             }
         }
         else
@@ -485,6 +495,6 @@ try //
 catch (Exception $e)
 {
     $errorMessage = $e->getMessage();
-    
-    require('views/errorView.php');
+require('views/errorView.php');
+
 }

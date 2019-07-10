@@ -83,9 +83,8 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
 }
 else
 {
-    echo'<div class="alert alert-danger" role="alert" style="margin-top: 150px;">
-    Vous n\'êtes pas l\'administrateur du site !
-  </div>';
+    throw new Exception('Vous n\'êtes pas l\'administrateur du site <i class="fas fa-exclamation"></i> <br/>
+    <a href="index.php?action=home">(revenir à la page d\'accueuil)</a>');
 }
 ?>
 <?php $content = ob_get_clean(); ?>
