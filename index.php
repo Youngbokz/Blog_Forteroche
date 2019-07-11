@@ -1,9 +1,16 @@
 <?php
 /****************************************INDEX.PHP****************************************/
-require_once('controller/frontend.php');
-require_once('controller/backend.php');
 
+// We charge classes 
+require_once('controller/BlogController.php');
+require_once('controller/CommentController.php');
+require_once('controller/MemberController.php');
+require_once('controller/PostController.php');
 
+use \Youngbokz\Blog_Forteroche\Controller\BlogController;
+use \Youngbokz\Blog_Forteroche\Controller\CommentController;
+use \Youngbokz\Blog_Forteroche\Controller\MemberController;
+use \Youngbokz\Blog_Forteroche\Controller\PostController;
 
 try //
 {
@@ -15,7 +22,8 @@ try //
 
         if($_GET['action'] == "home")
         {
-            $homeLast = lastPost();
+            $postController = new PostController();
+            $homeLast = $postController->lastPost();
 
             $lastPost = $homeLast['lastPost'];
             $lastComments = $homeLast['lastComments'];
@@ -26,13 +34,15 @@ try //
         //ADMINISTRATEUR (ADMIN) PAGE DISPLAY
         elseif($_GET['action'] == "admin")
         {
-            $count = countAll();
+            $blogController = new BlogController();
+            $count = $blogController->countAll();
 
             $memberNumber = $count['memberNumber'];
             $postNumber = $count['postNumber'];
             $reportedComNumber = $count['reportedComNumber'];
             
-            $members = lastMembersAdmin();
+            $memberController = new MemberController();
+            $members = $memberController->lastMembersAdmin();
             require('views/frontend/adminView.php');
 
         }
@@ -40,20 +50,23 @@ try //
         //ADMIN SEES USERS PAGE
         elseif($_GET['action'] == "adminUsers")
         {
-            $count = countAll();
+            $blogController = new BlogController();
+            $count = $blogController->countAll();
 
             $memberNumber = $count['memberNumber'];
             $postNumber = $count['postNumber'];
             $reportedComNumber = $count['reportedComNumber'];
 
-            $members = getMembersAdmin();
+            $memberController = new MemberController();
+            $members = $memberController->getMembersAdmin();
             require('views/frontend/adminUsersView.php');
         }
         //--------------------------------------------------------------------------------------->
         //ADMIN SEES CREATING CHAPTER PAGE
         elseif($_GET['action'] == "adminCreate")
         {
-            $count = countAll();
+            $blogController = new BlogController();
+            $count = $blogController->countAll();
 
             $memberNumber = $count['memberNumber'];
             $postNumber = $count['postNumber'];
@@ -72,12 +85,16 @@ try //
         //ADMIN SEES LIST POSTS 
         elseif($_GET['action'] == "adminArticle")
         {
-            $count = countAll();
+            $blogController = new BlogController();
+            $count = $blogController->countAll();
 
             $memberNumber = $count['memberNumber'];
             $postNumber = $count['postNumber'];
             $reportedComNumber = $count['reportedComNumber'];
-            $posts = listPostsAdmin();
+
+            $postManager = new PostController();
+            $posts = $postManager->listPostsAdmin();
+
 
             require('views/frontend/adminArticlesView.php');
         }
@@ -87,13 +104,15 @@ try //
         {
             if(isset($_GET['id']) && $_GET['id'] > 0)
             {
-                $count = countAll();
+                $blogController = new BlogController();
+                $count = $blogController->countAll();
 
                 $memberNumber = $count['memberNumber'];
                 $postNumber = $count['postNumber'];
                 $reportedComNumber = $count['reportedComNumber'];
 
-                $post = postAdmin($_GET['id']);
+                $postManager = new PostController();
+                $post = $postManager->postAdmin($_GET['id']);
 
                 require('views/frontend/adminEditView.php');
             }
@@ -107,6 +126,7 @@ try //
         //ADMIN EDIT A POST
         elseif($_GET['action'] == "editPost")
         {
+            $postManager = new PostManager();
             $chapter = $_POST['newChapter'];
             $title = htmlspecialchars($_POST['newTitle']);
             $content = $_POST['newContent'];
@@ -118,7 +138,7 @@ try //
                 {   
                     if(!empty($chapter) AND !empty($title) AND !empty($content))
                     {
-                        updatePost($chapter, $title, $content, $postId);
+                        $postManager->updatePost($chapter, $title, $content, $postId);
                     }
                     else
                     {
@@ -127,7 +147,7 @@ try //
                 }
                 elseif(isset($_POST['delete']))
                 {
-                    erasePost($postId);
+                    $postManager->erasePost($postId);
                 }
             }
             
@@ -137,13 +157,16 @@ try //
         //ADMIN SEES REPORTED COMENTS PAGE
         elseif($_GET['action'] == "adminCom")
         {
-            $count = countAll();
+            $blogController = new BlogController();
+            $count = $blogController->countAll();
 
             $memberNumber = $count['memberNumber'];
             $postNumber = $count['postNumber'];
             $reportedComNumber = $count['reportedComNumber'];
 
-            $comments = reportedCommentAdminList();
+            $commentManager = new CommentController();
+            $comments = $commentManager->reportedCommentAdminList();
+            
 
             require('views/frontend/adminComView.php');
         }
@@ -152,7 +175,8 @@ try //
     
         elseif($_GET['action'] == "listPosts") // This action send us to listPostsView = Roman
         {
-            $posts = listPosts();
+            $postManager = new PostController();
+            $posts = $postManager->listPosts();
 
             require_once('views/frontend/listPostsView.php');
             
@@ -175,8 +199,8 @@ try //
             {
                 
                     $commentId = $_GET['id'];
-
-                    $deleteReported = eraseRepotedCom($commentId); 
+                    $commentManager = new CommentManager();
+                    $deleteReported = $commentManager->eraseRepotedCom($commentId); 
                 
             }
         }
@@ -199,7 +223,8 @@ try //
                 $reported = 1;
                 $commentId = $_GET['id'];
                 $postId = $_GET['postId'];
-                $updateReported = commentStatus($reported, $commentId, $postId);
+                $commentManager = new CommentManager();
+                $updateReported = $commentManager->commentStatus($reported, $commentId, $postId);
                 
                 header('Location: index.php?action=post&id=' . $postId);
             }
@@ -214,8 +239,8 @@ try //
             {
                 $reported = 0;
                 $commentId = $_GET['id'];
-                
-                $updateReportedCom = commentStatusAdmin($reported, $commentId);
+                $commentManager = new CommentManager();
+                $updateReportedCom = $commentManager->commentStatusAdmin($reported, $commentId);
                 $succesMessage = 
                 header('Location: index.php?action=adminCom');
             }
@@ -233,13 +258,15 @@ try //
                 $re_pass =  $_POST['re_pass'];
                 $errorMessage=[];
 
+                $memberManager = new MemberManager();
+
                 if(!empty($username) AND 
                 !empty($pass) AND
                 !empty($re_pass))
                 {
                     if(preg_match('#^[a-zA-Z0-9_]{2,16}$#i', ($username))) // Usrname conditions minimum 2 letters
                     {
-                        $verifyUsername = verify($username); // Verify if username exist or not
+                        $verifyUsername = $memberManager->verify($username); // Verify if username exist or not
 
                         if($verifyUsername == 0) // if log doesnt exist in database
                         {
@@ -247,7 +274,7 @@ try //
                             {
                                 if($pass === $re_pass)
                                 {
-                                    subscribe($username, $pass);
+                                    $memberManager->subscribe($username, $pass);
                                     $succesMessage = '<div class="alert alert-success" role="alert">
                                     Vous êtes enregistré(e), vous pouvez vous connecter!
                                     </div>';
@@ -320,25 +347,9 @@ try //
 
         elseif($_GET['action'] == 'post')
         {
-            $postId = $_GET['id'];
-            if(isset($postId) && $postId >0)
-            {
-                $thePost = post($postId);
-
-                $post = $thePost['post'];
-                $comments = $thePost['comments'];
-                
-
-                require('views/frontend/postView.php');
-            }
-            else 
-            {
-                $errorMessage = '<div class="alert alert-danger" role="alert">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                    Ce chapitre n\'existe pas
-                                </div>';
-                require('views/frontend/postView.php'); // Error message
-            }   
+            $postManager = new PostController();
+            $postManager->post($_GET['id']);
+            require_once('views/frontend/postView.php');
         }
         
         //--------------------------------------------------------------------------------------->
@@ -346,6 +357,8 @@ try //
 
         elseif($_GET['action'] == 'connect')
         {
+            $blogController = new BlogController();
+            $memberController = new MemberController();
             if(isset($_POST['submit']))
             {
                 // Add var
@@ -355,13 +368,13 @@ try //
                 if(!empty($loginConnex) AND !empty($passConnex))
                 {
                     
-                    $verifyLogin = verifyConnection($loginConnex, $passConnex);
+                    $verifyLogin = $blogController->verifyConnection($loginConnex, $passConnex);
 
                      // Check if password in match with the one in database
                     if($verifyLogin)
                     {
                         session_start();
-                        $result = member($loginConnex);
+                        $result = $memberController->member($loginConnex);
                         $_SESSION['login'] = $result['log'];
                         $_SESSION['id'] = $result['id'];
                         $_SESSION['registration_date'] = $result['registration_date_fr'];
@@ -410,43 +423,9 @@ try //
 
         elseif($_GET['action'] == "sendComment")
         {
-            if(isset($_POST['submit']))
-            {
-                // add var
-                $login = htmlspecialchars($_POST['login']);
-                $newMessage = htmlspecialchars($_POST['story']);
-                $postId = $_GET['id'];
-                
-
-                if(isset($postId) AND $postId > 0)
-                {
-                    if(!empty($login) AND !empty($newMessage))
-                    {
-
-                        $comment = newComment($postId, $login, $newMessage);
-                        header('Location: index.php?action=post&id='.$postId);
-                    }
-                    else
-                    {
-                        throw new Exception($errorMessage = '<div class="alert alert-warning" role="alert">
-                                            <i class="fas fa-exclamation-triangle"></i>
-                                            Votre message est vide !
-                                        </div>');
-                                       
-                        header('Location: index.php?action=post&id='.$postId);
-                    }
-                }
-                else
-                {
-                    throw new Exception('<p>Aucun identifiant de chapitre envoyé</p>');
-                    header('Location: index.php?action=post&id=' .$post_Id);
-                }
-            }
-            else
-            {
-                throw new Exception('<p>Formulaire n\'a pas été envoyé</p>');
-                header('Location: index.php?action=post&id=' .$post_Id);
-            }
+            $commentController = new CommentController();
+            $commentController->newComment();
+            require_once('views/frontend/postView.php');
         }
         //--------------------------------------------------------------------------------------->
         //ADMIN ADD A POST
@@ -482,7 +461,8 @@ try //
     else // Even in this case display home page 
     {
         
-        $homeLast = lastPost();
+        $postController = new PostController();
+        $homeLast = $postController->lastPost();
 
         $lastPost = $homeLast['lastPost'];
         $lastComments = $homeLast['lastComments'];

@@ -18,7 +18,7 @@ session_start();
                 <a class="btn btn-lg btn-dark" href="#top_mainSection_PostView"><i class="fas fa-cloud-upload-alt"></i></a>
             </div> 
         </div>
-        
+        <?php unset($post); ?>
     </section>
     <section class="post_commentSection container-fluid">
     
@@ -56,7 +56,6 @@ session_start();
                                             </div>
                                         </div>
                                     </article>
-                            
                         <?php
                                 }
                             }

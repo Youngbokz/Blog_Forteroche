@@ -20,7 +20,7 @@ class Autoloader
     {
         spl_autoload_register(array(__CLASS__, 'autoload'));
     }
-    
+   
     /**
      * autoload
      *
@@ -30,6 +30,9 @@ class Autoloader
      */
     static function autoload($className)
     {
-        require 'class/' . $className . '.php'; 
+        require($className . '.php'); 
     }
+
+   
+    
 }

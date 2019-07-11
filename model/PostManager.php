@@ -39,7 +39,7 @@
             $req->execute(array($postId));
             $post = $req->fetch();
         
-            return $post;
+            return $req;
         }
         /**
          * getLastPost
@@ -129,5 +129,9 @@
             $countingPost = $req->fetchColumn();
             
             return $countingPost;
+        }
+        public function unsetDb(){
+            $db = $this->dbConnect();
+            unset($db);
         }
     }
