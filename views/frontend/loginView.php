@@ -6,7 +6,7 @@ session_start()
 <?php ob_start(); ?>
     <div class="mainSection">
         <?php
-        if($succesMessage)
+        if(isset($succesMessage))
         {
             echo $succesMessage;
         }
@@ -20,7 +20,7 @@ session_start()
                     <label for="pass" class="sr-only">Entrer votre mot de passe</label>
                     <input type="password" id="pass" name="pass" class="form-control" placeholder="Mot de passe" >
                     <?php
-                    if($errorMessage != NULL)
+                    if(isset($errorMessage))
                     {
                         echo $errorMessage;
                     }

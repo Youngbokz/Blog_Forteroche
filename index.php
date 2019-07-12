@@ -186,8 +186,6 @@ try //
 
         elseif($_GET['action'] == "login") // This action send us to loginView 
         {
-            $errorMessage="";
-            $succesMessage="";
             require('views/frontend/loginView.php');
         }
         //--------------------------------------------------------------------------------------->
@@ -347,8 +345,13 @@ try //
 
         elseif($_GET['action'] == 'post')
         {
+            $postId = $_GET['id'];
+
             $postManager = new PostController();
-            $postManager->post($_GET['id']);
+            $thePost = $postManager->post($postId);
+
+            $post = $thePost['post'];
+            $comments = $thePost['comments'];
             require_once('views/frontend/postView.php');
         }
         
@@ -368,7 +371,7 @@ try //
                 if(!empty($loginConnex) AND !empty($passConnex))
                 {
                     
-                    $verifyLogin = $blogController->verifyConnection($loginConnex, $passConnex);
+                    $verifyLogin = $memberController->verifyConnection($loginConnex, $passConnex);
 
                      // Check if password in match with the one in database
                     if($verifyLogin)
@@ -389,7 +392,7 @@ try //
                                             Mauvais mot de passe ou pseudo inconnue
                                         </div>';
                                         
-                        $succesMessage="";
+                        
                         require('views/frontend/loginView.php');
                     }
                 }
@@ -400,14 +403,14 @@ try //
                                             Veuillez renseignez tout les champs
                                         </div>';
                                        
-                    $succesMessage="";
+                    
                     require('views/frontend/loginView.php');
                 }
             }
             else
             {
                 $errorMessage = '<p>Formulaire n\'a pas été envoyé</p>';
-                $succesMessage="";
+                
                 require('views/frontend/loginView.php');
             }
         }

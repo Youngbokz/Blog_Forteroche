@@ -39,7 +39,7 @@
             $req->execute(array($postId));
             $post = $req->fetch();
         
-            return $req;
+            return $post;
         }
         /**
          * getLastPost

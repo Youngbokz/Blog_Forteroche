@@ -43,25 +43,23 @@
             $commentManager = new CommentManager();
             $comments = $commentManager->getComments($postId);
             
-            
-                    if(isset($postId) && $postId >0)
-                    {
+            return compact('post', 'comments');
+                        
+
+        
+            require_once('views/frontend/postView.php');
                         
                         
-                        return compact('post', 'comments');
                         
-                        
-                        require('views/frontend/postView.php');
-                        
-                    }
-                    else 
+                    
+                   /* else 
                     {
                         $errorMessage = '<div class="alert alert-danger" role="alert">
                                             <i class="fas fa-exclamation-triangle"></i>
                                             Ce chapitre n\'existe pas
                                         </div>';
                         require('views/frontend/postView.php'); // Error message
-                    }   
+                    }  */
                     
         }
 
