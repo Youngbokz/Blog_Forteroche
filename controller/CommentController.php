@@ -88,37 +88,51 @@ class CommentController
      * 
      * @return void
      */
-    function newComment($postId, $author, $newMessage)
+    function newComment()
     {
+        
+        $postId = $_GET['id'];
+        $author = $_POST['login'];
+        $newMessage = $_POST['story'];
+        
+
+
         $commentManager = new CommentManager();
-        $comment = $commentManager->addComment($postId, $author, $newMessage);
+        
         
         if(isset($_POST['submit']))
         {
             if(isset($postId) AND $postId > 0)
             {
-                if(!empty($author) AND !empty($newMessage))
+                if(!empty($newMessage))
                 {
-                    $comment;
+                    $comment = $commentManager->addComment($postId, $author, $newMessage);
                     header('Location: index.php?action=post&id='.$_GET['id']);
                 }
                 else
                 {
-                    throw new Exception
-                    ($errorMessage = '<div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i>
+                    
+                echo $errorMessageSend = '<div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i>
                                                 Votre message est vide !
-                                        </div>');
+                                        </div>';
+                header('Location: index.php?action=post&id='.$_GET['id']);
+                                
                 }
             }
             else
             {
-                throw new Exception('<p>Aucun identifiant de chapitre envoyé</p>');
-                            
+                
+                var_dump($errorMessageSend);
+                $errorMessageSend = '<p>Aucun identifiant de chapitre envoyé</p>';
+            
             }
         }
         else
         {
-            throw new Exception('<p>Formulaire n\'a pas été envoyé</p>');
+            
+            var_dump($errorMessageSend);
+            $errorMessageSend = '<p>Formulaire n\'a pas été envoyé</p>';
+            
         }
     }
 

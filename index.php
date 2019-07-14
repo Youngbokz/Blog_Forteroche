@@ -126,7 +126,7 @@ try //
         //ADMIN EDIT A POST
         elseif($_GET['action'] == "editPost")
         {
-            $postManager = new PostManager();
+            $postManager = new PostController();
             $chapter = $_POST['newChapter'];
             $title = htmlspecialchars($_POST['newTitle']);
             $content = $_POST['newContent'];
@@ -345,14 +345,8 @@ try //
 
         elseif($_GET['action'] == 'post')
         {
-            $postId = $_GET['id'];
-
             $postManager = new PostController();
-            $thePost = $postManager->post($postId);
-
-            $post = $thePost['post'];
-            $comments = $thePost['comments'];
-            require_once('views/frontend/postView.php');
+            $postManager->post();        
         }
         
         //--------------------------------------------------------------------------------------->
@@ -427,8 +421,8 @@ try //
         elseif($_GET['action'] == "sendComment")
         {
             $commentController = new CommentController();
-            $commentController->newComment();
-            require_once('views/frontend/postView.php');
+            $comment = $commentController->newComment();
+            
         }
         //--------------------------------------------------------------------------------------->
         //ADMIN ADD A POST
@@ -442,8 +436,9 @@ try //
                 $newContent = $_POST['content'];
                 if(!empty($newTitle) && !empty($newChapter) && !empty($newContent))
                 {
-                    newPost($newTitle, $newChapter, $newContent);
-                    require('index.php?action=listPosts');
+                    $postController = new PostController();
+                    $postController->newPost($newTitle, $newChapter, $newContent);
+                    
                 }
                 else
                 {
@@ -478,6 +473,6 @@ try //
 catch (Exception $e)
 {
     $errorMessage = $e->getMessage();
-require('views/errorView.php');
+    require('views/errorView.php');
 
 }

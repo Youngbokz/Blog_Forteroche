@@ -54,7 +54,7 @@
         {
             $membersManager = new MemberManager(); // Create object
             $members = $membersManager->getLastMembers(); // 
-
+            
             return $members;
         }
 

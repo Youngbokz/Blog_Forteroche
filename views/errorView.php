@@ -4,7 +4,7 @@
 
 <?php
 /****************************************VIEWS/ERRORVIEW.PHP****************************************/
-
+session_start();
 ?>
 <?php $title = 'ERREUR | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>

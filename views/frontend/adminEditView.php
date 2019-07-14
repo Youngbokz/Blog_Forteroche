@@ -85,7 +85,10 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                 }
                 else
                 {
-                    echo'Article supprimé ou inexistant';
+                    echo'<div class="alert alert-warning" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Chapitre supprimé ou inexistant 
+                    </div>';
                 }
                 ?>
             </div>       

@@ -5,12 +5,6 @@ session_start()
 <?php $title = 'CONNEXION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
     <div class="mainSection">
-        <?php
-        if(isset($succesMessage))
-        {
-            echo $succesMessage;
-        }
-        ?>
         <div class="loginContainer container ">
             <section class="row">
                 <form class="form-signin" action="index.php?action=connect" method="post">

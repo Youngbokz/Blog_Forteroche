@@ -34,33 +34,34 @@
          *
          * @return compact('post', 'comments')
          */
-        function post($postId)
-        {
-            
+        function post()
+        {           
+            $postId = $_GET['id'];
+                       
             $postManager = new PostManager();
-            $post = $postManager->getPost($postId);
-            
             $commentManager = new CommentManager();
-            $comments = $commentManager->getComments($postId);
             
-            return compact('post', 'comments');
-                        
-
-        
-            require_once('views/frontend/postView.php');
-                        
-                        
-                        
-                    
-                   /* else 
-                    {
-                        $errorMessage = '<div class="alert alert-danger" role="alert">
-                                            <i class="fas fa-exclamation-triangle"></i>
-                                            Ce chapitre n\'existe pas
-                                        </div>';
-                        require('views/frontend/postView.php'); // Error message
-                    }  */
-                    
+            if(isset($postId) && $postId > 0)
+            {
+                $post = $postManager->getPost($postId);
+                $comments = $commentManager->getComments($postId);
+                if($post == false)
+                {
+                    $errorMessage = 'Cette page n\'existe pas !';
+                    require('views/errorView.php');
+                }
+                else
+                {
+                require_once('views/frontend/postView.php');                     
+                }                 
+            }
+            else 
+            {
+            $errorMessage = '<div class="alert alert-danger" role="alert">
+                                <i class="fas fa-exclamation-triangle"></i> Ce chapitre n\'existe pas
+                            </div>';
+            require('views/errorView.php');
+            }                     
         }
 
         //-------------------------------------------->POST / ADMIN
@@ -94,11 +95,14 @@
         {
             $postManager = new PostManager();
             $post = $postManager->addPost($title, $chapter, $content);
-            $sessionManager = new SessionManager();
+
+            header('Location: index.php?action=adminArticle');
+
+            /*$sessionManager = new SessionManager();
             $message = "Message posté avec succès";
             $color = "success";
             $sessionManager->setFlashMessage($message, $color);
-            $sessionManager->showFlash(); 
+            $sessionManager->showFlash(); */
             
         }
         
