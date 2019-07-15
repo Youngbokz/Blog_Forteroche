@@ -92,8 +92,8 @@ try //
             $postNumber = $count['postNumber'];
             $reportedComNumber = $count['reportedComNumber'];
 
-            $postManager = new PostController();
-            $posts = $postManager->listPostsAdmin();
+            $postController = new PostController();
+            $posts = $postController->listPostsAdmin();
 
 
             require('views/frontend/adminArticlesView.php');
@@ -111,8 +111,8 @@ try //
                 $postNumber = $count['postNumber'];
                 $reportedComNumber = $count['reportedComNumber'];
 
-                $postManager = new PostController();
-                $post = $postManager->postAdmin($_GET['id']);
+                $postController = new PostController();
+                $post = $postController->postAdmin($_GET['id']);
 
                 require('views/frontend/adminEditView.php');
             }
@@ -126,7 +126,7 @@ try //
         //ADMIN EDIT A POST
         elseif($_GET['action'] == "editPost")
         {
-            $postManager = new PostController();
+            $postController = new PostController();
             $chapter = $_POST['newChapter'];
             $title = htmlspecialchars($_POST['newTitle']);
             $content = $_POST['newContent'];
@@ -138,7 +138,7 @@ try //
                 {   
                     if(!empty($chapter) AND !empty($title) AND !empty($content))
                     {
-                        $postManager->updatePost($chapter, $title, $content, $postId);
+                        $postController->updatePost($chapter, $title, $content, $postId);
                     }
                     else
                     {
@@ -147,7 +147,7 @@ try //
                 }
                 elseif(isset($_POST['delete']))
                 {
-                    $postManager->erasePost($postId);
+                    $postController->erasePost($postId);
                 }
             }
             
@@ -164,8 +164,8 @@ try //
             $postNumber = $count['postNumber'];
             $reportedComNumber = $count['reportedComNumber'];
 
-            $commentManager = new CommentController();
-            $comments = $commentManager->reportedCommentAdminList();
+            $commentController = new CommentController();
+            $comments = $commentController->reportedCommentAdminList();
             
 
             require('views/frontend/adminComView.php');
@@ -175,8 +175,8 @@ try //
     
         elseif($_GET['action'] == "listPosts") // This action send us to listPostsView = Roman
         {
-            $postManager = new PostController();
-            $posts = $postManager->listPosts();
+            $postController = new PostController();
+            $posts = $postController->listPosts();
 
             require_once('views/frontend/listPostsView.php');
             
@@ -197,8 +197,8 @@ try //
             {
                 
                     $commentId = $_GET['id'];
-                    $commentManager = new CommentManager();
-                    $deleteReported = $commentManager->eraseRepotedCom($commentId); 
+                    $commentController = new CommentController();
+                    $deleteReported = $commentController->eraseRepotedCom($commentId); 
                 
             }
         }
@@ -221,8 +221,8 @@ try //
                 $reported = 1;
                 $commentId = $_GET['id'];
                 $postId = $_GET['postId'];
-                $commentManager = new CommentManager();
-                $updateReported = $commentManager->commentStatus($reported, $commentId, $postId);
+                $commentController = new CommentController();
+                $updateReported = $commentController->commentStatus($reported, $commentId, $postId);
                 
                 header('Location: index.php?action=post&id=' . $postId);
             }
@@ -237,8 +237,8 @@ try //
             {
                 $reported = 0;
                 $commentId = $_GET['id'];
-                $commentManager = new CommentManager();
-                $updateReportedCom = $commentManager->commentStatusAdmin($reported, $commentId);
+                $commentController = new CommentController();
+                $updateReportedCom = $commentController->commentStatusAdmin($reported, $commentId);
                 $succesMessage = 
                 header('Location: index.php?action=adminCom');
             }
@@ -256,7 +256,7 @@ try //
                 $re_pass =  $_POST['re_pass'];
                 $errorMessage=[];
 
-                $memberManager = new MemberManager();
+                $memberController = new MemberController();
 
                 if(!empty($username) AND 
                 !empty($pass) AND
@@ -264,7 +264,7 @@ try //
                 {
                     if(preg_match('#^[a-zA-Z0-9_]{2,16}$#i', ($username))) // Usrname conditions minimum 2 letters
                     {
-                        $verifyUsername = $memberManager->verify($username); // Verify if username exist or not
+                        $verifyUsername = $memberController->verify($username); // Verify if username exist or not
 
                         if($verifyUsername == 0) // if log doesnt exist in database
                         {
@@ -272,16 +272,16 @@ try //
                             {
                                 if($pass === $re_pass)
                                 {
-                                    $memberManager->subscribe($username, $pass);
+                                    $memberController->subscribe($username, $pass);
                                     $succesMessage = '<div class="alert alert-success" role="alert">
                                     Vous êtes enregistré(e), vous pouvez vous connecter!
                                     </div>';
-                                    $errorMessage="";
+                                    
                                     require('views/frontend/loginView.php');
                                 }
                                 else
                                 {
-                                    $errorMessage['differentPass'] = '<div class="alert alert-warning" role="alert">
+                                    $errorMessage = '<div class="alert alert-warning" role="alert">
                                     <i class="fas fa-exclamation-triangle"></i>
                                     Mot de passe différents
                                     </div>';
@@ -290,53 +290,47 @@ try //
                             }
                             else
                             {
-                                $errorMessage['password'] = '<div class="alert alert-warning" role="alert">
+                                $errorMessage = '<div class="alert alert-warning" role="alert">
                                 <i class="fas fa-exclamation-triangle"></i>
                                 Mot de passe 8 caractères minimum avec au moins 1 minuscule, 1 majuscule et 1 chiffre
                                 </div>';
-                                
+                                require('views/frontend/subscribeView.php');
                             }
                         }
                         else
                         {
-                            $errorMessage['existingLog'] = '<div class="alert alert-warning" role="alert">
+                            $errorMessage = '<div class="alert alert-warning" role="alert">
                             <i class="fas fa-exclamation-triangle"></i>
                             Ce pseudo existe déjà, choisir un autre ou vous connectez
                             </div>';
+                            require('views/frontend/subscribeView.php');
                             
                         }
                     }
                     else
                     {
-                        $errorMessage['log'] = '<div class="alert alert-warning" role="alert">
+                        $errorMessage = '<div class="alert alert-warning" role="alert">
                         <i class="fas fa-exclamation-triangle"></i>
                         Votre pseudo doit comporter au moins 2 lettres
                         </div>';
-                        
+                        require('views/frontend/subscribeView.php');
                     }
                 }
                 else
                 {
-                    $errorMessage['inputs'] = '<div class="alert alert-warning" role="alert">
+                    $errorMessage = '<div class="alert alert-warning" role="alert">
                     <i class="fas fa-exclamation-triangle"></i>
                     Veuillez renseigner tout les champs !
                     </div>';
-                    
+                    require('views/frontend/subscribeView.php');
                 }
             }
             else
             {
-                $errorMessage['submit'] = '<div class="alert alert-warning" role="alert">
+                $errorMessage = '<div class="alert alert-warning" role="alert">
                 <i class="fas fa-exclamation-triangle"></i>
                 Formulaire n\'a pas été envoyé
                 </div>';
-                
-            }
-            
-            if(!empty($errorMessage))
-            {
-                $_SESSION['errorMessage'] = $errorMessage;
-                
                 require('views/frontend/subscribeView.php');
             }
         }
@@ -344,9 +338,9 @@ try //
         //A POST DISPLAY
 
         elseif($_GET['action'] == 'post')
-        {
-            $postManager = new PostController();
-            $postManager->post();        
+        {   
+            $postController = new PostController();
+            $postController->post();        
         }
         
         //--------------------------------------------------------------------------------------->

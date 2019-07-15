@@ -1,9 +1,10 @@
 <?php
 /****************************************VIEWS/FRONTEND/SUBSCRIBEVIEW.PHP****************************************/
-session_start();
+
 ?>
 <?php $title = 'INSCRIPTION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
+
     <div class="mainSection">
         <div class="subscribeContainer container ">
             <section class="row">
@@ -17,7 +18,12 @@ session_start();
                     <input type="password" id="re_pass" name="re_pass" class="form-control" placeholder="Mot de passe" >
                     
                     <input class="btn btn-lg btn-dark btn-block" type="submit" name="submit" value="S'inscrire">
-                    
+                    <?php
+                    if(isset($errorMessage))
+                    {
+                        echo $errorMessage;
+                    }
+                    ?>
                     <div>
                         <a href="index.php?action=login"><p>Déjà enregistré ?</p></a>
                     </div>
@@ -26,6 +32,8 @@ session_start();
             </section>
         </div> 
     </div>
+    
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?> 

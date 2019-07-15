@@ -25,9 +25,9 @@ class Pagination
 
         $counts = ceil($total_values / $per_page);
 
-        $param1 = ($current_page - 1) * $per_page;
+        $start = ($current_page - 1) * $per_page;
 
-        $this->data = array_slice($values, $param1, $per_page);
+        $this->data = array_slice($values, $start, $per_page);
 
         for($x=1; $x<= $counts; $x++)
         {
@@ -43,6 +43,10 @@ class Pagination
     }
 }
 
+
+
+
+//TEST=====================
 $pag = new Pagination;
 $data = array("Youngbokz", "eazy", "mynigga", "whatsup");
 $numbers = $pag->paginate($data, 1);
@@ -53,7 +57,27 @@ foreach($result as $res)
     echo'<div>'.$res.'</div>';
 }
 
-foreach($numbers as $num)
-{
-    echo '<a href="pagination.php?page=' . $num . '">' .$num. '</a>';
+
+?>
+ <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <?php foreach($numbers as $num)
+{?>
+    <li class="page-item"><a class="page-link" href="pagination.php?page=<?= $num; ?>"><?= $num; ?></a></li>
+    <?php
 }
+?>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+

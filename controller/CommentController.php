@@ -94,12 +94,12 @@ class CommentController
         $postId = $_GET['id'];
         $author = $_POST['login'];
         $newMessage = $_POST['story'];
+
         
-
-
+        $sessionManager = new SessionManager();
+        
         $commentManager = new CommentManager();
-        
-        
+                
         if(isset($_POST['submit']))
         {
             if(isset($postId) AND $postId > 0)
@@ -107,32 +107,25 @@ class CommentController
                 if(!empty($newMessage))
                 {
                     $comment = $commentManager->addComment($postId, $author, $newMessage);
-                    header('Location: index.php?action=post&id='.$_GET['id']);
+                    header('Location: index.php?action=post&id='.$postId);
                 }
                 else
                 {
-                    
-                echo $errorMessageSend = '<div class="alert alert-warning" role="alert"><i class="fas fa-exclamation-triangle"></i>
-                                                Votre message est vide !
-                                        </div>';
-                header('Location: index.php?action=post&id='.$_GET['id']);
-                                
+                    $errorMessageSend = 'Votre message est vide !';
+                    $session = $sessionManager->setFlashMessage($errorMessageSend);
+            
+                    return $session;
+                    header('Location: index.php?action=post&id='.$postId);                
                 }
             }
             else
             {
-                
-                var_dump($errorMessageSend);
-                $errorMessageSend = '<p>Aucun identifiant de chapitre envoyé</p>';
-            
+                $errorMessageSend = '<p>Aucun identifiant de chapitre envoyé</p>';          
             }
         }
         else
         {
-            
-            var_dump($errorMessageSend);
-            $errorMessageSend = '<p>Formulaire n\'a pas été envoyé</p>';
-            
+            $errorMessageSend = '<p>Formulaire n\'a pas été envoyé</p>';            
         }
     }
 

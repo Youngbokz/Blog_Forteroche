@@ -14,16 +14,11 @@ session_start()
                     <label for="pass" class="sr-only">Entrer votre mot de passe</label>
                     <input type="password" id="pass" name="pass" class="form-control" placeholder="Mot de passe" >
                     <?php
-                    if(isset($errorMessage))
+                    if(isset($succesMessage))
                     {
-                        echo $errorMessage;
+                        echo $succesMessage;
                     }
                     ?>
-                    <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" value="remember-me"> se souvenir de moi
-                        </label>
-                    </div>
                     <input class="btn btn-lg btn-dark btn-block" type="submit" name="submit" value="Se connecter">
                     <p class="mt-5 mb-3 text-muted">© 2018-2019</p>
                 </form>

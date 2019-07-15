@@ -85,9 +85,37 @@ session_start();
                         <div class="addComInput col-md-8 form-group">
                             <button type="submit" name="submit" class="btn btn-outline-secondary">ENVOYER</button>
                         </div>
-                        
+                        <?php
+                        if(isset($_SESSION['flash']))
+                        {
+                        ?>
+                            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="toast-header">
+                                    
+                                    <strong class="mr-auto"><?= $_SESSION['flash']['message']; ?></strong>
+                                    
+                                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="toast-body">
+                                    <?= $_SESSION['flash']['message']; ?>
+                                </div>
+                            </div>
+                            <script>
+                                $(document).ready(function(){
+                                    $('.toast').toast('show');
+                                    setTimeout(() => {
+                                        $('.toast').hide('fade');
+                                    }, 3000);
+                                });
+                            <script>
+                        <?php
+                        }  
+                        ?>
                     </div>
                 </form>
+                
             </div>
     <?php
       }    

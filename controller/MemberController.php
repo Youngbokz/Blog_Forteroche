@@ -100,16 +100,12 @@
          */
         function verify($log)
         {
+            
+            
             $memberManager = new MemberManager();
             $verifyMember = $memberManager->verifyMember($log);
-            if($verifyMember === false)
-            {
-                $errorMessage = 'Ce pseudo existe déjà, en choisir un autre ou connectez vous';
-            }
-            else
-            {
-                return $verifyMember;
-            }
+            return $verifyMember;
+            
             
         }
         //-------------------------------------------->MEMBER

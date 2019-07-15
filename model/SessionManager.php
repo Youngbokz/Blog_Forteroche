@@ -42,17 +42,32 @@
             if(!empty($_SESSION['flash']))
             {
                 ?>
-                    <div class="alert alert-<?= $_SESSION['flash']['color']; ?> alert-dismissible fade show" role="alert">
-                    <strong><?= $_SESSION['flash']['message']; ?></strong> 
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        
+                        <strong class="mr-auto"><?= $_SESSION['flash']['message']; ?></strong>
+                        
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                        </button>
                     </div>
-                <?php
-                if('<span aria-hidden="false">&times;</span>')
-                {
-                    unset($_SESSION['flash']);
-                }
+                    <div class="toast-body">
+                        <?= $_SESSION['flash']['message']; ?>
+                    </div>
+                </div>
+                <script>
+                    $(document).ready(function(){
+                        $('.toast').toast('show');
+                        setTimeout(() => {
+                            $('.toast').hide('fade');
+                        }, 3000);
+                    });
+                <script>
+                   
+<?php
+                
             }
         }
     }
+?>
+    
