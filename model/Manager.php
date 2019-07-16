@@ -28,7 +28,7 @@
                 return $this->db;
             }
             catch(Exception $e){
-                die('Erreur : ' . $e->getMessage());
+                throw new Exception('Erreur : ' . $e->getMessage());
             }
             return $this->db;
         }

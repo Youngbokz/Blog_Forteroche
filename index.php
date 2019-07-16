@@ -35,14 +35,13 @@ try //
         elseif($_GET['action'] == "admin")
         {
             $blogController = new BlogController();
-            $count = $blogController->countAll();
+            $reportedComNumber = $blogController->countAllReportedCom();
+            $memberNumber = $blogController->countAllMember();
+            $postNumber = $blogController->countAllPost();
 
-            $memberNumber = $count['memberNumber'];
-            $postNumber = $count['postNumber'];
-            $reportedComNumber = $count['reportedComNumber'];
-            
             $memberController = new MemberController();
             $members = $memberController->lastMembersAdmin();
+            
             require('views/frontend/adminView.php');
 
         }
@@ -51,14 +50,13 @@ try //
         elseif($_GET['action'] == "adminUsers")
         {
             $blogController = new BlogController();
-            $count = $blogController->countAll();
-
-            $memberNumber = $count['memberNumber'];
-            $postNumber = $count['postNumber'];
-            $reportedComNumber = $count['reportedComNumber'];
+            $reportedComNumber = $blogController->countAllReportedCom();
+            $memberNumber = $blogController->countAllMember();
+            $postNumber = $blogController->countAllPost();
 
             $memberController = new MemberController();
             $members = $memberController->getMembersAdmin();
+
             require('views/frontend/adminUsersView.php');
         }
         //--------------------------------------------------------------------------------------->
@@ -66,11 +64,9 @@ try //
         elseif($_GET['action'] == "adminCreate")
         {
             $blogController = new BlogController();
-            $count = $blogController->countAll();
-
-            $memberNumber = $count['memberNumber'];
-            $postNumber = $count['postNumber'];
-            $reportedComNumber = $count['reportedComNumber'];
+            $reportedComNumber = $blogController->countAllReportedCom();
+            $memberNumber = $blogController->countAllMember();
+            $postNumber = $blogController->countAllPost();
 
             require('views/frontend/adminCreateView.php');
         }
@@ -86,11 +82,9 @@ try //
         elseif($_GET['action'] == "adminArticle")
         {
             $blogController = new BlogController();
-            $count = $blogController->countAll();
-
-            $memberNumber = $count['memberNumber'];
-            $postNumber = $count['postNumber'];
-            $reportedComNumber = $count['reportedComNumber'];
+            $reportedComNumber = $blogController->countAllReportedCom();
+            $memberNumber = $blogController->countAllMember();
+            $postNumber = $blogController->countAllPost();
 
             $postController = new PostController();
             $posts = $postController->listPostsAdmin();
@@ -105,11 +99,9 @@ try //
             if(isset($_GET['id']) && $_GET['id'] > 0)
             {
                 $blogController = new BlogController();
-                $count = $blogController->countAll();
-
-                $memberNumber = $count['memberNumber'];
-                $postNumber = $count['postNumber'];
-                $reportedComNumber = $count['reportedComNumber'];
+                $reportedComNumber = $blogController->countAllReportedCom();
+                $memberNumber = $blogController->countAllMember();
+                $postNumber = $blogController->countAllPost();
 
                 $postController = new PostController();
                 $post = $postController->postAdmin($_GET['id']);
@@ -158,11 +150,9 @@ try //
         elseif($_GET['action'] == "adminCom")
         {
             $blogController = new BlogController();
-            $count = $blogController->countAll();
-
-            $memberNumber = $count['memberNumber'];
-            $postNumber = $count['postNumber'];
-            $reportedComNumber = $count['reportedComNumber'];
+            $reportedComNumber = $blogController->countAllReportedCom();
+            $memberNumber = $blogController->countAllMember();
+            $postNumber = $blogController->countAllPost();
 
             $commentController = new CommentController();
             $comments = $commentController->reportedCommentAdminList();
@@ -206,9 +196,7 @@ try //
         //S'INSCRIRE (SUBSCRIBE) PAGE DISPLAY
 
         elseif($_GET['action'] == "subscribe") // This action send us to loginView 
-        {
-            $errorMessage="";
-            
+        { 
             require('views/frontend/subscribeView.php');
         }
         //--------------------------------------------------------------------------------------->

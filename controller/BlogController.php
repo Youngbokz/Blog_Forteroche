@@ -21,30 +21,51 @@
     
     /**
      * BlogController class
-     * Allowing to connect subscribe, display in Blog
+     * Allowing count members, reported comments and posted, display in admin dashboard
      */
 
     class BlogController  
     {
-        //-------------------------------------------->ADMIN / MEMBER
         /**
          * countAll
          * 
-         * We call this function wich allowed us to count members, posts and reported comments 
+         * We call this function wich allowed us to count members 
          *
-         * @return compact('memberNumber', 'postNumber', 'reportedComNumber');
+         * @return $memberNumber
          */
-        function countAll()
+        function countAllMember()
         {
             $membersManager = new MemberManager(); 
             $memberNumber = $membersManager->countMembers();
-
+  
+            return $memberNumber;
+        }
+        /**
+         * countAllPost
+         *
+         * We call this function wich allowed us to count posts
+         * 
+         * @return $postNumber
+         */
+        function countAllPost()
+        {
             $postsManager = new PostManager(); 
             $postNumber = $postsManager->countPost();
 
+            return $postNumber;
+        }
+        /**
+         * countAllReportedCom
+         *
+         * We call this function wich allowed us to count reported comments
+         * 
+         * @return $reportedComNumber
+         */
+        function countAllReportedCom()
+        {
             $commentsManager = new CommentManager();
             $reportedComNumber = $commentsManager->countReportedComment();
 
-            return compact('memberNumber', 'postNumber', 'reportedComNumber');
+            return $reportedComNumber;
         }
     }

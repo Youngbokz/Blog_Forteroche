@@ -111,11 +111,10 @@ class CommentController
                 }
                 else
                 {
-                    $errorMessageSend = 'Votre message est vide !';
-                    $session = $sessionManager->setFlashMessage($errorMessageSend);
-            
-                    return $session;
-                    header('Location: index.php?action=post&id='.$postId);                
+                    header('Location: index.php?action=post&id='.$postId);
+                    
+                    $errorMessageSend = 'Message vide, veuillez entrer un commentaire !';
+                    $session = $sessionManager->setFlashMessage($errorMessageSend);               
                 }
             }
             else

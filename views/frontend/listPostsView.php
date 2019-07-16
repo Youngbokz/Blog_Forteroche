@@ -11,25 +11,7 @@ session_start();
                 <span>[Découvrir tout les épisodes]</span>
                 <h1>BILLET SIMPLE POUR L'ALASKA</h1>
             </div>
-            <div class="row">
-                    <?php
-                    if(isset($_SESSION['flash']))
-                    {
-                    ?>
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <strong><?= $_SESSION['flash']['message']; ?></strong> 
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>         
-                    <?php 
-                        if('<span aria-hidden="false">&times;</span>')
-                        {
-                            unset($_SESSION['flash']);
-                        }
-                    }
-                    ?>
-                    
+            <div class="row">  
                     <?php
                     while ($data = $posts->fetch())
                     {

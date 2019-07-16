@@ -6,6 +6,7 @@ session_start();
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
+
 <div class="mainSection" id="top_mainSection_PostView">
     <section> <!--Selected post-->
         <div class="container">
@@ -19,7 +20,6 @@ session_start();
         </div>
     </section>
     <section class="post_commentSection container-fluid">
-    
             <div class="post_commentsContainer container">
                 <div class="row">
                     <div class="col-md-8">
@@ -84,36 +84,9 @@ session_start();
                         </div>
                         <div class="addComInput col-md-8 form-group">
                             <button type="submit" name="submit" class="btn btn-outline-secondary">ENVOYER</button>
-                        </div>
-                        <?php
-                        if(isset($_SESSION['flash']))
-                        {
-                        ?>
-                            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                                <div class="toast-header">
-                                    
-                                    <strong class="mr-auto"><?= $_SESSION['flash']['message']; ?></strong>
-                                    
-                                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="toast-body">
-                                    <?= $_SESSION['flash']['message']; ?>
-                                </div>
-                            </div>
-                            <script>
-                                $(document).ready(function(){
-                                    $('.toast').toast('show');
-                                    setTimeout(() => {
-                                        $('.toast').hide('fade');
-                                    }, 3000);
-                                });
-                            <script>
-                        <?php
-                        }  
-                        ?>
+                        </div>                
                     </div>
+                    
                 </form>
                 
             </div>

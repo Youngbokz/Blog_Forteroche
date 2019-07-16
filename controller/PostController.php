@@ -127,7 +127,7 @@
             $postManager = new PostManager(); 
             $postUpdate = $postManager->editPost($chapter, $title, $content, $postId); 
             
-            header('Location: index.php?action=goEditArticle&id=' . $postId);
+            header('Location: index.php?action=adminArticle');
             
         }
         
