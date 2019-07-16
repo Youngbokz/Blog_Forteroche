@@ -53,6 +53,12 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                     <div class="mainColorBg card-header">
                         <h4>CRÉEZ</h4>
                     </div>
+                    <?php
+                    if(isset($errorMessage))
+                    {
+                        echo $errorMessage;
+                    }
+                    ?>
                     <div class="card-body">
                         <form method="post" action="index.php?action=addpost" class="col-md-12">
                             <div class="form-group">
@@ -73,18 +79,13 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                             
                         </form>
                     </div>
-                </div>
+                </div>                
             </div>
         </div>
     </div>
 </section>
 
-<div class="mainAdminContainer container-fluid">
-                        <div id="newPost_Admin" class="container">
-                            
-                        </div>  
-                    </div>
-                </div> 
+
 <?php
 }
 else

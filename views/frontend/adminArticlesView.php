@@ -51,6 +51,10 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
             <!--------------------Pannel: Website Overview-------------------->
             <div class="adminArticles col-md-9">
             <?php
+            if(isset($succesMessage))
+            {
+                echo $succesMessage;
+            }
             while ($data = $posts->fetch())
             {
             ?>

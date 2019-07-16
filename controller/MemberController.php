@@ -84,7 +84,7 @@
          *
          * @return void
          */
-        function subscribe($log, $password)
+        function subscribeMember($log, $password)
         {
             $memberManager = new MemberManager();
             $member = $memberManager->addMember($log, $password);
@@ -98,13 +98,93 @@
          *
          * @return $member
          */
-        function verify($log)
+        function memberRegistration()
         {
-            
-            
             $memberManager = new MemberManager();
-            $verifyMember = $memberManager->verifyMember($log);
-            return $verifyMember;
+            $username =  $_POST['username'];
+            $pass =  $_POST['pass'];
+            $re_pass =  $_POST['re_pass'];
+
+            if(isset ($_POST['submit']))
+            {
+                if(!empty($username) AND 
+                !empty($pass) AND
+                !empty($re_pass))
+                {
+                    if(preg_match('#^[a-zA-Z0-9_]{2,16}$#i', ($username))) // Usrname conditions minimum 2 letters
+                    {
+                        $verifyUsername = $memberManager->verifyIfMemberExist($username);
+                        //$verifyUsername = $memberController->verify($username); // Verify if username exist or not
+
+                        if($verifyUsername == 0) // if log doesnt exist in database
+                        {
+                            if(preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$#', ($pass))) //Password must have 1 lower and upper case and a number
+                            {
+                                if($pass === $re_pass)
+                                {
+                                    $this->subscribeMember($username, $pass);
+                                    $succesMessage = '<div class="alert alert-success" role="alert">
+                                    Vous êtes enregistré(e), vous pouvez vous connecter!
+                                    </div>';
+                                    
+                                    require('views/frontend/loginView.php');
+                                }
+                                else
+                                {
+                                    $errorMessage = '<div class="alert alert-warning" role="alert">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    Mot de passe différents
+                                    </div>';
+                                    require('views/frontend/subscribeView.php');
+                                }
+                            }
+                            else
+                            {
+                                $errorMessage = '<div class="alert alert-warning" role="alert">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Mot de passe 8 caractères minimum avec au moins 1 minuscule, 1 majuscule et 1 chiffre
+                                </div>';
+                                require('views/frontend/subscribeView.php');
+                            }
+                        }
+                        else
+                        {
+                            $errorMessage = '<div class="alert alert-warning" role="alert">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Ce pseudo existe déjà, choisir un autre ou vous connectez
+                            </div>';
+                            require('views/frontend/subscribeView.php');
+                            
+                        }
+                    }
+                    else
+                    {
+                        $errorMessage = '<div class="alert alert-warning" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Votre pseudo doit comporter au moins 2 lettres
+                        </div>';
+                        require('views/frontend/subscribeView.php');
+                    }
+                }
+                else
+                {
+                    $errorMessage = '<div class="alert alert-warning" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Veuillez renseigner tout les champs !
+                    </div>';
+                    require('views/frontend/subscribeView.php');
+                }
+            }
+            else
+            {
+                $errorMessage = '<div class="alert alert-warning" role="alert">
+                <i class="fas fa-exclamation-triangle"></i>
+                Formulaire n\'a pas été envoyé
+                </div>';
+                require('views/frontend/subscribeView.php');
+            }
+
+            ;
             
             
         }
@@ -119,14 +199,55 @@
          *
          * @return ($member['log'] == $log AND $isPasswordCorrect === $right)
          */
-        function verifyConnection($log, $password)
+        function verifyConnection()
         {
             $memberManager = new MemberManager();
-            $member = $memberManager->getMember($log);
-            
-            $isPasswordCorrect = password_verify($password, $member['password']);
-            $right = true;  
-            
-            return ($member['log'] == $log AND $isPasswordCorrect === $right);  
+            // Add var
+            $loginConnex = htmlspecialchars($_POST['login']);
+            $passConnex = htmlspecialchars($_POST['pass']);
+ 
+            if(isset($_POST['submit']))
+            {
+                if(!empty($loginConnex) AND !empty($passConnex))
+                {
+                    $verifyMember = $memberManager->getMember($loginConnex);
+                    $isPasswordCorrect = password_verify($passConnex, $verifyMember['password']);
+                    $right = true;  
+                    
+                     // Check if password in match with the one in database
+                    if($verifyMember['log'] == $loginConnex AND $isPasswordCorrect === $right)
+                    {
+                        session_start();
+                        $result = $this->member($loginConnex);
+                        $_SESSION['login'] = $result['log'];
+                        $_SESSION['id'] = $result['id'];
+                        $_SESSION['registration_date'] = $result['registration_date_fr'];
+
+                        header('location: index.php?action=home');
+                    }
+                    else
+                    {
+                        
+                        $errorMessage = '<div class="alert alert-warning" role="alert">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            Mauvais mot de passe ou pseudo inconnue
+                                        </div>';
+                        require('views/frontend/loginView.php');
+                    }
+                }
+                else
+                {
+                    $errorMessage = '<div class="alert alert-warning" role="alert">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            Veuillez renseignez tout les champs
+                                        </div>';
+                    require('views/frontend/loginView.php');
+                }
+            }
+            else
+            {
+                $errorMessage = '<p>Formulaire n\'a pas été envoyé</p>';
+                require('views/frontend/loginView.php');
+            }
         }
     }

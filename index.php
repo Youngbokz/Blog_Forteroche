@@ -23,12 +23,12 @@ try //
         if($_GET['action'] == "home")
         {
             $postController = new PostController();
-            $homeLast = $postController->lastPost();
+            $lastPost = $postController->lastPost();
 
-            $lastPost = $homeLast['lastPost'];
-            $lastComments = $homeLast['lastComments'];
-        
-            require('views/frontend/homeView.php');
+            $commentController = new CommentController();
+            $lastComments = $commentController->lastComments();
+
+            require_once('views/frontend/homeView.php');
         }
         //--------------------------------------------------------------------------------------->
         //ADMINISTRATEUR (ADMIN) PAGE DISPLAY
@@ -96,22 +96,17 @@ try //
         //ADMIN SEES EDIT PAGE
         elseif($_GET['action'] == 'goEditArticle')
         {
-            if(isset($_GET['id']) && $_GET['id'] > 0)
-            {
-                $blogController = new BlogController();
-                $reportedComNumber = $blogController->countAllReportedCom();
-                $memberNumber = $blogController->countAllMember();
-                $postNumber = $blogController->countAllPost();
+            
+            $blogController = new BlogController();
+            $reportedComNumber = $blogController->countAllReportedCom();
+            $memberNumber = $blogController->countAllMember();
+            $postNumber = $blogController->countAllPost();
+            
+            
+            $postController = new PostController();
+            $post = $postController->postAdmin();  
 
-                $postController = new PostController();
-                $post = $postController->postAdmin($_GET['id']);
-
-                require('views/frontend/adminEditView.php');
-            }
-            else 
-            {
-                echo 'Erreur : aucun identifiant de post envoyé'; // Error message
-            }
+            require_once('views/frontend/adminEditView.php');
         }
         
         //--------------------------------------------------------------------------------------->
@@ -119,31 +114,9 @@ try //
         elseif($_GET['action'] == "editPost")
         {
             $postController = new PostController();
-            $chapter = $_POST['newChapter'];
-            $title = htmlspecialchars($_POST['newTitle']);
-            $content = $_POST['newContent'];
-            $postId = $_GET['id'];
-            
-            if(isset($postId) AND $postId >0)
-            {
-                if(isset($_POST['edit']))
-                {   
-                    if(!empty($chapter) AND !empty($title) AND !empty($content))
-                    {
-                        $postController->updatePost($chapter, $title, $content, $postId);
-                    }
-                    else
-                    {
-                        echo'Erreur d\'envoie veuillez réessayer';
-                    }
-                }
-                elseif(isset($_POST['delete']))
-                {
-                    $postController->erasePost($postId);
-                }
-            }
-            
-            
+
+            $postController->updatePost();
+            $postController->erasePost();
         }
         //--------------------------------------------------------------------------------------->
         //ADMIN SEES REPORTED COMENTS PAGE
@@ -168,7 +141,7 @@ try //
             $postController = new PostController();
             $posts = $postController->listPosts();
 
-            require_once('views/frontend/listPostsView.php');
+            require('views/frontend/listPostsView.php');
             
         }
         //--------------------------------------------------------------------------------------->
@@ -183,14 +156,8 @@ try //
 
         elseif($_GET['action'] == "deleteReportedCom") // This action send us to loginView 
         {
-            if(isset($_GET['id']) AND $_GET['id'] > 0)
-            {
-                
-                    $commentId = $_GET['id'];
-                    $commentController = new CommentController();
-                    $deleteReported = $commentController->eraseRepotedCom($commentId); 
-                
-            }
+            $commentController = new CommentController();
+            $commentController->eraseReportedCom(); 
         }
         //--------------------------------------------------------------------------------------->
         //S'INSCRIRE (SUBSCRIBE) PAGE DISPLAY
@@ -204,123 +171,25 @@ try //
 
         elseif($_GET['action'] == "reportComment")
         {
-            if(isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['postId']) && $_GET['postId'] > 0)
-            {
-                $reported = 1;
-                $commentId = $_GET['id'];
-                $postId = $_GET['postId'];
-                $commentController = new CommentController();
-                $updateReported = $commentController->commentStatus($reported, $commentId, $postId);
-                
-                header('Location: index.php?action=post&id=' . $postId);
-            }
+            $commentController = new CommentController();
+            $commentController->commentStatus();
         }
         //--------------------------------------------------------------------------------------->
         //RESTORE REPORTED COMMENT ADMIN
 
         elseif($_GET['action'] == "restoreReportedCom")
         {
-            
-            if(isset($_GET['id']) && $_GET['id'] > 0)
-            {
-                $reported = 0;
-                $commentId = $_GET['id'];
-                $commentController = new CommentController();
-                $updateReportedCom = $commentController->commentStatusAdmin($reported, $commentId);
-                $succesMessage = 
-                header('Location: index.php?action=adminCom');
-            }
+            $commentController = new CommentController();
+            $commentController->commentStatusAdmin();
         }
         //--------------------------------------------------------------------------------------->
         //SUBMIT IN SUBSCRIBE PAGE 
 
         elseif($_GET['action'] == "register")
         {
-            if(isset ($_POST['submit']))
-            {
-                // Add var 
-                $username =  $_POST['username'];
-                $pass =  $_POST['pass'];
-                $re_pass =  $_POST['re_pass'];
-                $errorMessage=[];
+            $memberController = new MemberController();
 
-                $memberController = new MemberController();
-
-                if(!empty($username) AND 
-                !empty($pass) AND
-                !empty($re_pass))
-                {
-                    if(preg_match('#^[a-zA-Z0-9_]{2,16}$#i', ($username))) // Usrname conditions minimum 2 letters
-                    {
-                        $verifyUsername = $memberController->verify($username); // Verify if username exist or not
-
-                        if($verifyUsername == 0) // if log doesnt exist in database
-                        {
-                            if(preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$#', ($pass))) //Password must have 1 lower and upper case and a number
-                            {
-                                if($pass === $re_pass)
-                                {
-                                    $memberController->subscribe($username, $pass);
-                                    $succesMessage = '<div class="alert alert-success" role="alert">
-                                    Vous êtes enregistré(e), vous pouvez vous connecter!
-                                    </div>';
-                                    
-                                    require('views/frontend/loginView.php');
-                                }
-                                else
-                                {
-                                    $errorMessage = '<div class="alert alert-warning" role="alert">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                    Mot de passe différents
-                                    </div>';
-                                    
-                                }
-                            }
-                            else
-                            {
-                                $errorMessage = '<div class="alert alert-warning" role="alert">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                Mot de passe 8 caractères minimum avec au moins 1 minuscule, 1 majuscule et 1 chiffre
-                                </div>';
-                                require('views/frontend/subscribeView.php');
-                            }
-                        }
-                        else
-                        {
-                            $errorMessage = '<div class="alert alert-warning" role="alert">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            Ce pseudo existe déjà, choisir un autre ou vous connectez
-                            </div>';
-                            require('views/frontend/subscribeView.php');
-                            
-                        }
-                    }
-                    else
-                    {
-                        $errorMessage = '<div class="alert alert-warning" role="alert">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        Votre pseudo doit comporter au moins 2 lettres
-                        </div>';
-                        require('views/frontend/subscribeView.php');
-                    }
-                }
-                else
-                {
-                    $errorMessage = '<div class="alert alert-warning" role="alert">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    Veuillez renseigner tout les champs !
-                    </div>';
-                    require('views/frontend/subscribeView.php');
-                }
-            }
-            else
-            {
-                $errorMessage = '<div class="alert alert-warning" role="alert">
-                <i class="fas fa-exclamation-triangle"></i>
-                Formulaire n\'a pas été envoyé
-                </div>';
-                require('views/frontend/subscribeView.php');
-            }
+            $verifyUsername = $memberController->memberRegistration();
         }
         //--------------------------------------------------------------------------------------->
         //A POST DISPLAY
@@ -336,59 +205,8 @@ try //
 
         elseif($_GET['action'] == 'connect')
         {
-            $blogController = new BlogController();
             $memberController = new MemberController();
-            if(isset($_POST['submit']))
-            {
-                // Add var
-                $loginConnex = htmlspecialchars($_POST['login']);
-                $passConnex = htmlspecialchars($_POST['pass']);
-
-                if(!empty($loginConnex) AND !empty($passConnex))
-                {
-                    
-                    $verifyLogin = $memberController->verifyConnection($loginConnex, $passConnex);
-
-                     // Check if password in match with the one in database
-                    if($verifyLogin)
-                    {
-                        session_start();
-                        $result = $memberController->member($loginConnex);
-                        $_SESSION['login'] = $result['log'];
-                        $_SESSION['id'] = $result['id'];
-                        $_SESSION['registration_date'] = $result['registration_date_fr'];
-
-                        header('location: index.php?action=home');
-                    }
-                    else
-                    {
-                        
-                        $errorMessage = '<div class="alert alert-warning" role="alert">
-                                            <i class="fas fa-exclamation-triangle"></i>
-                                            Mauvais mot de passe ou pseudo inconnue
-                                        </div>';
-                                        
-                        
-                        require('views/frontend/loginView.php');
-                    }
-                }
-                else
-                {
-                    $errorMessage = '<div class="alert alert-warning" role="alert">
-                                            <i class="fas fa-exclamation-triangle"></i>
-                                            Veuillez renseignez tout les champs
-                                        </div>';
-                                       
-                    
-                    require('views/frontend/loginView.php');
-                }
-            }
-            else
-            {
-                $errorMessage = '<p>Formulaire n\'a pas été envoyé</p>';
-                
-                require('views/frontend/loginView.php');
-            }
+            $verifyLogin = $memberController->verifyConnection();
         }
         //--------------------------------------------------------------------------------------->
         //DISCONNECT PAGE DISPLAY
@@ -410,27 +228,9 @@ try //
         //ADMIN ADD A POST
         elseif($_GET['action'] == 'addpost')
         {
-            if(isset($_POST['submit']))
-            {
-                // Add var
-                $newTitle = htmlspecialchars($_POST['title']);
-                $newChapter = htmlspecialchars($_POST['chapter']);
-                $newContent = $_POST['content'];
-                if(!empty($newTitle) && !empty($newChapter) && !empty($newContent))
-                {
-                    $postController = new PostController();
-                    $postController->newPost($newTitle, $newChapter, $newContent);
-                    
-                }
-                else
-                {
-                    throw new Exception('<p>Veuillez renseigner les différents champs</p>');
-                }
-            }
-            else
-            {
-                throw new Exception('Formulaire n\'a pas été envoyé');
-            }
+            $postController = new PostController();
+            $postController->newPost();
+            
         }
         else
         {
@@ -440,15 +240,13 @@ try //
     }
     else // Even in this case display home page 
     {
-        
         $postController = new PostController();
-        $homeLast = $postController->lastPost();
+        $lastPost = $postController->lastPost();
 
-        $lastPost = $homeLast['lastPost'];
-        $lastComments = $homeLast['lastComments'];
-        
-        require('views/frontend/homeView.php');
-        
+        $commentController = new CommentController();
+        $lastComments = $commentController->lastComments();  
+
+        require_once('views/frontend/homeView.php');
     }  
     
 }

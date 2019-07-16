@@ -91,19 +91,41 @@
          * 
          * @return void
          */
-        function newPost($title, $chapter, $content)
+        function newPost()
         {
             $postManager = new PostManager();
-            $post = $postManager->addPost($title, $chapter, $content);
-
-            header('Location: index.php?action=adminArticle');
+            // Add var
+            $newTitle = htmlspecialchars($_POST['title']);
+            $newChapter = htmlspecialchars($_POST['chapter']);
+            $newContent = $_POST['content'];
 
             /*$sessionManager = new SessionManager();
             $message = "Message posté avec succès";
             $color = "success";
             $sessionManager->setFlashMessage($message, $color);
             $sessionManager->showFlash(); */
-            
+            if(isset($_POST['submit']))
+            {
+                if(!empty($newTitle) && !empty($newChapter) && !empty($newContent))
+                { 
+                    $postManager->addPost($newTitle, $newChapter, $newContent);
+                    header('Location: index.php?action=adminArticle');
+                }
+                else
+                {
+                    $errorMessage = '<div class="alert alert-danger" role="alert">
+                                <i class="fas fa-exclamation-triangle"></i> Veuillez renseigner les différents champs
+                            </div>';
+                    require('views/frontend/adminCreateView.php');
+                }
+            }
+            else
+            {
+                $errorMessage = '<div class="alert alert-danger" role="alert">
+                                <i class="fas fa-exclamation-triangle"></i> Formulaire n\'a pas été envoyé
+                            </div>';
+                require('views/frontend/adminCreateView.php');
+            }
         }
         
         
@@ -122,13 +144,27 @@
          *
          * @return void
          */
-        function updatePost($chapter, $title, $content, $postId)
+        function updatePost()
         {
             $postManager = new PostManager(); 
-            $postUpdate = $postManager->editPost($chapter, $title, $content, $postId); 
+            $chapter = $_POST['newChapter'];
+            $title = htmlspecialchars($_POST['newTitle']);
+            $content = $_POST['newContent'];
+            $postId = $_GET['id'];
             
-            header('Location: index.php?action=adminArticle');
-            
+            if(isset($postId) AND $postId >0)
+            {
+                if(isset($_POST ['edit']))
+                {
+                    $postManager->editPost($chapter, $title, $content, $postId); 
+                
+                    header('Location: index.php?action=adminArticle');
+                }
+                else
+                {
+                    echo'Erreur d\'envoie veuillez réessayer';
+                }
+            }
         }
         
         //-------------------------------------------->POST / ADMIN
@@ -139,12 +175,24 @@
          * 
          * @return void
          */
-        function erasePost($postId) 
+        function erasePost() 
         {
             $postManager = new PostManager(); // Create object
-            $deletedPost = $postManager->deletePost($postId);
+            $postId = $_GET['id'];
 
-            header('Location: index.php?action=goEditArticle&id=' . $postId);
+            if(isset($postId) AND $postId >0)
+            {
+                if(isset($_POST['delete']))
+                {
+                    $postManager->deletePost($postId);
+                    $succesMessage = '<div class="alert alert-success" role="alert">
+                                    Chapitre bien supprimé !
+                                    </div>';
+                                    
+                                    //header('views/frontend/adminArticlesView.php');
+                    header('Location: index.php?action=goEditArticle&id=' . $postId);
+                } 
+            }   
         }
 
         //-------------------------------------------->POST
@@ -156,15 +204,11 @@
          * @return compact('lastPost', 'lastComments')
          */
         function lastPost()
-        {
+        { 
             $lastPostManager = new PostManager(); // Create object
             $lastPost = $lastPostManager->getLastPost(); // We call this function wich allowed us to show the last post by date
             
-            $lastCommentsManager = new CommentManager(); // Create object
-            $lastComments = $lastCommentsManager->allLastComments(); // We call this function wich allowed us to show all last comments by date
-            
-            return compact('lastPost', 'lastComments');
-            
+            return $lastPost;
         }
 
         //-------------------------------------------->POST
@@ -180,7 +224,6 @@
             $postsManager = new PostManager(); 
             $posts = $postsManager->getPosts(); 
 
-
             return $posts;
         }
 
@@ -192,14 +235,25 @@
          *
          * @return $post
          */
-        function postAdmin($postId)
+        function postAdmin()
         {
             $postManager = new PostManager();
-            $post = $postManager->getPost($postId);
+            $postId = $_GET['id'];
             
-            return $post;
-            
-        } 
-
+                if(isset($postId) && $postId > 0)
+                {                 
+                        $post = $postManager->getPost($postId);
+                    
+                        return $post;     
         
+                }
+                else 
+                {
+                    $errorMessage = '<div class="alert alert-warning" role="alert">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        Pas d\'identifiant. Pas de chapitre à éditer !
+                                        </div>';
+                                        require('views/frontend/adminEditView.php');
+                }                 
+        } 
     }

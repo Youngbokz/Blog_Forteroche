@@ -26,6 +26,22 @@
 
 class CommentController  
 {
+
+    /**
+     * lastComments
+     *
+     * Show all last comments whaterver the post's id is
+     * 
+     * @return $lastComments
+     */
+    function lastComments()
+    {
+        $lastCommentsManager = new CommentManager(); // Create object
+        $lastComments = $lastCommentsManager->allLastComments(); // We call this function wich allowed us to show all last comments by date
+        
+        return $lastComments;  
+    }
+
     //-------------------------------------------->ADMIN / COMMENTS
     /**
      * reportedCommentAdminList
@@ -53,27 +69,40 @@ class CommentController
      * 
      * @return void
      */
-    function commentStatusAdmin($reported, $commentId) 
+    function commentStatusAdmin() 
     {
         $commentManager = new CommentManager();
-        $updateReported = $commentManager->updateComStatus($reported, $commentId);
+        $reported = 0;
+        $commentId = $_GET['id'];
+
+        if(isset($_GET['id']) && $_GET['id'] > 0)
+        {
+            $commentManager->updateComStatus($reported, $commentId);
+
+            header('Location: index.php?action=adminCom');
+        }
+        
 
     }
 
     //-------------------------------------------->COMMENT / ADMIN
     /**
-     * eraseRepotedCom
+     * eraseReportedCom
      *
      * @param  int $commentId We call this function wich allowed us to delete reported comment 
      *
      * @return void
      */
-    function eraseRepotedCom($commentId) 
+    function eraseReportedCom() 
     {
         $commentManager = new CommentManager();
-        $deletedReported = $commentManager->deleteReportedComment($commentId);
+        $commentId = $_GET['id'];
+        if(isset($_GET['id']) AND $_GET['id'] > 0)
+        {
+            $commentManager->deleteReportedComment($commentId);
 
-        header('Location: index.php?action=adminCom');
+            header('Location: index.php?action=adminCom');      
+        }   
     }
 
     //-------------------------------------------->COMMENT
@@ -140,9 +169,18 @@ class CommentController
      * 
      * @return void
      */
-    function commentStatus($reported, $commentId, $postId) 
+    function commentStatus() 
     {
         $commentManager = new CommentManager();
-        $updateReported = $commentManager->updateComStatus($reported, $commentId); 
+        $reported = 1;
+        $commentId = $_GET['id'];
+        $postId = $_GET['postId'];
+
+        if(isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['postId']) && $_GET['postId'] > 0)
+            {
+                $updateReported = $commentManager->updateComStatus($reported, $commentId);
+                
+                header('Location: index.php?action=post&id=' . $postId);
+            }   
     }
 }

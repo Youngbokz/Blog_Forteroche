@@ -51,7 +51,13 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
             </div>
             
             <div class="col-md-9">
-                <?php if($post != NULL)
+                <?php if(isset($errorMessage))
+                {
+                
+                    echo $errorMessage;
+                
+                }
+                else
                 {
                 ?>
                     <div class="card">
@@ -81,14 +87,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                             </form>
                         </div>
                     </div>
-                <?php 
-                }
-                else
-                {
-                    echo'<div class="alert alert-warning" role="alert">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    Chapitre supprimé ou inexistant 
-                    </div>';
+                <?php
                 }
                 ?>
             </div>       

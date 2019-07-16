@@ -19,6 +19,12 @@ session_start()
                         echo $succesMessage;
                     }
                     ?>
+                    <?php
+                    if(isset($errorMessage))
+                    {
+                        echo $errorMessage;
+                    }
+                    ?>
                     <input class="btn btn-lg btn-dark btn-block" type="submit" name="submit" value="Se connecter">
                     <p class="mt-5 mb-3 text-muted">© 2018-2019</p>
                 </form>

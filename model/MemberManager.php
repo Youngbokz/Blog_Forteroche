@@ -12,13 +12,13 @@
     class MemberManager extends Manager
     {
         /**
-         * verifyMember
+         * verifyIfMemberExist
          *
          * @param  string $log Allows to verify if member already exist by its log
          *
          * @return $verifyLog
          */
-        public function verifyMember($log) 
+        public function verifyIfMemberExist($log) 
         {
             $db = $this->dbConnect();
             $req = $db->prepare('SELECT log FROM members WHERE log = ?');
