@@ -23,52 +23,29 @@ try //
         if($_GET['action'] == "home")
         {
             $postController = new PostController();
-            $lastPost = $postController->lastPost();
-
-            $commentController = new CommentController();
-            $lastComments = $commentController->lastComments();
-
-            require_once('views/frontend/homeView.php');
+            $postController->lastPostAndComments();
         }
         //--------------------------------------------------------------------------------------->
-        //ADMINISTRATEUR (ADMIN) PAGE DISPLAY
+        //ADMIN DASHBOARD
         elseif($_GET['action'] == "admin")
         {
             $blogController = new BlogController();
-            $reportedComNumber = $blogController->countAllReportedCom();
-            $memberNumber = $blogController->countAllMember();
-            $postNumber = $blogController->countAllPost();
-
-            $memberController = new MemberController();
-            $members = $memberController->lastMembersAdmin();
-            
-            require('views/frontend/adminView.php');
-
+            $blogController->adminDashboard();
         }
         //--------------------------------------------------------------------------------------->
-        //ADMIN SEES USERS PAGE
+        //ADMIN: MEMBERS PAGE
         elseif($_GET['action'] == "adminUsers")
         {
-            $blogController = new BlogController();
-            $reportedComNumber = $blogController->countAllReportedCom();
-            $memberNumber = $blogController->countAllMember();
-            $postNumber = $blogController->countAllPost();
-
             $memberController = new MemberController();
-            $members = $memberController->getMembersAdmin();
-
-            require('views/frontend/adminUsersView.php');
+            $memberController->getMembersAdmin();
         }
         //--------------------------------------------------------------------------------------->
         //ADMIN SEES CREATING CHAPTER PAGE
         elseif($_GET['action'] == "adminCreate")
         {
             $blogController = new BlogController();
-            $reportedComNumber = $blogController->countAllReportedCom();
-            $memberNumber = $blogController->countAllMember();
-            $postNumber = $blogController->countAllPost();
-
-            require('views/frontend/adminCreateView.php');
+            $requirePage = 'views/frontend/adminCreateView.php';
+            $blogController->sideNavAdminData($requirePage);
         }
         //--------------------------------------------------------------------------------------->
         //ABOUT ME PAGE
@@ -81,32 +58,15 @@ try //
         //ADMIN SEES LIST POSTS 
         elseif($_GET['action'] == "adminArticle")
         {
-            $blogController = new BlogController();
-            $reportedComNumber = $blogController->countAllReportedCom();
-            $memberNumber = $blogController->countAllMember();
-            $postNumber = $blogController->countAllPost();
-
             $postController = new PostController();
-            $posts = $postController->listPostsAdmin();
-
-
-            require('views/frontend/adminArticlesView.php');
+            $postController->listPostsAdmin();
         }
         //--------------------------------------------------------------------------------------->
         //ADMIN SEES EDIT PAGE
         elseif($_GET['action'] == 'goEditArticle')
         {
-            
-            $blogController = new BlogController();
-            $reportedComNumber = $blogController->countAllReportedCom();
-            $memberNumber = $blogController->countAllMember();
-            $postNumber = $blogController->countAllPost();
-            
-            
             $postController = new PostController();
-            $post = $postController->postAdmin();  
-
-            require_once('views/frontend/adminEditView.php');
+            $postController->postEditAdmin();
         }
         
         //--------------------------------------------------------------------------------------->
@@ -114,7 +74,6 @@ try //
         elseif($_GET['action'] == "editPost")
         {
             $postController = new PostController();
-
             $postController->updatePost();
             $postController->erasePost();
         }
@@ -122,16 +81,8 @@ try //
         //ADMIN SEES REPORTED COMENTS PAGE
         elseif($_GET['action'] == "adminCom")
         {
-            $blogController = new BlogController();
-            $reportedComNumber = $blogController->countAllReportedCom();
-            $memberNumber = $blogController->countAllMember();
-            $postNumber = $blogController->countAllPost();
-
             $commentController = new CommentController();
-            $comments = $commentController->reportedCommentAdminList();
-            
-
-            require('views/frontend/adminComView.php');
+            $commentController->reportedCommentAdminList();
         }
         //--------------------------------------------------------------------------------------->
         //ROMAN PAGE DISPLAY
@@ -139,10 +90,7 @@ try //
         elseif($_GET['action'] == "listPosts") // This action send us to listPostsView = Roman
         {
             $postController = new PostController();
-            $posts = $postController->listPosts();
-
-            require('views/frontend/listPostsView.php');
-            
+            $postController->listPosts();         
         }
         //--------------------------------------------------------------------------------------->
         //SE CONNECTER (LOGIN) PAGE DISPLAY
@@ -188,8 +136,7 @@ try //
         elseif($_GET['action'] == "register")
         {
             $memberController = new MemberController();
-
-            $verifyUsername = $memberController->memberRegistration();
+            $memberController->memberRegistration();
         }
         //--------------------------------------------------------------------------------------->
         //A POST DISPLAY
@@ -234,21 +181,15 @@ try //
         }
         else
         {
-            throw new Exception('<i class="fas fa-exclamation-triangle"></i>    Page inexistante    <i class="fas fa-exclamation-triangle"></i>');
+            throw new Exception('Cette page n\'existe pas');
         }
         
     }
     else // Even in this case display home page 
     {
         $postController = new PostController();
-        $lastPost = $postController->lastPost();
-
-        $commentController = new CommentController();
-        $lastComments = $commentController->lastComments();  
-
-        require_once('views/frontend/homeView.php');
-    }  
-    
+        $postController->lastPostAndComments();
+    }    
 }
 catch (Exception $e)
 {

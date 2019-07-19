@@ -1,5 +1,6 @@
 <?php
 /****************************************PAGINATION.PHP****************************************/
+namespace Youngbokz\Blog_Forteroche\Core;
 
 
 /**
@@ -47,8 +48,10 @@ class Pagination
 
 
 //TEST=====================
-$pag = new Pagination;
-$data = array("Youngbokz", "eazy", "mynigga", "whatsup");
+/*$pag = new Pagination;
+
+$data = array("Blanc", "Bleu", "Rouge", "Gris", "Vert", "Orange", "Noir");
+
 $numbers = $pag->paginate($data, 1);
 $result = $pag->fetchResult();
 
@@ -78,6 +81,6 @@ foreach($result as $res)
       </a>
     </li>
   </ul>
-</nav>
+</nav>*/
 
 

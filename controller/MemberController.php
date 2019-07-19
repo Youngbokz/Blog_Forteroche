@@ -4,15 +4,15 @@
     namespace Youngbokz\Blog_Forteroche\Controller;
 
     // We charge classes 
-    /*require_once('model/Autoloader.php');*/
+    require_once('core/Autoloader.php');
 
     require_once('model/PostManager.php');
     require_once('model/CommentManager.php');
     require_once('model/MemberManager.php');
     require_once('model/SessionManager.php');
-    /*use \Youngbokz\Blog_Forteroche\Model\Autoloader;
+    use \Youngbokz\Blog_Forteroche\Core\Autoloader;
     
-    Autoloader::register();*/
+    Autoloader::register();
 
     use \Youngbokz\Blog_Forteroche\Model\PostManager;
     use \Youngbokz\Blog_Forteroche\Model\CommentManager;
@@ -41,37 +41,26 @@
             
             return $member;
         }
-
-        //-------------------------------------------->ADMIN / MEMBER
-        /**
-         * lastMembersAdmin
-         *
-         * We call this function wich allowed us to show last members
-         * 
-         * @return $members
-         */
-        function lastMembersAdmin()
-        {
-            $membersManager = new MemberManager(); // Create object
-            $members = $membersManager->getLastMembers(); // 
-            
-            return $members;
-        }
-
         //-------------------------------------------->ADMIN / MEMBER
         /**
          * getMembersAdmin
          * 
-         * We call this function wich allowed us to show the members in admin dashbord
+         * We call this function wich allowed us to show the members in admin dashboard
          *
          * @return $members
          */
         function getMembersAdmin()
         {
-            $membersManager = new MemberManager(); 
-            $members = $membersManager->getMembers(); 
+            $postManager = new PostManager();
+            $commentManager = new CommentManager();
+            $memberManager = new MemberManager();
 
-            return $members;
+            $members = $memberManager->getMembers(); 
+            $memberNumber = $memberManager->countMembers();
+            $postNumber = $postManager->countPosts();
+            $reportedComNumber = $commentManager->countReportedComment();
+
+            require('views/frontend/adminUsersView.php');   
         }
         //-------------------------------------------->MEMBER
         /**

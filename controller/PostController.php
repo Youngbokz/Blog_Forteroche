@@ -4,21 +4,22 @@
     namespace Youngbokz\Blog_Forteroche\Controller;
 
     // We charge classes 
-    /*require_once('model/Autoloader.php');*/
+    require_once('core/Autoloader.php');
 
     require_once('model/PostManager.php');
     require_once('model/CommentManager.php');
     require_once('model/MemberManager.php');
     require_once('model/SessionManager.php');
-    /*use \Youngbokz\Blog_Forteroche\Model\Autoloader;
+    require_once('BlogController.php');
+    use \Youngbokz\Blog_Forteroche\Core\Autoloader;
     
-    Autoloader::register();*/
+    Autoloader::register();
 
     use \Youngbokz\Blog_Forteroche\Model\PostManager;
     use \Youngbokz\Blog_Forteroche\Model\CommentManager;
     use \Youngbokz\Blog_Forteroche\Model\MemberManager;
     use \Youngbokz\Blog_Forteroche\Model\SessionManager;
-    
+    use \Youngbokz\Blog_Forteroche\Controller\BlogController;
     /**
      * PostManager class
      * Allowing to create, read, edit and delete posts
@@ -36,18 +37,18 @@
          */
         function post()
         {           
-            $postId = $_GET['id'];
+            //$postId = $_GET['id'];
                        
             $postManager = new PostManager();
             $commentManager = new CommentManager();
             
-            if(isset($postId) && $postId > 0)
+            if(isset($_GET['id']) && $_GET['id'] > 0)
             {
-                $post = $postManager->getPost($postId);
-                $comments = $commentManager->getComments($postId);
+                $post = $postManager->getPost($_GET['id']);
+                $comments = $commentManager->getComments($_GET['id']);
                 if($post == false)
                 {
-                    $errorMessage = 'Cette page n\'existe pas !';
+                    $errorMessage = 'Ce chapitre n\'existe pas';
                     require('views/errorView.php');
                 }
                 else
@@ -57,9 +58,7 @@
             }
             else 
             {
-            $errorMessage = '<div class="alert alert-danger" role="alert">
-                                <i class="fas fa-exclamation-triangle"></i> Ce chapitre n\'existe pas
-                            </div>';
+            $errorMessage = 'Cette page n\'existe pas';
             require('views/errorView.php');
             }                     
         }
@@ -74,10 +73,16 @@
          */
         function listPostsAdmin()
         {
-            $postsManager = new PostManager(); 
-            $posts = $postsManager->getPosts(); 
+            $postManager = new PostManager();
+            $commentManager = new CommentManager();
+            $memberManager = new MemberManager();
 
-            return $posts;
+            $posts = $postManager->getPostsAdmin();
+            $memberNumber = $memberManager->countMembers();
+            $postNumber = $postManager->countPosts();
+            $reportedComNumber = $commentManager->countReportedComment();
+            
+            require('views/frontend/adminArticlesView.php');
         }
         //-------------------------------------------->ADMIN
         /**
@@ -109,7 +114,7 @@
                 if(!empty($newTitle) && !empty($newChapter) && !empty($newContent))
                 { 
                     $postManager->addPost($newTitle, $newChapter, $newContent);
-                    header('Location: index.php?action=adminArticle');
+                    //header('Location: index.php?action=adminArticle');
                 }
                 else
                 {
@@ -152,7 +157,7 @@
             $content = $_POST['newContent'];
             $postId = $_GET['id'];
             
-            if(isset($postId) AND $postId >0)
+            /*if(isset($postId) AND $postId >0)
             {
                 if(isset($_POST ['edit']))
                 {
@@ -164,6 +169,27 @@
                 {
                     echo'Erreur d\'envoie veuillez réessayer';
                 }
+            }*/
+            if(isset($postId))
+            {
+                if(!empty($chapter) && !empty($title) && !empty($content))
+                {
+                    $postManager->editPost($chapter, $title, $content, $postId);
+                    $succesMessage = '<div class="alert alert-success" role="alert">
+                    Chapitre modifié avec succès !
+                    </div>';
+                    require('views/frontend/adminArticlesView.php');
+                }
+                else
+                {
+                    $errorMessage = 'Vous devez remplir tout les champs';
+                    header('Location: index.php?action=goEditArticle&id=' .$postId);
+                }
+            }
+            else
+            {
+                $errorMessage = 'Cette page n\'existe pas';
+                require('views/errorView.php');
             }
         }
         
@@ -203,12 +229,15 @@
          *
          * @return compact('lastPost', 'lastComments')
          */
-        function lastPost()
+        function lastPostAndComments()
         { 
-            $lastPostManager = new PostManager(); // Create object
-            $lastPost = $lastPostManager->getLastPost(); // We call this function wich allowed us to show the last post by date
+            $lastPostManager = new PostManager(); 
+            $lastCommentManager = new CommentManager();
+
+            $lastPost = $lastPostManager->getLastPost(); 
+            $lastComments = $lastCommentManager->allLastComments();
             
-            return $lastPost;
+            require_once('views/frontend/homeView.php');
         }
 
         //-------------------------------------------->POST
@@ -220,11 +249,31 @@
          * @return $posts
          */
         function listPosts()
-        {
+        {       
             $postsManager = new PostManager(); 
-            $posts = $postsManager->getPosts(); 
+            $totalPostReq = $postsManager->numberPost();
+            var_dump($totalPostReq);
+            $totalPost = $totalPostReq['total'];
+            var_dump($totalPost);
+            $postPerPage = 5;
+            
+            $totalPage = ceil($totalPost / $postPerPage);
+            
+            if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0)
+            {
+                $_GET['page'] = intval($_GET['page']);
+                $currentPage = $_GET['page'];
+            }
+            else
+            {
+                $currentPage = 1;
+            }
 
-            return $posts;
+            $start = ($currentPage - 1) * $postPerPage;
+
+            $posts = $postsManager->getPosts($start, $postPerPage); 
+            
+            require('views/frontend/listPostsView.php');
         }
 
         //-------------------------------------------->POST / ADMIN
@@ -235,25 +284,36 @@
          *
          * @return $post
          */
-        function postAdmin()
+        function postEditAdmin()
         {
             $postManager = new PostManager();
-            $postId = $_GET['id'];
-            
-                if(isset($postId) && $postId > 0)
-                {                 
-                        $post = $postManager->getPost($postId);
-                    
-                        return $post;     
-        
-                }
-                else 
+            $commentManager = new CommentManager();
+            $memberManager = new MemberManager();
+
+            if(isset($_GET['id']) && $_GET['id'] > 0)
+            {
+                $post = $postManager->getPost($_GET['id']);
+                $memberNumber = $memberManager->countMembers();
+                $postNumber = $postManager->countPosts();
+                $reportedComNumber = $commentManager->countReportedComment();
+
+                if($post == false)
                 {
                     $errorMessage = '<div class="alert alert-warning" role="alert">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                        Pas d\'identifiant. Pas de chapitre à éditer !
-                                        </div>';
-                                        require('views/frontend/adminEditView.php');
-                }                 
-        } 
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Pas de chapitre à éditer !
+                    </div>';
+                    require('views/frontend/adminEditView.php');
+                }
+                else
+                {
+                    require('views/frontend/adminEditView.php');
+                }
+            }
+            else
+            {
+                $errorMessage = 'Cette page n\'existe pas';
+                require('views/errorView.php');
+            }
+        }
     }

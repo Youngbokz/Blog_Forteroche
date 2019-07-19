@@ -57,8 +57,6 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                     echo $errorMessage;
                 
                 }
-                else
-                {
                 ?>
                     <div class="card">
                         <div class="mainColorBg card-header">
@@ -87,9 +85,6 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                             </form>
                         </div>
                     </div>
-                <?php
-                }
-                ?>
             </div>       
         </div>
     </div>

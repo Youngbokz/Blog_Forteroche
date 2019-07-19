@@ -4,15 +4,15 @@
     namespace Youngbokz\Blog_Forteroche\Controller;
 
     // We charge classes 
-    /*require_once('model/Autoloader.php');*/
+    require_once('core/Autoloader.php');
 
     require_once('model/PostManager.php');
     require_once('model/CommentManager.php');
     require_once('model/MemberManager.php');
     require_once('model/SessionManager.php');
-    /*use \Youngbokz\Blog_Forteroche\Model\Autoloader;
+    use \Youngbokz\Blog_Forteroche\Core\Autoloader;
     
-    Autoloader::register();*/
+    Autoloader::register();
 
     use \Youngbokz\Blog_Forteroche\Model\PostManager;
     use \Youngbokz\Blog_Forteroche\Model\CommentManager;
@@ -26,6 +26,39 @@
 
     class BlogController  
     {
+         //-------------------------------------------->ADMIN / DASHBOARD
+        /**
+         * adminDashboard
+         *
+         * We call this function wich allowed us to show admin dashboard
+         * 
+         * @return void
+         */
+        function adminDashboard()
+        {
+            $postManager = new PostManager();
+            $commentManager = new CommentManager();
+            $memberManager = new MemberManager();
+
+            $members = $memberManager->getLastMembers(); 
+            $memberNumber = $memberManager->countMembers();
+            $postNumber = $postManager->countPosts();
+            $reportedComNumber = $commentManager->countReportedComment();
+            
+            require('views/frontend/adminView.php');
+        }
+        function sideNavAdminData($requirePage)
+        {
+            $postManager = new PostManager();
+            $commentManager = new CommentManager();
+            $memberManager = new MemberManager();
+            
+            $memberNumber = $memberManager->countMembers();
+            $postNumber = $postManager->countPosts();
+            $reportedComNumber = $commentManager->countReportedComment();
+
+            require($requirePage);
+        }
         /**
          * countAll
          * 
@@ -50,7 +83,7 @@
         function countAllPost()
         {
             $postsManager = new PostManager(); 
-            $postNumber = $postsManager->countPost();
+            $postNumber = $postsManager->countPosts();
 
             return $postNumber;
         }

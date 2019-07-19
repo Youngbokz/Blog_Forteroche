@@ -1,7 +1,7 @@
 <?php
 /****************************************MODEL/AUTOLOADER.PHP****************************************/
 
-namespace Youngbokz\Blog_Forteroche\Model;
+namespace Youngbokz\Blog_Forteroche\Core;
 
 /**
  * class Autoloader
@@ -30,7 +30,7 @@ class Autoloader
      */
     static function autoload($className)
     {
-        require($className . '.php'); 
+        require_once("Youngbokz\Blog_Forteroche\Model". $className . '.php'); 
     }
 
    

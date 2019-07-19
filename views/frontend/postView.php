@@ -65,6 +65,10 @@ session_start();
             </div>
     
     <?php
+        if(isset($errorMessageSend))
+        {
+            echo $errorMessageSend;
+        }
         if(isset($_SESSION['login']))
         {
     ?>

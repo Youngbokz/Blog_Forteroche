@@ -36,17 +36,28 @@ session_start();
             </div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
+                    <!--<li class="page-item disabled">
                         <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="fas fa-long-arrow-alt-left"></i>  Précédent</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    </li>-->
+                    <?php
+                    var_dump($totalPage);
+                    for($i=1; $i<= $totalPage; $i++)
+                    {
+                    ?>
+
+                    <li class="page-item"><a class="page-link" href="index.php?action=listPosts&page=<?= $i; ?>"><?= $i; ?></a></li>
+                    <?php
+                    }
+                    
+                    ?>
+                    <!--<li class="page-item"><a class="page-link" href="#">2</a></li>
                     <li class="page-item"><a class="page-link" href="#">3</a></li>
                     <li class="page-item">
                         <a class="page-link" href="#">Suivant  <i class="fas fa-long-arrow-alt-right"></i></a>
-                    </li>
+                    </li>-->
                 </ul>
             </nav>
+           
         </div>
     </section>
     <?php $content = ob_get_clean(); ?>

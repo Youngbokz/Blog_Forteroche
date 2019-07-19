@@ -4,15 +4,15 @@
     namespace Youngbokz\Blog_Forteroche\Controller;
 
     // We charge classes 
-    /*require_once('model/Autoloader.php');*/
+    require_once('core/Autoloader.php');
 
     require_once('model/PostManager.php');
     require_once('model/CommentManager.php');
     require_once('model/MemberManager.php');
     require_once('model/SessionManager.php');
-    /*use \Youngbokz\Blog_Forteroche\Model\Autoloader;
+    use \Youngbokz\Blog_Forteroche\Core\Autoloader;
     
-    Autoloader::register();*/
+    Autoloader::register();
 
     use \Youngbokz\Blog_Forteroche\Model\PostManager;
     use \Youngbokz\Blog_Forteroche\Model\CommentManager;
@@ -26,22 +26,6 @@
 
 class CommentController  
 {
-
-    /**
-     * lastComments
-     *
-     * Show all last comments whaterver the post's id is
-     * 
-     * @return $lastComments
-     */
-    function lastComments()
-    {
-        $lastCommentsManager = new CommentManager(); // Create object
-        $lastComments = $lastCommentsManager->allLastComments(); // We call this function wich allowed us to show all last comments by date
-        
-        return $lastComments;  
-    }
-
     //-------------------------------------------->ADMIN / COMMENTS
     /**
      * reportedCommentAdminList
@@ -52,10 +36,16 @@ class CommentController
      */
     function reportedCommentAdminList()
     {
-        $commentsManager = new CommentManager();
-        $comments = $commentsManager->reportedListComments();
+        $commentManager = new CommentManager();
+        $postManager = new PostManager();
+        $memberManager = new MemberManager();
 
-        return $comments;
+        $comments = $commentManager->reportedListComments();
+        $memberNumber = $memberManager->countMembers();
+        $postNumber = $postManager->countPosts();
+        $reportedComNumber = $commentManager->countReportedComment();
+
+        require('views/frontend/adminComView.php');
     }
 
     //-------------------------------------------->COMMENT ADMIN

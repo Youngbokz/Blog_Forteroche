@@ -18,10 +18,24 @@
          * 
          * @return $req
          */
-        public function getPosts() 
+        public function getPosts($start, $postPerPage) 
         {
             $db = $this->dbConnect();
-            $req = $db->query('SELECT id, chapter, title, content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin%ss\') AS post_date_fr FROM posts ORDER BY post_date DESC LIMIT 0, 5');
+            $req = $db->query('SELECT id, chapter, title, content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin%ss\') AS post_date_fr FROM posts ORDER BY post_date DESC LIMIT ' .$start. ',' .$postPerPage);
+        
+            return $req;
+        } 
+        /**
+         * getPosts
+         *
+         * Allows to display all posts in this case by 5 
+         * 
+         * @return $req
+         */
+        public function getPostsAdmin() 
+        {
+            $db = $this->dbConnect();
+            $req = $db->query('SELECT id, chapter, title, content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin%ss\') AS post_date_fr FROM posts ORDER BY post_date DESC LIMIT 0,4');
         
             return $req;
         } 
@@ -121,7 +135,7 @@
          * 
          * @return $countingPost
          */
-        public function countPost()
+        public function countPosts()
         {
             $db = $this->dbConnect();
             $req = $db->query('SELECT COUNT(*) FROM posts');
@@ -130,8 +144,14 @@
             
             return $countingPost;
         }
-        public function unsetDb(){
+
+
+        public function numberPost(){
             $db = $this->dbConnect();
-            unset($db);
+            $req = $db->query('SELECT COUNT(*) as total FROM posts');
+            
+            $result = $req->fetch();
+        
+            return $result;
         }
     }
