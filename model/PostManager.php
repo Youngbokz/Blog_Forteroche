@@ -128,25 +128,16 @@
                 'postId' => $postId 
             ));
         }
+       
         /**
-         * countPost
+         * numberPost
          *
-         * Allows to count post
+         * Allowed us to count number of post
          * 
-         * @return $countingPost
+         * @return $result
          */
-        public function countPosts()
+        public function numberPost()
         {
-            $db = $this->dbConnect();
-            $req = $db->query('SELECT COUNT(*) FROM posts');
-            $req->execute();
-            $countingPost = $req->fetchColumn();
-            
-            return $countingPost;
-        }
-
-
-        public function numberPost(){
             $db = $this->dbConnect();
             $req = $db->query('SELECT COUNT(*) as total FROM posts');
             

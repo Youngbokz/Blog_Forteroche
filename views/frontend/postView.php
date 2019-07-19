@@ -26,11 +26,11 @@ session_start();
                         <h2 class="page-header">Commentaires</h2>
                         <section class="comment-list">
                         <!-- A Comment -->
-                        <?php
+                        <?php          
                             while ($comment = $comments->fetch())
-                            {
+                            {          
                                 if($comment['reported'] == '0')
-                                {
+                                {           
                         ?>
                                     <article class="row">
                                         <div class="col-md-10 col-sm-10">
@@ -65,16 +65,18 @@ session_start();
             </div>
     
     <?php
-        if(isset($errorMessageSend))
-        {
-            echo $errorMessageSend;
-        }
         if(isset($_SESSION['login']))
         {
     ?>
             <div class="addComContainer container-fluid">
                 <form method="post" action="index.php?action=sendComment&amp;id=<?= $post['id']; ?>" class="container jumbotron col-md-8 form-group">
                     <div class="row">
+                    <?php
+                    if(isset($errorMessageSend))
+                    {
+                        echo $errorMessageSend;
+                    }
+                    ?>
                         <div class="addComInput col-md-8 form-group">
                             <h2>Ajouter un commentaire:</h2>
                         </div>

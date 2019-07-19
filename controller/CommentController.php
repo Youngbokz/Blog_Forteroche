@@ -10,6 +10,8 @@
     require_once('model/CommentManager.php');
     require_once('model/MemberManager.php');
     require_once('model/SessionManager.php');
+    require_once('controller/PostController.php');
+
     use \Youngbokz\Blog_Forteroche\Core\Autoloader;
     
     Autoloader::register();
@@ -18,7 +20,7 @@
     use \Youngbokz\Blog_Forteroche\Model\CommentManager;
     use \Youngbokz\Blog_Forteroche\Model\MemberManager;
     use \Youngbokz\Blog_Forteroche\Model\SessionManager;
-    
+    use \Youngbokz\Blog_Forteroche\Controller\PostController;
     /**
      * CommentManager class
      * Allowing to create, read, edit and delete comments
@@ -115,9 +117,10 @@ class CommentController
         $newMessage = $_POST['story'];
 
         
-        $sessionManager = new SessionManager();
+        //$sessionManager = new SessionManager();
         
         $commentManager = new CommentManager();
+        $postManager = new PostManager();
                 
         if(isset($_POST['submit']))
         {
@@ -130,20 +133,32 @@ class CommentController
                 }
                 else
                 {
-                    header('Location: index.php?action=post&id='.$postId);
-                    
-                    $errorMessageSend = 'Message vide, veuillez entrer un commentaire !';
-                    $session = $sessionManager->setFlashMessage($errorMessageSend);               
+                    $post = $postManager->getPost($postId);
+                    $comments = $commentManager->getComments($postId);
+                    if($post == false)
+                    {
+                    $errorMessage = 'Ce chapitre n\'existe pas';
+                    require('views/errorView.php');
+                    }
+                    else
+                    {
+                    $errorMessageSend = '<div class="alert alert-danger" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i> Message vide, veuillez entrer un commentaire !
+                    </div>';
+                    require_once('views/frontend/postView.php');                     
+                    }                 
                 }
             }
             else
             {
-                $errorMessageSend = '<p>Aucun identifiant de chapitre envoyé</p>';          
+                $errorMessage = 'Aucun identifiant de chapitre envoyé';   
+                require('views/errorView.php');
             }
         }
         else
         {
-            $errorMessageSend = '<p>Formulaire n\'a pas été envoyé</p>';            
+            $errorMessage = 'Formulaire n\'a pas été envoyé';   
+            require('views/errorView.php');            
         }
     }
 

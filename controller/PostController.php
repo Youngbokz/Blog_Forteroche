@@ -151,25 +151,15 @@
          */
         function updatePost()
         {
-            $postManager = new PostManager(); 
+            $postManager = new PostManager();
+            $commentManager = new CommentManager();
+            $memberManager = new MemberManager();
+
             $chapter = $_POST['newChapter'];
             $title = htmlspecialchars($_POST['newTitle']);
             $content = $_POST['newContent'];
             $postId = $_GET['id'];
             
-            /*if(isset($postId) AND $postId >0)
-            {
-                if(isset($_POST ['edit']))
-                {
-                    $postManager->editPost($chapter, $title, $content, $postId); 
-                
-                    header('Location: index.php?action=adminArticle');
-                }
-                else
-                {
-                    echo'Erreur d\'envoie veuillez réessayer';
-                }
-            }*/
             if(isset($postId))
             {
                 if(!empty($chapter) && !empty($title) && !empty($content))
@@ -182,8 +172,17 @@
                 }
                 else
                 {
-                    $errorMessage = 'Vous devez remplir tout les champs';
-                    header('Location: index.php?action=goEditArticle&id=' .$postId);
+                    $errorMessage ='<div class="alert alert-warning" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Vous devez remplir tout les champs
+                    </div>';
+
+                    $post = $postManager->getPost($postId);
+                    $memberNumber = $memberManager->countMembers();
+                    $postNumber = $postManager->countPosts();
+                    $reportedComNumber = $commentManager->countReportedComment();
+
+                    require('views/frontend/adminEditView.php');
                 }
             }
             else
@@ -244,22 +243,21 @@
         /**
          * listPosts
          *
-         * We call this function wich allowed us to show a list of posts 
+         * We call this function wich allowed us to show a list of posts with pagination
          * 
          * @return $posts
          */
         function listPosts()
         {       
             $postsManager = new PostManager(); 
+            
             $totalPostReq = $postsManager->numberPost();
-            var_dump($totalPostReq);
             $totalPost = $totalPostReq['total'];
-            var_dump($totalPost);
-            $postPerPage = 5;
+            $postPerPage = 3;
             
             $totalPage = ceil($totalPost / $postPerPage);
             
-            if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0)
+            if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $totalPage)
             {
                 $_GET['page'] = intval($_GET['page']);
                 $currentPage = $_GET['page'];
