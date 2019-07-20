@@ -32,10 +32,10 @@
          * 
          * @return $req
          */
-        public function getPostsAdmin() 
+        public function getPostsAdmin($start, $postPerPage) 
         {
             $db = $this->dbConnect();
-            $req = $db->query('SELECT id, chapter, title, content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin%ss\') AS post_date_fr FROM posts ORDER BY post_date DESC LIMIT 0,4');
+            $req = $db->query('SELECT id, chapter, title, content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin%ss\') AS post_date_fr FROM posts ORDER BY post_date DESC LIMIT ' .$start. ',' .$postPerPage);
         
             return $req;
         } 
@@ -128,13 +128,28 @@
                 'postId' => $postId 
             ));
         }
-       
+        /**
+         * countPost
+         *
+         * Allows to count post
+         * 
+         * @return $countingPost
+         */
+        public function countPosts()
+        {
+            $db = $this->dbConnect();
+            $req = $db->query('SELECT COUNT(*) FROM posts');
+            $req->execute();
+            $countingPost = $req->fetchColumn();
+            
+            return $countingPost;
+        }
         /**
          * numberPost
          *
-         * Allowed us to count number of post
+         * Allows to count posts for pagination 
          * 
-         * @return $result
+         * @return void
          */
         public function numberPost()
         {

@@ -45,7 +45,7 @@
         /**
          * getMembersAdmin
          * 
-         * We call this function wich allowed us to show the members in admin dashboard
+         * We call this function wich allowed us to show the members in admin dashboard with pagination
          *
          * @return $members
          */
@@ -59,6 +59,26 @@
             $memberNumber = $memberManager->countMembers();
             $postNumber = $postManager->countPosts();
             $reportedComNumber = $commentManager->countReportedComment();
+
+            $totalMemberReq = $memberManager->numberOfMembers();
+            $totalMember = $totalMemberReq['total'];
+            $memberPerPage = 4;
+            
+            $totalPage = ceil($totalMember / $memberPerPage);
+            
+            if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $totalPage)
+            {
+                $_GET['page'] = intval($_GET['page']);
+                $currentPage = $_GET['page'];
+            }
+            else
+            {
+                $currentPage = 1;
+            }
+
+            $start = ($currentPage - 1) * $memberPerPage;
+
+            $members = $memberManager->getLastMembers($start, $memberPerPage); 
 
             require('views/frontend/adminUsersView.php');   
         }

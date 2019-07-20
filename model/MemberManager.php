@@ -33,10 +33,10 @@
          * 
          * @return $req
          */
-        public function getLastMembers()  
+        public function getLastMembers($start, $memberPerPage)  
         {
             $db = $this->dbConnect();
-            $req = $db->query('SELECT id, log, password, DATE_FORMAT (registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr FROM members ORDER BY log, registration_date DESC LIMIT 0, 3');
+            $req = $db->query('SELECT id, log, password, DATE_FORMAT (registration_date, \'%d/%m/%Y à %Hh%imin%ss\') AS registration_date_fr FROM members ORDER BY log, registration_date DESC LIMIT ' .$start. ',' .$memberPerPage);
 
             return $req;
         }
@@ -131,10 +131,19 @@
         public function countMembers()
         {
             $db = $this->dbConnect();
-                $req = $db->query('SELECT COUNT(*) FROM members');
-                $req->execute();
-                $countingMember = $req->fetchColumn();
+            $req = $db->query('SELECT COUNT(*) FROM members');
+            $req->execute();
+            $countingMember = $req->fetchColumn();
                 
-                return $countingMember;
+            return $countingMember;
+        }
+        public function numberOfMembers()
+        {
+            $db = $this->dbConnect();
+            $req = $db->query('SELECT COUNT(*) as total FROM members');
+            
+            $result = $req->fetch();
+        
+            return $result;
         }
     }

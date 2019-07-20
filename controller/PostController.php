@@ -45,7 +45,26 @@
             if(isset($_GET['id']) && $_GET['id'] > 0)
             {
                 $post = $postManager->getPost($_GET['id']);
-                $comments = $commentManager->getComments($_GET['id']);
+                //$comments = $commentManager->getComments($_GET['id']);
+                $totalCommentReq = $commentManager->numberOfCommentByPost($_GET['id']);
+                    $totalComment = $totalCommentReq['total'];
+                    $commentPerPage = 2;
+                        
+                    $totalPage = ceil($totalComment / $commentPerPage);
+                        
+                    if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $totalPage)
+                    {
+                        $_GET['page'] = intval($_GET['page']);
+                        $currentPage = $_GET['page'];
+                    }
+                    else
+                    {
+                        $currentPage = 1;
+                    }
+                    $start = ($currentPage - 1) * $commentPerPage;
+            
+                    $comments = $commentManager->getComments($_GET['id'], $start, $commentPerPage);
+
                 if($post == false)
                 {
                     $errorMessage = 'Ce chapitre n\'existe pas';
@@ -53,7 +72,7 @@
                 }
                 else
                 {
-                require_once('views/frontend/postView.php');                     
+                    require_once('views/frontend/postView.php');                     
                 }                 
             }
             else 
@@ -67,7 +86,7 @@
         /**
          * listPostsAdmin 
          * 
-         * We call this function wich allowed us to show the posts 
+         * We call this function wich allowed us to show the posts with pagination
          *
          * @return $posts
          */
@@ -77,10 +96,30 @@
             $commentManager = new CommentManager();
             $memberManager = new MemberManager();
 
-            $posts = $postManager->getPostsAdmin();
+            
             $memberNumber = $memberManager->countMembers();
             $postNumber = $postManager->countPosts();
             $reportedComNumber = $commentManager->countReportedComment();
+
+            $totalPostReq = $postManager->numberPost();
+            $totalPost = $totalPostReq['total'];
+            $postPerPage = 4;
+            
+            $totalPage = ceil($totalPost / $postPerPage);
+            
+            if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $totalPage)
+            {
+                $_GET['page'] = intval($_GET['page']);
+                $currentPage = $_GET['page'];
+            }
+            else
+            {
+                $currentPage = 1;
+            }
+
+            $start = ($currentPage - 1) * $postPerPage;
+
+            $posts = $postManager->getPostsAdmin($start, $postPerPage); 
             
             require('views/frontend/adminArticlesView.php');
         }

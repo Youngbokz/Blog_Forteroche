@@ -19,13 +19,22 @@
          *
          * @return $req
          */
-        public function getComments($postId) 
+        public function getComments($postId, $start, $commentPerPage) 
         {
             $db = $this->dbConnect();
-            $req = $db->prepare('SELECT id, author, comment, DATE_FORMAT (comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr, reported FROM comments WHERE post_id = ? ORDER BY comment_date DESC LIMIT 0, 3');
+            $req = $db->prepare('SELECT id, author, comment, DATE_FORMAT (comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr, reported FROM comments WHERE post_id = ? ORDER BY comment_date DESC LIMIT ' .$start. ',' .$commentPerPage);
             $req->execute(array($postId));
 
             return $req;
+        }
+        public function numberOfCommentByPost($postId)
+        {
+            $db = $this->dbConnect();
+            $req = $db->prepare('SELECT COUNT(*) as total FROM comments WHERE post_id = ? ');
+            $req->execute(array($postId));
+            $result = $req->fetch();
+        
+            return $result;
         }
         /**
          * getComment
@@ -42,6 +51,8 @@
 
             return $comment;
         }
+        
+
         /**
          * allLastComments
          *  
@@ -63,10 +74,10 @@
          *
          * @return $req
          */
-        public function reportedListComments()
+        public function reportedListComments($start, $repotedCommentPerPage)
         {
             $db = $this->dbConnect();
-            $req = $db->query('SELECT id, author, comment, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr, reported FROM comments WHERE reported = 1 ORDER BY comment_date DESC LIMIT 0, 3');
+            $req = $db->query('SELECT id, author, comment, post_id, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr, reported FROM comments WHERE reported = 1 ORDER BY comment_date DESC LIMIT ' .$start. ',' .$repotedCommentPerPage);
             
             return $req;
         }
@@ -155,4 +166,14 @@
                 
                 return $countingReported;
         } 
+        public function numberOfReportedComment()
+        {
+            $db = $this->dbConnect();
+            $req = $db->query('SELECT COUNT(*) as total FROM comments WHERE reported = 1');
+            
+            $result = $req->fetch();
+        
+            return $result;
+        }
+
     }

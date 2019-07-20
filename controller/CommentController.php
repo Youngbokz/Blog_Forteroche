@@ -32,7 +32,7 @@ class CommentController
     /**
      * reportedCommentAdminList
      * 
-     * We call this function wich allowed us to show list of reported comments
+     * We call this function wich allowed us to show list of reported comments with pagination
      *
      * @return $comments
      */
@@ -42,10 +42,29 @@ class CommentController
         $postManager = new PostManager();
         $memberManager = new MemberManager();
 
-        $comments = $commentManager->reportedListComments();
+        
         $memberNumber = $memberManager->countMembers();
         $postNumber = $postManager->countPosts();
         $reportedComNumber = $commentManager->countReportedComment();
+
+        $totalRepotedCommentReq = $commentManager->numberOfReportedComment();
+        $totalRepotedComment = $totalRepotedCommentReq['total'];
+        $repotedCommentPerPage = 4;
+            
+        $totalPage = ceil($totalRepotedComment / $repotedCommentPerPage);
+            
+        if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $totalPage)
+        {
+            $_GET['page'] = intval($_GET['page']);
+            $currentPage = $_GET['page'];
+        }
+        else
+        {
+            $currentPage = 1;
+        }
+        $start = ($currentPage - 1) * $repotedCommentPerPage;
+
+        $repotedComments = $commentManager->reportedListComments($start, $repotedCommentPerPage);
 
         require('views/frontend/adminComView.php');
     }

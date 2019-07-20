@@ -401,6 +401,10 @@ section#mainAdminSection div.card-footer.text-muted div.container div.col-md-6 a
     background: #6c757d;;
     color: white;
 }
+section#mainAdminSection div.container div.row div.adminArticles.col-md-9 nav
+{
+    margin: 10px auto;
+}
 
 /* ADMIN REPORTED COMMENTS PAGE */
 
@@ -409,4 +413,11 @@ section#mainAdminSection div.container div.row div.col-md-9 div.emptyReportedCom
     background: white;
     border: 1px solid #656582;
     color: #ea7e7e;
+}
+
+/* ADMIN USERS PAGE */
+
+section#mainAdminSection div.container div.row div.col-md-9 nav
+{
+    margin: 10px auto;
 }

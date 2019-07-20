@@ -100,6 +100,34 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                             ?>
                         </table>
                     </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item">
+                                <a class="page-link" href="index.php?action=admin&page=<?= ($currentPage - 1); ?>" tabindex="-1" aria-disabled="true"><i class="fas fa-long-arrow-alt-left"></i></a>
+                            </li>
+                            <?php
+                            for($i=1; $i<= $totalPage; $i++)
+                            {
+                                if($i == $currentPage)
+                                {           
+                            ?>          
+                                    <li class="page-item"><a class="page-link active" ><?= $i; ?></a></li>
+                            <?php
+                                }
+                                else
+                                {
+                            ?>
+                                    <li class="page-item"><a class="page-link" href="index.php?action=admin&page=<?= $i; ?>"><?= $i; ?></a></li>
+                            <?php
+                                }
+                            }
+                            
+                            ?>
+                            <li class="page-item">
+                                <a class="page-link" href="index.php?action=admin&page=<?= ($currentPage + 1); ?>"><i class="fas fa-long-arrow-alt-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
