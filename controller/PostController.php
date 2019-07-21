@@ -5,21 +5,17 @@
 
     // We charge classes 
     require_once('core/Autoloader.php');
-
     require_once('model/PostManager.php');
     require_once('model/CommentManager.php');
     require_once('model/MemberManager.php');
-    require_once('model/SessionManager.php');
-    require_once('BlogController.php');
-    use \Youngbokz\Blog_Forteroche\Core\Autoloader;
     
+    use \Youngbokz\Blog_Forteroche\Core\Autoloader;
     Autoloader::register();
 
     use \Youngbokz\Blog_Forteroche\Model\PostManager;
     use \Youngbokz\Blog_Forteroche\Model\CommentManager;
     use \Youngbokz\Blog_Forteroche\Model\MemberManager;
-    use \Youngbokz\Blog_Forteroche\Model\SessionManager;
-    use \Youngbokz\Blog_Forteroche\Controller\BlogController;
+    
     /**
      * PostManager class
      * Allowing to create, read, edit and delete posts
@@ -45,25 +41,25 @@
             if(isset($_GET['id']) && $_GET['id'] > 0)
             {
                 $post = $postManager->getPost($_GET['id']);
-                //$comments = $commentManager->getComments($_GET['id']);
+        
                 $totalCommentReq = $commentManager->numberOfCommentByPost($_GET['id']);
-                    $totalComment = $totalCommentReq['total'];
-                    $commentPerPage = 2;
+                $totalComment = $totalCommentReq['total'];
+                $commentPerPage = 2;
                         
-                    $totalPage = ceil($totalComment / $commentPerPage);
+                $totalPage = ceil($totalComment / $commentPerPage);
                         
-                    if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $totalPage)
-                    {
-                        $_GET['page'] = intval($_GET['page']);
-                        $currentPage = $_GET['page'];
-                    }
-                    else
-                    {
-                        $currentPage = 1;
-                    }
-                    $start = ($currentPage - 1) * $commentPerPage;
+                if(isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0 AND $_GET['page'] <= $totalPage)
+                {
+                    $_GET['page'] = intval($_GET['page']);
+                    $currentPage = $_GET['page'];
+                }
+                else
+                {
+                    $currentPage = 1;
+                }
+                $start = ($currentPage - 1) * $commentPerPage;
             
-                    $comments = $commentManager->getComments($_GET['id'], $start, $commentPerPage);
+                $comments = $commentManager->getComments($_GET['id'], $start, $commentPerPage);
 
                 if($post == false)
                 {
@@ -82,7 +78,6 @@
             }                     
         }
 
-        //-------------------------------------------->POST / ADMIN
         /**
          * listPostsAdmin 
          * 
@@ -95,8 +90,7 @@
             $postManager = new PostManager();
             $commentManager = new CommentManager();
             $memberManager = new MemberManager();
-
-            
+    
             $memberNumber = $memberManager->countMembers();
             $postNumber = $postManager->countPosts();
             $reportedComNumber = $commentManager->countReportedComment();
@@ -123,7 +117,7 @@
             
             require('views/frontend/adminArticlesView.php');
         }
-        //-------------------------------------------->ADMIN
+        
         /**
          * newPost
          *
@@ -138,22 +132,17 @@
         function newPost()
         {
             $postManager = new PostManager();
-            // Add var
+           
             $newTitle = htmlspecialchars($_POST['title']);
             $newChapter = htmlspecialchars($_POST['chapter']);
             $newContent = $_POST['content'];
 
-            /*$sessionManager = new SessionManager();
-            $message = "Message posté avec succès";
-            $color = "success";
-            $sessionManager->setFlashMessage($message, $color);
-            $sessionManager->showFlash(); */
             if(isset($_POST['submit']))
             {
                 if(!empty($newTitle) && !empty($newChapter) && !empty($newContent))
                 { 
                     $postManager->addPost($newTitle, $newChapter, $newContent);
-                    //header('Location: index.php?action=adminArticle');
+                    header('Location: index.php?action=adminArticle'); 
                 }
                 else
                 {
@@ -172,10 +161,6 @@
             }
         }
         
-        
-        
-        
-        //-------------------------------------------->ADMIN / POST 
         /**
          * updatePost
          *
@@ -184,7 +169,7 @@
          * @param  string $content
          * @param  int $postId
          * 
-         * We call this function wich allowed us to update a post
+         * We call this function wich allowed us to update a post choice between edit and delete it.
          *
          * @return void
          */
@@ -201,28 +186,44 @@
             
             if(isset($postId))
             {
-                if(!empty($chapter) && !empty($title) && !empty($content))
+                if(isset($_POST['edit']))
                 {
-                    $postManager->editPost($chapter, $title, $content, $postId);
-                    $succesMessage = '<div class="alert alert-success" role="alert">
-                    Chapitre modifié avec succès !
-                    </div>';
-                    require('views/frontend/adminArticlesView.php');
-                }
-                else
-                {
-                    $errorMessage ='<div class="alert alert-warning" role="alert">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    Vous devez remplir tout les champs
-                    </div>';
+                    if(!empty($chapter) && !empty($title) && !empty($content))
+                    {
+                        $postManager->editPost($chapter, $title, $content, $postId);
+                        $succesMessage = '<div class="alert alert-success" role="alert">
+                        Chapitre modifié avec succès !
+                        </div>';
+                        require('views/frontend/adminArticlesView.php');
+                    }
+                    else
+                    {
+                        $errorMessage ='<div class="alert alert-warning" role="alert">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Vous devez remplir tout les champs
+                        </div>';
 
-                    $post = $postManager->getPost($postId);
+                        $post = $postManager->getPost($postId);
+                        $memberNumber = $memberManager->countMembers();
+                        $postNumber = $postManager->countPosts();
+                        $reportedComNumber = $commentManager->countReportedComment();
+
+                        require('views/frontend/adminEditView.php');
+                    }
+                }
+                
+                elseif(isset($_POST['delete']))
+                {
+                    $postManager->deletePost($postId);
+                    $succesMessage = '<div class="alert alert-success" role="alert">
+                                    Chapitre bien supprimé !
+                                    </div>';
+                                    
                     $memberNumber = $memberManager->countMembers();
                     $postNumber = $postManager->countPosts();
                     $reportedComNumber = $commentManager->countReportedComment();
-
-                    require('views/frontend/adminEditView.php');
-                }
+                    require('views/frontend/adminCreateView.php');
+                } 
             }
             else
             {
@@ -231,35 +232,7 @@
             }
         }
         
-        //-------------------------------------------->POST / ADMIN
-        /**
-         * erasePost
-         *
-         * @param  int $postId We call this function wich allowed us to delete a post by its id
-         * 
-         * @return void
-         */
-        function erasePost() 
-        {
-            $postManager = new PostManager(); // Create object
-            $postId = $_GET['id'];
-
-            if(isset($postId) AND $postId >0)
-            {
-                if(isset($_POST['delete']))
-                {
-                    $postManager->deletePost($postId);
-                    $succesMessage = '<div class="alert alert-success" role="alert">
-                                    Chapitre bien supprimé !
-                                    </div>';
-                                    
-                                    //header('views/frontend/adminArticlesView.php');
-                    header('Location: index.php?action=goEditArticle&id=' . $postId);
-                } 
-            }   
-        }
-
-        //-------------------------------------------->POST
+        
         /**
          * lastPost 
          * 
@@ -278,7 +251,6 @@
             require_once('views/frontend/homeView.php');
         }
 
-        //-------------------------------------------->POST
         /**
          * listPosts
          *
@@ -313,7 +285,6 @@
             require('views/frontend/listPostsView.php');
         }
 
-        //-------------------------------------------->POST / ADMIN
         /**
          * postAdmin
          * 

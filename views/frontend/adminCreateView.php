@@ -58,6 +58,10 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                     {
                         echo $errorMessage;
                     }
+                    if(isset($succesMessage))
+                    {
+                        echo $succesMessage;
+                    }
                     ?>
                     <div class="card-body">
                         <form method="post" action="index.php?action=addpost" class="col-md-12">

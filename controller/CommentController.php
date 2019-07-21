@@ -5,22 +5,17 @@
 
     // We charge classes 
     require_once('core/Autoloader.php');
-
     require_once('model/PostManager.php');
     require_once('model/CommentManager.php');
     require_once('model/MemberManager.php');
-    require_once('model/SessionManager.php');
-    require_once('controller/PostController.php');
-
+      
     use \Youngbokz\Blog_Forteroche\Core\Autoloader;
-    
     Autoloader::register();
 
     use \Youngbokz\Blog_Forteroche\Model\PostManager;
     use \Youngbokz\Blog_Forteroche\Model\CommentManager;
     use \Youngbokz\Blog_Forteroche\Model\MemberManager;
-    use \Youngbokz\Blog_Forteroche\Model\SessionManager;
-    use \Youngbokz\Blog_Forteroche\Controller\PostController;
+    
     /**
      * CommentManager class
      * Allowing to create, read, edit and delete comments
@@ -28,7 +23,6 @@
 
 class CommentController  
 {
-    //-------------------------------------------->ADMIN / COMMENTS
     /**
      * reportedCommentAdminList
      * 
@@ -69,7 +63,6 @@ class CommentController
         require('views/frontend/adminComView.php');
     }
 
-    //-------------------------------------------->COMMENT ADMIN
     /**
      * commentStatusAdmin
      *
@@ -96,7 +89,6 @@ class CommentController
 
     }
 
-    //-------------------------------------------->COMMENT / ADMIN
     /**
      * eraseReportedCom
      *
@@ -116,7 +108,6 @@ class CommentController
         }   
     }
 
-    //-------------------------------------------->COMMENT
     /**
      * newComment
      *
@@ -130,16 +121,12 @@ class CommentController
      */
     function newComment()
     {
-        
+        $commentManager = new CommentManager();
+        $postManager = new PostManager();
+
         $postId = $_GET['id'];
         $author = $_POST['login'];
         $newMessage = $_POST['story'];
-
-        
-        //$sessionManager = new SessionManager();
-        
-        $commentManager = new CommentManager();
-        $postManager = new PostManager();
                 
         if(isset($_POST['submit']))
         {
@@ -181,7 +168,6 @@ class CommentController
         }
     }
 
-    //-------------------------------------------->COMMENT
     /**
      * commentStatus
      *

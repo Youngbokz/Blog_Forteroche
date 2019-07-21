@@ -5,19 +5,16 @@
 
     // We charge classes 
     require_once('core/Autoloader.php');
-
     require_once('model/PostManager.php');
     require_once('model/CommentManager.php');
     require_once('model/MemberManager.php');
-    require_once('model/SessionManager.php');
-    use \Youngbokz\Blog_Forteroche\Core\Autoloader;
     
+    use \Youngbokz\Blog_Forteroche\Core\Autoloader;
     Autoloader::register();
 
     use \Youngbokz\Blog_Forteroche\Model\PostManager;
     use \Youngbokz\Blog_Forteroche\Model\CommentManager;
     use \Youngbokz\Blog_Forteroche\Model\MemberManager;
-    use \Youngbokz\Blog_Forteroche\Model\SessionManager;
     
     /**
      * BlogController class
@@ -26,7 +23,6 @@
 
     class BlogController  
     {
-         //-------------------------------------------->ADMIN / DASHBOARD
         /**
          * adminDashboard
          *
@@ -66,6 +62,14 @@
             
             require('views/frontend/adminView.php');
         }
+
+        /**
+         * sideNavAdminData
+         *
+         * @param  mixed $requirePage Allows us to see admin display
+         *
+         * @return void
+         */
         function sideNavAdminData($requirePage)
         {
             $postManager = new PostManager();

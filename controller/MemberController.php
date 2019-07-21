@@ -5,19 +5,16 @@
 
     // We charge classes 
     require_once('core/Autoloader.php');
-
     require_once('model/PostManager.php');
     require_once('model/CommentManager.php');
     require_once('model/MemberManager.php');
-    require_once('model/SessionManager.php');
-    use \Youngbokz\Blog_Forteroche\Core\Autoloader;
     
+    use \Youngbokz\Blog_Forteroche\Core\Autoloader;
     Autoloader::register();
 
     use \Youngbokz\Blog_Forteroche\Model\PostManager;
     use \Youngbokz\Blog_Forteroche\Model\CommentManager;
     use \Youngbokz\Blog_Forteroche\Model\MemberManager;
-    use \Youngbokz\Blog_Forteroche\Model\SessionManager;
     
     /**
      * MemberManager class
@@ -26,7 +23,6 @@
 
     class MemberController  
     {
-        //-------------------------------------------->MEMBER
         /**
          * member
          *
@@ -41,7 +37,7 @@
             
             return $member;
         }
-        //-------------------------------------------->ADMIN / MEMBER
+       
         /**
          * getMembersAdmin
          * 
@@ -82,7 +78,7 @@
 
             require('views/frontend/adminUsersView.php');   
         }
-        //-------------------------------------------->MEMBER
+        
         /**
          * subscribe
          *
@@ -99,7 +95,7 @@
             $member = $memberManager->addMember($log, $password);
             
         }
-        //-------------------------------------------->MEMBER
+        
         /**
          * verify
          *
@@ -120,14 +116,13 @@
                 !empty($pass) AND
                 !empty($re_pass))
                 {
-                    if(preg_match('#^[a-zA-Z0-9_]{2,16}$#i', ($username))) // Usrname conditions minimum 2 letters
+                    if(preg_match('#^[a-zA-Z0-9_]{2,16}$#i', ($username))) 
                     {
                         $verifyUsername = $memberManager->verifyIfMemberExist($username);
-                        //$verifyUsername = $memberController->verify($username); // Verify if username exist or not
-
+                       
                         if($verifyUsername == 0) // if log doesnt exist in database
                         {
-                            if(preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$#', ($pass))) //Password must have 1 lower and upper case and a number
+                            if(preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$#', ($pass))) 
                             {
                                 if($pass === $re_pass)
                                 {
@@ -197,7 +192,7 @@
             
             
         }
-        //-------------------------------------------->MEMBER
+        
         /**
          * verifyConnection
          *
@@ -211,7 +206,7 @@
         function verifyConnection()
         {
             $memberManager = new MemberManager();
-            // Add var
+            
             $loginConnex = htmlspecialchars($_POST['login']);
             $passConnex = htmlspecialchars($_POST['pass']);
  
@@ -223,7 +218,6 @@
                     $isPasswordCorrect = password_verify($passConnex, $verifyMember['password']);
                     $right = true;  
                     
-                     // Check if password in match with the one in database
                     if($verifyMember['log'] == $loginConnex AND $isPasswordCorrect === $right)
                     {
                         session_start();

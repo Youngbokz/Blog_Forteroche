@@ -2,7 +2,6 @@
 /****************************************INDEX.PHP****************************************/
 
 //REQUIRING CLASSES
-
 require_once('controller/BlogController.php');
 require_once('controller/CommentController.php');
 require_once('controller/MemberController.php');
@@ -157,7 +156,6 @@ try
         {
             $postController = new PostController();
             $postController->updatePost();
-            $postController->erasePost();
         }
         
         //ADMIN SEES REPORTED COMENTS PAGE
