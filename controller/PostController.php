@@ -23,7 +23,6 @@
 
     class PostController  
     {
-        //-------------------------------------------->POST with COMMENTS
         /**
          * post
          *
@@ -33,8 +32,6 @@
          */
         function post()
         {           
-            //$postId = $_GET['id'];
-                       
             $postManager = new PostManager();
             $commentManager = new CommentManager();
             

@@ -4,7 +4,7 @@ session_start()
 ?>
 <?php $title = 'CONNEXION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
-    <div class="mainSection">
+    <div class="mainSection firstContainer">
         <div class="loginContainer container ">
             <section class="row">
                 <form class="form-signin" action="index.php?action=connect" method="post">

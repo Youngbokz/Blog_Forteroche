@@ -2,10 +2,17 @@
 /* ==            SUMMARY              */
 /*---------------------------------------- */
 
-/* L		- 1 - */
-/* L		- 2 - */
-/* L		- 3 - */
-
+/* L 1		- 1 - SUMMARY*/
+/* L 16		- 2 - COLOR CODES*/
+/* L 31		- 3 - MAIN ELEMENTS*/
+/* L 136    - 4 - HOME PAGE*/
+/* L 226    - 5 - SUBSCRIBE PAGE */
+/* L 237    - 6 - LOGIN PAGE*/
+/* L 245    - 7 - ROMAN PAGE*/
+/* L 274    - 8 - POST PAGE*/
+/* L 309    - 9 - ABOUT ME PAGE*/
+/* L 316    - 10 - ADMIN PART*/
+/* L 452    - 11 - MEDIA QUERIES */
 /* ---------------------------------------- */
 /* ==       COLOR CODES           */
 /*---------------------------------------- */
@@ -14,11 +21,12 @@ Black (text) :			#000
 Dark gray (links, h1) :		#008dde
 Mid gray (visited links) :	#0006a1
 Light gray (h2) :		#747474
+ #656582
+ #6c757d
+ #ea7e7e
+ cornflowerblue;
+ rgba(35, 37, 76, 0.9);
 */
-
-/* ---------------------------------------- */
-/* == FONT */
-/*---------------------------------------- */
 
 /* ---------------------------------------- */
 /* == MAIN ELEMENTS */
@@ -34,7 +42,10 @@ body
     display: flex;
     flex-direction: column;
 }
-
+.firstContainer
+{
+    margin-top: 200px;
+}
 a
 {
     color: white;
@@ -50,7 +61,6 @@ a:hover
 }
 div.mainSection
 {
-    margin-top: 130px;
     min-height: 500px;
 }
 .mainColorBg
@@ -68,9 +78,24 @@ div.mainSection
 }
 nav.fixMainBarr.main-navbar.navbar.fixed-top ul.nav.navbar-nav
 {
-    width: 390px;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+}
+nav.fixMainBarr.main-navbar.navbar.fixed-top div.container-fluid div.btn-group.col-lg-3
+{ 
+    display: flex;
+    justify-content: center;
+}
+nav.fixMainBarr.main-navbar.navbar.fixed-top div.container-fluid div.btn-group.col-lg-3 button.btn.btn-secondary.dropdown-toggle
+{
+    flex:0;
+}
+nav.fixMainBarr.main-navbar.navbar.fixed-top div.container-fluid div.btn-group.col-lg-3.show div.dropdown-menu.dropdown-menu-lg-right.show
+{
+    right:auto;
+}
+nav.fixMainBarr.main-navbar.navbar.fixed-top div.container-fluid div.pos-f-t.col-lg-3 li
+{
+    align-self: flex-start;
 }
 nav.fixMainBarr.main-navbar.navbar.fixed-top a p 
 {
@@ -79,10 +104,7 @@ nav.fixMainBarr.main-navbar.navbar.fixed-top a p
 nav.fixMainBarr.main-navbar.navbar.fixed-top a.navbar-brand
 {
     margin-right: 0;
-}
-nav.fixMainBarr.main-navbar.navbar.fixed-top div.dropdown-menu.show
-{
-    left: 150px; 
+    font-size: 2rem;
 }
 nav.fixMainBarr.main-navbar.navbar.fixed-top p.welcomHome
 {
@@ -289,7 +311,6 @@ div#top_mainSection_PostView.mainSection p.chapter_slim
 /*---------------------------------------- */
 .aboutme
 {
-    margin-top: 120px;
     margin-bottom: 120px;
 }
 /* ---------------------------------------- */
@@ -304,10 +325,10 @@ div#top_mainSection_PostView.mainSection p.chapter_slim
     flex-direction: row;
     padding: 0;
 }
-/*Admin Nav Top*/
+/*     ADMIN NAV TOP     */
 header#header.navAdmin.fixed-top
 {
-    top: 80px;
+    top: 74px;
     background: black;
     color: white;
     padding: 25px 0;
@@ -335,7 +356,7 @@ header#header.navAdmin.fixed-top li
 {
     padding: 5px;
 }
-/*Admin Side Nav*/
+/*     ADMIN SIDE NAV     */
 section#mainAdminSection a.head.list-group-item:hover
 {
     background: cornflowerblue;
@@ -344,7 +365,7 @@ section#mainAdminSection div.list-group
 {
     text-align: left;
 }
-/*Admin DASHBORD Main Section*/
+/*     ADMIN DASHBOARD MAIN SECTION     */
 section#mainAdminSection
 {
     margin-top: 220px;
@@ -358,18 +379,13 @@ section#mainAdminSection a.list-group-item:hover, header#header.navAdmin.fixed-t
 {
     background: rgba(0,0,0,0.1);   
 }
-
-/*Admin Pannel Section*/
+/*     ADMIN PANNEL SECTION     */
 section#mainAdminSection div.container div.row div.col-md-9 div.card div.card-body
 {
     display: flex;
     flex-direction: row;
 }
-
-
-
-/* ADMIN ARTICLE PAGE */
-
+/*     ADMIN ARTICLE PAGE     */
 section#mainAdminSection div.container div.row div.col-md-9 div.card div.adminArticles.card-body
 {
     display: flex;
@@ -405,19 +421,169 @@ section#mainAdminSection div.container div.row div.adminArticles.col-md-9 nav
 {
     margin: 10px auto;
 }
-
-/* ADMIN REPORTED COMMENTS PAGE */
-
+/*     ADMIN REPORTED COMMENTS PAGE     */
 section#mainAdminSection div.container div.row div.col-md-9 div.emptyReportedCom.alert
 {
     background: white;
     border: 1px solid #656582;
     color: #ea7e7e;
 }
-
-/* ADMIN USERS PAGE */
-
+section#mainAdminSection div.container div.row div.col-md-9 a.btn.btn-secondary.btn-sm
+{
+    color: cornflowerblue;
+}
+section#mainAdminSection div.container div.row div.col-md-9 a.btn.btn-danger.btn-sm
+{
+    color: #ea7e7e;
+}
+/*     ADMIN USERS PAGE     */
 section#mainAdminSection div.container div.row div.col-md-9 nav
 {
     margin: 10px auto;
+}
+
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/* ---------------------------------------- */
+/* == MEDIA QUERIES                         */
+/*----------------------------------------- */
+
+@media only screen and (max-width: 600px)
+{
+    /*Home page: aside*/
+    div#previewChapter.container-fluid div.row aside.col-4
+    {
+        display: none;
+    }
+    /*Template page: Navbar*/
+    nav.fixMainBarr.main-navbar.navbar.fixed-top a.navbar-brand
+    {
+        font-size: 1.2rem;
+    }
+    /*Template page: Navbar*/
+    nav.fixMainBarr.main-navbar.navbar.fixed-top div.container-fluid div.pos-f-t.col-lg-3 nav.navbar.navbar-dark
+    {
+        justify-content: center;
+    }
+    nav.fixMainBarr.main-navbar.navbar.fixed-top div.container-fluid div.pos-f-t.col-lg-3 li
+    {
+        align-self: center;
+    }
+
+    /*Template page: footer*/
+    .footer_anchor
+    {
+        display: none;
+    }
+    /*Template page: Navbar*/
+    nav.fixMainBarr.main-navbar.navbar.fixed-top div.container-fluid div.btn-group.col-lg-3.show div.dropdown-menu.dropdown-menu-lg-right.show
+    {
+        left:auto;
+    }
+    /*ADMIN pages: Navbar*/
+    header#header.navAdmin.fixed-top
+    {
+        top: 148px;
+    }
+    .deal_quote
+    {
+        display: none;
+    }
+    .dashboard_quote
+    {
+        display: none;
+    }
+    /*ADMIN pages: Main Page*/
+    section#mainAdminSection
+    {
+        margin-top: 340px;
+    }
+    /*Admin Pannel Section*/
+    section#mainAdminSection div.container div.row div.col-md-9 div.card div.card-body
+    {
+        flex-direction: column;
+    }
+    /*ADMIN: ComView*/
+    
+    .table td, .table tr
+    {
+        display: flex;
+        flex-direction: column;
+    }
+    .info_ligne
+    {
+        display: none;
+    }
+}
+@media only screen and (min-width: 600px) and (max-width: 768px)
+{
+    /*Template page: Navbar*/
+    nav.fixMainBarr.main-navbar.navbar.fixed-top div.container-fluid div.pos-f-t.col-lg-3 nav.navbar.navbar-dark
+    {
+        justify-content: center;
+    }
+    nav.fixMainBarr.main-navbar.navbar.fixed-top div.container-fluid div.pos-f-t.col-lg-3 li
+    {
+        align-self: center;
+    }
+    /*Template page: Navbar*/
+    nav.fixMainBarr.main-navbar.navbar.fixed-top div.container-fluid div.btn-group.col-lg-3.show div.dropdown-menu.dropdown-menu-lg-right.show
+    {
+        left:auto;
+    }
+    /*ADMIN pages: Navbar*/
+    .deal_quote
+    {
+        display: none;
+    }
+    header#header.navAdmin.fixed-top
+    {
+        top: 168px;
+    }
+    /*ADMIN pages: Main Page*/
+    section#mainAdminSection
+    {
+        margin-top: 350px;
+    }
+    /*ADMIN: ComView*/
+    .info_ligne
+    {
+        display: none;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 991px)
+{
+    /*Template page: Navbar*/
+    nav.fixMainBarr.main-navbar.navbar.fixed-top div.container-fluid div.pos-f-t.col-lg-3 nav.navbar.navbar-dark
+    {
+        justify-content: center;
+    }
+    nav.fixMainBarr.main-navbar.navbar.fixed-top div.container-fluid div.pos-f-t.col-lg-3 li
+    {
+        align-self: center;
+    }
+    /*Template page: Navbar*/
+    nav.fixMainBarr.main-navbar.navbar.fixed-top div.container-fluid div.btn-group.col-lg-3.show div.dropdown-menu.dropdown-menu-lg-right.show
+    {
+        left:auto;
+    }
+    /*ADMIN pages: Navbar*/
+    .deal_quote
+    {
+        display: none;
+    }
+    header#header.navAdmin.fixed-top
+    {
+        top: 168px;
+    }
+    /*ADMIN pages: Main Page*/
+    section#mainAdminSection
+    {
+        margin-top: 300px;
+    }
 }

@@ -5,7 +5,7 @@
 <?php $title = 'INSCRIPTION | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
 
-    <div class="mainSection">
+    <div class="mainSection firstContainer">
         <div class="subscribeContainer container ">
             <section class="row">
                 <form class="form-signin" action="index.php?action=register" method="post">

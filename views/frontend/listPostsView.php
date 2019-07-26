@@ -4,7 +4,7 @@ session_start();
 ?>
 <?php $title = 'ROMAN | Jean FORTEROCHE'; ?>
     <?php ob_start(); ?>
-    <section class="mainRomanSection"> <!--Last post-->
+    <section class="mainRomanSection firstContainer"> <!--Last post-->
         <div class="romanContainer container">
             <div class="romanMainTitle">
                 <h4>ROMAN</h4>

@@ -14,7 +14,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <h1><a class="navbar-brand" href="index.php?action=admin"><i class="fas fa-user-cog"></i></a>  Tableau de Bord   <small>Gérer votre site ici</small></h1>
+                <h1><a class="navbar-brand" href="index.php?action=admin"><i class="fas fa-user-cog"></i></a>  <span class="dashboard_quote">Tableau de Bord</span>   <small class="deal_quote">Gérer votre site ici</small></h1>
             </div>
             <div class="col-md-2">
                 <div class="dropdown">

@@ -14,7 +14,7 @@ session_start()
     </header>
     <div id="previewChapter" class="container-fluid">
         <div class="row";>
-            <section class="col-8"> <!--Last post-->
+            <section class="col-lg-8"> <!--Last post-->
                     <h3>ÉPISODE À LA UNE</h3>
                     <?php
                     while ($data = $lastPost->fetch())
@@ -25,7 +25,7 @@ session_start()
                                 <h4><?= htmlspecialchars($data['chapter']); ?></h4>
                                 <p class="lead">POSTÉ LE <?= ($data['post_date_fr']); ?></p>
                                 <h2><?= htmlspecialchars($data['title']); ?></h2>
-                                <p class="chapter_slim"><?= nl2br(htmlspecialchars(substr($data['content'], 0, 500))); ?> [...]</p>                       
+                                <p class="chapter_slim"><?= substr($data['content'], 0, 500); ?> [...]</p>                       
                                 <a class="btn btn-lg btn-dark" href="index.php?action=post&amp;id=<?= $data['id'] ?>" role="button">Lire</a>
                                 
                             </div>        
@@ -35,7 +35,7 @@ session_start()
                     $lastPost->closeCursor();
                     ?>
             </section>
-            <aside class="col-4">
+            <aside class="col-lg-4">
                 <div>
                     <h3>COMMENTAIRES RÉCENTS</h3>
                     <?php

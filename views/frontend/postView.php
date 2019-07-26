@@ -7,7 +7,7 @@ session_start();
 
 <?php ob_start(); ?>
 
-<div class="mainSection" id="top_mainSection_PostView">
+<div class="mainSection firstContainer" id="top_mainSection_PostView">
     <section> <!--Selected post-->
         <div class="container">
             <h3>ÉPISODE <?= $post['id']; ?></h3>

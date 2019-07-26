@@ -14,7 +14,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <h1><a class="navbar-brand" href="index.php?action=admin"><i class="fas fa-user-cog"></i></a>  Tableau de Bord   <small>Gérer votre site ici</small></h1>
+                <h1><a class="navbar-brand" href="index.php?action=admin"><i class="fas fa-user-cog"></i></a>  <span class="dashboard_quote">Tableau de Bord</span>   <small class="deal_quote">Gérer votre site ici</small></h1>
             </div>
             <div class="col-md-2">
                 <div class="dropdown">
@@ -56,10 +56,10 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                         </div>
                         <div class="card-body">
                             <table class="table table-striped table-hover">
-                                <tr>
-                                    <th>N°</th>
+                                <tr class="info_ligne">
+                                    <th class="info_ligne">N°</th>
                                     <th>NOM</th>
-                                    <th>DATE</th>
+                                    <th class="info_ligne">DATE</th>
                                     <th>RESTAURER</th>
                                     <th>SUPPRIMER</th>
                                 </tr>
@@ -68,9 +68,9 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                                 {
                                 ?>
                                     <tr>
-                                        <td><span class="badge badge-light"><?= htmlspecialchars($data['id']); ?></span></td>
+                                        <td class="info_ligne"><span class="badge badge-light"><?= htmlspecialchars($data['id']); ?></span></td>
                                         <td><?= htmlspecialchars($data['author']); ?></td>
-                                        <td><?= htmlspecialchars($data['comment_date_fr']); ?></td>
+                                        <td class="info_ligne"><?= htmlspecialchars($data['comment_date_fr']); ?></td>
                                         <td><a type="submit" href="index.php?action=restoreReportedCom&amp;id=<?= $data['id'] ;?>" class="btn btn-secondary btn-sm">Restaurer  <i class="far fa-hand-point-down"></i></a></td>
                                         <td><a type="submit" name="deleteReported" href="index.php?action=deleteReportedCom&amp;id=<?= $data['id'] ;?>" class="btn btn-danger btn-sm">Supprimer  <i class="far fa-hand-point-down"></i></span></a></td>
                                     </tr>
