@@ -133,7 +133,7 @@ try
         elseif($_GET['action'] == "adminCreate")
         {
             $blogController = new BlogController();
-            $requirePage = 'views/frontend/adminCreateView.php';
+            $requirePage = 'views/backend/adminCreateView.php';
             $blogController->sideNavAdminData($requirePage);
         }
         
@@ -158,7 +158,7 @@ try
             $postController->updatePost();
         }
         
-        //ADMIN SEES REPORTED COMENTS PAGE
+        //ADMIN SEES REPORTED COMMENTS PAGE
         elseif($_GET['action'] == "adminCom")
         {
             $commentController = new CommentController();
@@ -191,7 +191,7 @@ try
         //IF PAGE DOESN'T EXIST
         else
         {
-            throw new Exception('Cette page n\'existe pas');
+            throw new Exception('Cette page n\'existe pas.</br><a href="index.php?action=home">Revenir à l\'accueil</a>');
         }       
     }
     else //HOME PAGE DISPLAY

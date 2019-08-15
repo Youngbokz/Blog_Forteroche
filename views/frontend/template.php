@@ -25,17 +25,11 @@
                 height: 300,
                 language: 'fr_FR',
                 valid_elements : "em/i,strike,u,strong/b,div[align],br, #p[align],-ol[type|compact],-ul[type|compact],-li",
-                /*plugins: [
-                    'advlist autolink lists link image charmap print preview anchor textcolor',
-                    'searchreplace visualblocks code fullscreen',
-                    'insertdatetime media table paste code help wordcount'
-                ],*/
                 toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',           
             });
         </script>
         <title><?= $title ?></title>
-    </head>
-        
+    </head>    
     <body class="text-center">
         <!--Menu-->
             <nav class="fixMainBarr main-navbar navbar fixed-top">
@@ -59,10 +53,10 @@
                     <div class="navbar-header col-lg-6">
                         <a class="navbar-brand" href="index.php?action=home">BLOG | Jean FORTEROCHE</a>
                         <?php
-                        if(isset($_SESSION['login']) && ($_SESSION['login'] != 'admin'))
+                        if(isset($_SESSION['loginSession']) && ($_SESSION['loginSession'] != 'admin'))
                         {
                         ?>
-                            <p class="welcomHome">BIENVENUE, <span class="welcomLogin"><?= mb_strtoupper($_SESSION['login']); ?></span></p>
+                            <p class="welcomHome">BIENVENUE, <span class="welcomLogin"><?= mb_strtoupper($_SESSION['loginSession']); ?></span></p>
                         <?php
                         }
                         ?>
@@ -70,15 +64,15 @@
                     </div>
                     
                     <?php
-                        if(isset($_SESSION['login']))
+                        if(isset($_SESSION['loginSession']))
                         {
                     ?>      <div class="btn-group col-lg-3">
                                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
-                                    <?= mb_strtoupper($_SESSION['login']); ?>
+                                    <?= mb_strtoupper($_SESSION['loginSession']); ?>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-lg-right">
                                     <?php
-                                    if(isset($_SESSION['login']) && $_SESSION['login'] == 'admin')
+                                    if(isset($_SESSION['loginSession']) && $_SESSION['loginSession'] == 'admin')
                                     {
                                     ?>
                                         <a class="dropdown-item" href="index.php?action=admin"><i class="fas fa-feather"></i> Tableau de bord</p></a>
@@ -113,7 +107,7 @@
         <?= $content ?>
         <footer class="container-fluid">
             <p>© 2018-2019 Jean FORTEROCHE Company|Inc. · <a href="#">Privé</a> · <a href="#">Conditions</a></p>
-            <p><a href="#container"><i class="fas fa-angle-double-up"></i>  <span class="footer_anchor">Haut de page</span></a></p>
+            <p><a href="#"><i class="fas fa-angle-double-up"></i>  <span class="footer_anchor">Haut de page</span></a></p>
         </footer>
         <!--Popper-->
         <script type="text/javascript" src="public/js/popper.min.js"></script>

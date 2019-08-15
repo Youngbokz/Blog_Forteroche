@@ -5,7 +5,6 @@ session_start()
     <?php $title = 'ACCUEIL | Jean FORTEROCHE'; ?>
     <?php ob_start(); ?>
     <header id="banner">
-        
             <div class="home_Main_Title col-md-6">
                 <h1>"Billet simple pour l'Alaska"</h1>
                 <p>Venez découvrir le roman en temps réel !</p>

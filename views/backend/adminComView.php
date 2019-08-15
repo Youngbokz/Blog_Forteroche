@@ -6,7 +6,7 @@ session_start()
 <?php $title = 'ADMINISTRATEUR | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
 <?php
-if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
+if(isset($_SESSION['loginSession']) AND $_SESSION['loginSession'] == 'admin')
 {
 ?>
 <!--------------------Admin Top Nav Bar-------------------->
@@ -68,7 +68,7 @@ if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
                                 {
                                 ?>
                                     <tr>
-                                        <td class="info_ligne"><span class="badge badge-light"><?= htmlspecialchars($data['id']); ?></span></td>
+                                        <td class="info_ligne"><span class="badge badge-light"><?= htmlspecialchars($data['post_id']); ?></span></td>
                                         <td><?= htmlspecialchars($data['author']); ?></td>
                                         <td class="info_ligne"><?= htmlspecialchars($data['comment_date_fr']); ?></td>
                                         <td><a type="submit" href="index.php?action=restoreReportedCom&amp;id=<?= $data['id'] ;?>" class="btn btn-secondary btn-sm">Restaurer  <i class="far fa-hand-point-down"></i></a></td>
@@ -128,4 +128,4 @@ else
 ?>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?> 
+<?php require('views/frontend/template.php'); ?> 

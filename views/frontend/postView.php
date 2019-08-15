@@ -1,6 +1,4 @@
-
 <?php
-/****************************************VIEWS/FRONTEND/POSTVIEW.PHP****************************************/
 session_start();
 ?>
 <?php $title = htmlspecialchars($post['title']); ?>
@@ -45,11 +43,18 @@ session_start();
                                                             <?= nl2br(htmlspecialchars($comment['comment'])); ?>
                                                         </p>
                                                     </div>
+                                                    <?php
+                                                        if(isset($_SESSION['loginSession']))
+                                                        {
+                                                    ?>
                                                     <p class="text-right">
                                                         <a href="index.php?action=reportComment&amp;id=<?= $comment['id']; ?>&amp;postId=<?= $post['id']; ?>" class="btn btn-default btn-outline-secondary btn-sm">
                                                             <i class="fa fa-reply"></i> Signaler
                                                         </a>
                                                     </p>
+                                                    <?php
+                                                        }
+                                                    ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,7 +98,7 @@ session_start();
             </div>
     
     <?php
-        if(isset($_SESSION['login']))
+        if(isset($_SESSION['loginSession']))
         {
     ?>
             <div class="addComContainer container-fluid">
@@ -110,7 +115,7 @@ session_start();
                         </div>
                         <div class="addComInput col-md-8 form-group">
                             <label for="login">Identifiant</label>
-                            <input type="text" class="form-control" id="login" name="login" value="<?= $_SESSION['login']; ?>" READONLY>
+                            <input type="text" class="form-control" id="login" name="login" value="<?= $_SESSION['loginSession']; ?>" READONLY>
                         </div>
                         <div class="addComInput col-md-8 form-group">
                             <label for="story">Message</label>

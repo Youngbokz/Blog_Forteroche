@@ -9,7 +9,7 @@
      */
     class Manager
     {
-        public $db = null;
+        
         /**
          * dbConnect
          *
@@ -19,17 +19,15 @@
          */
         protected function dbConnect() 
         {
-            if($this->db !== null) //use the connection which is already on 
+            try
             {
-                return $this->db;
-            }
-            try{
                 $this->db = new \PDO('mysql:host=localhost;dbname=forteroche_blog;charset=utf8', 'root', 'root', array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
+                //$this->db = new \PDO('mysql:host=db761026471.hosting-data.io;dbname=db761026471;charset=utf8', 'dbo761026471', 'P@ntera10', array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
                 return $this->db;
             }
-            catch(Exception $e){
+            catch(Exception $e)
+            {
                 throw new Exception('Erreur : ' . $e->getMessage());
             }
-            return $this->db;
         }
     }

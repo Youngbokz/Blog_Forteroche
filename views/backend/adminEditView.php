@@ -6,7 +6,7 @@ if(!isset($_SESSION)) session_start();
 <?php $title = 'ADMINISTRATEUR | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
 <?php
-if(isset($_SESSION['login']) AND $_SESSION['login'] == 'admin')
+if(isset($_SESSION['loginSession']) AND $_SESSION['loginSession'] == 'admin')
 {
 ?>
 <!--------------------Admin Top Nav Bar-------------------->
@@ -101,4 +101,4 @@ else
 ?>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?> 
+<?php require('views/frontend/template.php'); ?> 

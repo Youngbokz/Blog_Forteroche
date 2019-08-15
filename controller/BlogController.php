@@ -1,5 +1,5 @@
 <?php
-/****************************************MODEL/BLOGCONTROLLER.PHP****************************************/
+/****************************************CONTROLLER/BLOGCONTROLLER.PHP****************************************/
 
     namespace Youngbokz\Blog_Forteroche\Controller;
 
@@ -60,7 +60,7 @@
 
             $members = $memberManager->getLastMembers($start, $memberPerPage);
             
-            require('views/frontend/adminView.php');
+            require('views/backend/adminView.php');
         }
 
         /**

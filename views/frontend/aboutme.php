@@ -5,7 +5,7 @@ session_start()
 <!--aboutme-->
 <?php $title = 'À PROPOS DE | Jean FORTEROCHE'; ?>
 <?php ob_start(); ?>
-<div class="aboutme card col-10 mx-auto firstContainer" >
+<div class="aboutme card col-10 mx-auto firstContainer">
   <div class="row no-gutters">
     <div class="col-md-4">
       <img src="public/images/man.jpg" class="card-img" alt="A man under the rain">

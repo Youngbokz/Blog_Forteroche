@@ -5,16 +5,16 @@
 
     // We charge classes 
     require_once('core/Autoloader.php');
-    require_once('model/PostManager.php');
-    require_once('model/CommentManager.php');
-    require_once('model/MemberManager.php');
-    
-    use \Youngbokz\Blog_Forteroche\Core\Autoloader;
-    Autoloader::register();
-
+    //require_once('model/PostManager.php');
+    //require_once('model/CommentManager.php');
+    //require_once('model/MemberManager.php');
     use \Youngbokz\Blog_Forteroche\Model\PostManager;
     use \Youngbokz\Blog_Forteroche\Model\CommentManager;
     use \Youngbokz\Blog_Forteroche\Model\MemberManager;
+    use \Youngbokz\Blog_Forteroche\Core\Autoloader;
+    Autoloader::register();
+
+    
     
     /**
      * PostManager class
@@ -65,7 +65,7 @@
                 }
                 else
                 {
-                    require_once('views/frontend/postView.php');                     
+                    require('views/frontend/postView.php');                     
                 }                 
             }
             else 
@@ -112,7 +112,7 @@
 
             $posts = $postManager->getPostsAdmin($start, $postPerPage); 
             
-            require('views/frontend/adminArticlesView.php');
+            require('views/backend/adminArticlesView.php');
         }
         
         /**
@@ -146,7 +146,7 @@
                     $errorMessage = '<div class="alert alert-danger" role="alert">
                                 <i class="fas fa-exclamation-triangle"></i> Veuillez renseigner les différents champs
                             </div>';
-                    require('views/frontend/adminCreateView.php');
+                    require('views/backend/adminCreateView.php');
                 }
             }
             else
@@ -154,7 +154,7 @@
                 $errorMessage = '<div class="alert alert-danger" role="alert">
                                 <i class="fas fa-exclamation-triangle"></i> Formulaire n\'a pas été envoyé
                             </div>';
-                require('views/frontend/adminCreateView.php');
+                require('views/backend/adminCreateView.php');
             }
         }
         
@@ -191,7 +191,7 @@
                         $succesMessage = '<div class="alert alert-success" role="alert">
                         Chapitre modifié avec succès !
                         </div>';
-                        require('views/frontend/adminArticlesView.php');
+                        header('Location: index.php?action=adminArticle');
                     }
                     else
                     {
@@ -205,7 +205,7 @@
                         $postNumber = $postManager->countPosts();
                         $reportedComNumber = $commentManager->countReportedComment();
 
-                        require('views/frontend/adminEditView.php');
+                        require('views/backend/adminEditView.php');
                     }
                 }
                 
@@ -219,7 +219,7 @@
                     $memberNumber = $memberManager->countMembers();
                     $postNumber = $postManager->countPosts();
                     $reportedComNumber = $commentManager->countReportedComment();
-                    require('views/frontend/adminCreateView.php');
+                    require('views/backend/adminCreateView.php');
                 } 
             }
             else
@@ -308,11 +308,11 @@
                     <i class="fas fa-exclamation-triangle"></i>
                     Pas de chapitre à éditer !
                     </div>';
-                    require('views/frontend/adminEditView.php');
+                    require('views/backend/adminEditView.php');
                 }
                 else
                 {
-                    require('views/frontend/adminEditView.php');
+                    require('views/backend/adminEditView.php');
                 }
             }
             else

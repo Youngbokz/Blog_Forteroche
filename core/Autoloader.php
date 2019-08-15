@@ -30,6 +30,6 @@ class Autoloader
      */
     static function autoload($className)
     {
-        require_once("Youngbokz\Blog_Forteroche\Model". $className . '.php'); 
+        require_once( $className . '.php'); 
     } 
 }

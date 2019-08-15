@@ -5,16 +5,14 @@
 
     // We charge classes 
     require_once('core/Autoloader.php');
-    require_once('model/PostManager.php');
-    require_once('model/CommentManager.php');
-    require_once('model/MemberManager.php');
-    
-    use \Youngbokz\Blog_Forteroche\Core\Autoloader;
-    Autoloader::register();
-
+    //require_once('model/PostManager.php');
+    //require_once('model/CommentManager.php');
+    //require_once('model/MemberManager.php');
     use \Youngbokz\Blog_Forteroche\Model\PostManager;
     use \Youngbokz\Blog_Forteroche\Model\CommentManager;
     use \Youngbokz\Blog_Forteroche\Model\MemberManager;
+    use \Youngbokz\Blog_Forteroche\Core\Autoloader;
+    Autoloader::register();
     
     /**
      * MemberManager class
@@ -76,7 +74,7 @@
 
             $members = $memberManager->getLastMembers($start, $memberPerPage); 
 
-            require('views/frontend/adminUsersView.php');   
+            require('views/backend/adminUsersView.php');   
         }
         
         /**
@@ -196,12 +194,9 @@
         /**
          * verifyConnection
          *
-         * @param  string $log
-         * @param  string $password
-         * 
          * We call this function wich allowed us to connect with log and password
-         *
-         * @return ($member['log'] == $log AND $isPasswordCorrect === $right)
+         * 
+         * @return void
          */
         function verifyConnection()
         {
@@ -222,7 +217,7 @@
                     {
                         session_start();
                         $result = $this->member($loginConnex);
-                        $_SESSION['login'] = $result['log'];
+                        $_SESSION['loginSession'] = $result['log'];
                         $_SESSION['id'] = $result['id'];
                         $_SESSION['registration_date'] = $result['registration_date_fr'];
 
