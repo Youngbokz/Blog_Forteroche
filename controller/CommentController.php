@@ -124,7 +124,7 @@ class CommentController
 
         $postId = $_GET['id'];
         $author = htmlspecialchars($_POST['login']);
-        $newMessage = htmlspecialchars($_POST['story']);
+        $newMessage = $_POST['story'];
                 
         if(isset($_POST['submit']))
         {
