@@ -123,8 +123,8 @@ class CommentController
         $postManager = new PostManager();
 
         $postId = $_GET['id'];
-        $author = $_POST['login'];
-        $newMessage = $_POST['story'];
+        $author = htmlspecialchars($_POST['login']);
+        $newMessage = htmlspecialchars($_POST['story']);
                 
         if(isset($_POST['submit']))
         {

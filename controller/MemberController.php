@@ -104,9 +104,9 @@
         function memberRegistration()
         {
             $memberManager = new MemberManager();
-            $username =  $_POST['username'];
-            $pass =  $_POST['pass'];
-            $re_pass =  $_POST['re_pass'];
+            $username =  htmlspecialchars($_POST['username']);
+            $pass =  htmlspecialchars($_POST['pass']);
+            $re_pass =  htmlspecialchars($_POST['re_pass']);
 
             if(isset ($_POST['submit']))
             {
