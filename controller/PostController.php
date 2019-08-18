@@ -5,9 +5,7 @@
 
     // We charge classes 
     require_once('core/Autoloader.php');
-    //require_once('model/PostManager.php');
-    //require_once('model/CommentManager.php');
-    //require_once('model/MemberManager.php');
+    
     use \Youngbokz\Blog_Forteroche\Model\PostManager;
     use \Youngbokz\Blog_Forteroche\Model\CommentManager;
     use \Youngbokz\Blog_Forteroche\Model\MemberManager;
