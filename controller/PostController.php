@@ -13,8 +13,6 @@
     use \Youngbokz\Blog_Forteroche\Model\MemberManager;
     use \Youngbokz\Blog_Forteroche\Core\Autoloader;
     Autoloader::register();
-
-    
     
     /**
      * PostManager class

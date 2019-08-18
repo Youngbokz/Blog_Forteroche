@@ -8,7 +8,7 @@ session_start();
 <div class="mainSection firstContainer" id="top_mainSection_PostView">
     <section> <!--Selected post-->
         <div class="container">
-            <h3>ÉPISODE <?= $post['id']; ?></h3>
+            <h3><?= $post['chapter']; ?></h3>
             <div>            
                 <p class="lead">Publié le <?= ($post['post_date_fr']); ?></p>
                 <h2><?= htmlspecialchars($post['title']); ?></h2>

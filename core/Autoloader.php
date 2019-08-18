@@ -30,6 +30,7 @@ class Autoloader
      */
     static function autoload($className)
     {
-        require_once( $className . '.php'); 
+        var_dump($className);
+        require_once( $className . '.php');    
     } 
 }

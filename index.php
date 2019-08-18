@@ -107,7 +107,7 @@ try
         elseif($_GET['action'] == "sendComment")
         {
             $commentController = new CommentController();
-            $comment = $commentController->newComment();
+            $commentController->newComment();
             
         }
 
