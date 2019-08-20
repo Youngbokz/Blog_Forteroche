@@ -121,7 +121,7 @@ class CommentController
         $postManager = new PostManager();
 
         $postId = $_GET['id'];
-        $author = htmlspecialchars($_POST['login']);
+        $author = strip_tags($_POST['login']);
         $newMessage = strip_tags($_POST['story']);
                 
         if(isset($_POST['submit']))
